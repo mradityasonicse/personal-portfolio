@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+<!-- STITCH_THREEJS_START:ANIMATION_34 class="fixed inset-0 w-full h-full bg-transparent" -->
+<div class="fixed inset-0 w-full h-full bg-transparent" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_34" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_34');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+// Create a stylized 3D train silhouette (Locomotive)
+const group = new THREE.Group();
+
+const material = new THREE.MeshPhongMaterial({ 
+    color: 0xe61a1a, // Red from theme
+    shininess: 100,
+    specular: 0xffffff
+});
+
+// Main Body
+const body = new THREE.Mesh(new THREE.BoxGeometry(2, 0.8, 0.8), material);
+group.add(body);
+
+// Cabin
+const cabin = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.6, 0.7), material);
+cabin.position.set(0.7, 0.7, 0);
+group.add(cabin);
+
+// Funnel
+const funnel = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.6), material);
+funnel.position.set(-0.6, 0.6, 0);
+group.add(funnel);
+
+// Wheels
+const wheelGeom = new THREE.CylinderGeometry(0.2, 0.2, 0.1, 16);
+const wheelMat = new THREE.MeshPhongMaterial({ color: 0x333333 });
+for (let i = 0; i < 4; i++) {
+    const wheel = new THREE.Mesh(wheelGeom, wheelMat);
+    wheel.rotation.x = Math.PI / 2;
+    wheel.position.set(i * 0.6 - 0.9, -0.4, (i % 2 === 0 ? 0.45 : -0.45));
+    group.add(wheel);
+}
+
+scene.add(group);
+
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(5, 5, 5);
+scene.add(light);
+scene.add(new THREE.AmbientLight(0x404040, 2));
+
+camera.position.z = 5;
+
+function animate(t) {
+    requestAnimationFrame(animate);
+    
+    // Gentle floating and track-like motion
+    group.position.y = Math.sin(t * 0.002) * 0.1;
+    group.rotation.y = Math.sin(t * 0.001) * 0.2;
+    
+    // Wheels rotation
+    group.children.forEach(child => {
+        if (child.geometry.type === 'CylinderGeometry' && child.position.y === -0.4) {
+            child.rotation.z += 0.1;
+        }
+    });
+
+    renderer.render(scene, camera);
+}
+
+window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+});
+
+animate(0);
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_34 -->
+</body>
+</html>

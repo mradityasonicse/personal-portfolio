@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aditya Soni - Technical Arsenal</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&amp;family=Geist:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#595e6f",
+                        "surface-variant": "#2d3448",
+                        "error-container": "#93000a",
+                        "on-surface": "#dae2fc",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#414657",
+                        "surface-container-low": "#131b2e",
+                        "secondary": "#c6c6c7",
+                        "on-secondary-container": "#b4b5b5",
+                        "inverse-surface": "#dae2fc",
+                        "tertiary-container": "#200000",
+                        "on-primary": "#2b3040",
+                        "surface": "#0b1325",
+                        "outline": "#909096",
+                        "outline-variant": "#45464c",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-lowest": "#060e20",
+                        "tertiary": "#ffb4aa",
+                        "surface-tint": "#c1c6da",
+                        "on-tertiary-fixed": "#410001",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-dim": "#0b1325",
+                        "surface-container": "#171f32",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-tertiary": "#690003",
+                        "primary-fixed": "#dde2f6",
+                        "on-secondary": "#2f3131",
+                        "on-surface-variant": "#c6c6cc",
+                        "on-background": "#dae2fc",
+                        "primary-fixed-dim": "#c1c6da",
+                        "tertiary-fixed": "#ffdad5",
+                        "secondary-container": "#454747",
+                        "secondary-fixed": "#e2e2e2",
+                        "primary": "#c1c6da",
+                        "on-tertiary-container": "#ea2a23",
+                        "primary-container": "#050a18",
+                        "on-primary-fixed": "#161b2a",
+                        "on-tertiary-fixed-variant": "#930005",
+                        "on-primary-container": "#74798b",
+                        "tertiary-fixed-dim": "#ffb4aa",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-container-high": "#222a3d",
+                        "background": "#0b1325",
+                        "on-error": "#690005",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-highest": "#2d3448",
+                        "surface-bright": "#31394d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "container-max": "1200px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "section-gap": "160px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["EB Garamond"],
+                        "label-sm": ["JetBrains Mono"],
+                        "stat-lg": ["Geist"],
+                        "headline-lg": ["EB Garamond"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "body-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["96px", { "lineHeight": "100px", "letterSpacing": "-0.04em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "stat-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .progress-bar-fill {
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        /* Subtle glow for glass cards on hover to match brand guidance */
+        .glass-card {
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .glass-card:hover {
+            box-shadow: 0 0 40px rgba(234, 42, 35, 0.05); /* Electric Red subtle glow */
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased relative min-h-screen flex flex-col overflow-x-hidden">
+<!-- Large Background Watermark -->
+<div aria-hidden="true" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-[0.02] select-none">
+<span class="text-white" style="font-family: 'EB Garamond', serif; font-size: 80vh; line-height: 1; font-weight: 600; letter-spacing: -0.05em;">A</span>
+</div>
+<!-- TopNavBar component generated from JSON -->
+<header class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl border-b border-white/10">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+<div class="font-display-xl text-primary tracking-tighter text-2xl md:text-3xl leading-none">
+                ADITYA SONI
+            </div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-8 font-label-sm text-label-sm">
+<a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300" href="#">Home</a>
+<a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 hover:text-on-tertiary-container transition-colors duration-300" href="#">Skills</a>
+<a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300" href="#">Journey</a>
+<a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300" href="#">Contact</a>
+</nav>
+<button class="hidden md:flex text-primary font-label-sm text-label-sm px-4 py-2 border border-white/10 rounded-DEFAULT bg-white/[0.04] hover:bg-white/[0.08] hover:text-on-tertiary-container transition-all duration-300 backdrop-blur-md scale-95 active:scale-90">
+                Resume
+            </button>
+<!-- Mobile Menu Icon (simplified) -->
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow z-10 pt-32 px-margin-mobile md:px-gutter max-w-container-max mx-auto w-full pb-section-gap relative">
+<!-- Header Section -->
+<div class="mb-24 md:mb-32">
+<h1 class="font-display-xl text-display-xl md:text-[96px] text-[64px] text-on-surface tracking-tighter mb-4">
+                Technical<br/><span class="text-on-surface-variant">Arsenal</span>
+</h1>
+<p class="font-body-md text-body-md text-outline max-w-xl">
+                A highly curated stack optimized for performance, scalability, and interactive fidelity. Engineering systems that scale horizontally and render at 60 frames per second.
+            </p>
+</div>
+<!-- Modular Grid Layout (Bento style) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Distributed Systems Card -->
+<div class="glass-card md:col-span-12 lg:col-span-7 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-xl p-8 flex flex-col justify-between group">
+<div class="mb-12 flex justify-between items-start">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Distributed Systems</h2>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-on-tertiary-container transition-colors" style="font-variation-settings: 'FILL' 0;">dns</span>
+</div>
+<div class="space-y-6">
+<!-- Skill Item -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-secondary mb-2 uppercase">
+<span>Go (Golang)</span>
+<span>95%</span>
+</div>
+<div class="h-[2px] w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-on-tertiary-container rounded-full" data-target="95%"></div>
+</div>
+</div>
+<!-- Skill Item -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-secondary mb-2 uppercase">
+<span>Rust</span>
+<span>85%</span>
+</div>
+<div class="h-[2px] w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-on-tertiary-container rounded-full" data-target="85%"></div>
+</div>
+</div>
+<!-- Skill Item -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-secondary mb-2 uppercase">
+<span>Kubernetes</span>
+<span>90%</span>
+</div>
+<div class="h-[2px] w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-on-tertiary-container rounded-full" data-target="90%"></div>
+</div>
+</div>
+<!-- Skill Item -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-secondary mb-2 uppercase">
+<span>Kafka</span>
+<span>88%</span>
+</div>
+<div class="h-[2px] w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-on-tertiary-container rounded-full" data-target="88%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Full-Stack Card -->
+<div class="glass-card md:col-span-12 lg:col-span-5 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-xl p-8 flex flex-col justify-between group">
+<div class="mb-12 flex justify-between items-start">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Full-Stack</h2>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-on-tertiary-container transition-colors" style="font-variation-settings: 'FILL' 0;">layers</span>
+</div>
+<div class="space-y-6">
+<!-- Skill Item -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-secondary mb-2 uppercase">
+<span>TypeScript</span>
+<span>98%</span>
+</div>
+<div class="h-[2px] w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-on-tertiary-container rounded-full" data-target="98%"></div>
+</div>
+</div>
+<!-- Skill Item -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-secondary mb-2 uppercase">
+<span>React</span>
+<span>95%</span>
+</div>
+<div class="h-[2px] w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-on-tertiary-container rounded-full" data-target="95%"></div>
+</div>
+</div>
+<!-- Skill Item -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-secondary mb-2 uppercase">
+<span>Next.js</span>
+<span>92%</span>
+</div>
+<div class="h-[2px] w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-on-tertiary-container rounded-full" data-target="92%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- 3D/WebGL Card -->
+<div class="glass-card md:col-span-12 lg:col-span-5 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-xl p-8 flex flex-col justify-between group">
+<div class="mb-12 flex justify-between items-start">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-[40px] leading-tight text-primary">3D / WebGL</h2>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-on-tertiary-container transition-colors" style="font-variation-settings: 'FILL' 0;">view_in_ar</span>
+</div>
+<div class="space-y-6">
+<!-- Skill Item -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-secondary mb-2 uppercase">
+<span>Three.js</span>
+<span>85%</span>
+</div>
+<div class="h-[2px] w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-on-tertiary-container rounded-full" data-target="85%"></div>
+</div>
+</div>
+<!-- Skill Item -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-secondary mb-2 uppercase">
+<span>GLSL Shaders</span>
+<span>80%</span>
+</div>
+<div class="h-[2px] w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-on-tertiary-container rounded-full" data-target="80%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Performance Card -->
+<div class="glass-card md:col-span-12 lg:col-span-7 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-xl p-8 flex flex-col justify-between group">
+<div class="mb-12 flex justify-between items-start">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Performance</h2>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-on-tertiary-container transition-colors" style="font-variation-settings: 'FILL' 0;">speed</span>
+</div>
+<div class="space-y-6">
+<!-- Skill Item -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-secondary mb-2 uppercase">
+<span>WebAssembly (Wasm)</span>
+<span>75%</span>
+</div>
+<div class="h-[2px] w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-on-tertiary-container rounded-full" data-target="75%"></div>
+</div>
+</div>
+<!-- Skill Item -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-secondary mb-2 uppercase">
+<span>Web Workers</span>
+<span>90%</span>
+</div>
+<div class="h-[2px] w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-on-tertiary-container rounded-full" data-target="90%"></div>
+</div>
+</div>
+<!-- Skill Item -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-secondary mb-2 uppercase">
+<span>Memory Profiling</span>
+<span>85%</span>
+</div>
+<div class="h-[2px] w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-on-tertiary-container rounded-full" data-target="85%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer component generated from JSON -->
+<footer class="w-full py-12 bg-surface border-t border-white/10 z-10 relative mt-auto">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary text-2xl md:text-[32px] leading-none">
+                ADITYA SONI
+            </div>
+<div class="flex gap-6">
+<a class="font-label-sm text-label-sm text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">WCAG AAA Parity</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">60 FPS Performance</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">System Status</a>
+</div>
+<div class="font-label-sm text-label-sm text-secondary">
+                © 2024 Aditya Soni. Engineered for Performance.
+            </div>
+</div>
+</footer>
+<!-- Script to animate progress bars on load -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Slight delay to allow paint before animation starts
+            setTimeout(() => {
+                const bars = document.querySelectorAll('.progress-bar-fill');
+                bars.forEach(bar => {
+                    const target = bar.getAttribute('data-target');
+                    if (target) {
+                        bar.style.width = target;
+                    }
+                });
+            }, 300);
+        });
+    </script>
+</body></html>

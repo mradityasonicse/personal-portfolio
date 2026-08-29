@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aditya Soni - Systems Builder &amp; Full-Stack Developer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Geist:wght@100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ffb4ab",
+                        "surface-bright": "#31394d",
+                        "surface": "#0b1325",
+                        "secondary": "#c6c6c7",
+                        "outline-variant": "#45464c",
+                        "primary-fixed-dim": "#c1c6da",
+                        "tertiary": "#ffb4aa",
+                        "secondary-container": "#454747",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-surface-variant": "#c6c6cc",
+                        "surface-container-highest": "#2d3448",
+                        "on-error": "#690005",
+                        "on-primary-fixed": "#161b2a",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-container": "#b4b5b5",
+                        "inverse-primary": "#595e6f",
+                        "on-tertiary-fixed-variant": "#930005",
+                        "on-surface": "#dae2fc",
+                        "tertiary-fixed": "#ffdad5",
+                        "surface-variant": "#2d3448",
+                        "on-primary": "#2b3040",
+                        "on-tertiary-container": "#ea2a23",
+                        "inverse-surface": "#dae2fc",
+                        "primary-container": "#050a18",
+                        "primary": "#c1c6da",
+                        "tertiary-fixed-dim": "#ffb4aa",
+                        "on-tertiary-fixed": "#410001",
+                        "on-tertiary": "#690003",
+                        "inverse-on-surface": "#283044",
+                        "surface-dim": "#0b1325",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "primary-fixed": "#dde2f6",
+                        "surface-container-high": "#222a3d",
+                        "on-primary-container": "#74798b",
+                        "surface-container-low": "#131b2e",
+                        "error-container": "#93000a",
+                        "surface-container": "#171f32",
+                        "on-secondary": "#2f3131",
+                        "on-background": "#dae2fc",
+                        "outline": "#909096",
+                        "tertiary-container": "#200000",
+                        "background": "#0b1325",
+                        "surface-tint": "#c1c6da",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-primary-fixed-variant": "#414657",
+                        "surface-container-lowest": "#060e20"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "container-max": "1200px",
+                        "section-gap": "160px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["EB Garamond", "serif"],
+                        "label-sm": ["JetBrains Mono", "monospace"],
+                        "headline-lg": ["EB Garamond", "serif"],
+                        "headline-lg-mobile": ["EB Garamond", "serif"],
+                        "stat-lg": ["Geist", "sans-serif"],
+                        "body-md": ["Geist", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["96px", { "lineHeight": "100px", "letterSpacing": "-0.04em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "stat-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            overflow-x: hidden;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(234, 42, 35, 0.15); /* Electric Red */
+            border-color: theme('colors.on-tertiary-container');
+        }
+
+        .hero-bg-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40vw;
+            color: rgba(255, 255, 255, 0.02);
+            font-family: theme('fontFamily.display-xl');
+            font-weight: 800;
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .nav-underline {
+            position: relative;
+        }
+        .nav-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: theme('colors.on-tertiary-container');
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-underline.active::after, .nav-underline:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl border-b border-white/10">
+<div class="max-w-container-max mx-auto px-gutter py-4 flex justify-between items-center">
+<a class="font-display-xl text-[24px] font-bold text-primary tracking-tighter scale-95 active:scale-90 transition-transform" href="#">
+                ADITYA SONI
+            </a>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-label-sm text-label-sm text-on-tertiary-container nav-underline active pb-1 transition-colors duration-300" href="#">Home</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-tertiary-container nav-underline transition-colors duration-300" href="#">Skills</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-tertiary-container nav-underline transition-colors duration-300" href="#">Journey</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-tertiary-container nav-underline transition-colors duration-300" href="#">Contact</a>
+</nav>
+<a class="hidden md:flex items-center gap-2 px-6 py-2 glass-panel rounded font-label-sm text-label-sm text-primary hover:text-on-tertiary-container transition-all duration-300 glow-hover group scale-95 active:scale-90" href="#">
+                Resume
+                <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow relative pt-32 pb-section-gap overflow-hidden">
+<!-- Large Background 'A' Placeholder -->
+<div class="absolute inset-0 z-0 opacity-10 mix-blend-screen pointer-events-none flex items-center justify-center">
+<img alt="" class="w-full h-full object-cover max-w-lg object-center" src="https://lh3.googleusercontent.com/aida/AEtjO1UWzFFqCg-IRxsJYYZPcl2P0U34bSmHodi4aQ-EABPDHJ-jckF7Ei-69rKGFa4IeaSKttswSIRu5GINROC8lTq8fV-Q_WBo0JiHP7nRVJ-2T_QuXnjQ8dSy-cH5bLUSuqDEPGkvmm1bSiE3ziir1iFmSu3lanuZ5E3ZcRchV8Ze6L6QFeOnAfkK4WtIqcYDPg_4bhHn2bQ7-iY2ZG69qSuwLGPa4IXGam5vrW6fL2qcXCGLqn1MpO7FG51T" style="mask-image: linear-gradient(to bottom, black 20%, transparent 80%); -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);"/>
+</div>
+<div class="max-w-container-max mx-auto px-gutter relative z-10 grid grid-cols-4 md:grid-cols-12 gap-gutter items-center min-h-[70vh]">
+<!-- Left Column: Typography & Content -->
+<div class="col-span-4 md:col-span-7 flex flex-col justify-center h-full pt-12 md:pt-0">
+<p class="font-label-sm text-label-sm text-secondary mb-6 uppercase tracking-[0.2em]">Hey there, I'm</p>
+<h1 class="font-display-xl text-display-xl text-on-surface mb-2 leading-none flex flex-col">
+<span class="tracking-tighter">ADITYA</span>
+<span class="tracking-tighter">SONI</span>
+</h1>
+<p class="font-label-sm text-label-sm text-primary mt-8 mb-6 flex items-center gap-2">
+<span class="text-on-tertiary-container">&lt;/&gt;</span> FULL-STACK DEVELOPER &amp; SYSTEMS BUILDER
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mb-8 leading-relaxed">
+                    I build responsive, high-performance web applications, low-latency WebSocket systems, and GPU-accel
+                </p>
+<div class="flex flex-wrap gap-3 mb-12">
+<span class="glass-panel px-3 py-1.5 rounded font-label-sm text-[10px] text-on-surface border border-white/10">Next.js &amp; React 19</span>
+<span class="glass-panel px-3 py-1.5 rounded font-label-sm text-[10px] text-on-surface border border-white/10">Low-Latency WebSockets</span>
+<span class="glass-panel px-3 py-1.5 rounded font-label-sm text-[10px] text-on-surface border border-white/10">WebGL &amp; Shaders</span>
+<span class="glass-panel px-3 py-1.5 rounded font-label-sm text-[10px] text-on-surface border border-white/10">AI Decision Engines</span>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-6">
+<a class="w-full sm:w-auto glass-panel border-white/20 px-8 py-4 rounded font-label-sm text-label-sm text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-all duration-300 flex items-center justify-center gap-2 glow-hover group" href="#">
+                        EXPLORE WORK 
+                        <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<a class="font-label-sm text-label-sm text-primary hover:text-on-tertiary-container transition-colors flex items-center gap-2" href="#">
+                        VIEW RESUME <span class="material-symbols-outlined text-[16px]">description</span>
+</a>
+<a class="font-label-sm text-label-sm text-secondary hover:text-on-surface transition-colors flex items-center gap-2 ml-auto sm:ml-0" href="#">
+                        LET'S TALK <span class="material-symbols-outlined text-[16px] opacity-50">arrow_outward</span>
+</a>
+</div>
+<!-- Stats Footer -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 border-t border-white/5 pt-8">
+<div>
+<div class="font-stat-lg text-stat-lg text-primary mb-1">3+</div>
+<div class="font-label-sm text-[10px] text-secondary/60 tracking-wider">YEARS BUILDING</div>
+</div>
+<div>
+<div class="font-stat-lg text-stat-lg text-primary mb-1">100%</div>
+<div class="font-label-sm text-[10px] text-secondary/60 tracking-wider">WCAG AAA PARITY</div>
+</div>
+<div>
+<div class="font-stat-lg text-stat-lg text-primary mb-1">60 FPS</div>
+<div class="font-label-sm text-[10px] text-secondary/60 tracking-wider">GPU BENCHMARK</div>
+</div>
+<div>
+<div class="font-stat-lg text-stat-lg text-primary mb-1">&lt;1ms</div>
+<div class="font-label-sm text-[10px] text-secondary/60 tracking-wider">SOCKET LATENCY</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Profile Image -->
+<div class="col-span-4 md:col-span-5 relative mt-16 md:mt-0 flex justify-center items-center h-full">
+<!-- Circular framing -->
+<div class="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] rounded-full flex items-center justify-center">
+<!-- Decorative outer rings -->
+<div class="absolute inset-0 rounded-full border border-white/5 scale-[1.3]"></div>
+<div class="absolute inset-0 rounded-full border border-white/10 scale-[1.1] border-dashed"></div>
+<!-- Main image container -->
+<div class="relative w-full h-full rounded-full overflow-hidden glass-panel border border-white/20 z-10 transition-transform duration-500 hover:scale-[1.02] hover:border-on-tertiary-container/50 hover:shadow-[0_0_40px_rgba(234,42,35,0.15)] group">
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent z-10"></div>
+<!-- Using user provided image -->
+<img alt="Aditya Soni" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out grayscale hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCzdB6zkcKaW02U6uh1_YzXTWZypeOPpYlyJyuPF_Ltxe8sjDoNs7o0RdAy_0isD2c8zESHB1xlB3iaKywWfMXJsma7ZXYeSyFwKNEi8QzRFaVJhyjpxxaLlQsIaxF2b4m22wfCqIQRiYbd0dlwoWC-2HI2fZyirsESeDdvUJFqex82Q6J3cD8waLKv6132QJqj6Au2ZgR6RS-iauV1aOqOPMIBxaORuMWwQSW1ExUeML7et5-Nvopreqo39Jo_C2tSTw"/>
+</div>
+<!-- Floating Status Card -->
+<div class="absolute -bottom-4 md:bottom-12 -right-4 md:-right-12 glass-panel border-white/10 p-4 rounded z-20 shadow-2xl backdrop-blur-xl min-w-[240px]">
+<p class="font-label-sm text-[10px] text-primary mb-1 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container animate-pulse"></span>
+                            LOCATION &amp; STATUS
+                        </p>
+<p class="font-label-sm text-[10px] text-secondary/80 mb-2">India // Open to Remote &amp; Relocation</p>
+<p class="font-label-sm text-[10px] text-primary font-bold">OPEN FOR FULL-TIME ROLES</p>
+</div>
+<!-- Orbiting text or element could go here -->
+<div class="absolute -inset-10 border border-white/5 rounded-full animate-[spin_60s_linear_infinite] pointer-events-none">
+<div class="absolute top-0 left-1/2 w-2 h-2 bg-primary/20 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 right-1/4 w-1 h-1 bg-on-tertiary-container/50 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface border-t border-white/10 relative z-10">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="font-headline-lg text-primary text-[24px]">
+                AS.
+            </div>
+<div class="font-label-sm text-label-sm text-secondary text-center md:text-left">
+                © 2024 Aditya Soni. Engineered for Performance.
+            </div>
+<div class="flex items-center gap-6">
+<a class="font-label-sm text-label-sm text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">WCAG AAA Parity</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">60 FPS Performance</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">System Status</a>
+</div>
+</div>
+</footer>
+<!-- Terminal-like fixed element (optional flavor based on reference) -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 glass-panel border-white/10 rounded-full px-4 py-2 flex items-center gap-3 z-50 pointer-events-none opacity-50 hidden md:flex">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container animate-pulse"></span>
+<span class="font-label-sm text-[10px] text-secondary">Getting DOM...</span>
+</div>
+</body></html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THE JOURNEY - Aditya Soni</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Geist:wght@100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-primary": "#595e6f",
+                      "surface-variant": "#2d3448",
+                      "error-container": "#93000a",
+                      "on-surface": "#dae2fc",
+                      "error": "#ffb4ab",
+                      "on-primary-fixed-variant": "#414657",
+                      "surface-container-low": "#131b2e",
+                      "secondary": "#c6c6c7",
+                      "on-secondary-container": "#b4b5b5",
+                      "inverse-surface": "#dae2fc",
+                      "tertiary-container": "#200000",
+                      "on-primary": "#2b3040",
+                      "surface": "#0b1325",
+                      "outline": "#909096",
+                      "outline-variant": "#45464c",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-lowest": "#060e20",
+                      "tertiary": "#ffb4aa",
+                      "surface-tint": "#c1c6da",
+                      "on-tertiary-fixed": "#410001",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "surface-dim": "#0b1325",
+                      "surface-container": "#171f32",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "on-tertiary": "#690003",
+                      "primary-fixed": "#dde2f6",
+                      "on-secondary": "#2f3131",
+                      "on-surface-variant": "#c6c6cc",
+                      "on-background": "#dae2fc",
+                      "primary-fixed-dim": "#c1c6da",
+                      "tertiary-fixed": "#ffdad5",
+                      "secondary-container": "#454747",
+                      "secondary-fixed": "#e2e2e2",
+                      "primary": "#c1c6da",
+                      "on-tertiary-container": "#ea2a23",
+                      "primary-container": "#050a18",
+                      "on-primary-fixed": "#161b2a",
+                      "on-tertiary-fixed-variant": "#930005",
+                      "on-primary-container": "#74798b",
+                      "tertiary-fixed-dim": "#ffb4aa",
+                      "on-secondary-fixed-variant": "#454747",
+                      "surface-container-high": "#222a3d",
+                      "background": "#0b1325",
+                      "on-error": "#690005",
+                      "inverse-on-surface": "#283044",
+                      "surface-container-highest": "#2d3448",
+                      "surface-bright": "#31394d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-mobile": "20px",
+                      "container-max": "1200px",
+                      "unit": "8px",
+                      "gutter": "24px",
+                      "section-gap": "160px"
+              },
+              "fontFamily": {
+                      "display-xl": [
+                              "EB Garamond"
+                      ],
+                      "label-sm": [
+                              "JetBrains Mono"
+                      ],
+                      "stat-lg": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "EB Garamond"
+                      ],
+                      "headline-lg-mobile": [
+                              "EB Garamond"
+                      ],
+                      "body-md": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "display-xl": [
+                              "96px",
+                              {
+                                      "lineHeight": "100px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "stat-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40vw;
+            color: rgba(255, 255, 255, 0.02);
+            font-family: 'EB Garamond', serif;
+            font-weight: 800;
+            z-index: -1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .timeline-line {
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(234, 42, 35, 0.1), rgba(234, 42, 35, 1), rgba(234, 42, 35, 0.1));
+        }
+        
+        .timeline-node {
+            box-shadow: 0 0 20px rgba(234, 42, 35, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-on-tertiary-container selection:text-white overflow-x-hidden min-h-screen flex flex-col">
+<!-- Watermark Background -->
+<div class="watermark">A</div>
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl border-b border-white/10 flat no shadows">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+<div class="font-display-xl text-primary tracking-tighter text-2xl md:text-3xl">ADITYA SONI</div>
+<div class="hidden md:flex gap-8">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300" href="#">Home</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300" href="#">Skills</a>
+<a class="font-label-sm text-label-sm text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 transition-colors duration-300" href="#">Journey</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300" href="#">Contact</a>
+</div>
+<button class="font-label-sm text-label-sm text-primary glass-panel px-6 py-2 rounded scale-95 active:scale-90 transition-transform hover:text-on-tertiary-container hover:bg-white/10 duration-300">
+                Resume
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-32 pb-section-gap px-gutter relative z-10">
+<div class="max-w-container-max mx-auto">
+<!-- Header Section -->
+<header class="mb-24 text-center md:text-left">
+<h1 class="font-display-xl text-display-xl text-primary mb-4 hidden md:block">THE JOURNEY</h1>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-4 md:hidden">THE JOURNEY</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto md:mx-0">
+                    A chronological map of systems built, technical challenges overcome, and the evolution of engineering capabilities.
+                </p>
+</header>
+<!-- Timeline Section -->
+<div class="relative max-w-4xl mx-auto md:ml-12 mt-section-gap">
+<!-- Vertical Line -->
+<div class="absolute left-8 md:left-[50%] top-0 bottom-0 timeline-line transform md:-translate-x-1/2 rounded-full hidden md:block"></div>
+<div class="absolute left-[39px] top-0 bottom-0 timeline-line rounded-full md:hidden"></div>
+<!-- Timeline Items -->
+<div class="space-y-24">
+<!-- Present Node -->
+<div class="relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+<!-- Left Content (Empty on Desktop, Contains Content on Mobile) -->
+<div class="md:w-[45%] text-left hidden md:block pr-12 text-right">
+<div class="font-label-sm text-label-sm text-on-tertiary-container mb-2">PRESENT</div>
+<h3 class="font-headline-lg text-headline-lg text-primary">Kinetic Engineering</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4">Architecting scalable microservices.</p>
+</div>
+<!-- Center Node -->
+<div class="absolute left-[39px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-on-tertiary-container rounded-full timeline-node z-10 transition-transform duration-300 group-hover:scale-150"></div>
+<!-- Right Content (Image/Graphic on Desktop, Full Content on Mobile) -->
+<div class="md:w-[45%] pl-24 md:pl-12 w-full mt-4 md:mt-0">
+<!-- Mobile Content View -->
+<div class="md:hidden mb-6">
+<div class="font-label-sm text-label-sm text-on-tertiary-container mb-2">PRESENT</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Kinetic Engineering</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Architecting scalable microservices.</p>
+</div>
+<!-- Visual Asset -->
+<div class="glass-panel rounded-xl overflow-hidden relative group-hover:border-on-tertiary-container transition-colors duration-500 h-64">
+<img class="w-full h-full object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" data-alt="A highly complex, glowing schematic visualization of a scalable microservices architecture in a futuristic, dark computing environment. Intricate data lines flow between neon-lit server nodes, illustrating high-performance kinetic engineering. The lighting is cinematic, casting deep shadows against glowing red and bright white data streams, emphasizing precision and technological mastery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYrBTbN-mzPvQyYWumuiTaMAixWSozdAgfkxmOpUW2MdfLf43sDPRwCkz56usUiVVlrv0WEXoEVydKD06Fong2WJhXm-pRKTCO5CPI_vpvePoX63t9sl8JMy1RtTnSLJw1WQGr6TYkc5bQhOTiJR-WA6q6mYpuRRIgVBJmVPgiUWpfJ6l9pUbT1Rm8XVwg24aHIxu0qtM1cuerYrtBjdEdBxSLI9T9HLo0sQV_kVMpAApUoeVzgG3rAw"/>
+</div>
+</div>
+</div>
+<!-- 2021-2023 Node -->
+<div class="relative flex flex-col md:flex-row-reverse items-start md:items-center justify-between group">
+<!-- Right Content (Text on Desktop) -->
+<div class="md:w-[45%] text-left hidden md:block pl-12">
+<div class="font-label-sm text-label-sm text-on-tertiary-container mb-2">2021 - 2023</div>
+<h3 class="font-headline-lg text-headline-lg text-primary">Full-Stack Propulsion</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4">Building complex data visualizations at Datasphere.</p>
+</div>
+<!-- Center Node -->
+<div class="absolute left-[39px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-on-surface-variant rounded-full border-2 border-background z-10 transition-all duration-300 group-hover:bg-on-tertiary-container group-hover:scale-150 group-hover:shadow-[0_0_20px_rgba(234,42,35,0.2)]"></div>
+<!-- Left Content (Image on Desktop, Full Content on Mobile) -->
+<div class="md:w-[45%] pl-24 md:pl-0 md:pr-12 w-full mt-4 md:mt-0">
+<!-- Mobile Content View -->
+<div class="md:hidden mb-6">
+<div class="font-label-sm text-label-sm text-on-tertiary-container mb-2">2021 - 2023</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Full-Stack Propulsion</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Building complex data visualizations at Datasphere.</p>
+</div>
+<!-- Visual Asset -->
+<div class="glass-panel rounded-xl overflow-hidden relative group-hover:border-on-tertiary-container transition-colors duration-500 h-64">
+<div class="w-full h-full bg-cover bg-center opacity-70 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" data-alt="A striking 3D data visualization interface displaying complex full-stack propulsion metrics floating in dark space. Abstract geometric charts and graphs are rendered in stark minimalist white and deep black, sharply contrasted by vibrant 'Electric Red' highlights indicating peak performance. The style is highly technical, precise, and glassmorphic, evoking a high-end engineering dashboard." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCslwp00DuBUGkOrBOwDNdYtioHDs9WDOMlBw3mriom5PQHpXmLMrMWHkSKlBGVp6ieqXHQR7YJ9GN1-nH0UEH7NHTOWiAINtwhjHKD6ZldE84SmwwrDoKGeGMLmDwuvljh-Zzscnnd8YpjxPtGA7Sb59CaiVbpEdwgd6SfFO2vXl9EsDwkIHVgWh17CRvi-fB7i3aHPXznqX3AetGJ3_295-1qz1vUenRjSth0zpylWz6S7rQGJpqYkg')"></div>
+</div>
+</div>
+</div>
+<!-- 2017-2021 Node -->
+<div class="relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+<!-- Left Content (Text on Desktop) -->
+<div class="md:w-[45%] text-left hidden md:block pr-12 text-right">
+<div class="font-label-sm text-label-sm text-on-tertiary-container mb-2">2017 - 2021</div>
+<h3 class="font-headline-lg text-headline-lg text-primary">The Foundation</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4">B.S. Computer Science. Establishing core architectural principles.</p>
+</div>
+<!-- Center Node -->
+<div class="absolute left-[39px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-on-surface-variant rounded-full border-2 border-background z-10 transition-all duration-300 group-hover:bg-on-tertiary-container group-hover:scale-150 group-hover:shadow-[0_0_20px_rgba(234,42,35,0.2)]"></div>
+<!-- Right Content (Image on Desktop, Full Content on Mobile) -->
+<div class="md:w-[45%] pl-24 md:pl-12 w-full mt-4 md:mt-0">
+<!-- Mobile Content View -->
+<div class="md:hidden mb-6">
+<div class="font-label-sm text-label-sm text-on-tertiary-container mb-2">2017 - 2021</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">The Foundation</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">B.S. Computer Science. Establishing core architectural principles.</p>
+</div>
+<!-- Visual Asset -->
+<div class="glass-panel rounded-xl p-8 relative group-hover:border-on-tertiary-container transition-colors duration-500 flex items-center justify-center min-h-64">
+<div class="text-center">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant group-hover:text-primary transition-colors duration-500 mb-4" style="font-variation-settings: 'FILL' 0;">school</span>
+<div class="font-label-sm text-label-sm text-outline tracking-[0.2em]">UNIVERSITY</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 border-t border-white/10 bg-surface flat no shadows z-10 relative">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="font-headline-lg text-primary text-2xl md:text-3xl opacity-80 hover:opacity-100 transition-opacity">ADITYA SONI</div>
+<div class="font-label-sm text-label-sm text-secondary text-center md:text-left">
+                © 2024 Aditya Soni. Engineered for Performance.
+            </div>
+<div class="flex gap-6">
+<a class="font-label-sm text-label-sm text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">WCAG AAA Parity</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">60 FPS Performance</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">System Status</a>
+</div>
+</div>
+</footer>
+</body></html>

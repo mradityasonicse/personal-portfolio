@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aditya Soni - THE JOURNEY</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Geist:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#0b1325",
+            "background": "#0b1325",
+            "primary": "#c1c6da",
+            "secondary": "#c6c6c7",
+            "on-surface": "#dae2fc",
+            "on-surface-variant": "#c6c6cc",
+            "on-tertiary-container": "#ea2a23",
+            "outline": "#909096",
+            "outline-variant": "#45464c",
+            "surface-container-low": "#131b2e"
+          },
+          fontFamily: {
+            "display-xl": ["EB Garamond", "serif"],
+            "headline-lg": ["EB Garamond", "serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "body-md": ["Geist", "sans-serif"]
+          },
+          spacing: {
+            "gutter": "24px",
+            "container-max": "1200px",
+            "section-gap": "120px"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    /* Custom smooth dark crimson scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070d1a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(234, 42, 35, 0.4);
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(234, 42, 35, 0.85);
+    }
+
+    body {
+      background-color: #0b1325;
+      color: #dae2fc;
+      font-family: 'Geist', sans-serif;
+      overflow-x: hidden;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .glass-panel, .glass-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, box-shadow;
+      transform: translateZ(0);
+    }
+    .glass-card:hover {
+      box-shadow: 0 16px 45px rgba(234, 42, 35, 0.12), 0 0 35px rgba(29, 78, 216, 0.06);
+      border-color: rgba(255, 255, 255, 0.28);
+      transform: translateY(-5px) scale(1.01);
+    }
+
+    /* Smooth Scroll Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased relative min-h-screen flex flex-col justify-between selection:bg-on-tertiary-container selection:text-white">
+
+  <!-- Background WebGL Shader Canvas -->
+  <div class="fixed inset-0 z-[-1] pointer-events-none">
+    <canvas id="shader-canvas" class="w-full h-full opacity-60"></canvas>
+  </div>
+
+  <!-- Top Navigation Bar -->
+  <header class="fixed top-0 w-full z-50 bg-surface/50 backdrop-blur-xl border-b border-white/10">
+    <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+      <a href="index.html" class="font-display-xl text-primary tracking-tighter text-2xl md:text-3xl leading-none font-bold">
+        ADITYA <span class="text-on-tertiary-container">SONI</span>
+      </a>
+      
+      <nav class="hidden md:flex items-center gap-8 font-label-sm text-xs tracking-widest uppercase">
+        <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="index.html">Home</a>
+        <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="skills.html">Skills</a>
+        <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="projects.html">Projects</a>
+        <a class="text-white border-b-2 border-on-tertiary-container pb-1" href="journey.html">Journey</a>
+        <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="signature.html">Signature</a>
+        <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="contact.html">Contact</a>
+      </nav>
+
+      <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="hidden md:flex text-primary font-label-sm text-xs uppercase px-4 py-2 border border-white/10 rounded bg-white/[0.04] hover:bg-white/[0.08] hover:text-on-tertiary-container transition-all backdrop-blur-md">
+        Resume
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="pt-32 pb-24 px-6 md:px-gutter max-w-container-max mx-auto relative z-10 w-full">
+    
+    <div class="text-center mb-16">
+      <p class="font-label-sm text-xs text-on-tertiary-container uppercase tracking-[0.25em] mb-2">Milestones &amp; Experience</p>
+      <h1 class="font-display-xl text-5xl md:text-7xl font-bold text-white tracking-tight mb-4">
+        The Engineering <span class="text-on-tertiary-container">Journey</span>
+      </h1>
+      <p class="font-body-md text-on-surface-variant max-w-xl mx-auto text-base">
+        Tracking milestones from distributed systems to immersive GPU-accelerated web architectures.
+      </p>
+    </div>
+
+
+
+    <!-- Vertical Timeline -->
+    <div class="relative max-w-4xl mx-auto">
+      <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/15 -translate-x-1/2"></div>
+
+      <div class="space-y-16">
+        
+        <!-- Milestone 1 Card -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
+          <div class="absolute left-4 md:left-1/2 w-4 h-4 bg-background border-2 border-on-tertiary-container rounded-full -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(234,42,35,0.6)] group-hover:scale-150 transition-all duration-300"></div>
+          <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0 w-full">
+            <div class="glass-panel p-6 sm:p-7 rounded-2xl border border-white/10 group-hover:border-on-tertiary-container/40 transition-all duration-300 relative overflow-hidden text-left md:text-right">
+              <div class="font-label-sm text-xs text-on-tertiary-container mb-1.5 font-semibold flex items-center gap-2 justify-start md:justify-end">
+                <span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span>
+                <span>2023 - 2024</span>
+              </div>
+              <h3 class="font-headline-lg text-2xl md:text-3xl text-white mb-2 font-bold">Class 10th</h3>
+              <p class="font-body-md text-on-surface-variant text-sm leading-relaxed mb-4">
+                Completed Class 10th with a strong academic foundation in Mathematics, Computer Science, and Science fundamentals.
+              </p>
+              <div class="flex flex-wrap gap-1.5 justify-start md:justify-end pt-3 border-t border-white/10">
+                <span class="px-2.5 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Mathematics</span>
+                <span class="px-2.5 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Computer Science</span>
+                <span class="px-2.5 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Science</span>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/2 hidden md:block"></div>
+        </div>
+
+        <!-- Milestone 2 Card -->
+        <div class="relative flex flex-col md:flex-row-reverse items-start md:items-center md:justify-between group">
+          <div class="absolute left-4 md:left-1/2 w-4 h-4 bg-background border-2 border-on-tertiary-container rounded-full -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(234,42,35,0.6)] group-hover:scale-150 transition-all duration-300"></div>
+          <div class="md:w-1/2 md:pl-12 pl-12 md:pl-0 w-full">
+            <div class="glass-panel p-6 sm:p-7 rounded-2xl border border-white/10 group-hover:border-on-tertiary-container/40 transition-all duration-300 relative overflow-hidden text-left">
+              <div class="font-label-sm text-xs text-on-tertiary-container mb-1.5 font-semibold flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span>
+                <span>2021 - 2023</span>
+              </div>
+              <h3 class="font-headline-lg text-2xl md:text-3xl text-white mb-2 font-bold">Full-Stack Software Engineer</h3>
+              <p class="font-body-md text-on-surface-variant text-sm leading-relaxed mb-4">
+                Engineered streaming dashboards, low-latency WebSocket infrastructure, and interactive data visualization suites.
+              </p>
+              <div class="flex flex-wrap gap-1.5 justify-start pt-3 border-t border-white/10">
+                <span class="px-2.5 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">TypeScript</span>
+                <span class="px-2.5 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">React 19</span>
+                <span class="px-2.5 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">WebSockets</span>
+                <span class="px-2.5 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Node.js</span>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/2 hidden md:block"></div>
+        </div>
+
+        <!-- Milestone 3 Card -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
+          <div class="absolute left-4 md:left-1/2 w-4 h-4 bg-background border-2 border-on-tertiary-container rounded-full -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(234,42,35,0.6)] group-hover:scale-150 transition-all duration-300"></div>
+          <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0 w-full">
+            <div class="glass-panel p-6 sm:p-7 rounded-2xl border border-white/10 group-hover:border-on-tertiary-container/40 transition-all duration-300 relative overflow-hidden text-left md:text-right">
+              <div class="font-label-sm text-xs text-on-tertiary-container mb-1.5 font-semibold flex items-center gap-2 justify-start md:justify-end">
+                <span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container animate-ping"></span>
+                <span>2023 - Present</span>
+              </div>
+              <h3 class="font-headline-lg text-2xl md:text-3xl text-white mb-2 font-bold">Distributed Systems &amp; Real-Time Engineering</h3>
+              <p class="font-body-md text-on-surface-variant text-sm leading-relaxed mb-4">
+                Architecting scalable backend microservices, real-time synchronization pipelines, and hardware-accelerated interactive web applications.
+              </p>
+              <div class="flex flex-wrap gap-1.5 justify-start md:justify-end pt-3 border-t border-white/10">
+                <span class="px-2.5 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Go</span>
+                <span class="px-2.5 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Rust</span>
+                <span class="px-2.5 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Kafka</span>
+                <span class="px-2.5 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">WebGL &amp; GLSL</span>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/2 hidden md:block"></div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full py-12 bg-surface border-t border-white/10 z-10 relative">
+    <div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="font-headline-lg text-primary text-xl font-bold">
+        ADITYA <span class="text-on-tertiary-container">SONI</span>
+      </div>
+      <div class="flex gap-6 font-label-sm text-xs text-outline">
+        <a href="https://github.com/mradityasonicse" target="_blank" rel="noopener noreferrer" class="hover:text-on-tertiary-container transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/in/aditya-soni-698114370" target="_blank" rel="noopener noreferrer" class="hover:text-on-tertiary-container transition-colors">LinkedIn</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mradityasoni.cse@gmail.com" target="_blank" rel="noopener noreferrer" class="hover:text-on-tertiary-container transition-colors">Email</a>
+      </div>
+      <div class="font-label-sm text-xs text-secondary">
+        © 2026 Aditya Soni. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Background Shader
+    (function() {
+      const canvas = document.getElementById('shader-canvas');
+      if (!canvas) return;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) return;
+
+      const vs = `
+        attribute vec2 a_position;
+        varying vec2 v_uv;
+        void main() {
+          v_uv = a_position * 0.5 + 0.5;
+          gl_Position = vec4(a_position, 0.0, 1.0);
+        }
+      `;
+
+      const fs = `
+        precision highp float;
+        uniform float u_time;
+        uniform vec2 u_resolution;
+        varying vec2 v_uv;
+
+        float grid(vec2 uv, float spacing) {
+          vec2 lines = abs(fract(uv / spacing - 0.5) - 0.5) / fwidth(uv / spacing);
+          return 1.0 - min(lines.x, lines.y);
+        }
+
+        void main() {
+          vec2 uv = v_uv;
+          vec2 center = uv - 0.5;
+          center.x *= u_resolution.x / u_resolution.y;
+
+          vec3 color = vec3(0.043, 0.074, 0.145);
+          float wave = sin(center.x * 2.5 + u_time * 0.4) * cos(center.y * 2.5 - u_time * 0.25);
+          color += vec3(0.91, 0.16, 0.13) * wave * 0.025;
+
+          float g = grid(center + vec2(u_time * 0.02, 0.0), 0.08);
+          color = mix(color, vec3(0.12, 0.22, 0.38), clamp(g * 0.08, 0.0, 1.0));
+
+          float mask = 1.0 - smoothstep(0.4, 1.4, length(center));
+          color *= mask;
+
+          gl_FragColor = vec4(color, 1.0);
+        }
+      `;
+
+      function cs(type, src) {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        return s;
+      }
+
+      const prog = gl.createProgram();
+      gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+      gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+
+      const pos = gl.getAttribLocation(prog, 'a_position');
+      gl.enableVertexAttribArray(pos);
+      gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+      const uTime = gl.getUniformLocation(prog, 'u_time');
+      const uRes = gl.getUniformLocation(prog, 'u_resolution');
+
+      function render(t) {
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        if (uTime) gl.uniform1f(uTime, t * 0.001);
+        if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(render);
+      }
+      render(0);
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.glass-card, .glass-panel, h1, h2, h3');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      cards.forEach((el, index) => {
+        el.classList.add('reveal');
+        el.style.transitionDelay = `${(index % 3) * 120}ms`;
+        observer.observe(el);
+      });
+    });
+  </script>
+  <!-- Background Aerial Flight & Helicopter Animation -->
+  <script src="flight.js"></script>
+</body>
+</html>

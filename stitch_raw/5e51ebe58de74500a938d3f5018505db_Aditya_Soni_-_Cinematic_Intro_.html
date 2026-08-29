@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aditya Soni - Intro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&amp;family=Geist:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#2f3131",
+                        "on-tertiary": "#690003",
+                        "surface-tint": "#c1c6da",
+                        "on-tertiary-container": "#ea2a23",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "surface-bright": "#31394d",
+                        "surface-dim": "#0b1325",
+                        "primary": "#c1c6da",
+                        "inverse-primary": "#595e6f",
+                        "background": "#0b1325",
+                        "on-secondary-fixed-variant": "#454747",
+                        "secondary-container": "#454747",
+                        "inverse-surface": "#dae2fc",
+                        "surface-variant": "#2d3448",
+                        "on-surface": "#dae2fc",
+                        "surface-container-low": "#131b2e",
+                        "on-secondary-container": "#b4b5b5",
+                        "surface-container-highest": "#2d3448",
+                        "on-tertiary-fixed-variant": "#930005",
+                        "secondary": "#c6c6c7",
+                        "tertiary-fixed": "#ffdad5",
+                        "surface-container": "#171f32",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#dae2fc",
+                        "surface-container-high": "#222a3d",
+                        "primary-fixed-dim": "#c1c6da",
+                        "on-tertiary-fixed": "#410001",
+                        "tertiary": "#ffb4aa",
+                        "outline-variant": "#45464c",
+                        "on-primary-fixed-variant": "#414657",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-primary": "#2b3040",
+                        "primary-fixed": "#dde2f6",
+                        "tertiary-container": "#200000",
+                        "primary-container": "#050a18",
+                        "on-surface-variant": "#c6c6cc",
+                        "tertiary-fixed-dim": "#ffb4aa",
+                        "surface": "#0b1325",
+                        "inverse-on-surface": "#283044",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#161b2a",
+                        "on-primary-container": "#74798b",
+                        "outline": "#909096",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-container-lowest": "#060e20"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "container-max": "1200px",
+                        "unit": "8px",
+                        "section-gap": "160px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["JetBrains Mono"],
+                        "stat-lg": ["Geist"],
+                        "headline-lg": ["EB Garamond"],
+                        "body-md": ["Geist"],
+                        "display-xl": ["EB Garamond"],
+                        "headline-lg-mobile": ["EB Garamond"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "stat-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-xl": ["96px", { "lineHeight": "100px", "letterSpacing": "-0.04em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .letter-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeSlideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .typewriter-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid transparent; /* cursor */
+            width: 0;
+            animation: typing 2s steps(22, end) 1.5s forwards, blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #ea2a23; }
+        }
+
+        .progress-line {
+            width: 0%;
+            height: 2px;
+            background-color: #ea2a23;
+            animation: progress 4s linear forwards;
+        }
+
+        @keyframes progress {
+            to { width: 100%; }
+        }
+        
+        .skip-btn {
+            transition: all 0.3s ease;
+        }
+        .skip-btn:hover {
+            box-shadow: 0 0 15px rgba(234, 42, 35, 0.3);
+            border-color: rgba(234, 42, 35, 0.5);
+            color: #ea2a23;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background m-0 p-0 overflow-hidden w-full h-screen relative font-body-md">
+<!-- Background Shader -->
+<!-- STITCH_SHADER_START:ANIMATION_31 class="absolute inset-0 w-full h-full z-0 pointer-events-none" -->
+<div class="absolute inset-0 w-full h-full z-0 pointer-events-none" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_31" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_31');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+varying vec2 v_texCoord;
+
+// Simplex noise for organic background movement
+vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+float snoise(vec2 v){
+  const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+           -0.577350269189626, 0.024390243902439);
+  vec2 i  = floor(v + dot(v, C.yy) );
+  vec2 x0 = v -   i + dot(i, C.xx);
+  vec2 i1;
+  i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+  i = mod(i, 289.0);
+  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+  + i.x + vec3(0.0, i1.x, 1.0 ));
+  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+    dot(x12.zw,x12.zw)), 0.0);
+  m = m*m ;
+  m = m*m ;
+  vec3 x = 2.0 * fract(p * C.www) - 1.0;
+  vec3 h = abs(x) - 0.5;
+  vec3 ox = floor(x + 0.5);
+  vec3 a0 = x - ox;
+  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+  vec3 g;
+  g.x  = a0.x  * x0.x  + h.x  * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
+}
+
+void main() {
+    vec2 uv = v_texCoord;
+    vec2 mouse = u_mouse / u_resolution;
+    
+    // Kinetic Architect Palette
+    vec3 colorBg = vec3(0.02, 0.04, 0.09); // surface-container-lowest
+    vec3 colorAccent = vec3(0.9, 0.1, 0.1); // primary/red
+    
+    // Create a sense of "intro" energy with moving lines and noise
+    float n = snoise(uv * 3.0 + u_time * 0.1);
+    float glow = exp(-10.0 * length(uv - 0.5 + vec2(cos(u_time), sin(u_time)) * 0.2));
+    
+    // Scanlines
+    float scanline = sin(uv.y * 400.0 + u_time * 5.0) * 0.015;
+    
+    // Subtle grid/network feel
+    float grid = (step(0.99, fract(uv.x * 20.0)) + step(0.99, fract(uv.y * 20.0))) * 0.05;
+    
+    vec3 finalColor = mix(colorBg, colorAccent * 0.1, n * 0.5 + 0.5);
+    finalColor += colorAccent * glow * 0.1;
+    finalColor += scanline;
+    finalColor += grid;
+    
+    // Radial mask to focus center
+    float mask = 1.0 - smoothstep(0.2, 0.8, length(uv - 0.5));
+    finalColor *= mix(0.5, 1.0, mask);
+
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_31 -->
+<!-- Overlay for cinematic depth -->
+<div class="absolute inset-0 bg-background/60 z-10 pointer-events-none mix-blend-multiply"></div>
+<!-- Main Content Container -->
+<main class="relative z-20 w-full h-full flex flex-col items-center justify-center">
+<!-- Animated Name -->
+<h1 class="font-display-xl text-display-xl text-primary tracking-tighter flex space-x-2" id="animated-name">
+<!-- Letters injected via JS for staggered animation -->
+</h1>
+<!-- Subtitle -->
+<div class="mt-8 font-label-sm text-label-sm text-on-surface-variant flex items-center justify-center min-w-[300px]">
+<span class="typewriter-text inline-block">ENGINEERING THE FUTURE</span>
+</div>
+</main>
+<!-- Skip Button -->
+<div class="absolute bottom-12 right-12 z-30">
+<button class="skip-btn px-6 py-2 border border-white/10 rounded font-label-sm text-label-sm text-on-surface-variant bg-surface/20 backdrop-blur-md flex items-center gap-2 group cursor-pointer">
+            Skip Intro
+            <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Progress Line -->
+<div class="absolute bottom-0 left-0 w-full z-30 bg-surface-container-low h-[2px]">
+<div class="progress-line"></div>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nameContainer = document.getElementById('animated-name');
+            const name = "ADITYA SONI";
+            const delayBetweenLetters = 0.08; // seconds
+
+            name.split('').forEach((char, index) => {
+                if (char === ' ') {
+                    const space = document.createElement('span');
+                    space.innerHTML = '&nbsp;';
+                    nameContainer.appendChild(space);
+                } else {
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    span.className = 'letter-reveal inline-block drop-shadow-lg';
+                    span.style.animationDelay = `${index * delayBetweenLetters}s`;
+                    nameContainer.appendChild(span);
+                }
+            });
+
+            // Simulate redirect after progress completes
+            setTimeout(() => {
+                // window.location.href = '/home'; // Uncomment in production
+                console.log('Intro finished. Redirecting...');
+            }, 4000);
+            
+            // Skip button interaction
+            const skipBtn = document.querySelector('.skip-btn');
+            skipBtn.addEventListener('click', () => {
+                 // window.location.href = '/home'; // Uncomment in production
+                 console.log('Skip clicked. Redirecting...');
+                 document.querySelector('.progress-line').style.width = '100%';
+                 document.querySelector('.progress-line').style.transition = 'width 0.2s linear';
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact | Aditya Soni</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Geist:wght@100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#dde2f6",
+                        "surface": "#0b1325",
+                        "inverse-primary": "#595e6f",
+                        "on-tertiary": "#690003",
+                        "inverse-surface": "#dae2fc",
+                        "on-background": "#dae2fc",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "tertiary-container": "#200000",
+                        "primary": "#c1c6da",
+                        "tertiary": "#ffb4aa",
+                        "inverse-on-surface": "#283044",
+                        "secondary-container": "#454747",
+                        "on-tertiary-fixed-variant": "#930005",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#050a18",
+                        "on-primary-fixed": "#161b2a",
+                        "outline-variant": "#45464c",
+                        "on-tertiary-fixed": "#410001",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-tint": "#c1c6da",
+                        "background": "#0b1325",
+                        "on-tertiary-container": "#ea2a23",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-primary": "#2b3040",
+                        "surface-container-low": "#131b2e",
+                        "error-container": "#93000a",
+                        "on-secondary-container": "#b4b5b5",
+                        "surface-bright": "#31394d",
+                        "tertiary-fixed": "#ffdad5",
+                        "surface-variant": "#2d3448",
+                        "on-secondary": "#2f3131",
+                        "tertiary-fixed-dim": "#ffb4aa",
+                        "outline": "#909096",
+                        "secondary": "#c6c6c7",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#74798b",
+                        "surface-container": "#171f32",
+                        "secondary-fixed": "#e2e2e2",
+                        "surface-dim": "#0b1325",
+                        "surface-container-high": "#222a3d",
+                        "on-surface-variant": "#c6c6cc",
+                        "primary-fixed-dim": "#c1c6da",
+                        "on-surface": "#dae2fc",
+                        "surface-container-lowest": "#060e20",
+                        "surface-container-highest": "#2d3448",
+                        "on-primary-fixed-variant": "#414657",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "section-gap": "160px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["EB Garamond"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "body-md": ["Geist"],
+                        "label-sm": ["JetBrains Mono"],
+                        "stat-lg": ["Geist"],
+                        "headline-lg": ["EB Garamond"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["96px", { "lineHeight": "100px", "letterSpacing": "-0.04em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "stat-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.surface');
+            color: theme('colors.on-surface');
+            overflow-x: hidden;
+        }
+        
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-panel-elevated {
+            background-color: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .glow-hover:hover {
+            box-shadow: 0 0 24px rgba(234, 42, 35, 0.15);
+        }
+        
+        .bg-large-a {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 800px;
+            font-family: 'EB Garamond', serif;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.02);
+            z-index: -1;
+            user-select: none;
+            pointer-events: none;
+            line-height: 0.8;
+        }
+        
+        .input-line {
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            border-radius: 0;
+            padding-left: 0;
+            padding-right: 0;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-line:focus {
+            outline: none;
+            box-shadow: none;
+            border-bottom-color: theme('colors.on-tertiary-container');
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative">
+<div class="bg-large-a">A</div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl border-b border-white/10 transition-transform duration-300">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+<div class="font-display-xl text-primary tracking-tighter text-2xl md:text-3xl leading-none">
+                ADITYA SONI
+            </div>
+<div class="hidden md:flex gap-8 items-center font-label-sm text-label-sm">
+<a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300" href="#">Skills</a>
+<a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300" href="#">Journey</a>
+<a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1" href="#">Contact</a>
+</div>
+<button class="font-label-sm text-label-sm text-primary glass-panel px-4 py-2 hover:bg-white/10 hover:text-on-tertiary-container hover:border-on-tertiary-container/50 transition-all duration-300 scale-95 active:scale-90 glow-hover">
+                Resume
+            </button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-32 pb-section-gap px-gutter relative z-10">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Header / Context -->
+<div class="col-span-1 md:col-span-5 flex flex-col justify-center">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-6">
+                        Let's build something exceptional.
+                    </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-12 max-w-md">
+                        Whether you have a complex system to architect or a vision to realize, I'm open to discussing new opportunities and collaborations.
+                    </p>
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-4 group cursor-pointer w-fit">
+<span class="material-symbols-outlined text-outline group-hover:text-on-tertiary-container transition-colors">mail</span>
+<span class="font-label-sm text-label-sm text-secondary group-hover:text-primary transition-colors">mradityasoni.cse@gmail.com</span>
+</div>
+<div class="flex gap-6 mt-4">
+<a class="text-outline hover:text-on-tertiary-container transition-colors duration-300 flex items-center justify-center w-10 h-10 rounded-full glass-panel glow-hover" href="#">
+<span class="material-symbols-outlined text-[20px]">link</span> <!-- LinkedIn stand-in -->
+</a>
+<a class="text-outline hover:text-on-tertiary-container transition-colors duration-300 flex items-center justify-center w-10 h-10 rounded-full glass-panel glow-hover" href="#">
+<span class="material-symbols-outlined text-[20px]">code</span> <!-- GitHub stand-in -->
+</a>
+<a class="text-outline hover:text-on-tertiary-container transition-colors duration-300 flex items-center justify-center w-10 h-10 rounded-full glass-panel glow-hover" href="#">
+<span class="material-symbols-outlined text-[20px]">chat</span> <!-- Twitter stand-in -->
+</a>
+</div>
+</div>
+</div>
+<!-- Spacer -->
+<div class="col-span-1 md:col-span-1 hidden md:block"></div>
+<!-- Form Canvas -->
+<div class="col-span-1 md:col-span-6 mt-16 md:mt-0">
+<div class="glass-panel-elevated p-8 md:p-12 h-full flex flex-col justify-center">
+<form class="flex flex-col gap-8">
+<div class="relative pt-4">
+<label class="font-label-sm text-[10px] text-outline uppercase absolute top-0 left-0 tracking-widest" for="name">Name</label>
+<input class="input-line w-full font-body-md text-primary pb-2" id="name" placeholder="Jane Doe" type="text"/>
+</div>
+<div class="relative pt-4">
+<label class="font-label-sm text-[10px] text-outline uppercase absolute top-0 left-0 tracking-widest" for="email">Email</label>
+<input class="input-line w-full font-body-md text-primary pb-2" id="email" placeholder="jane@example.com" type="email"/>
+</div>
+<div class="relative pt-4">
+<label class="font-label-sm text-[10px] text-outline uppercase absolute top-0 left-0 tracking-widest" for="message">Message</label>
+<textarea class="input-line w-full font-body-md text-primary pb-2 resize-none" id="message" placeholder="Tell me about your project..." rows="4"></textarea>
+</div>
+<button class="mt-4 self-start flex items-center gap-2 font-label-sm text-label-sm text-surface bg-on-tertiary-container hover:bg-tertiary px-8 py-4 transition-colors duration-300" type="button">
+<span>INITIALIZE CONTACT</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface border-t border-white/10 relative z-10 mt-auto">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="font-headline-lg text-primary text-xl">
+                ADITYA SONI
+            </div>
+<div class="font-label-sm text-label-sm text-secondary text-center md:text-left">
+                © 2024 Aditya Soni. Engineered for Performance.
+            </div>
+<div class="flex gap-6 font-label-sm text-label-sm">
+<a class="text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity transition-colors" href="#">WCAG AAA Parity</a>
+<a class="text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity transition-colors" href="#">60 FPS Performance</a>
+<a class="text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity transition-colors" href="#">System Status</a>
+</div>
+</div>
+</footer>
+</body></html>

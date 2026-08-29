@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aditya Soni - Skills &amp; Technologies</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Geist:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#0b1325",
+            "background": "#0b1325",
+            "primary": "#c1c6da",
+            "secondary": "#c6c6c7",
+            "on-surface": "#dae2fc",
+            "on-surface-variant": "#c6c6cc",
+            "on-tertiary-container": "#ea2a23",
+            "outline": "#909096",
+            "outline-variant": "#45464c",
+            "surface-container-low": "#131b2e",
+            "surface-container-high": "#222a3d",
+            "surface-container": "#171f32"
+          },
+          fontFamily: {
+            "display-xl": ["EB Garamond", "serif"],
+            "headline-lg": ["EB Garamond", "serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "body-md": ["Geist", "sans-serif"],
+            "stat-lg": ["Geist", "sans-serif"]
+          },
+          spacing: {
+            "gutter": "24px",
+            "container-max": "1200px",
+            "section-gap": "120px"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    /* Custom smooth dark crimson scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070d1a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(234, 42, 35, 0.4);
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(234, 42, 35, 0.85);
+    }
+
+    body {
+      background-color: #0b1325;
+      color: #dae2fc;
+      font-family: 'Geist', sans-serif;
+      overflow-x: hidden;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .glass-card {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+      will-change: transform, box-shadow;
+      transform: translateZ(0);
+    }
+    .glass-card:hover {
+      box-shadow: 0 16px 45px rgba(234, 42, 35, 0.12), 0 0 35px rgba(29, 78, 216, 0.06);
+      border-color: rgba(255, 255, 255, 0.28);
+      transform: translateY(-5px) scale(1.01);
+    }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Smooth Scroll Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased relative min-h-screen flex flex-col justify-between selection:bg-on-tertiary-container selection:text-white">
+
+  <!-- Large Background Watermark -->
+  <div aria-hidden="true" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-[0.025] select-none">
+    <span class="text-white font-display-xl font-bold" style="font-size: 80vh; line-height: 1;">A</span>
+  </div>
+
+  <!-- Top Navigation Bar -->
+  <header class="fixed top-0 w-full z-50 bg-surface/50 backdrop-blur-xl border-b border-white/10">
+    <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+      <a href="index.html" class="font-display-xl text-primary tracking-tighter text-2xl md:text-3xl leading-none font-bold">
+        ADITYA <span class="text-on-tertiary-container">SONI</span>
+      </a>
+      
+      <nav class="hidden md:flex items-center gap-8 font-label-sm text-xs tracking-widest uppercase">
+        <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="index.html">Home</a>
+        <a class="text-white border-b-2 border-on-tertiary-container pb-1" href="skills.html">Skills</a>
+        <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="projects.html">Projects</a>
+        <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="journey.html">Journey</a>
+        <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="signature.html">Signature</a>
+        <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="contact.html">Contact</a>
+      </nav>
+
+      <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="hidden md:flex text-primary font-label-sm text-xs uppercase px-4 py-2 border border-white/10 rounded bg-white/[0.04] hover:bg-white/[0.08] hover:text-on-tertiary-container transition-all backdrop-blur-md">
+        Resume
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow z-10 pt-32 px-6 md:px-gutter max-w-container-max mx-auto w-full pb-24 relative">
+    
+    <div class="mb-16 md:mb-20">
+      <p class="font-label-sm text-xs text-on-tertiary-container uppercase tracking-[0.25em] mb-2">Technical Matrix</p>
+      <h1 class="font-display-xl text-5xl md:text-7xl font-bold text-white tracking-tight mb-4">
+        Skills &amp; <span class="text-on-surface-variant">Technologies</span>
+      </h1>
+      <p class="font-body-md text-on-surface-variant max-w-xl text-base leading-relaxed">
+        A comprehensive overview of backend, systems, frontend, graphics, and performance tooling used across production environments.
+      </p>
+    </div>
+
+    <!-- Bento Grid Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+      
+      <!-- Distributed Systems Card -->
+      <div class="glass-card md:col-span-12 lg:col-span-7 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-xl p-8 flex flex-col justify-between group">
+        <div class="mb-6 flex justify-between items-start">
+          <div>
+            <span class="font-label-sm text-[10px] text-on-tertiary-container uppercase tracking-widest">Back-End &amp; Infrastructure</span>
+            <h2 class="font-headline-lg text-2xl md:text-3xl text-primary mt-1">Distributed Systems</h2>
+          </div>
+          <span class="material-symbols-outlined text-outline-variant group-hover:text-on-tertiary-container transition-colors text-3xl">dns</span>
+        </div>
+
+        <p class="font-body-md text-on-surface-variant text-sm mb-6 leading-relaxed">
+          Designing fault-tolerant backends, event streaming pipelines, and container orchestration for resilient production environments.
+        </p>
+
+        <div class="flex flex-wrap gap-2 pt-2 border-t border-white/10">
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Go (Golang)</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Rust</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Kubernetes</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Apache Kafka</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">gRPC &amp; Protobuf</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">PostgreSQL</span>
+        </div>
+      </div>
+
+      <!-- Full-Stack Card -->
+      <div class="glass-card md:col-span-12 lg:col-span-5 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-xl p-8 flex flex-col justify-between group">
+        <div class="mb-6 flex justify-between items-start">
+          <div>
+            <span class="font-label-sm text-[10px] text-on-tertiary-container uppercase tracking-widest">Modern Web</span>
+            <h2 class="font-headline-lg text-2xl md:text-3xl text-primary mt-1">Full-Stack Development</h2>
+          </div>
+          <span class="material-symbols-outlined text-outline-variant group-hover:text-on-tertiary-container transition-colors text-3xl">layers</span>
+        </div>
+
+        <p class="font-body-md text-on-surface-variant text-sm mb-6 leading-relaxed">
+          End-to-end full-stack architectures with clean component modularity, server components, and responsive state synchronization.
+        </p>
+
+        <div class="flex flex-wrap gap-2 pt-2 border-t border-white/10">
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">TypeScript</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">React 19</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Next.js App Router</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Node.js</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Tailwind CSS</span>
+        </div>
+      </div>
+
+      <!-- 3D / WebGL Card -->
+      <div class="glass-card md:col-span-12 lg:col-span-5 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-xl p-8 flex flex-col justify-between group">
+        <div class="mb-6 flex justify-between items-start">
+          <div>
+            <span class="font-label-sm text-[10px] text-on-tertiary-container uppercase tracking-widest">Interactive Visuals</span>
+            <h2 class="font-headline-lg text-2xl md:text-3xl text-primary mt-1">3D Graphics &amp; WebGL</h2>
+          </div>
+          <span class="material-symbols-outlined text-outline-variant group-hover:text-on-tertiary-container transition-colors text-3xl">view_in_ar</span>
+        </div>
+
+        <p class="font-body-md text-on-surface-variant text-sm mb-6 leading-relaxed">
+          Hardware-accelerated web experiences, procedural geometry shaders, and real-time 3D scenes.
+        </p>
+
+        <div class="flex flex-wrap gap-2 pt-2 border-t border-white/10">
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Three.js</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">GLSL / Custom Shaders</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">WebGL API</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Canvas 2D</span>
+        </div>
+      </div>
+
+      <!-- Performance Card -->
+      <div class="glass-card md:col-span-12 lg:col-span-7 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-xl p-8 flex flex-col justify-between group">
+        <div class="mb-6 flex justify-between items-start">
+          <div>
+            <span class="font-label-sm text-[10px] text-on-tertiary-container uppercase tracking-widest">Runtime &amp; Scalability</span>
+            <h2 class="font-headline-lg text-2xl md:text-3xl text-primary mt-1">Performance &amp; Real-Time</h2>
+          </div>
+          <span class="material-symbols-outlined text-outline-variant group-hover:text-on-tertiary-container transition-colors text-3xl">speed</span>
+        </div>
+
+        <p class="font-body-md text-on-surface-variant text-sm mb-6 leading-relaxed">
+          Optimizing frame budgets, sub-millisecond socket messaging, multi-threading with Web Workers, and low-level memory efficiency.
+        </p>
+
+        <div class="flex flex-wrap gap-2 pt-2 border-t border-white/10">
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">WebSockets</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Web Workers</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">WebAssembly (Wasm)</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Performance Profiling</span>
+          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Caching &amp; Redis</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full py-12 bg-surface border-t border-white/10 z-10 relative">
+    <div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="font-headline-lg text-primary text-xl font-bold">
+        ADITYA <span class="text-on-tertiary-container">SONI</span>
+      </div>
+      <div class="flex gap-6 font-label-sm text-xs text-outline">
+        <a href="https://github.com/mradityasonicse" target="_blank" rel="noopener noreferrer" class="hover:text-on-tertiary-container transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/in/aditya-soni-698114370" target="_blank" rel="noopener noreferrer" class="hover:text-on-tertiary-container transition-colors">LinkedIn</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mradityasoni.cse@gmail.com" target="_blank" rel="noopener noreferrer" class="hover:text-on-tertiary-container transition-colors">Email</a>
+      </div>
+      <div class="font-label-sm text-xs text-secondary">
+        © 2026 Aditya Soni. All rights reserved.
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.glass-card, .glass-panel, h1, h2, .grid > div');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      cards.forEach((el, index) => {
+        el.classList.add('reveal');
+        el.style.transitionDelay = `${(index % 4) * 100}ms`;
+        observer.observe(el);
+      });
+    });
+  </script>
+  <!-- Background Aerial Flight & Helicopter Animation -->
+  <script src="flight.js"></script>
+</body>
+</html>

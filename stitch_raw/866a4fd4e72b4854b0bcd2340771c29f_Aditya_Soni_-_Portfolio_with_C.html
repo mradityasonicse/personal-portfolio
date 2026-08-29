@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="en" style="width: 390px; height: 1323px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Mobile Portfolio - Aditya Soni</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style data-purpose="custom-fonts-and-theme">
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+    :root {
+      --bg-main: #ffffff;
+      --text-main: #1a1a1a;
+      --text-muted: #666666;
+      --accent-blue: #1d4ed8;
+      --accent-blue-hover: #1e3a8a;
+      --border-color: #e5e7eb;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .serif-font {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .mono-font {
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* Custom subtle gradient background */
+    .bg-gradient-custom {
+      background: radial-gradient(circle at 100% 50%, rgba(29, 78, 216, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+    }
+  </style>
+<style data-purpose="image-frame-styles">
+    /* Styles for the circular profile image frame */
+    .orbit-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      margin: 0 auto;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .orbit-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .orbit-ring-1 {
+      width: 100%;
+      height: 100%;
+      border-color: rgba(255, 255, 255, 0.3); /* White outer ring */
+    }
+
+    .orbit-ring-2 {
+      width: 85%;
+      height: 85%;
+      border: 1px solid rgba(239, 68, 68, 0.5); /* Red inner ring */
+    }
+
+    .profile-image-wrapper {
+      width: 70%;
+      height: 70%;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .profile-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Small decorative crosshairs */
+    .crosshair {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      color: rgba(239, 68, 68, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+    .crosshair-top { top: -5px; left: 50%; transform: translateX(-50%); }
+    .crosshair-right { right: -5px; top: 50%; transform: translateY(-50%); color: rgba(255, 255, 255, 0.8); }
+    .crosshair-bottom { bottom: -5px; left: 50%; transform: translateX(-50%); }
+    .crosshair-left { left: -5px; top: 50%; transform: translateY(-50%); color: rgba(255, 255, 255, 0.8); }
+  </style>
+<link data-snapdom="injected-import" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Inter:wght@300;400;500;600&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"></head>
+<body class="min-h-screen text-white antialiased selection:bg-red-600 selection:text-white bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgyTYT_hdBNeqXPyxMtUprLPxbN1o7GhmRfgVXWDFxkp6uv9arKXoVyRDPlmqnkvdrgZ4i6NeXqQQbu4MD5y1-H6JlO17bNFeRUC1VOFbfhLMhQtN-BaWOv3KD3XdkSLZfpAjoJoegjPwk-jSn7vYYnHzV9bCHwkvKEEQ6pHG41fsavcjK9KFjzUQ_2LvgmgEafDsNEOfcPYF0p6lcccIW_tA9SV9VG1xufQcBHoDHpGMd8zoluhWwgSrUVjdcUNdSsHI');">
+<!-- BEGIN: MainContent -->
+<main class="flex flex-col min-h-screen relative pb-20 bg-black/40">
+<!-- Vertical decorative text -->
+<div class="fixed left-2 top-0 bottom-0 w-8 hidden sm:flex flex-col justify-center border-r border-white/20 opacity-60 z-0">
+<p class="transform -rotate-90 whitespace-nowrap text-[8px] tracking-[0.3em] text-white/60 mono-font">
+        HIGH-PERFORMANCE WEB APPS // 3D GRAPHICS // DISTRIBUTED SYSTEMS
+      </p>
+</div>
+<div class="px-6 pt-12 pb-8 w-full max-w-md mx-auto z-10">
+<!-- BEGIN: Header Section -->
+<header class="mb-10">
+<p class="text-[10px] uppercase tracking-[0.2em] text-white/70 mb-4 mono-font">Hey there, I'm</p>
+<h1 class="text-6xl sm:text-7xl leading-[0.9] tracking-tight mb-2 serif-font text-white">ADITYA<br><span class="text-red-500">SONI</span></h1>
+<p class="text-xs uppercase tracking-wider text-blue-300 mt-6 mb-4 font-semibold">
+          Full-Stack Developer &amp; Systems Builder <span class="opacity-70 text-red-400 font-mono ml-2">&lt;/&gt;</span>
+</p>
+<p class="text-sm leading-relaxed text-white/80 font-light max-w-[280px]">
+          i think i research and i build interactive projects.
+        </p>
+</header>
+<!-- END: Header Section -->
+<!-- BEGIN: Profile Image Section -->
+<section class="mb-12 relative flex justify-center py-4" data-purpose="profile-visual">
+<div class="orbit-container">
+<div class="absolute inset-0 z-20 pointer-events-none animate-[spin_20s_linear_infinite]">
+<svg class="w-full h-full" viewBox="0 0 280 280">
+<defs>
+<path d="M 140, 140 m -128, 0 a 128,128 0 1,1 256,0 a 128,128 0 1,1 -256,0" id="textPath"></path>
+</defs>
+<text class="text-[10.5px] tracking-[0.2em] font-medium uppercase fill-white">
+<textPath href="#textPath" lengthAdjust="spacing" startOffset="0" textLength="804">ADITYA SONI • SYSTEMS BUILDER • FULL-STACK DEVELOPER • ADITYA SONI • SYSTEMS BUILDER • FULL-STACK DEVELOPER • </textPath>
+</text>
+</svg>
+</div>
+<div class="orbit-ring orbit-ring-1">
+<div class="crosshair crosshair-top">+</div>
+<div class="crosshair crosshair-right">+</div>
+<div class="crosshair crosshair-bottom">+</div>
+<div class="crosshair crosshair-left">+</div>
+</div>
+<div class="orbit-ring orbit-ring-2"></div>
+<div class="profile-image-wrapper">
+</div>
+<!-- Location Status Card -->
+</div>
+</section>
+<!-- END: Profile Image Section -->
+<!-- BEGIN: Skills & Tags -->
+<section class="mb-10 flex flex-wrap gap-2" data-purpose="skill-tags">
+<span class="px-3 py-1.5 text-[10px] bg-white border border-blue-200 rounded text-blue-700">Next.js &amp; React 19</span>
+<span class="px-3 py-1.5 text-[10px] bg-white border border-red-200 rounded text-red-700">Low-Latency WebSockets</span>
+<span class="px-3 py-1.5 text-[10px] bg-white border border-blue-200 rounded text-blue-700">WebGL &amp; Shaders</span>
+<span class="px-3 py-1.5 text-[10px] bg-white border border-red-200 rounded text-red-700">AI Decision Engines</span>
+</section>
+<!-- END: Skills & Tags -->
+<!-- BEGIN: Call to Action -->
+<section class="flex flex-col gap-4 mb-16" data-purpose="cta-buttons">
+<a class="flex items-center justify-between w-full px-6 py-4 bg-white border border-blue-700 text-blue-700 rounded font-medium text-sm hover:bg-blue-50 transition-colors group" href="#">
+<span class="tracking-wider">EXPLORE WORK</span>
+<svg class="w-4 h-4 text-red-600 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+<div class="flex items-center justify-between gap-4">
+<a class="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-white/10 rounded border border-white/20 text-white text-xs font-semibold tracking-wider hover:bg-white/20 transition-colors uppercase" href="#">
+            VIEW RESUME
+            <svg class="w-3.5 h-3.5 text-red-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" fill-rule="evenodd"></path></svg>
+</a>
+<a class="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-white/10 rounded border border-white/20 text-white text-xs font-semibold tracking-wider hover:bg-white/20 transition-colors uppercase" href="#">
+            LET'S TALK
+            <span class="flex items-center justify-center w-5 h-5 rounded-full border border-blue-300 text-blue-300">
+<svg class="w-2.5 h-2.5 transform -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</span>
+</a>
+</div>
+</section>
+<!-- END: Call to Action -->
+<!-- BEGIN: Stats Grid -->
+<section class="grid grid-cols-2 gap-y-8 gap-x-4 pt-8 border-t border-white/20" data-purpose="metrics-display">
+<div class="flex flex-col">
+<span class="text-3xl font-bold text-red-500 mb-1 serif-font">3+</span>
+<span class="text-[9px] uppercase tracking-widest text-white/60 mono-font">Years Building</span>
+</div>
+<div class="flex flex-col">
+<span class="text-3xl font-bold text-blue-400 mb-1 serif-font">100%</span>
+<span class="text-[9px] uppercase tracking-widest text-white/60 mono-font">WCAG AAA Parity</span>
+</div>
+<div class="flex flex-col">
+<span class="text-3xl font-bold text-red-500 mb-1 serif-font">60 FPS</span>
+<span class="text-[9px] uppercase tracking-widest text-white/60 mono-font">GPU Benchmark</span>
+</div>
+<div class="flex flex-col">
+<span class="text-3xl font-bold text-blue-400 mb-1 serif-font">&lt;1ms</span>
+<span class="text-[9px] uppercase tracking-widest text-white/60 mono-font">Socket Latency</span>
+</div>
+</section>
+<!-- END: Stats Grid -->
+</div>
+<!-- Bottom utility bar -->
+<div class="fixed bottom-0 left-0 right-0 h-12 bg-white border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] flex items-center justify-center z-50">
+<div class="flex items-center bg-gray-50 border border-gray-200 rounded-full px-4 py-1.5 text-xs text-gray-600 w-64 max-w-full mx-4">
+<span class="mr-auto">Getting DOM...</span>
+<div class="w-2 h-2 rounded-sm bg-red-600 animate-pulse"></div>
+</div>
+</div>
+</main>
+<!-- END: MainContent -->
+</body></html>

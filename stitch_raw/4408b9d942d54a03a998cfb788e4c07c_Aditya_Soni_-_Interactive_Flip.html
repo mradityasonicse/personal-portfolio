@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Journey - Aditya Soni</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&amp;family=Geist:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-primary-fixed-variant": "#414657",
+                "on-secondary": "#2f3131",
+                "on-primary-fixed": "#161b2a",
+                "inverse-surface": "#dbe2fc",
+                "electric-red-glow": "rgba(234, 42, 35, 0.1)",
+                "surface-tint": "#c1c6da",
+                "on-secondary-container": "#b4b5b5",
+                "secondary-fixed": "#e2e2e2",
+                "on-surface-variant": "#c6c6cc",
+                "background": "#0b1325",
+                "surface-bright": "#32394d",
+                "on-error-container": "#ffdad6",
+                "on-tertiary": "#690003",
+                "surface-container-low": "#141b2e",
+                "on-tertiary-fixed": "#410001",
+                "on-secondary-fixed-variant": "#454747",
+                "secondary-container": "#454747",
+                "on-surface": "#dbe2fc",
+                "surface-container-high": "#22293d",
+                "surface-variant": "#2d3448",
+                "error-container": "#93000a",
+                "tertiary-fixed-dim": "#ffb4aa",
+                "surface": "#0b1325",
+                "tertiary-fixed": "#ffdad5",
+                "secondary": "#c6c6c7",
+                "surface-dim": "#0b1325",
+                "surface-container-lowest": "#060d20",
+                "on-primary-container": "#74798b",
+                "tertiary": "#ffb4aa",
+                "inverse-primary": "#595e6f",
+                "primary-container": "#050a18",
+                "primary": "#c1c6da",
+                "on-error": "#690005",
+                "primary-fixed": "#dde2f6",
+                "on-secondary-fixed": "#1a1c1c",
+                "outline-variant": "#45464c",
+                "on-tertiary-fixed-variant": "#930006",
+                "secondary-fixed-dim": "#c6c6c7",
+                "error": "#ffb4ab",
+                "on-tertiary-container": "#ea2a23",
+                "surface-container-highest": "#2d3448",
+                "inverse-on-surface": "#293044",
+                "on-background": "#dbe2fc",
+                "on-primary": "#2b3040",
+                "surface-container": "#181f32",
+                "primary-fixed-dim": "#c1c6da",
+                "outline": "#909096",
+                "tertiary-container": "#200000"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "unit": "8px",
+                "section-gap": "160px",
+                "gutter": "24px",
+                "margin-mobile": "20px",
+                "container-max": "1200px"
+        },
+        "fontFamily": {
+                "headline-lg-mobile": [
+                        "EB Garamond"
+                ],
+                "display-xl": [
+                        "EB Garamond"
+                ],
+                "body-md": [
+                        "Geist"
+                ],
+                "stat-lg": [
+                        "Geist"
+                ],
+                "headline-lg": [
+                        "EB Garamond"
+                ],
+                "label-sm": [
+                        "JetBrains Mono"
+                ]
+        },
+        "fontSize": {
+                "headline-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "500"
+                        }
+                ],
+                "display-xl": [
+                        "96px",
+                        {
+                                "lineHeight": "100px",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "stat-lg": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.1em",
+                                "fontWeight": "500"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #e61a1a 10%, #e61a1a 90%, rgba(255,255,255,0) 100%);
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .perspective-container {
+            perspective: 1000px;
+        }
+
+        .flip-card {
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease-out;
+            opacity: 0;
+        }
+
+        /* Default (hidden) state */
+        .flip-card.from-left {
+            transform: rotateY(90deg) translateX(-50px);
+            transform-origin: right center;
+        }
+
+        .flip-card.from-right {
+            transform: rotateY(-90deg) translateX(50px);
+            transform-origin: left center;
+        }
+
+        /* Visible state */
+        .flip-card.is-visible {
+            transform: rotateY(0) translateX(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 24px;
+                transform: none;
+            }
+            .flip-card.from-left, .flip-card.from-right {
+                transform: rotateX(90deg) translateY(50px);
+                transform-origin: top center;
+            }
+            .flip-card.is-visible {
+                transform: rotateX(0) translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#0b1325] text-on-surface min-h-screen overflow-x-hidden selection:bg-on-tertiary-container selection:text-white">
+<!-- TopNavBar Component -->
+<nav class="fixed top-0 w-full z-50 bg-surface/40 dark:bg-surface/40 backdrop-blur-xl border-b border-white/10 transition-all duration-500">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-gutter py-4">
+<a class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface dark:text-on-surface tracking-tighter leading-none" href="#">ADITYA SONI</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300 scale-95 active:scale-90 transition-transform" href="#">Home</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-tertiary-container dark:text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 hover:text-on-tertiary-container transition-colors duration-300 scale-95 active:scale-90 transition-transform" href="#">Journey</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300 scale-95 active:scale-90 transition-transform" href="#">Skills</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300 scale-95 active:scale-90 transition-transform" href="#">Contact</a>
+</div>
+<button class="font-label-sm text-label-sm uppercase tracking-widest text-primary dark:text-primary glass-panel px-6 py-2 rounded-full hover:bg-white/10 transition-colors duration-300 hidden md:block">Resume</button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-32 pb-section-gap relative">
+<div class="max-w-container-max mx-auto px-gutter relative">
+<!-- Header -->
+<div class="mb-24 text-center md:text-left">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">The Journey</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">A timeline of engineering milestones, architectural decisions, and continuous learning.</p>
+</div>
+<!-- Timeline Container -->
+<div class="relative perspective-container pb-24">
+<div class="timeline-line hidden md:block"></div>
+<div class="timeline-line md:hidden left-[24px]"></div>
+<!-- Milestone 1 -->
+<div class="relative flex flex-col md:flex-row items-center justify-between mb-24 group milestone-item">
+<div class="md:w-5/12 text-right hidden md:block pr-12">
+<span class="font-label-sm text-label-sm text-on-tertiary-container">2023 - PRESENT</span>
+</div>
+<div class="absolute left-[24px] md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-surface border-2 border-[#e61a1a] rounded-full z-10 group-hover:shadow-[0_0_15px_rgba(230,26,26,0.5)] transition-all duration-300"></div>
+<div class="w-full md:w-5/12 pl-12 md:pl-12 flip-card from-right">
+<span class="font-label-sm text-label-sm text-on-tertiary-container md:hidden block mb-2">2023 - PRESENT</span>
+<div class="glass-panel p-8 rounded-xl hover:bg-white/5 transition-colors duration-300 border-l-4 border-l-[#e61a1a]">
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-stat-lg text-primary mb-2">Senior Systems Engineer</h3>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-4 uppercase">Techflow Inc.</h4>
+<p class="font-body-md text-body-md text-on-surface/80">Architected scalable microservices.</p>
+</div>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="relative flex flex-col md:flex-row items-center justify-between mb-24 group milestone-item">
+<div class="w-full md:w-5/12 pl-12 md:pr-12 md:pl-0 md:text-right order-2 md:order-1 flip-card from-left">
+<span class="font-label-sm text-label-sm text-on-tertiary-container md:hidden block mb-2 mt-4 md:mt-0">2021 - 2023</span>
+<div class="glass-panel p-8 rounded-xl hover:bg-white/5 transition-colors duration-300 border-r-4 md:border-r-[#e61a1a] border-l-4 md:border-l-0 border-l-[#e61a1a]">
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-stat-lg text-primary mb-2">Full Stack Developer</h3>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-4 uppercase">Datasphere Systems</h4>
+<p class="font-body-md text-body-md text-on-surface/80">Developed high-performance dashboards.</p>
+</div>
+</div>
+<div class="absolute left-[24px] md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-surface border-2 border-[#e61a1a] rounded-full z-10 group-hover:shadow-[0_0_15px_rgba(230,26,26,0.5)] transition-all duration-300 order-1 md:order-2"></div>
+<div class="md:w-5/12 text-left hidden md:block pl-12 order-3">
+<span class="font-label-sm text-label-sm text-on-tertiary-container">2021 - 2023</span>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="relative flex flex-col md:flex-row items-center justify-between mb-24 group milestone-item">
+<div class="md:w-5/12 text-right hidden md:block pr-12">
+<span class="font-label-sm text-label-sm text-on-tertiary-container">2017 - 2021</span>
+</div>
+<div class="absolute left-[24px] md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-surface border-2 border-[#e61a1a] rounded-full z-10 group-hover:shadow-[0_0_15px_rgba(230,26,26,0.5)] transition-all duration-300"></div>
+<div class="w-full md:w-5/12 pl-12 md:pl-12 flip-card from-right">
+<span class="font-label-sm text-label-sm text-on-tertiary-container md:hidden block mb-2">2017 - 2021</span>
+<div class="glass-panel p-8 rounded-xl hover:bg-white/5 transition-colors duration-300 border-l-4 border-l-[#e61a1a]">
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-stat-lg text-primary mb-2">B.S. Computer Science</h3>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-4 uppercase">Institute of Technology</h4>
+<p class="font-body-md text-body-md text-on-surface/80">Specialized in Distributed Systems.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="bg-background dark:bg-background border-t border-white/10 w-full py-section-gap mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-gutter gap-4">
+<span class="font-label-sm text-label-sm text-on-surface text-center md:text-left">© 2024 Aditya Soni. Engineered for Performance.</span>
+<div class="flex gap-6">
+<a class="font-body-md text-body-md text-outline dark:text-outline hover:text-on-tertiary-container transition-colors duration-300 opacity-80 hover:opacity-100 transition-opacity" href="#">LinkedIn</a>
+<a class="font-body-md text-body-md text-outline dark:text-outline hover:text-on-tertiary-container transition-colors duration-300 opacity-80 hover:opacity-100 transition-opacity" href="#">GitHub</a>
+<a class="font-body-md text-body-md text-outline dark:text-outline hover:text-on-tertiary-container transition-colors duration-300 opacity-80 hover:opacity-100 transition-opacity" href="#">Source Code</a>
+</div>
+</div>
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const card = entry.target.querySelector('.flip-card');
+                    if(card) {
+                        card.classList.add('is-visible');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.milestone-item').forEach(item => {
+            observer.observe(item);
+        });
+    });
+</script>
+</body></html>

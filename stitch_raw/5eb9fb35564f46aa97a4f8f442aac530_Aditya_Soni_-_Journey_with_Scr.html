@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Journey - Aditya Soni</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&amp;family=Geist:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#dde2f6",
+                      "surface": "#0b1325",
+                      "inverse-primary": "#595e6f",
+                      "on-tertiary": "#690003",
+                      "inverse-surface": "#dae2fc",
+                      "on-background": "#dae2fc",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "tertiary-container": "#200000",
+                      "primary": "#c1c6da",
+                      "tertiary": "#ffb4aa",
+                      "inverse-on-surface": "#283044",
+                      "secondary-container": "#454747",
+                      "on-tertiary-fixed-variant": "#930005",
+                      "on-error-container": "#ffdad6",
+                      "primary-container": "#050a18",
+                      "on-primary-fixed": "#161b2a",
+                      "outline-variant": "#45464c",
+                      "on-tertiary-fixed": "#410001",
+                      "on-secondary-fixed-variant": "#454747",
+                      "surface-tint": "#c1c6da",
+                      "background": "#0b1325",
+                      "on-tertiary-container": "#ea2a23",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "on-primary": "#2b3040",
+                      "surface-container-low": "#131b2e",
+                      "error-container": "#93000a",
+                      "on-secondary-container": "#b4b5b5",
+                      "surface-bright": "#31394d",
+                      "tertiary-fixed": "#ffdad5",
+                      "surface-variant": "#2d3448",
+                      "on-secondary": "#2f3131",
+                      "tertiary-fixed-dim": "#ffb4aa",
+                      "outline": "#909096",
+                      "secondary": "#c6c6c7",
+                      "error": "#ffb4ab",
+                      "on-primary-container": "#74798b",
+                      "surface-container": "#171f32",
+                      "secondary-fixed": "#e2e2e2",
+                      "surface-dim": "#0b1325",
+                      "surface-container-high": "#222a3d",
+                      "on-surface-variant": "#c6c6cc",
+                      "primary-fixed-dim": "#c1c6da",
+                      "on-surface": "#dae2fc",
+                      "surface-container-lowest": "#060e20",
+                      "surface-container-highest": "#2d3448",
+                      "on-primary-fixed-variant": "#414657",
+                      "on-error": "#690005"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-max": "1200px",
+                      "gutter": "24px",
+                      "unit": "8px",
+                      "section-gap": "160px",
+                      "margin-mobile": "20px"
+              },
+              "fontFamily": {
+                      "display-xl": [
+                              "EB Garamond"
+                      ],
+                      "headline-lg-mobile": [
+                              "EB Garamond"
+                      ],
+                      "body-md": [
+                              "Geist"
+                      ],
+                      "label-sm": [
+                              "JetBrains Mono"
+                      ],
+                      "stat-lg": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "EB Garamond"
+                      ]
+              },
+              "fontSize": {
+                      "display-xl": [
+                              "96px",
+                              {
+                                      "lineHeight": "100px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "stat-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            transition: all 0.5s ease;
+        }
+        
+        .timeline-track {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 12px
+            );
+            border-left: 2px solid rgba(255,255,255,0.2);
+            border-right: 2px solid rgba(255,255,255,0.2);
+            z-index: 0;
+        }
+
+        .train-indicator {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px;
+            height: 48px;
+            background-color: theme('colors.surface');
+            border: 2px solid theme('colors.on-tertiary-container');
+            border-radius: 8px;
+            z-index: 20;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(234,42,35,0.4);
+            transition: top 0.1s ease-out;
+            top: 0;
+        }
+
+        .train-indicator::before {
+            content: 'directions_train';
+            font-family: 'Material Symbols Outlined';
+            color: theme('colors.on-tertiary-container');
+            font-size: 20px;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, rgba(11, 19, 37, 0) 0%, rgba(11, 19, 37, 1) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bg-letter-a {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120vh;
+            color: rgba(255, 255, 255, 0.02);
+            z-index: -2;
+            pointer-events: none;
+            font-family: 'EB Garamond', serif;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-track {
+                left: 32px;
+                transform: translateX(-50%);
+            }
+            .train-indicator {
+                left: 32px;
+            }
+        }
+
+        .milestone-active .glass-panel {
+            border-color: theme('colors.on-tertiary-container');
+            box-shadow: 0 0 30px rgba(234,42,35,0.15);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .milestone-active .milestone-dot {
+            background-color: theme('colors.on-tertiary-container');
+            border-color: theme('colors.on-tertiary-container');
+            box-shadow: 0 0 15px rgba(234,42,35,0.8);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen overflow-x-hidden selection:bg-on-tertiary-container selection:text-white">
+<!-- Ambient Background -->
+<div class="bg-letter-a">A</div>
+<div class="ambient-glow"></div>
+<!-- TopNavBar Component -->
+<nav class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl border-b border-white/10">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+<a class="font-display-xl text-primary tracking-tighter text-[24px] leading-none" href="#">ADITYA SONI</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300 scale-95 active:scale-90 transition-transform" href="#">Home</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300 scale-95 active:scale-90 transition-transform" href="#">Skills</a>
+<a class="font-label-sm text-label-sm text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 hover:text-on-tertiary-container transition-colors duration-300 scale-95 active:scale-90 transition-transform" href="#">Journey</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300 scale-95 active:scale-90 transition-transform" href="#">Contact</a>
+</div>
+<button class="font-label-sm text-label-sm text-primary glass-panel px-6 py-2 rounded-full hover:bg-white/10 transition-colors duration-300 hidden md:block">Resume</button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-32 pb-section-gap relative">
+<div class="max-w-container-max mx-auto px-gutter relative">
+<!-- Header -->
+<div class="mb-24 text-center md:text-left">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">The Journey</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">A timeline of engineering milestones, architectural decisions, and continuous learning.</p>
+</div>
+<!-- Timeline Container -->
+<div class="relative pb-32" id="timeline-container">
+<div class="timeline-track"></div>
+<div class="train-indicator" id="train"></div>
+<!-- Milestone 1 -->
+<div class="milestone-item relative flex flex-col md:flex-row items-center justify-between mb-32 group" data-milestone="1">
+<div class="md:w-5/12 text-right hidden md:block pr-16">
+<span class="font-label-sm text-label-sm text-on-tertiary-container">2023 - PRESENT</span>
+</div>
+<div class="milestone-dot absolute left-[32px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-surface border-2 border-primary rounded-full z-10 transition-all duration-300"></div>
+<div class="w-full md:w-5/12 pl-20 md:pl-16">
+<span class="font-label-sm text-label-sm text-on-tertiary-container md:hidden block mb-2">2023 - PRESENT</span>
+<div class="glass-panel p-8 rounded-xl">
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-stat-lg text-primary mb-2">Senior Systems Engineer</h3>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-4 uppercase">TechFlow Inc.</h4>
+<p class="font-body-md text-body-md text-on-surface/80">Architected scalable microservices infrastructure resulting in a 40% reduction in latency and handling 10M+ daily requests.</p>
+</div>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="milestone-item relative flex flex-col md:flex-row items-center justify-between mb-32 group" data-milestone="2">
+<div class="w-full md:w-5/12 pl-20 md:pr-16 md:pl-0 md:text-right order-2 md:order-1">
+<span class="font-label-sm text-label-sm text-on-tertiary-container md:hidden block mb-2 mt-4 md:mt-0">2021 - 2023</span>
+<div class="glass-panel p-8 rounded-xl">
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-stat-lg text-primary mb-2">Full Stack Developer</h3>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-4 uppercase">DataSphere Systems</h4>
+<p class="font-body-md text-body-md text-on-surface/80">Developed high-performance data visualization dashboards using React and WebGL, improving data analysis speed by 25%.</p>
+</div>
+</div>
+<div class="milestone-dot absolute left-[32px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-surface border-2 border-primary rounded-full z-10 transition-all duration-300 order-1 md:order-2"></div>
+<div class="md:w-5/12 text-left hidden md:block pl-16 order-3">
+<span class="font-label-sm text-label-sm text-on-tertiary-container">2021 - 2023</span>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="milestone-item relative flex flex-col md:flex-row items-center justify-between group" data-milestone="3">
+<div class="md:w-5/12 text-right hidden md:block pr-16">
+<span class="font-label-sm text-label-sm text-on-tertiary-container">2017 - 2021</span>
+</div>
+<div class="milestone-dot absolute left-[32px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-surface border-2 border-primary rounded-full z-10 transition-all duration-300"></div>
+<div class="w-full md:w-5/12 pl-20 md:pl-16">
+<span class="font-label-sm text-label-sm text-on-tertiary-container md:hidden block mb-2">2017 - 2021</span>
+<div class="glass-panel p-8 rounded-xl">
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-stat-lg text-primary mb-2">B.S. Computer Science</h3>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-4 uppercase">Institute of Technology</h4>
+<p class="font-body-md text-body-md text-on-surface/80">Graduated with Honors. Specialized in Distributed Systems and Computer Graphics. Led the University Robotics Team.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="bg-surface border-t border-white/10 w-full py-12 mt-auto">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-headline-lg text-headline-lg-mobile text-primary tracking-tighter text-[20px] leading-none opacity-80 hover:opacity-100 transition-opacity">ADITYA SONI</span>
+<p class="font-label-sm text-label-sm text-secondary text-center md:text-left">© 2024 Aditya Soni. Engineered for Performance.</p>
+<div class="flex gap-6">
+<a class="font-label-sm text-label-sm text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">WCAG AAA Parity</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">60 FPS Performance</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">System Status</a>
+</div>
+</div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const train = document.getElementById('train');
+        const container = document.getElementById('timeline-container');
+        const milestones = document.querySelectorAll('.milestone-item');
+        
+        const updateTrainPosition = () => {
+            const containerRect = container.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            
+            // Calculate progress based on how far the container has scrolled through the viewport
+            // Start moving when container enters viewport, reach bottom when container leaves
+            
+            let progress = 0;
+            const containerTop = containerRect.top;
+            const containerHeight = containerRect.height;
+            
+            // Offset to start a bit lower and end a bit higher
+            const startOffset = viewportHeight * 0.4;
+            const scrollDistance = containerHeight;
+            
+            if (containerTop < startOffset) {
+                progress = (startOffset - containerTop) / scrollDistance;
+                progress = Math.max(0, Math.min(1, progress));
+            }
+            
+            // Set train position
+            const newTop = progress * containerHeight;
+            train.style.top = `${newTop}px`;
+            
+            // Highlight milestones
+            milestones.forEach(milestone => {
+                const milestoneRect = milestone.getBoundingClientRect();
+                const trainRect = train.getBoundingClientRect();
+                
+                // If train is within or passed the milestone area
+                if (trainRect.top >= milestoneRect.top - 50 && trainRect.bottom <= milestoneRect.bottom + 50) {
+                    milestone.classList.add('milestone-active');
+                } else {
+                    milestone.classList.remove('milestone-active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', updateTrainPosition);
+        window.addEventListener('resize', updateTrainPosition);
+        
+        // Initial call
+        updateTrainPosition();
+    });
+</script>
+</body></html>

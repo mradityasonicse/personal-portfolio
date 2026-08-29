@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Journey - Aditya Soni</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&amp;family=Geist:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;family=Playfair+Display:wght@700&amp;family=Inter:wght@300;400;500;600&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#dde2f6",
+                      "surface": "#0b1325",
+                      "inverse-primary": "#595e6f",
+                      "on-tertiary": "#690003",
+                      "inverse-surface": "#dae2fc",
+                      "on-background": "#dae2fc",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "tertiary-container": "#200000",
+                      "primary": "#c1c6da",
+                      "tertiary": "#ffb4aa",
+                      "inverse-on-surface": "#283044",
+                      "secondary-container": "#454747",
+                      "on-tertiary-fixed-variant": "#930005",
+                      "on-error-container": "#ffdad6",
+                      "primary-container": "#050a18",
+                      "on-primary-fixed": "#161b2a",
+                      "outline-variant": "#45464c",
+                      "on-tertiary-fixed": "#410001",
+                      "on-secondary-fixed-variant": "#454747",
+                      "surface-tint": "#c1c6da",
+                      "background": "#0b1325",
+                      "on-tertiary-container": "#ea2a23",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "on-primary": "#2b3040",
+                      "surface-container-low": "#131b2e",
+                      "error-container": "#93000a",
+                      "on-secondary-container": "#b4b5b5",
+                      "surface-bright": "#31394d",
+                      "tertiary-fixed": "#ffdad5",
+                      "surface-variant": "#2d3448",
+                      "on-secondary": "#2f3131",
+                      "tertiary-fixed-dim": "#ffb4aa",
+                      "outline": "#909096",
+                      "secondary": "#c6c6c7",
+                      "error": "#ffb4ab",
+                      "on-primary-container": "#74798b",
+                      "surface-container": "#171f32",
+                      "secondary-fixed": "#e2e2e2",
+                      "surface-dim": "#0b1325",
+                      "surface-container-high": "#222a3d",
+                      "on-surface-variant": "#c6c6cc",
+                      "primary-fixed-dim": "#c1c6da",
+                      "on-surface": "#dae2fc",
+                      "surface-container-lowest": "#060e20",
+                      "surface-container-highest": "#2d3448",
+                      "on-primary-fixed-variant": "#414657",
+                      "on-error": "#690005"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-max": "1200px",
+                      "gutter": "24px",
+                      "unit": "8px",
+                      "section-gap": "160px",
+                      "margin-mobile": "20px"
+              },
+              "fontFamily": {
+                      "display-xl": [
+                              "EB Garamond"
+                      ],
+                      "headline-lg-mobile": [
+                              "EB Garamond"
+                      ],
+                      "body-md": [
+                              "Geist"
+                      ],
+                      "label-sm": [
+                              "JetBrains Mono"
+                      ],
+                      "stat-lg": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "EB Garamond"
+                      ]
+              },
+              "fontSize": {
+                      "display-xl": [
+                              "96px",
+                              {
+                                      "lineHeight": "100px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "stat-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .mono-font {
+          font-family: 'Space Mono', monospace;
+        }
+        
+        .serif-font {
+          font-family: 'Playfair Display', serif;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .bg-letter-a {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120vh;
+            color: rgba(255, 255, 255, 0.02);
+            z-index: -2;
+            pointer-events: none;
+            font-family: 'EB Garamond', serif;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .milestone-active .glass-panel {
+            border-color: rgba(239, 68, 68, 0.5);
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.15);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .milestone-active .milestone-dot {
+            background-color: theme('colors.red.500');
+            border-color: theme('colors.red.500');
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+        }
+    </style>
+<script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.8.0/webcomponents-loader.js"></script>
+<script src="https://unpkg.com/webgl-shader-element@1.0.0/dist/webgl-shader.js" type="module"></script>
+</head>
+<body class="min-h-screen text-white antialiased selection:bg-red-600 selection:text-white bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('https://lh3.googleusercontent.com/aida/AEtjO1UWzFFqCg-IRxsJYYZPcl2P0U34bSmHodi4aQ-EABPDHJ-jckF7Ei-69rKGFa4IeaSKttswSIRu5GINROC8lTq8fV-Q_WBo0JiHP7nRVJ-2T_QuXnjQ8dSy-cH5bLUSuqDEPGkvmm1bSiE3ziir1iFmSu3lanuZ5E3ZcRchV8Ze6L6QFeOnAfkK4WtIqcYDPg_4bhHn2bQ7-iY2ZG69qSuwLGPa4IXGam5vrW6fL2qcXCGLqn1MpO7FG51T');">
+<div class="bg-black/60 min-h-screen flex flex-col">
+<!-- Ambient Background -->
+<div class="bg-letter-a">A</div>
+<!-- TopNavBar Component -->
+<nav class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/10">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto h-16 lg:h-20">
+<a class="serif-font text-xl lg:text-2xl font-bold tracking-tight text-white" href="#">
+    ADITYA <span class="text-red-500">SONI</span>
+</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="mono-font text-[10px] uppercase tracking-widest text-white/70 hover:text-red-500 transition-colors" href="#">Home</a>
+<a class="mono-font text-[10px] uppercase tracking-widest text-white/70 hover:text-red-500 transition-colors" href="#">Skills</a>
+<a class="mono-font text-[10px] uppercase tracking-widest text-red-500 border-b border-red-500 pb-1 transition-colors" href="#">Journey</a>
+<a class="mono-font text-[10px] uppercase tracking-widest text-white/70 hover:text-red-500 transition-colors" href="#">Contact</a>
+</div>
+<button class="mono-font text-[10px] uppercase tracking-widest text-white border border-white/20 px-6 py-2 rounded hover:bg-white/10 transition-colors duration-300 hidden md:block">Resume</button>
+<button class="md:hidden text-white/70 hover:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-32 pb-section-gap relative flex-1">
+<div class="max-w-container-max mx-auto px-gutter relative">
+<!-- Header -->
+<div class="mb-24 text-center md:text-left">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-5xl md:text-7xl text-white mb-4">The Journey</h1>
+<p class="text-sm lg:text-base leading-relaxed text-white/80 font-light max-w-2xl">A timeline of engineering milestones, architectural decisions, and continuous learning.</p>
+</div>
+<!-- Timeline Container -->
+<div class="relative pb-32 min-h-[800px]" id="timeline-container">
+<!-- STITCH_SHADER_START:ANIMATION_26 class="absolute inset-0 w-full h-full -z-10 rounded-2xl opacity-80" -->
+<div class="absolute inset-0 w-full h-full -z-10 rounded-2xl opacity-80" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_26" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_26');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+varying vec2 v_texCoord;
+
+// Simple train shape function
+float train(vec2 uv, float pos) {
+    vec2 p = uv - vec2(pos, 0.5);
+    
+    // Main body
+    float body = step(abs(p.x), 0.08) * step(abs(p.y), 0.03);
+    
+    // Cabin
+    float cabin = step(abs(p.x - 0.05), 0.03) * step(abs(p.y - 0.04), 0.02);
+    
+    // Windows
+    float window = step(abs(p.x - 0.05), 0.015) * step(abs(p.y - 0.045), 0.01);
+    
+    // Wheels
+    float wheel1 = 1.0 - step(0.01, length(p - vec2(-0.04, -0.035)));
+    float wheel2 = 1.0 - step(0.01, length(p - vec2(0.04, -0.035)));
+    
+    return max(body, cabin) - window + wheel1 + wheel2;
+}
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Deep blue background matching home theme
+    vec3 color = vec3(0.02, 0.04, 0.1); 
+    
+    // Track line
+    float track = step(abs(uv.y - 0.46), 0.002);
+    color = mix(color, vec3(0.3, 0.4, 0.5), track * 0.3);
+    
+    // Animated train position based on time
+    float pos = mod(u_time * 0.1, 1.4) - 0.2;
+    float trainShape = train(uv, pos);
+    
+    // Accent red from design system
+    vec3 accentRed = vec3(0.9, 0.1, 0.1);
+    color = mix(color, accentRed, clamp(trainShape, 0.0, 1.0));
+    
+    // Add some "speed" blur/glow
+    float glow = exp(-20.0 * abs(uv.y - 0.5)) * step(uv.x, pos) * step(pos - 0.3, uv.x);
+    color += accentRed * glow * 0.2;
+
+    gl_FragColor = vec4(color, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_26 -->
+<!-- Milestone 1 -->
+<div class="milestone-item relative flex flex-col md:flex-row items-center justify-between mb-32 group pt-16" data-milestone="1">
+<div class="md:w-5/12 text-right hidden md:block pr-16">
+<span class="mono-font text-[10px] lg:text-xs uppercase tracking-[0.2em] text-red-500">2023 - PRESENT</span>
+</div>
+<div class="milestone-dot absolute left-[32px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-transparent border-2 border-white/40 rounded-full z-10 transition-all duration-300"></div>
+<div class="w-full md:w-5/12 pl-20 md:pl-16">
+<span class="mono-font text-[10px] lg:text-xs uppercase tracking-[0.2em] text-red-500 md:hidden block mb-2">2023 - PRESENT</span>
+<div class="glass-panel p-8 rounded-xl">
+<h3 class="serif-font text-2xl text-white mb-2">Senior Systems Engineer</h3>
+<h4 class="mono-font text-[10px] uppercase tracking-widest text-blue-300 mb-4">TechFlow Inc.</h4>
+<p class="text-sm leading-relaxed text-white/80 font-light">Architected scalable microservices infrastructure resulting in a 40% reduction in latency and handling 10M+ daily requests.</p>
+</div>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="milestone-item relative flex flex-col md:flex-row items-center justify-between mb-32 group" data-milestone="2">
+<div class="w-full md:w-5/12 pl-20 md:pr-16 md:pl-0 md:text-right order-2 md:order-1">
+<span class="mono-font text-[10px] lg:text-xs uppercase tracking-[0.2em] text-red-500 md:hidden block mb-2 mt-4 md:mt-0">2021 - 2023</span>
+<div class="glass-panel p-8 rounded-xl">
+<h3 class="serif-font text-2xl text-white mb-2">Full Stack Developer</h3>
+<h4 class="mono-font text-[10px] uppercase tracking-widest text-blue-300 mb-4">DataSphere Systems</h4>
+<p class="text-sm leading-relaxed text-white/80 font-light">Developed high-performance data visualization dashboards using React and WebGL, improving data analysis speed by 25%.</p>
+</div>
+</div>
+<div class="milestone-dot absolute left-[32px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-transparent border-2 border-white/40 rounded-full z-10 transition-all duration-300 order-1 md:order-2"></div>
+<div class="md:w-5/12 text-left hidden md:block pl-16 order-3">
+<span class="mono-font text-[10px] lg:text-xs uppercase tracking-[0.2em] text-red-500">2021 - 2023</span>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="milestone-item relative flex flex-col md:flex-row items-center justify-between group pb-16" data-milestone="3">
+<div class="md:w-5/12 text-right hidden md:block pr-16">
+<span class="mono-font text-[10px] lg:text-xs uppercase tracking-[0.2em] text-red-500">2017 - 2021</span>
+</div>
+<div class="milestone-dot absolute left-[32px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-transparent border-2 border-white/40 rounded-full z-10 transition-all duration-300"></div>
+<div class="w-full md:w-5/12 pl-20 md:pl-16">
+<span class="mono-font text-[10px] lg:text-xs uppercase tracking-[0.2em] text-red-500 md:hidden block mb-2">2017 - 2021</span>
+<div class="glass-panel p-8 rounded-xl">
+<h3 class="serif-font text-2xl text-white mb-2">B.S. Computer Science</h3>
+<h4 class="mono-font text-[10px] uppercase tracking-widest text-blue-300 mb-4">Institute of Technology</h4>
+<p class="text-sm leading-relaxed text-white/80 font-light">Graduated with Honors. Specialized in Distributed Systems and Computer Graphics. Led the University Robotics Team.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="bg-transparent border-t border-white/10 w-full py-12 mt-auto">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="serif-font text-xl font-bold tracking-tight text-white opacity-80 hover:opacity-100 transition-opacity">ADITYA SONI</span>
+<p class="mono-font text-[10px] uppercase tracking-widest text-white/50 text-center md:text-left">© 2024 Aditya Soni. Engineered for Performance.</p>
+<div class="flex gap-6">
+<a class="mono-font text-[10px] uppercase tracking-widest text-white/50 hover:text-red-500 transition-colors" href="#">WCAG AAA Parity</a>
+<a class="mono-font text-[10px] uppercase tracking-widest text-white/50 hover:text-red-500 transition-colors" href="#">60 FPS Performance</a>
+<a class="mono-font text-[10px] uppercase tracking-widest text-white/50 hover:text-red-500 transition-colors" href="#">System Status</a>
+</div>
+</div>
+</footer>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const milestones = document.querySelectorAll('.milestone-item');
+        
+        const updateHighlights = () => {
+            const viewportCenter = window.innerHeight / 2;
+            
+            milestones.forEach(milestone => {
+                const rect = milestone.getBoundingClientRect();
+                
+                if (rect.top <= viewportCenter + 100 && rect.bottom >= viewportCenter - 100) {
+                    milestone.classList.add('milestone-active');
+                } else {
+                    milestone.classList.remove('milestone-active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', updateHighlights);
+        window.addEventListener('resize', updateHighlights);
+        
+        // Initial call
+        updateHighlights();
+    });
+</script>
+</body></html>

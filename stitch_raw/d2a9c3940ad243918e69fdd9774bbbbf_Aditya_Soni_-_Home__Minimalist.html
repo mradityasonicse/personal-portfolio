@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aditya Soni - Systems Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ffb4ab",
+                        "surface-bright": "#31394d",
+                        "surface": "#0b1325",
+                        "secondary": "#c6c6c7",
+                        "outline-variant": "#45464c",
+                        "primary-fixed-dim": "#c1c6da",
+                        "tertiary": "#ffb4aa",
+                        "secondary-container": "#454747",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-surface-variant": "#c6c6cc",
+                        "surface-container-highest": "#2d3448",
+                        "on-error": "#690005",
+                        "on-primary-fixed": "#161b2a",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-container": "#b4b5b5",
+                        "inverse-primary": "#595e6f",
+                        "on-tertiary-fixed-variant": "#930005",
+                        "on-surface": "#dae2fc",
+                        "tertiary-fixed": "#ffdad5",
+                        "surface-variant": "#2d3448",
+                        "on-primary": "#2b3040",
+                        "on-tertiary-container": "#ea2a23",
+                        "inverse-surface": "#dae2fc",
+                        "primary-container": "#050a18",
+                        "primary": "#c1c6da",
+                        "tertiary-fixed-dim": "#ffb4aa",
+                        "on-tertiary-fixed": "#410001",
+                        "on-tertiary": "#690003",
+                        "inverse-on-surface": "#283044",
+                        "surface-dim": "#0b1325",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "primary-fixed": "#dde2f6",
+                        "surface-container-high": "#222a3d",
+                        "on-primary-container": "#74798b",
+                        "surface-container-low": "#131b2e",
+                        "error-container": "#93000a",
+                        "surface-container": "#171f32",
+                        "on-secondary": "#2f3131",
+                        "on-background": "#dae2fc",
+                        "outline": "#909096",
+                        "tertiary-container": "#200000",
+                        "background": "#0b1325",
+                        "surface-tint": "#c1c6da",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-primary-fixed-variant": "#414657",
+                        "surface-container-lowest": "#060e20"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "container-max": "1200px",
+                        "section-gap": "160px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["EB Garamond"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-lg": ["EB Garamond"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "stat-lg": ["Geist"],
+                        "body-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["96px", { "lineHeight": "100px", "letterSpacing": "-0.04em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "stat-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .electric-glow:hover {
+            box-shadow: 0 0 20px rgba(234, 42, 35, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-body-md text-body-md selection:bg-on-tertiary-container selection:text-white">
+<!-- Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl border-b border-white/10 flat no shadows flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto left-0 right-0">
+<div class="font-display-xl text-primary tracking-tighter text-[24px] leading-none">ADITYA SONI</div>
+<div class="hidden md:flex items-center gap-8 font-label-sm text-label-sm">
+<a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 hover:text-on-tertiary-container transition-colors duration-300 scale-95 active:scale-90 transition-transform" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300 scale-95 active:scale-90 transition-transform" href="#">Skills</a>
+<a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300 scale-95 active:scale-90 transition-transform" href="#">Journey</a>
+<a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors duration-300 scale-95 active:scale-90 transition-transform" href="#">Contact</a>
+</div>
+<button class="hidden md:block px-4 py-2 border border-white/20 rounded-full font-label-sm text-label-sm hover:border-on-tertiary-container hover:text-on-tertiary-container transition-colors glass-panel electric-glow">Resume</button>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col justify-center items-center pt-32 pb-16 px-gutter relative z-10 w-full max-w-container-max mx-auto min-h-[90vh]">
+<!-- Hero Section -->
+<section class="w-full relative flex flex-col items-center justify-center text-center">
+<!-- Central Monogram A -->
+<div class="absolute inset-0 flex items-center justify-center -z-10 opacity-20 pointer-events-none mix-blend-screen overflow-hidden h-[80vh]">
+<img alt="" class="h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UWzFFqCg-IRxsJYYZPcl2P0U34bSmHodi4aQ-EABPDHJ-jckF7Ei-69rKGFa4IeaSKttswSIRu5GINROC8lTq8fV-Q_WBo0JiHP7nRVJ-2T_QuXnjQ8dSy-cH5bLUSuqDEPGkvmm1bSiE3ziir1iFmSu3lanuZ5E3ZcRchV8Ze6L6QFeOnAfkK4WtIqcYDPg_4bhHn2bQ7-iY2ZG69qSuwLGPa4IXGam5vrW6fL2qcXCGLqn1MpO7FG51T"/>
+</div>
+<div class="mb-8 z-10">
+<span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase mb-4 block">Hey there, I'm</span>
+<h1 class="font-display-xl text-display-xl text-on-surface flex flex-col items-center gap-0 leading-[0.8] mb-8">
+<span>ADITYA</span>
+<span class="text-surface-tint">SONI</span>
+</h1>
+<p class="font-label-sm text-label-sm text-on-tertiary-container tracking-[0.2em] uppercase">Full-Stack Developer &amp; Systems Builder <span class="text-secondary">&lt;/&gt;</span></p>
+</div>
+<div class="max-w-2xl mx-auto z-10 mb-12">
+<p class="text-xl md:text-2xl text-secondary font-light leading-relaxed">
+                    i think i research and i build interactive projects.
+                </p>
+</div>
+<!-- Chips -->
+<div class="flex flex-wrap justify-center gap-3 mb-16 z-10">
+<span class="px-4 py-2 rounded-full border border-white/10 font-label-sm text-label-sm text-secondary bg-surface-container-low/50 backdrop-blur-sm">Next.js &amp; React 19</span>
+<span class="px-4 py-2 rounded-full border border-white/10 font-label-sm text-label-sm text-secondary bg-surface-container-low/50 backdrop-blur-sm">Low-Latency WebSockets</span>
+<span class="px-4 py-2 rounded-full border border-white/10 font-label-sm text-label-sm text-secondary bg-surface-container-low/50 backdrop-blur-sm">WebGL &amp; Shaders</span>
+<span class="px-4 py-2 rounded-full border border-white/10 font-label-sm text-label-sm text-secondary bg-surface-container-low/50 backdrop-blur-sm">AI Decision Engines</span>
+</div>
+<!-- Actions -->
+<div class="flex flex-col sm:flex-row items-center gap-6 z-10 mb-24">
+<a class="group px-8 py-4 glass-panel border-white/20 text-on-surface hover:text-on-tertiary-container font-label-sm text-label-sm tracking-widest uppercase transition-all flex items-center gap-2 electric-glow" href="#">
+                    Explore Work
+                    <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<a class="group text-secondary hover:text-on-tertiary-container font-label-sm text-label-sm tracking-widest uppercase transition-colors flex items-center gap-2" href="#">
+                    View Resume
+                    <span class="material-symbols-outlined text-sm" data-icon="description">description</span>
+</a>
+<a class="group text-secondary hover:text-on-tertiary-container font-label-sm text-label-sm tracking-widest uppercase transition-colors flex items-center gap-2" href="#">
+                    Let's Talk
+                    <span class="material-symbols-outlined text-sm" data-icon="north_east">north_east</span>
+</a>
+</div>
+<!-- Profile Widget -->
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-64 h-80 hidden lg:block rounded-2xl overflow-hidden glass-panel border-white/10 z-0">
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent z-10"></div>
+<img alt="" class="w-full h-full object-cover object-center mix-blend-luminosity opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBRnKsbrTUI4SlsspRfW7TeRYWIwCdg8mcxFA6TLhGkpEaeXEuh5p01Lvb98xQ9f92JmQUNTyEIHtZYE6r6FL-OeSM5ZMuGlTAN60-ZyrfUTtU8DP_Tg2CEeC1a2xzGcfraMMMKrUCcz8hO6rMJnYOy1OqhcRRlHJPM7V-gh-1qiG6mKrbYHmdYlPyIOF42g2C-MMO1DpgcxpH7LyakNjHy-fiU3-SKRrzKuaxtLJDbeQUdpxjXxXHVfimMBZBBbSNO8w"/>
+<div class="absolute bottom-4 left-4 z-20">
+<div class="font-label-sm text-[10px] text-secondary mb-1">LOCATION &amp; STATUS</div>
+<div class="text-xs text-on-surface mb-1">India // Open to Remote</div>
+<div class="text-[10px] text-on-tertiary-container tracking-wider">AVAILABLE FOR CONTRACTS</div>
+</div>
+</div>
+<!-- Radial Decorative Lines -->
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-white/[0.03] hidden lg:block pointer-events-none -z-20"></div>
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-white/[0.05] hidden lg:block pointer-events-none -z-20"></div>
+</section>
+<!-- Stats Grid -->
+<section class="w-full grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 z-10 border-t border-white/5 pt-16">
+<div class="flex flex-col items-center md:items-start text-center md:text-left">
+<div class="font-stat-lg text-stat-lg text-on-tertiary-container mb-2">3+</div>
+<div class="font-label-sm text-[10px] text-secondary tracking-widest uppercase">Years Building</div>
+</div>
+<div class="flex flex-col items-center md:items-start text-center md:text-left">
+<div class="font-stat-lg text-stat-lg text-on-tertiary-container mb-2">100%</div>
+<div class="font-label-sm text-[10px] text-secondary tracking-widest uppercase">WCAG AAA Parity</div>
+</div>
+<div class="flex flex-col items-center md:items-start text-center md:text-left">
+<div class="font-stat-lg text-stat-lg text-on-tertiary-container mb-2">60 FPS</div>
+<div class="font-label-sm text-[10px] text-secondary tracking-widest uppercase">GPU Benchmark</div>
+</div>
+<div class="flex flex-col items-center md:items-start text-center md:text-left">
+<div class="font-stat-lg text-stat-lg text-on-tertiary-container mb-2">&lt;1ms</div>
+<div class="font-label-sm text-[10px] text-secondary tracking-widest uppercase">Socket Latency</div>
+</div>
+</section>
+<!-- Vertical Text Decorative -->
+<div class="fixed left-4 top-1/2 -translate-y-1/2 -rotate-90 origin-left hidden xl:block font-label-sm text-[10px] text-white/20 tracking-[0.3em] whitespace-nowrap">
+            HIGH-PERFORMANCE WEB APPS // 3D GRAPHICS // DISTRIBUTED SYSTEMS
+        </div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface text-secondary font-label-sm text-label-sm border-t border-white/10 flat no shadows max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4 relative z-10">
+<div class="font-headline-lg text-primary text-[24px]">© 2024 Aditya Soni. Engineered for Performance.</div>
+<div class="flex gap-6">
+<a class="text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">WCAG AAA Parity</a>
+<a class="text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">60 FPS Performance</a>
+<a class="text-outline hover:text-on-tertiary-container opacity-80 hover:opacity-100 transition-opacity" href="#">System Status</a>
+</div>
+</footer>
+</body></html>

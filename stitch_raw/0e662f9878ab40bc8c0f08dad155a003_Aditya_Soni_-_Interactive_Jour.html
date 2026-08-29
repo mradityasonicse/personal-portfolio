@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Journey - Aditya Soni</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&amp;family=Geist:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;family=Playfair+Display:wght@700&amp;family=Inter:wght@300;400;500;600&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#dde2f6",
+                      "surface": "#0b1325",
+                      "inverse-primary": "#595e6f",
+                      "on-tertiary": "#690003",
+                      "inverse-surface": "#dae2fc",
+                      "on-background": "#dae2fc",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "tertiary-container": "#200000",
+                      "primary": "#c1c6da",
+                      "tertiary": "#ffb4aa",
+                      "inverse-on-surface": "#283044",
+                      "secondary-container": "#454747",
+                      "on-tertiary-fixed-variant": "#930005",
+                      "on-error-container": "#ffdad6",
+                      "primary-container": "#050a18",
+                      "on-primary-fixed": "#161b2a",
+                      "outline-variant": "#45464c",
+                      "on-tertiary-fixed": "#410001",
+                      "on-secondary-fixed-variant": "#454747",
+                      "surface-tint": "#c1c6da",
+                      "background": "#0b1325",
+                      "on-tertiary-container": "#ea2a23",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "on-primary": "#2b3040",
+                      "surface-container-low": "#131b2e",
+                      "error-container": "#93000a",
+                      "on-secondary-container": "#b4b5b5",
+                      "surface-bright": "#31394d",
+                      "tertiary-fixed": "#ffdad5",
+                      "surface-variant": "#2d3448",
+                      "on-secondary": "#2f3131",
+                      "tertiary-fixed-dim": "#ffb4aa",
+                      "outline": "#909096",
+                      "secondary": "#c6c6c7",
+                      "error": "#ffb4ab",
+                      "on-primary-container": "#74798b",
+                      "surface-container": "#171f32",
+                      "secondary-fixed": "#e2e2e2",
+                      "surface-dim": "#0b1325",
+                      "surface-container-high": "#222a3d",
+                      "on-surface-variant": "#c6c6cc",
+                      "primary-fixed-dim": "#c1c6da",
+                      "on-surface": "#dae2fc",
+                      "surface-container-lowest": "#060e20",
+                      "surface-container-highest": "#2d3448",
+                      "on-primary-fixed-variant": "#414657",
+                      "on-error": "#690005"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-max": "1200px",
+                      "gutter": "24px",
+                      "unit": "8px",
+                      "section-gap": "160px",
+                      "margin-mobile": "20px"
+              },
+              "fontFamily": {
+                      "display-xl": [
+                              "EB Garamond"
+                      ],
+                      "headline-lg-mobile": [
+                              "EB Garamond"
+                      ],
+                      "body-md": [
+                              "Geist"
+                      ],
+                      "label-sm": [
+                              "JetBrains Mono"
+                      ],
+                      "stat-lg": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "EB Garamond"
+                      ]
+              },
+              "fontSize": {
+                      "display-xl": [
+                              "96px",
+                              {
+                                      "lineHeight": "100px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "stat-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .mono-font {
+          font-family: 'Space Mono', monospace;
+        }
+        
+        .serif-font {
+          font-family: 'Playfair Display', serif;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .bg-letter-a {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120vh;
+            color: rgba(255, 255, 255, 0.05);
+            z-index: -2;
+            pointer-events: none;
+            font-family: 'EB Garamond', serif;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .milestone-active .glass-panel {
+            border-color: rgba(239, 68, 68, 0.5);
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.15);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .milestone-active .milestone-dot {
+            background-color: theme('colors.red.500');
+            border-color: theme('colors.red.500');
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        /* Animation Styles */
+        .milestone-item {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .milestone-item.animate-left {
+            transform: translateX(-50px);
+        }
+        
+        .milestone-item.animate-right {
+            transform: translateX(50px);
+        }
+        
+        .milestone-item.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Train Track */
+        .track-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 32px;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 5;
+        }
+        
+        @media (min-width: 768px) {
+            .track-line {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        .train {
+            position: absolute;
+            left: 32px;
+            width: 12px;
+            height: 12px;
+            background-color: theme('colors.red.500');
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            transition: top 0.3s ease-out;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+        }
+        
+        @media (min-width: 768px) {
+            .train {
+                left: 50%;
+            }
+        }
+    </style>
+<script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.8.0/webcomponents-loader.js"></script>
+<script src="https://unpkg.com/webgl-shader-element@1.0.0/dist/webgl-shader.js" type="module"></script>
+</head>
+<body class="min-h-screen text-white antialiased selection:bg-red-600 selection:text-white relative bg-black/60">
+<!-- Ambient Background -->
+<div class="bg-letter-a">A</div>
+<!-- Shader Background -->
+
+<div class="min-h-screen flex flex-col bg-transparent">
+<!-- TopNavBar Component -->
+<nav class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/10">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto h-16 lg:h-20">
+<a class="serif-font text-xl lg:text-2xl font-bold tracking-tight text-white" href="#">
+    ADITYA <span class="text-red-500">SONI</span>
+</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="mono-font text-[10px] uppercase tracking-widest text-white/70 hover:text-red-500 transition-colors" href="#">Home</a>
+<a class="mono-font text-[10px] uppercase tracking-widest text-white/70 hover:text-red-500 transition-colors" href="#">Skills</a>
+<a class="mono-font text-[10px] uppercase tracking-widest text-red-500 border-b border-red-500 pb-1 transition-colors" href="#">Journey</a>
+<a class="mono-font text-[10px] uppercase tracking-widest text-white/70 hover:text-red-500 transition-colors" href="#">Contact</a>
+</div>
+<button class="mono-font text-[10px] uppercase tracking-widest text-white border border-white/20 px-6 py-2 rounded hover:bg-white/10 transition-colors duration-300 hidden md:block">Resume</button>
+<button class="md:hidden text-white/70 hover:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-32 pb-section-gap relative flex-1 bg-transparent">
+<div class="max-w-container-max mx-auto px-gutter relative">
+<!-- Header -->
+<div class="mb-24 text-center md:text-left relative z-20">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-5xl md:text-7xl text-white mb-4 font-serif">The Journey</h1>
+<p class="text-sm lg:text-base leading-relaxed text-white/80 font-light max-w-2xl">A timeline of engineering milestones, architectural decisions, and continuous learning.</p>
+</div>
+<!-- Timeline Container -->
+<div class="relative pb-32 min-h-[800px]" id="timeline-container">
+<!-- Track Line -->
+<div class="track-line"></div>
+<!-- Train -->
+<div class="train" id="train" style="top: 0;"></div>
+<!-- Milestone 1 -->
+<div class="milestone-item animate-right relative flex flex-col md:flex-row items-center justify-between mb-32 group pt-16" data-milestone="1">
+<div class="md:w-5/12 text-right hidden md:block pr-16 parallax-layer" data-speed="0.1">
+<span class="mono-font text-[10px] lg:text-xs uppercase tracking-[0.2em] text-red-500">2023 - PRESENT</span>
+</div>
+<div class="milestone-dot absolute top-1/2 left-[32px] md:left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-transparent border-2 border-white/40 rounded-full z-10 transition-all duration-300"></div>
+<div class="w-full md:w-5/12 pl-20 md:pl-16 parallax-layer" data-speed="0.05">
+<span class="mono-font text-[10px] lg:text-xs uppercase tracking-[0.2em] text-red-500 md:hidden block mb-2">2023 - PRESENT</span>
+<div class="glass-panel p-8 rounded-xl">
+<h3 class="serif-font text-2xl text-white mb-2">Senior Systems Engineer</h3>
+<h4 class="mono-font text-[10px] uppercase tracking-widest text-blue-300 mb-4">TechFlow Inc.</h4>
+<p class="text-sm leading-relaxed text-white/80 font-light">Architected scalable microservices infrastructure resulting in a 40% reduction in latency and handling 10M+ daily requests.</p>
+</div>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="milestone-item animate-left relative flex flex-col md:flex-row items-center justify-between mb-32 group" data-milestone="2">
+<div class="w-full md:w-5/12 pl-20 md:pr-16 md:pl-0 md:text-right order-2 md:order-1 parallax-layer" data-speed="0.05">
+<span class="mono-font text-[10px] lg:text-xs uppercase tracking-[0.2em] text-red-500 md:hidden block mb-2 mt-4 md:mt-0">2021 - 2023</span>
+<div class="glass-panel p-8 rounded-xl">
+<h3 class="serif-font text-2xl text-white mb-2">Full Stack Developer</h3>
+<h4 class="mono-font text-[10px] uppercase tracking-widest text-blue-300 mb-4">DataSphere Systems</h4>
+<p class="text-sm leading-relaxed text-white/80 font-light">Developed high-performance data visualization dashboards using React and WebGL, improving data analysis speed by 25%.</p>
+</div>
+</div>
+<div class="milestone-dot absolute top-1/2 left-[32px] md:left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-transparent border-2 border-white/40 rounded-full z-10 transition-all duration-300 order-1 md:order-2"></div>
+<div class="md:w-5/12 text-left hidden md:block pl-16 order-3 parallax-layer" data-speed="0.1">
+<span class="mono-font text-[10px] lg:text-xs uppercase tracking-[0.2em] text-red-500">2021 - 2023</span>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="milestone-item animate-right relative flex flex-col md:flex-row items-center justify-between group pb-16" data-milestone="3">
+<div class="md:w-5/12 text-right hidden md:block pr-16 parallax-layer" data-speed="0.1">
+<span class="mono-font text-[10px] lg:text-xs uppercase tracking-[0.2em] text-red-500">2017 - 2021</span>
+</div>
+<div class="milestone-dot absolute top-1/2 left-[32px] md:left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-transparent border-2 border-white/40 rounded-full z-10 transition-all duration-300"></div>
+<div class="w-full md:w-5/12 pl-20 md:pl-16 parallax-layer" data-speed="0.05">
+<span class="mono-font text-[10px] lg:text-xs uppercase tracking-[0.2em] text-red-500 md:hidden block mb-2">2017 - 2021</span>
+<div class="glass-panel p-8 rounded-xl">
+<h3 class="serif-font text-2xl text-white mb-2">B.S. Computer Science</h3>
+<h4 class="mono-font text-[10px] uppercase tracking-widest text-blue-300 mb-4">Institute of Technology</h4>
+<p class="text-sm leading-relaxed text-white/80 font-light">Graduated with Honors. Specialized in Distributed Systems and Computer Graphics. Led the University Robotics Team.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="bg-black/40 backdrop-blur-xl border-t border-white/10 w-full py-12 mt-auto">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="serif-font text-xl font-bold tracking-tight text-white opacity-80 hover:opacity-100 transition-opacity">ADITYA SONI</span>
+<p class="mono-font text-[10px] uppercase tracking-widest text-white/50 text-center md:text-left">© 2024 Aditya Soni. Engineered for Performance.</p>
+<div class="flex gap-6">
+<a class="mono-font text-[10px] uppercase tracking-widest text-white/50 hover:text-red-500 transition-colors" href="#">WCAG AAA Parity</a>
+<a class="mono-font text-[10px] uppercase tracking-widest text-white/50 hover:text-red-500 transition-colors" href="#">60 FPS Performance</a>
+<a class="mono-font text-[10px] uppercase tracking-widest text-white/50 hover:text-red-500 transition-colors" href="#">System Status</a>
+</div>
+</div>
+</footer>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const milestones = document.querySelectorAll('.milestone-item');
+        const train = document.getElementById('train');
+        const container = document.getElementById('timeline-container');
+        
+        // Intersection Observer for reveals
+        const revealOptions = {
+            threshold: 0.2,
+            rootMargin: "0px 0px -100px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Once visible, we can stop observing it if we want it to stay revealed
+                    // revealObserver.unobserve(entry.target); 
+                } else {
+                     // Optional: remove if we want it to hide when scrolled out
+                     entry.target.classList.remove('is-visible');
+                }
+            });
+        }, revealOptions);
+
+        milestones.forEach(milestone => {
+            revealObserver.observe(milestone);
+        });
+
+        // Scroll listener for parallax, active states, and train position
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            const containerRect = container.getBoundingClientRect();
+            const containerTop = containerRect.top + window.scrollY;
+            
+            // Train logic
+            let closestMilestone = null;
+            let minDistance = Infinity;
+            const viewportCenter = window.innerHeight / 2;
+            
+            milestones.forEach(milestone => {
+                const rect = milestone.getBoundingClientRect();
+                const milestoneCenter = rect.top + rect.height / 2;
+                const distance = Math.abs(milestoneCenter - viewportCenter);
+                
+                // Active highlight
+                if (rect.top <= viewportCenter + 100 && rect.bottom >= viewportCenter - 100) {
+                    milestone.classList.add('milestone-active');
+                } else {
+                    milestone.classList.remove('milestone-active');
+                }
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestMilestone = milestone;
+                }
+                
+                // Parallax logic
+                const layers = milestone.querySelectorAll('.parallax-layer');
+                layers.forEach(layer => {
+                    const speed = layer.getAttribute('data-speed') || 0.1;
+                    const yPos = (window.innerHeight - rect.top) * speed;
+                    layer.style.transform = `translateY(${yPos}px)`;
+                });
+            });
+
+            // Move train to the center of the closest milestone relative to container
+            if (closestMilestone) {
+                const milestoneRect = closestMilestone.getBoundingClientRect();
+                const relativeTop = (milestoneRect.top + window.scrollY - containerTop) + (milestoneRect.height / 2);
+                
+                // Clamp train within container
+                const clampedTop = Math.max(0, Math.min(relativeTop, containerRect.height));
+                train.style.top = `${clampedTop}px`;
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleScroll);
+        
+        // Initial calls
+        handleScroll();
+        
+        // Ensure train starts at top if no scroll
+        if(window.scrollY === 0 && milestones.length > 0) {
+           const firstRect = milestones[0].getBoundingClientRect();
+           const containerTop = container.getBoundingClientRect().top;
+           train.style.top = `${firstRect.top - containerTop + (firstRect.height/2)}px`;
+        }
+    });
+</script>
+</body></html>

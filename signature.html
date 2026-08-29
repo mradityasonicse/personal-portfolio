@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aditya Soni - Signature &amp; Digital Identity</title>
+  <meta name="description" content="Animated signature & digital identity mark of Aditya Soni - Systems Builder & Full-Stack Developer.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Geist:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#0b1325",
+            "background": "#0b1325",
+            "primary": "#c1c6da",
+            "secondary": "#c6c6c7",
+            "on-surface": "#dae2fc",
+            "on-surface-variant": "#c6c6cc",
+            "on-tertiary-container": "#ea2a23",
+            "accent-red": "#ea2a23",
+            "outline": "#909096",
+            "outline-variant": "#45464c",
+            "surface-container-low": "#131b2e"
+          },
+          fontFamily: {
+            "display-xl": ["EB Garamond", "serif"],
+            "headline-lg": ["EB Garamond", "serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "body-md": ["Geist", "sans-serif"]
+          },
+          spacing: {
+            "gutter": "24px",
+            "container-max": "1200px"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070d1a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(234, 42, 35, 0.4);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(234, 42, 35, 0.85);
+    }
+    body {
+      background-color: #0b1325;
+      color: #dae2fc;
+      font-family: 'Geist', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    /* High-performance GPU accelerated signature rendering */
+    #signature-svg {
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      contain: layout paint;
+    }
+    .sig-path {
+      will-change: stroke-dashoffset;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .sig-crimson {
+      stroke: #ea2a23;
+    }
+    .sig-gold {
+      stroke: #fbbf24;
+    }
+    .sig-cyan {
+      stroke: #00f0ff;
+    }
+    .sig-white {
+      stroke: #ffffff;
+    }
+    .sig-glow-crimson {
+      filter: drop-shadow(0 0 10px rgba(234, 42, 35, 0.75));
+    }
+    .sig-glow-gold {
+      filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.75));
+    }
+    .sig-glow-cyan {
+      filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.75));
+    }
+    .sig-glow-white {
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.75));
+    }
+    .seal-spin {
+      animation: sealRotate 28s linear infinite;
+      transform-origin: center;
+    }
+    @keyframes sealRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    #signature-pen-nib {
+      will-change: transform;
+      transform: translate3d(0,0,0);
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .nib-core {
+      filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 16px #ea2a23);
+    }
+    #user-signature-canvas {
+      touch-action: none;
+      cursor: crosshair;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased relative min-h-screen flex flex-col justify-between selection:bg-accent-red selection:text-white">
+
+  <!-- Background Watermark -->
+  <div aria-hidden="true" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-[0.03] select-none">
+    <span class="text-white font-display-xl font-bold" style="font-size: 80vh; line-height: 1;">A</span>
+  </div>
+
+  <!-- Background WebGL Shader Canvas -->
+  <div class="fixed inset-0 z-[-1] pointer-events-none">
+    <canvas id="bg-shader-canvas" class="w-full h-full opacity-50"></canvas>
+  </div>
+
+  <!-- Top Navigation Bar -->
+  <header class="fixed top-0 w-full z-50 bg-surface/50 backdrop-blur-xl border-b border-white/10">
+    <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+      <a href="index.html" class="font-display-xl text-primary tracking-tighter text-2xl md:text-3xl leading-none font-bold">
+        ADITYA <span class="text-accent-red">SONI</span>
+      </a>
+      
+      <nav class="hidden md:flex items-center gap-8 font-label-sm text-xs tracking-widest uppercase">
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors" href="index.html">Home</a>
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors" href="skills.html">Skills</a>
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors" href="projects.html">Projects</a>
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors" href="journey.html">Journey</a>
+        <a class="text-white border-b-2 border-accent-red pb-1" href="signature.html">Signature</a>
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors" href="contact.html">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="hidden sm:flex glass-panel px-4 py-2 rounded font-label-sm text-xs text-primary hover:text-accent-red hover:border-accent-red/50 uppercase tracking-widest items-center gap-2">
+          <span>Resume</span>
+          <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Stage -->
+  <main class="flex-grow pt-28 md:pt-36 pb-20 relative z-10 px-gutter max-w-container-max mx-auto w-full flex flex-col justify-center">
+    
+    <!-- Title Area -->
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <p class="font-label-sm text-xs text-accent-red uppercase tracking-[0.25em] mb-2 flex items-center justify-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-accent-red animate-pulse"></span>
+        <span>Digital Identity &amp; Calligraphy Synthesis</span>
+      </p>
+      <h1 class="font-display-xl text-5xl sm:text-7xl font-bold text-white tracking-tight mb-4">
+        Aditya Soni <span class="text-accent-red italic">Signature</span>
+      </h1>
+      <p class="font-body-md text-on-surface-variant text-base sm:text-lg">
+        Interactive dynamic vector stroke rendering with realtime pen nib tracking and cryptographic signature verification.
+      </p>
+    </div>
+
+    <!-- Signature Showcase Card -->
+    <div class="glass-panel rounded-3xl border border-white/15 p-6 sm:p-10 lg:p-12 relative overflow-hidden shadow-2xl backdrop-blur-2xl">
+      
+      <!-- Background Ambient Glow -->
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(234,42,35,0.08)_0%,transparent_70%)] pointer-events-none"></div>
+
+      <!-- Controls Bar -->
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-4 pb-8 border-b border-white/10 relative z-20">
+        <!-- Mode & Style Switcher -->
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="flex items-center p-1 bg-white/5 border border-white/10 rounded-xl">
+            <button id="sig-mode-animate" class="px-3.5 py-2 rounded-lg font-label-sm text-xs font-semibold uppercase tracking-wider transition-all bg-accent-red text-white shadow-lg flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px]">draw</span>
+              <span>Signature</span>
+            </button>
+            <button id="sig-mode-draw" class="px-3.5 py-2 rounded-lg font-label-sm text-xs font-semibold uppercase tracking-wider transition-all text-on-surface-variant hover:text-white flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px]">stylus</span>
+              <span>Draw Pad</span>
+            </button>
+          </div>
+
+          <!-- 3 Signature Style Presets -->
+          <div class="flex items-center p-1 bg-white/5 border border-white/10 rounded-xl" id="sig-style-switcher">
+            <button class="sig-style-btn px-3 py-1.5 rounded-lg font-label-sm text-[11px] font-semibold transition-all bg-white/15 text-white shadow" data-style="executive" title="Real Executive Signature">
+              ✍️ Executive
+            </button>
+            <button class="sig-style-btn px-3 py-1.5 rounded-lg font-label-sm text-[11px] font-semibold transition-all text-white/60 hover:text-white" data-style="artistic" title="Artistic Calligraphy">
+              ✒️ Calligraphy
+            </button>
+            <button class="sig-style-btn px-3 py-1.5 rounded-lg font-label-sm text-[11px] font-semibold transition-all text-white/60 hover:text-white" data-style="monogram" title="Designer Monogram">
+              ⚡ Monogram
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <button id="sig-replay-btn" class="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/15 rounded-xl font-label-sm text-xs uppercase tracking-wider text-white flex items-center gap-2 transition-all hover:scale-105 active:scale-95 group shadow-md">
+            <span class="material-symbols-outlined text-[16px] text-accent-red group-hover:rotate-180 transition-transform duration-500">replay</span>
+            <span>Replay</span>
+          </button>
+
+          <!-- Color Swatches -->
+          <div class="flex items-center gap-1.5 p-1 bg-white/5 border border-white/10 rounded-xl" title="Select Ink Color">
+            <button class="sig-color-btn w-6 h-6 rounded-full bg-[#ea2a23] border-2 border-white transition-transform scale-110 shadow-[0_0_10px_#ea2a23]" data-color="crimson" title="Crimson Red"></button>
+            <button class="sig-color-btn w-6 h-6 rounded-full bg-[#fbbf24] border border-white/30 hover:scale-110 transition-transform" data-color="gold" title="Imperial Gold"></button>
+            <button class="sig-color-btn w-6 h-6 rounded-full bg-[#00f0ff] border border-white/30 hover:scale-110 transition-transform" data-color="cyan" title="Hologram Cyan"></button>
+            <button class="sig-color-btn w-6 h-6 rounded-full bg-[#ffffff] border border-white/30 hover:scale-110 transition-transform" data-color="white" title="Diamond White"></button>
+          </div>
+
+          <!-- Speed Controls -->
+          <div class="flex items-center bg-white/5 border border-white/10 rounded-xl p-0.5">
+            <button class="sig-speed-btn px-2.5 py-1 text-[10px] font-label-sm font-bold text-white/60 hover:text-white rounded-md transition-colors" data-speed="0.5">0.5x</button>
+            <button class="sig-speed-btn px-2.5 py-1 text-[10px] font-label-sm font-bold text-white bg-accent-red rounded-md transition-colors shadow" data-speed="1">1x</button>
+            <button class="sig-speed-btn px-2.5 py-1 text-[10px] font-label-sm font-bold text-white/60 hover:text-white rounded-md transition-colors" data-speed="2">2x</button>
+          </div>
+
+          <button id="sig-clear-canvas-btn" class="hidden px-3 py-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 rounded-xl font-label-sm text-xs uppercase tracking-wider text-red-300 flex items-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-[15px]">delete</span>
+            <span>Clear</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Signature Stage Container -->
+      <div class="relative min-h-[320px] sm:min-h-[400px] md:min-h-[460px] flex items-center justify-center my-6">
+        
+        <!-- Rotating Verification Stamp -->
+        <div class="absolute top-2 right-2 sm:top-4 sm:right-4 z-20 pointer-events-none opacity-85 sm:opacity-95">
+          <div class="relative w-20 h-20 sm:w-28 sm:h-28 flex items-center justify-center">
+            <svg class="w-full h-full seal-spin" viewBox="0 0 120 120">
+              <defs>
+                <path id="seal-path-page" d="M 60, 60 m -45, 0 a 45,45 0 1,1 90,0 a 45,45 0 1,1 -90,0" fill="none"></path>
+              </defs>
+              <text class="text-[7.5px] font-mono uppercase fill-white/80 font-bold tracking-[0.18em]">
+                <textPath href="#seal-path-page" startOffset="0" lengthAdjust="spacing">
+                  • VERIFIED SIGNATURE • ADITYA SONI • 2026 •
+                </textPath>
+              </text>
+            </svg>
+            <div class="absolute inset-0 m-auto w-10 h-10 sm:w-14 sm:h-14 rounded-full border border-accent-red/60 bg-surface/80 backdrop-blur-md flex flex-col items-center justify-center shadow-[0_0_15px_rgba(234,42,35,0.4)]">
+              <span class="material-symbols-outlined text-accent-red text-sm sm:text-base">verified</span>
+              <span class="font-label-sm text-[7px] sm:text-[8px] text-white font-bold tracking-wider">OFFICIAL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1. ANIMATED VECTOR SIGNATURE -->
+        <div id="signature-animation-stage" class="w-full max-w-4xl h-full flex flex-col items-center justify-center relative">
+          <svg id="signature-svg" class="w-full max-h-[340px] md:max-h-[400px] drop-shadow-2xl overflow-visible" viewBox="0 0 1060 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="nib-grad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="1"></stop>
+                <stop offset="40%" stop-color="#ea2a23" stop-opacity="0.9"></stop>
+                <stop offset="100%" stop-color="#ea2a23" stop-opacity="0"></stop>
+              </radialGradient>
+            </defs>
+
+            <!-- STYLE 1: EXECUTIVE REAL SIGNATURE (Default) -->
+            <g id="style-executive" class="sig-style-group">
+              <!-- A loop & strong swift signature down-whip -->
+              <path class="sig-path sig-crimson" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M 140 230 C 80 180 90 90 145 55 C 190 25 225 65 185 160 C 150 250 115 310 135 305 C 160 300 205 170 235 185 C 255 195 240 240 280 220"></path>
+              <!-- Swift ditya signature rhythm -->
+              <path class="sig-path sig-crimson" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"
+                d="M 280 220 C 305 205 315 140 300 135 C 285 130 275 160 295 240 C 310 250 340 205 360 205 C 375 205 365 240 395 225 C 420 215 440 280 405 295 C 380 305 415 240 460 220 C 490 210 515 230 545 215"></path>
+              <!-- Swift t-slash & i-accent -->
+              <path class="sig-path sig-crimson" stroke-width="4.0" stroke-linecap="round" stroke-linejoin="round"
+                d="M 338 160 L 375 155 M 325 125 L 330 120"></path>
+              <!-- Grand sweeping Soni 'S' -->
+              <path class="sig-path sig-crimson" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M 660 80 C 600 35 510 55 520 125 C 530 180 650 180 660 235 C 670 295 590 320 535 295 C 495 275 490 240 525 230"></path>
+              <!-- Rapid signature tail 'oni' -->
+              <path class="sig-path sig-crimson" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"
+                d="M 610 255 C 645 225 680 215 710 230 C 730 240 740 215 770 220 C 790 225 800 205 830 215 C 850 220 865 205 885 225"></path>
+              <!-- Signature Underline Slash & Strike -->
+              <path class="sig-path sig-crimson" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"
+                d="M 120 335 C 320 350 620 330 840 285 C 910 270 970 235 950 205 C 930 175 870 200 860 250 C 850 300 910 310 970 295 L 1020 285"></path>
+              <!-- Accent signature dots -->
+              <path class="sig-path sig-crimson" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                d="M 960 245 L 962 245 M 985 240 L 987 240"></path>
+            </g>
+
+            <!-- STYLE 2: ARTISTIC CALLIGRAPHY -->
+            <g id="style-artistic" class="sig-style-group hidden">
+              <path class="sig-path sig-crimson" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M 120 220 C 90 190 70 120 110 70 C 140 30 190 40 185 120 C 175 190 140 280 125 315"></path>
+              <path class="sig-path sig-crimson" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"
+                d="M 165 95 C 190 160 225 240 250 270 C 265 285 275 260 270 240 C 255 195 215 210 215 235 C 215 260 245 270 275 265"></path>
+              <path class="sig-path sig-crimson" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"
+                d="M 275 265 C 295 260 305 240 300 220 C 295 195 275 195 275 220 C 275 255 315 255 320 200 C 322 145 315 145 315 215 C 315 255 335 255 350 225 C 362 205 368 235 380 255 C 392 268 400 235 402 180 C 405 145 402 225 408 255 C 418 262 430 230 440 225 C 452 220 445 255 458 255 C 470 255 475 225 480 285 C 485 345 450 355 435 340 C 422 322 440 300 468 290 C 498 280 510 248 522 232 C 532 218 518 218 512 232 C 505 255 528 260 550 255"></path>
+              <path class="sig-path sig-crimson" stroke-width="4.0" stroke-linecap="round" stroke-linejoin="round"
+                d="M 345 190 C 347 187 352 187 352 190 C 352 194 347 194 345 190 M 388 198 C 402 195 422 193 430 195"></path>
+              <path class="sig-path sig-crimson" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M 640 120 C 600 70 540 85 545 135 C 552 180 625 195 640 240 C 655 285 615 325 560 320 C 515 315 498 285 505 260"></path>
+              <path class="sig-path sig-crimson" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"
+                d="M 625 295 C 648 275 670 235 692 240 C 710 245 710 272 688 272 C 665 272 680 240 715 240 C 732 240 725 268 742 268 C 755 268 760 240 772 240 C 785 240 782 268 800 268 C 818 268 825 245 832 240 C 838 235 842 262 850 265"></path>
+              <path class="sig-path sig-crimson" stroke-width="4.0" stroke-linecap="round" stroke-linejoin="round"
+                d="M 835 218 C 837 214 842 214 842 218 C 842 222 837 222 835 218"></path>
+              <path class="sig-path sig-crimson" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"
+                d="M 110 350 C 260 365 540 370 820 320 C 895 305 960 275 970 240 C 978 205 940 195 910 220 C 870 255 890 305 945 315 C 990 322 1020 308 1035 290"></path>
+            </g>
+
+            <!-- STYLE 3: DESIGNER MONOGRAM -->
+            <g id="style-monogram" class="sig-style-group hidden">
+              <path class="sig-path sig-crimson" stroke-width="5.0" stroke-linecap="round" stroke-linejoin="round"
+                d="M 180 300 L 260 80 L 340 300 M 215 220 L 305 220"></path>
+              <path class="sig-path sig-crimson" stroke-width="5.0" stroke-linecap="round" stroke-linejoin="round"
+                d="M 520 110 C 470 60 380 90 390 170 C 400 240 540 210 530 290 C 520 360 410 350 360 300"></path>
+              <path class="sig-path sig-crimson" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"
+                d="M 140 340 L 920 340 M 880 310 L 940 340 L 880 370"></path>
+              <path class="sig-path sig-crimson" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                d="M 600 230 L 780 230 M 810 230 L 850 230"></path>
+            <!-- High-precision Glowing Pen Nib -->
+            <g id="signature-pen-nib" class="opacity-0 pointer-events-none" transform="translate(140, 230)">
+              <circle r="12" fill="#ea2a23" opacity="0.3" class="nib-core"></circle>
+              <circle r="4" fill="#ffffff" stroke="#ea2a23" stroke-width="1.5"></circle>
+              <circle r="1.5" fill="#ffffff"></circle>
+            </g>
+          </svg>
+        </div>
+
+        <!-- 2. FREEHAND DRAWING PAD -->
+        <div id="signature-draw-stage" class="w-full h-full absolute inset-0 hidden flex-col items-center justify-center">
+          <canvas id="user-signature-canvas" class="w-full h-full rounded-2xl bg-black/20 border border-white/10 touch-none"></canvas>
+          <div class="absolute bottom-4 left-6 pointer-events-none font-label-sm text-[11px] text-white/50 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm text-accent-red">gesture</span>
+            <span>Draw your signature with mouse or touch screen</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full py-12 bg-surface/80 border-t border-white/10 relative z-20">
+    <div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="font-display-xl text-xl font-bold tracking-tight text-white">
+          ADITYA <span class="text-accent-red">SONI</span>
+        </a>
+        <span class="font-label-sm text-[10px] uppercase px-2 py-0.5 rounded bg-accent-red/10 border border-accent-red/20 text-accent-red">Signed &amp; Verified</span>
+      </div>
+      <div class="font-label-sm text-xs text-secondary text-center md:text-left">
+        © 2026 Aditya Soni. Engineered for High Performance &amp; Real-Time Systems.
+      </div>
+      <div class="flex items-center gap-4 text-xs font-label-sm text-secondary">
+        <a href="signature.html" class="text-accent-red font-semibold hover:underline">Interactive Signature</a>
+        <span>•</span>
+        <a href="projects.html" class="hover:text-white transition-colors">Projects</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Background shader
+    (function initBackgroundShader() {
+      const canvas = document.getElementById('bg-shader-canvas');
+      if (!canvas) return;
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) return;
+
+      const vs = `
+        attribute vec2 a_position;
+        varying vec2 v_uv;
+        void main() {
+          v_uv = a_position * 0.5 + 0.5;
+          gl_Position = vec4(a_position, 0.0, 1.0);
+        }
+      `;
+      const fs = `
+        precision highp float;
+        uniform float u_time;
+        uniform vec2 u_resolution;
+        varying vec2 v_uv;
+        void main() {
+          vec2 uv = v_uv;
+          vec2 center = uv - 0.5;
+          center.x *= u_resolution.x / u_resolution.y;
+          vec3 color = vec3(0.043, 0.074, 0.145);
+          float wave = sin(center.x * 2.5 + u_time * 0.4) * cos(center.y * 2.5 - u_time * 0.25);
+          color += vec3(0.91, 0.16, 0.13) * wave * 0.025;
+          gl_FragColor = vec4(color, 1.0);
+        }
+      `;
+      function createShader(type, src) {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        return s;
+      }
+      const prog = gl.createProgram();
+      gl.attachShader(prog, createShader(gl.VERTEX_SHADER, vs));
+      gl.attachShader(prog, createShader(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+      const pos = gl.getAttribLocation(prog, 'a_position');
+      gl.enableVertexAttribArray(pos);
+      gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+      const uTime = gl.getUniformLocation(prog, 'u_time');
+      const uRes = gl.getUniformLocation(prog, 'u_resolution');
+
+      function render(t) {
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        if (uTime) gl.uniform1f(uTime, t * 0.001);
+        if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(render);
+      }
+      render(0);
+    })();
+
+    // Smooth Signature Engine
+    document.addEventListener('DOMContentLoaded', () => {
+      const svg = document.getElementById('signature-svg');
+      const nib = document.getElementById('signature-pen-nib');
+      const replayBtn = document.getElementById('sig-replay-btn');
+      const statusText = document.getElementById('sig-status-text');
+      const colorBtns = document.querySelectorAll('.sig-color-btn');
+      const speedBtns = document.querySelectorAll('.sig-speed-btn');
+      const styleBtns = document.querySelectorAll('.sig-style-btn');
+      const modeAnimateBtn = document.getElementById('sig-mode-animate');
+      const modeDrawBtn = document.getElementById('sig-mode-draw');
+      const animateStage = document.getElementById('signature-animation-stage');
+      const drawStage = document.getElementById('signature-draw-stage');
+      const clearCanvasBtn = document.getElementById('sig-clear-canvas-btn');
+      const canvas = document.getElementById('user-signature-canvas');
+      
+      if (!svg) return;
+
+      let activeStyle = 'executive';
+      let paths = [];
+      let pathLengths = [];
+      let animationFrameId = null;
+      let isAnimating = false;
+      let speedMultiplier = 1;
+      let currentColor = 'crimson';
+      const colorMap = {
+        crimson: '#ea2a23',
+        gold: '#fbbf24',
+        cyan: '#00f0ff',
+        white: '#ffffff'
+      };
+
+      function updateActivePaths() {
+        const styleGroup = document.getElementById(`style-${activeStyle}`) || document.getElementById('style-executive');
+        document.querySelectorAll('.sig-style-group').forEach(g => g.classList.add('hidden'));
+        if (styleGroup) styleGroup.classList.remove('hidden');
+
+        paths = Array.from((styleGroup || svg).querySelectorAll('.sig-path'));
+        pathLengths = paths.map(p => {
+          let len = 1000;
+          try {
+            len = Math.max(p.getTotalLength(), 10);
+          } catch (e) {
+            len = 1000;
+          }
+          p.style.strokeDasharray = `${len} ${len}`;
+          p.classList.remove('sig-crimson', 'sig-gold', 'sig-cyan', 'sig-white');
+          p.classList.add(`sig-${currentColor}`);
+          return len;
+        });
+
+        // Set glow on SVG container
+        svg.classList.remove('sig-glow-crimson', 'sig-glow-gold', 'sig-glow-cyan', 'sig-glow-white');
+        svg.classList.add(`sig-glow-${currentColor}`);
+      }
+      updateActivePaths();
+
+      // Fluid eased 1.6s Timeline
+      function drawSignature() {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+        isAnimating = true;
+
+        updateActivePaths();
+        paths.forEach((p, i) => {
+          p.style.strokeDashoffset = `${pathLengths[i]}`;
+        });
+
+        if (nib) nib.style.opacity = '1';
+        if (statusText) statusText.textContent = `Rendering ${activeStyle.toUpperCase()} Signature...`;
+
+        const totalDuration = 1600 / speedMultiplier;
+        const startTime = performance.now();
+
+        const totalLengthSum = pathLengths.reduce((a, b) => a + b, 0) || 1;
+        const pathTimeRanges = [];
+        let accumulated = 0;
+        for (let i = 0; i < paths.length; i++) {
+          const weight = pathLengths[i] / totalLengthSum;
+          pathTimeRanges.push({
+            start: accumulated,
+            end: accumulated + weight
+          });
+          accumulated += weight;
+        }
+
+        // Smooth cubic ease
+        function easeProgress(t) {
+          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+        }
+
+        function step(now) {
+          const elapsed = now - startTime;
+          const rawProgress = Math.min(Math.max(elapsed / totalDuration, 0), 1);
+          const globalProgress = easeProgress(rawProgress);
+
+          let activeNibPos = null;
+
+          for (let i = 0; i < paths.length; i++) {
+            const range = pathTimeRanges[i];
+            const p = paths[i];
+            const len = pathLengths[i];
+
+            if (globalProgress <= range.start) {
+              p.style.strokeDashoffset = `${len}`;
+            } else if (globalProgress >= range.end) {
+              p.style.strokeDashoffset = '0';
+            } else {
+              const localProgress = (globalProgress - range.start) / (range.end - range.start);
+              const currentDist = localProgress * len;
+              p.style.strokeDashoffset = `${(len - currentDist).toFixed(1)}`;
+              
+              if (nib) {
+                try {
+                  activeNibPos = p.getPointAtLength(currentDist);
+                } catch(e) {}
+              }
+            }
+          }
+
+          if (nib && activeNibPos) {
+            nib.setAttribute('transform', `translate(${activeNibPos.x.toFixed(1)}, ${activeNibPos.y.toFixed(1)})`);
+          }
+
+          if (rawProgress < 1) {
+            animationFrameId = requestAnimationFrame(step);
+          } else {
+            paths.forEach(p => { p.style.strokeDashoffset = '0'; });
+            isAnimating = false;
+            animationFrameId = null;
+            if (nib) nib.style.opacity = '0';
+            if (statusText) statusText.textContent = 'Authenticated • Signature Verified';
+          }
+        }
+
+        if (nib && paths[0]) {
+          try {
+            const startPt = paths[0].getPointAtLength(0);
+            nib.setAttribute('transform', `translate(${startPt.x.toFixed(1)}, ${startPt.y.toFixed(1)})`);
+          } catch(e) {}
+        }
+
+        animationFrameId = requestAnimationFrame(step);
+      }
+
+      // Auto start immediately
+      setTimeout(drawSignature, 150);
+
+      // Style Switcher Buttons
+      styleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const style = btn.getAttribute('data-style');
+          if (!style || style === activeStyle) return;
+          activeStyle = style;
+
+          styleBtns.forEach(b => {
+            b.classList.remove('bg-white/15', 'text-white', 'shadow');
+            b.classList.add('text-white/60');
+          });
+          btn.classList.add('bg-white/15', 'text-white', 'shadow');
+          btn.classList.remove('text-white/60');
+
+          drawSignature();
+        });
+      });
+
+      if (replayBtn) replayBtn.addEventListener('click', drawSignature);
+
+      colorBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const color = btn.getAttribute('data-color');
+          currentColor = color;
+          colorBtns.forEach(b => {
+            b.classList.remove('scale-110', 'border-2', 'border-white', 'shadow-[0_0_10px_#ea2a23]', 'shadow-[0_0_10px_#fbbf24]', 'shadow-[0_0_10px_#00f0ff]', 'shadow-[0_0_10px_#ffffff]');
+            b.classList.add('border-white/30');
+          });
+          btn.classList.add('scale-110', 'border-2', 'border-white', `shadow-[0_0_10px_${colorMap[color]}]`);
+          btn.classList.remove('border-white/30');
+
+          paths.forEach(p => {
+            p.classList.remove('sig-crimson', 'sig-gold', 'sig-cyan', 'sig-white');
+            p.classList.add(`sig-${color}`);
+          });
+        });
+      });
+
+      speedBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          speedMultiplier = parseFloat(btn.getAttribute('data-speed')) || 1;
+          speedBtns.forEach(b => {
+            b.classList.remove('bg-accent-red', 'text-white', 'shadow');
+            b.classList.add('text-white/60');
+          });
+          btn.classList.add('bg-accent-red', 'text-white', 'shadow');
+          btn.classList.remove('text-white/60');
+          drawSignature();
+        });
+      });
+
+      if (modeAnimateBtn && modeDrawBtn && animateStage && drawStage) {
+        modeAnimateBtn.addEventListener('click', () => {
+          modeAnimateBtn.classList.add('bg-accent-red', 'text-white', 'shadow-lg');
+          modeAnimateBtn.classList.remove('text-on-surface-variant');
+          modeDrawBtn.classList.remove('bg-accent-red', 'text-white', 'shadow-lg');
+          modeDrawBtn.classList.add('text-on-surface-variant');
+
+          animateStage.classList.remove('hidden');
+          drawStage.classList.add('hidden');
+          if (clearCanvasBtn) clearCanvasBtn.classList.add('hidden');
+          if (replayBtn) replayBtn.classList.remove('hidden');
+          drawSignature();
+        });
+
+        modeDrawBtn.addEventListener('click', () => {
+          modeDrawBtn.classList.add('bg-accent-red', 'text-white', 'shadow-lg');
+          modeDrawBtn.classList.remove('text-on-surface-variant');
+          modeAnimateBtn.classList.remove('bg-accent-red', 'text-white', 'shadow-lg');
+          modeAnimateBtn.classList.add('text-on-surface-variant');
+
+          animateStage.classList.add('hidden');
+          drawStage.classList.remove('hidden');
+          if (clearCanvasBtn) clearCanvasBtn.classList.remove('hidden');
+          if (replayBtn) replayBtn.classList.add('hidden');
+          initCanvas();
+        });
+      }
+
+      let isDrawing = false;
+      let ctx = null;
+      let lastX = 0;
+      let lastY = 0;
+
+      function initCanvas() {
+        if (!canvas) return;
+        const rect = canvas.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+      }
+
+      function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return { x: clientX - rect.left, y: clientY - rect.top };
+      }
+
+      function startDraw(e) {
+        isDrawing = true;
+        const pos = getPos(e);
+        lastX = pos.x;
+        lastY = pos.y;
+      }
+
+      function draw(e) {
+        if (!isDrawing || !ctx) return;
+        e.preventDefault();
+        const pos = getPos(e);
+
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        const midX = (lastX + pos.x) / 2;
+        const midY = (lastY + pos.y) / 2;
+        ctx.quadraticCurveTo(lastX, lastY, midX, midY);
+
+        ctx.strokeStyle = colorMap[currentColor] || '#ea2a23';
+        ctx.lineWidth = 3.5;
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = colorMap[currentColor] || '#ea2a23';
+        ctx.stroke();
+
+        lastX = pos.x;
+        lastY = pos.y;
+      }
+
+      function stopDraw() {
+        isDrawing = false;
+      }
+
+      if (canvas) {
+        canvas.addEventListener('mousedown', startDraw);
+        canvas.addEventListener('mousemove', draw);
+        window.addEventListener('mouseup', stopDraw);
+        canvas.addEventListener('touchstart', startDraw, { passive: false });
+        canvas.addEventListener('touchmove', draw, { passive: false });
+        window.addEventListener('touchend', stopDraw);
+      }
+
+      if (clearCanvasBtn && canvas) {
+        clearCanvasBtn.addEventListener('click', () => {
+          if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+      }
+
+      window.addEventListener('resize', () => {
+        if (drawStage && !drawStage.classList.contains('hidden')) {
+          initCanvas();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
