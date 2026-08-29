@@ -6,16 +6,14 @@
   <title>Aditya Soni - Systems Builder &amp; Full-Stack Developer</title>
   <meta name="description" content="Portfolio of Aditya Soni - Full-Stack Developer & Systems Builder. Building responsive, high-performance web applications, low-latency WebSocket systems, and GPU-accelerated 3D interfaces.">
   
-  <!-- Google Fonts -->
+  <!-- Google Fonts (Optimized for Instant Load) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Geist:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,700;1,500;1,700&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS CDN with plugins -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <script>
     tailwind.config = {
@@ -67,6 +65,7 @@
     html {
       scroll-behavior: smooth;
       scroll-padding-top: 100px;
+      -webkit-overflow-scrolling: touch;
     }
 
     /* Custom smooth dark crimson scrollbar */
@@ -87,6 +86,8 @@
 
     body {
       background-color: #0b1325;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
       color: #dae2fc;
       font-family: 'Geist', 'Inter', sans-serif;
       overflow-x: hidden;
@@ -106,36 +107,50 @@
     /* Glassmorphism panel styling */
     .glass-panel {
       background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-top: 1px solid rgba(255, 255, 255, 0.12);
       border-left: 1px solid rgba(255, 255, 255, 0.06);
       border-right: 1px solid rgba(255, 255, 255, 0.04);
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .glass-card, .project-card {
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
-      will-change: transform, box-shadow;
-      transform: translateZ(0);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+      transform: translate3d(0, 0, 0);
+      contain: content;
     }
     .glass-card:hover, .project-card:hover {
       box-shadow: 0 16px 45px rgba(234, 42, 35, 0.12), 0 0 35px rgba(29, 78, 216, 0.06);
       border-color: rgba(255, 255, 255, 0.28);
-      transform: translateY(-5px) scale(1.01);
+      transform: translateY(-4px);
     }
 
-    /* Smooth Scroll Reveal Animation */
+    /* Smooth Scroll Reveal Animation (Lightweight) */
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
+      transform: translateY(18px);
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .reveal.active {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Mobile Performance & 120 FPS Butter-Smooth Scrolling */
+    @media (max-width: 768px) {
+      .glass-panel, .glass-card, .project-card {
+        backdrop-filter: blur(4px) !important;
+        -webkit-backdrop-filter: blur(4px) !important;
+        background: rgba(15, 23, 42, 0.92) !important;
+      }
+      .glass-card:hover, .project-card:hover {
+        transform: none !important;
+      }
+      .reveal {
+        transition-duration: 0.3s !important;
+      }
     }
 
     /* High-Performance GPU Accelerated Signature Engine */
@@ -149,29 +164,16 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .sig-crimson {
-      stroke: #ea2a23;
-    }
-    .sig-gold {
-      stroke: #fbbf24;
-    }
-    .sig-cyan {
-      stroke: #00f0ff;
-    }
-    .sig-white {
-      stroke: #ffffff;
-    }
-    .sig-glow-crimson {
-      filter: drop-shadow(0 0 10px rgba(234, 42, 35, 0.75));
-    }
-    .sig-glow-gold {
-      filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.75));
-    }
-    .sig-glow-cyan {
-      filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.75));
-    }
-    .sig-glow-white {
-      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.75));
+    .sig-crimson { stroke: #ea2a23; }
+    .sig-gold { stroke: #fbbf24; }
+    .sig-cyan { stroke: #00f0ff; }
+    .sig-white { stroke: #ffffff; }
+
+    @media (min-width: 768px) {
+      .sig-glow-crimson { filter: drop-shadow(0 0 10px rgba(234, 42, 35, 0.7)); }
+      .sig-glow-gold { filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.7)); }
+      .sig-glow-cyan { filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.7)); }
+      .sig-glow-white { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7)); }
     }
     .seal-spin {
       animation: sealRotate 28s linear infinite;
@@ -342,31 +344,9 @@
     }
 
     /* Signature Section & Pen Animation Styles */
-    .sig-path {
-      stroke-dasharray: 2500;
-      stroke-dashoffset: 2500;
-      transition: stroke 0.4s ease, filter 0.4s ease;
-      will-change: stroke-dashoffset;
-    }
-    
-    .sig-crimson {
-      stroke: #ea2a23;
-      filter: drop-shadow(0 0 10px rgba(234, 42, 35, 0.75)) drop-shadow(0 0 25px rgba(234, 42, 35, 0.35));
-    }
-    
-    .sig-gold {
-      stroke: #fbbf24;
-      filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.8)) drop-shadow(0 0 25px rgba(251, 191, 36, 0.4));
-    }
-    
-    .sig-cyan {
-      stroke: #00f0ff;
-      filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.8)) drop-shadow(0 0 25px rgba(0, 240, 255, 0.4));
-    }
-    
-    .sig-white {
-      stroke: #f8fafc;
-      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.85)) drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
+    .nib-glow {
+      filter: drop-shadow(0 0 12px #ffffff) drop-shadow(0 0 24px #ea2a23);
+      transition: opacity 0.3s ease;
     }
 
     .seal-spin {
@@ -441,8 +421,8 @@
     </div>
   </div>
 
-  <!-- Background WebGL Shader -->
-  <div class="fixed inset-0 z-[-1] pointer-events-none">
+  <!-- Background WebGL Shader (Desktop Only) -->
+  <div class="fixed inset-0 z-[-1] pointer-events-none hidden md:block">
     <canvas id="bg-shader-canvas" class="w-full h-full opacity-60"></canvas>
   </div>
 
@@ -1158,21 +1138,25 @@
     </div>
   </footer>
 
-  <!-- Interactive Scripts (Shader, Three.js Locomotive, Scroll Navigation) -->
+  <!-- Interactive Scripts (Shader, Scroll Navigation) -->
   <script>
-    // 1. Interactive WebGL Background Shader
+    // 1. Interactive WebGL Background Shader (Desktop Only, 120 FPS)
     (function initBackgroundShader() {
+      if (window.innerWidth < 768) return;
       const canvas = document.getElementById('bg-shader-canvas');
       if (!canvas) return;
 
       function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        if (window.innerWidth < 768) return;
+        const scale = 0.75;
+        canvas.width = Math.floor(window.innerWidth * scale);
+        canvas.height = Math.floor(window.innerHeight * scale);
       }
       resize();
-      window.addEventListener('resize', resize);
+      window.addEventListener('resize', resize, { passive: true });
 
-      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      const gl = canvas.getContext('webgl', { powerPreference: 'low-power', alpha: false, antialias: false }) ||
+                 canvas.getContext('experimental-webgl');
       if (!gl) return;
 
       const vs = `
@@ -1185,7 +1169,7 @@
       `;
 
       const fs = `
-        precision highp float;
+        precision mediump float;
         uniform float u_time;
         uniform vec2 u_resolution;
         uniform vec2 u_mouse;
@@ -1201,18 +1185,13 @@
           vec2 center = uv - 0.5;
           center.x *= u_resolution.x / u_resolution.y;
 
-          // Deep Navy Base
           vec3 color = vec3(0.043, 0.074, 0.145);
-          
-          // Subtle kinetic wave glow
           float wave = sin(center.x * 2.5 + u_time * 0.4) * cos(center.y * 2.5 - u_time * 0.25);
           color += vec3(0.91, 0.16, 0.13) * wave * 0.025;
 
-          // Technical coordinate grid
           float g = grid(center + vec2(u_time * 0.02, 0.0), 0.08);
           color = mix(color, vec3(0.12, 0.22, 0.38), clamp(g * 0.08, 0.0, 1.0));
 
-          // Vignette edge mask
           float mask = 1.0 - smoothstep(0.4, 1.4, length(center));
           color *= mask;
 
@@ -1246,12 +1225,19 @@
       const uMouse = gl.getUniformLocation(prog, 'u_mouse');
 
       let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
-      window.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = window.innerHeight - e.clientY;
+      window.addEventListener('pointermove', (e) => {
+        mouse.x = e.clientX * 0.5;
+        mouse.y = (window.innerHeight - e.clientY) * 0.5;
+      }, { passive: true });
+
+      let isShaderVisible = true;
+      document.addEventListener('visibilitychange', () => {
+        isShaderVisible = !document.hidden;
+        if (isShaderVisible) requestAnimationFrame(render);
       });
 
       function render(t) {
+        if (!isShaderVisible) return;
         gl.viewport(0, 0, canvas.width, canvas.height);
         if (uTime) gl.uniform1f(uTime, t * 0.001);
         if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
@@ -1259,7 +1245,7 @@
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
         requestAnimationFrame(render);
       }
-      render(0);
+      requestAnimationFrame(render);
     })();
 
 
@@ -1697,8 +1683,10 @@
 
           ctx.strokeStyle = colorMap[currentColor] || '#ea2a23';
           ctx.lineWidth = 3.5;
-          ctx.shadowBlur = 12;
-          ctx.shadowColor = colorMap[currentColor] || '#ea2a23';
+          if (window.innerWidth >= 768) {
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = colorMap[currentColor] || '#ea2a23';
+          }
           ctx.stroke();
 
           lastX = pos.x;
