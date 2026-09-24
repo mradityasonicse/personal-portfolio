@@ -185,7 +185,52 @@
         <a class="text-white border-b-2 border-on-tertiary-container pb-1 font-semibold" href="contact.html">Contact</a>
       </nav>
       
-      <a class="font-label-sm text-xs uppercase text-primary btn-glass px-5 py-2 rounded-full" href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+      <!-- Action Buttons -->
+      <div class="hidden md:flex items-center gap-3">
+        <button id="atmosphere-toggle-btn" class="atmosphere-toggle-btn glass-pill text-white/90 hover:text-cyan-400 transition-all flex items-center gap-1.5 cursor-pointer" title="Toggle Hypnotic Relaxation Atmosphere (Bubbles &amp; Snow)">
+          <div class="atmo-glow-dot"></div>
+          <span class="atmo-mode-text">Aurora</span>
+        </button>
+
+        <button data-open-cmd class="glass-pill px-3 py-1.5 font-mono text-[11px] text-slate-300 hover:text-white flex items-center gap-2 cursor-pointer transition-all hover:border-rose-500/40" title="Open Command Palette (Ctrl+K)">
+          <i data-lucide="command" class="w-3.5 h-3.5 text-rose-500"></i>
+          <span>⌘K</span>
+        </button>
+
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="glass-pill px-4 py-1.5 font-label-sm text-xs uppercase tracking-wider text-primary hover:text-on-tertiary-container hover:border-on-tertiary-container/50 transition-all flex items-center gap-1.5 group">
+          <span>Resume</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <div class="md:hidden flex items-center gap-2">
+        <button class="atmosphere-toggle-btn p-2 text-cyan-400" title="Toggle Atmosphere">
+          <div class="atmo-glow-dot"></div>
+        </button>
+        <button id="mobile-menu-btn" class="p-2 text-white/80 hover:text-white" aria-label="Toggle Menu">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 flex flex-col gap-3 font-label-sm text-sm">
+      <a href="index.html" class="text-white/80 hover:text-on-tertiary-container py-2 border-b border-white/5">Home</a>
+      <a href="about.html" class="text-white/80 hover:text-on-tertiary-container py-2 border-b border-white/5">About</a>
+      <a href="projects.html" class="text-white/80 hover:text-on-tertiary-container py-2 border-b border-white/5">Projects</a>
+      <a href="skills.html" class="text-white/80 hover:text-on-tertiary-container py-2 border-b border-white/5">Skills</a>
+      <a href="journey.html" class="text-white/80 hover:text-on-tertiary-container py-2 border-b border-white/5">Journey</a>
+      <a href="achievements.html" class="text-white/80 hover:text-on-tertiary-container py-2 border-b border-white/5">Achievements</a>
+      <a href="signature.html" class="text-white/80 hover:text-on-tertiary-container py-2 border-b border-white/5">Signature</a>
+      <a href="contact.html" class="text-on-tertiary-container py-2 border-b border-white/5 font-semibold">Contact</a>
+      <div class="flex items-center justify-between pt-2 border-t border-white/10 mt-1">
+        <button class="atmosphere-toggle-btn glass-pill text-white/90 py-1.5 px-3 flex items-center gap-2">
+          <div class="atmo-glow-dot"></div>
+          <span class="text-xs">Atmosphere: <span class="atmo-mode-text font-bold text-cyan-400">Aurora</span></span>
+        </button>
+        <button data-open-cmd class="glass-pill px-3 py-1.5 font-mono text-xs text-rose-400">⌘K Search</button>
+      </div>
     </div>
   </header>
 
