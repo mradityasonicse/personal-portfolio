@@ -17,7 +17,7 @@
   // ==========================================
   // 1. Hypnotic Relaxation Canvas Engine (Bubbles & Snow)
   // ==========================================
-  const ATMOSPHERE_MODES = ["aurora", "bubbles", "snow", "off"];
+  const ATMOSPHERE_MODES = ["aurora", "bubbles", "snow", "vortex", "off"];
   let currentAtmoMode = localStorage.getItem("portfolio_atmosphere") || "aurora";
   let atmoCanvas = null;
   let atmoCtx = null;
@@ -35,40 +35,45 @@
     snowFlakes.length = 0;
     bubbles.length = 0;
 
-    // 1. Generate Zen Snow Particles
+    // 1. Generate Zen Crystalline Snow Particles with Depth Layers
     for (let i = 0; i < MAX_SNOW; i++) {
+      const layer = (i % 3); // 0: Far, 1: Mid, 2: Near
       snowFlakes.push({
         x: Math.random() * atmoWidth,
         y: Math.random() * atmoHeight,
-        radius: Math.random() * 2.4 + 0.8,
-        vy: Math.random() * 0.55 + 0.25, // Gentle slow fall
+        radius: layer === 2 ? Math.random() * 2.6 + 1.8 : layer === 1 ? Math.random() * 1.6 + 1.0 : Math.random() * 0.9 + 0.5,
+        vy: layer === 2 ? Math.random() * 0.7 + 0.45 : layer === 1 ? Math.random() * 0.45 + 0.25 : Math.random() * 0.25 + 0.15,
         swingSpeed: Math.random() * 0.02 + 0.008,
-        swingAmp: Math.random() * 1.8 + 0.6,
+        swingAmp: (layer + 1) * 0.8 + Math.random() * 0.6,
         phase: Math.random() * Math.PI * 2,
-        alpha: Math.random() * 0.55 + 0.25,
-        twinkleSpeed: Math.random() * 0.02 + 0.01,
+        rotation: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.03,
+        alpha: layer === 2 ? 0.75 : layer === 1 ? 0.5 : 0.3,
+        layer: layer,
+        twinkleSpeed: Math.random() * 0.025 + 0.015,
       });
     }
 
-    // 2. Generate Hypnotic Bioluminescent Bubbles
+    // 2. Generate Hypnotic Bioluminescent Bubbles with Iridescent Halos
     const hues = [
-      { r: 56, g: 189, b: 248 },   // Cyan
+      { r: 56, g: 189, b: 248 },   // Astral Cyan
       { r: 244, g: 63, b: 94 },    // Crimson Rose
       { r: 168, g: 85, b: 247 },   // Amethyst Violet
-      { r: 52, g: 211, b: 153 }    // Emerald
+      { r: 52, g: 211, b: 153 },   // Quantum Emerald
+      { r: 251, g: 191, b: 36 }    // Starlight Gold
     ];
 
     for (let i = 0; i < MAX_BUBBLES; i++) {
       const color = hues[i % hues.length];
-      const baseR = Math.random() * 22 + 8;
+      const baseR = Math.random() * 24 + 9;
       bubbles.push({
         x: Math.random() * atmoWidth,
         y: Math.random() * atmoHeight,
         baseRadius: baseR,
         radius: baseR,
-        vy: -(Math.random() * 0.65 + 0.25), // Buoyant upward float
+        vy: -(Math.random() * 0.6 + 0.2), // Buoyant upward float
         swaySpeed: Math.random() * 0.018 + 0.008,
-        swayAmp: Math.random() * 1.6 + 0.5,
+        swayAmp: Math.random() * 1.8 + 0.5,
         swayPhase: Math.random() * Math.PI * 2,
         pulseSpeed: Math.random() * 0.025 + 0.015,
         pulsePhase: Math.random() * Math.PI * 2,
@@ -87,12 +92,51 @@
 
     const time = now * 0.001;
 
-    // --- DRAW SNOW PARTICLES (if active) ---
+    // --- DRAW HYPNOTIC VORTEX & SACRED HARMONIC WAVES (if active) ---
+    if (currentAtmoMode === "vortex" || currentAtmoMode === "aurora") {
+      const vAlpha = currentAtmoMode === "vortex" ? 1.0 : 0.35;
+      const vCx = atmoWidth * 0.5;
+      const vCy = atmoHeight * 0.45;
+      const baseDim = Math.min(atmoWidth, atmoHeight);
+
+      atmoCtx.save();
+      atmoCtx.translate(vCx, vCy);
+
+      // Concentric breathing Fibonacci vortex rings
+      const rings = currentAtmoMode === "vortex" ? 8 : 4;
+      for (let r = 1; r <= rings; r++) {
+        const radius = (r / rings) * (baseDim * 0.42);
+        const breath = Math.sin(time * 0.75 + r * 0.8) * 12;
+        const curR = Math.max(4, radius + breath);
+        const spin = time * 0.15 * (r % 2 === 0 ? 1 : -1) + (r * 0.4);
+
+        atmoCtx.beginPath();
+        const petals = 6 + (r % 3) * 2;
+        for (let p = 0; p <= petals * 4; p++) {
+          const theta = (p / (petals * 4)) * Math.PI * 2;
+          const rWobble = curR + Math.sin(theta * petals + spin) * (curR * 0.06);
+          const px = Math.cos(theta) * rWobble;
+          const py = Math.sin(theta) * rWobble;
+          if (p === 0) atmoCtx.moveTo(px, py);
+          else atmoCtx.lineTo(px, py);
+        }
+        atmoCtx.closePath();
+
+        const strokeAlpha = (0.045 + 0.035 * Math.sin(time + r)) * vAlpha;
+        atmoCtx.strokeStyle = r % 2 === 0 ? `rgba(0, 240, 255, ${strokeAlpha.toFixed(3)})` : `rgba(244, 63, 94, ${strokeAlpha.toFixed(3)})`;
+        atmoCtx.lineWidth = 1.0;
+        atmoCtx.stroke();
+      }
+      atmoCtx.restore();
+    }
+
+    // --- DRAW ZEN CRYSTALLINE SNOW PARTICLES (if active) ---
     if (currentAtmoMode === "aurora" || currentAtmoMode === "snow") {
       for (let i = 0; i < snowFlakes.length; i++) {
         const s = snowFlakes[i];
         s.y += s.vy;
         s.x += Math.sin(time * s.swingSpeed + s.phase) * s.swingAmp;
+        s.rotation += s.rotSpeed;
 
         if (s.y > atmoHeight + 10) {
           s.y = -10;
@@ -103,43 +147,61 @@
 
         const currentAlpha = s.alpha * (0.8 + Math.sin(time * s.twinkleSpeed) * 0.2);
 
-        atmoCtx.beginPath();
-        atmoCtx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-        atmoCtx.fillStyle = `rgba(226, 232, 240, ${currentAlpha.toFixed(2)})`;
-        atmoCtx.shadowBlur = s.radius > 2.0 ? 8 : 0;
-        atmoCtx.shadowColor = "rgba(56, 189, 248, 0.6)";
-        atmoCtx.fill();
-        atmoCtx.shadowBlur = 0;
+        atmoCtx.save();
+        atmoCtx.translate(s.x, s.y);
+        atmoCtx.rotate(s.rotation);
+
+        if (s.layer === 2) {
+          // Foreground delicate 6-point crystal starlet
+          atmoCtx.beginPath();
+          for (let arm = 0; arm < 3; arm++) {
+            atmoCtx.moveTo(-s.radius, 0);
+            atmoCtx.lineTo(s.radius, 0);
+            atmoCtx.rotate(Math.PI / 3);
+          }
+          atmoCtx.strokeStyle = `rgba(255, 255, 255, ${currentAlpha.toFixed(2)})`;
+          atmoCtx.lineWidth = 1.0;
+          atmoCtx.stroke();
+        } else {
+          // Mid & far soft circular crystal
+          atmoCtx.beginPath();
+          atmoCtx.arc(0, 0, s.radius, 0, Math.PI * 2);
+          atmoCtx.fillStyle = `rgba(226, 232, 240, ${currentAlpha.toFixed(2)})`;
+          atmoCtx.fill();
+        }
+
+        atmoCtx.restore();
       }
     }
 
     // --- DRAW BIOLUMINESCENT BUBBLES (if active) ---
-    if (currentAtmoMode === "aurora" || currentAtmoMode === "bubbles") {
-      for (let i = 0; i < bubbles.length; i++) {
+    if (currentAtmoMode === "aurora" || currentAtmoMode === "bubbles" || currentAtmoMode === "vortex") {
+      const bLimit = currentAtmoMode === "vortex" ? Math.floor(bubbles.length * 0.5) : bubbles.length;
+      for (let i = 0; i < bLimit; i++) {
         const b = bubbles[i];
 
-        // Buoyant upward motion
+        // Buoyant upward motion with gentle harmonic sway
         b.y += b.vy;
         b.x += Math.cos(time * b.swaySpeed + b.swayPhase) * b.swayAmp + b.vx;
-        b.vx *= 0.95; // Dissipate external repulsion velocity
+        b.vx *= 0.94; // Dissipate external repulsion velocity
 
         // Organic gentle pulse
         b.radius = b.baseRadius + Math.sin(time * b.pulseSpeed + b.pulsePhase) * (b.baseRadius * 0.12);
 
-        // Tactile interactive mouse repulsion physics
+        // Tactile interactive mouse & touch repulsion physics
         const dx = b.x - mousePos.x;
         const dy = b.y - mousePos.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const repelRadius = 110;
+        const dist = Math.hypot(dx, dy);
+        const repelRadius = 120;
 
         if (dist < repelRadius && dist > 1) {
           const force = (repelRadius - dist) / repelRadius;
           const angle = Math.atan2(dy, dx);
-          b.vx += Math.cos(angle) * force * 1.8;
-          b.y += Math.sin(angle) * force * 1.8;
+          b.vx += Math.cos(angle) * force * 2.2;
+          b.y += Math.sin(angle) * force * 2.2;
         }
 
-        // Wrap around screen boundaries
+        // Wrap around screen boundaries seamlessly
         if (b.y < -b.baseRadius * 2) {
           b.y = atmoHeight + b.baseRadius * 2;
           b.x = Math.random() * atmoWidth;
@@ -161,24 +223,22 @@
           b.y,
           b.radius
         );
-        grad.addColorStop(0, `rgba(255, 255, 255, ${(b.alpha * 0.7).toFixed(2)})`);
-        grad.addColorStop(0.5, `rgba(${b.color.r}, ${b.color.g}, ${b.color.b}, ${(b.alpha * 0.25).toFixed(2)})`);
-        grad.addColorStop(1, `rgba(${b.color.r}, ${b.color.g}, ${b.color.b}, ${(b.alpha * 0.65).toFixed(2)})`);
+        grad.addColorStop(0, `rgba(255, 255, 255, ${(b.alpha * 0.8).toFixed(2)})`);
+        grad.addColorStop(0.5, `rgba(${b.color.r}, ${b.color.g}, ${b.color.b}, ${(b.alpha * 0.28).toFixed(2)})`);
+        grad.addColorStop(1, `rgba(${b.color.r}, ${b.color.g}, ${b.color.b}, ${(b.alpha * 0.68).toFixed(2)})`);
 
         atmoCtx.fillStyle = grad;
         atmoCtx.fill();
 
         // Glowing outer boundary rim
-        atmoCtx.lineWidth = 1.4;
-        atmoCtx.strokeStyle = `rgba(${b.color.r}, ${b.color.g}, ${b.color.b}, ${(b.alpha * 0.9).toFixed(2)})`;
-        atmoCtx.shadowBlur = 12;
-        atmoCtx.shadowColor = `rgba(${b.color.r}, ${b.color.g}, ${b.color.b}, 0.8)`;
+        atmoCtx.lineWidth = 1.3;
+        atmoCtx.strokeStyle = `rgba(${b.color.r}, ${b.color.g}, ${b.color.b}, ${(b.alpha * 0.95).toFixed(2)})`;
         atmoCtx.stroke();
 
         // High-gloss specular reflection dot
         atmoCtx.beginPath();
         atmoCtx.arc(b.x - b.radius * 0.38, b.y - b.radius * 0.38, Math.max(b.radius * 0.18, 1.5), 0, Math.PI * 2);
-        atmoCtx.fillStyle = "rgba(255, 255, 255, 0.85)";
+        atmoCtx.fillStyle = "rgba(255, 255, 255, 0.9)";
         atmoCtx.fill();
 
         atmoCtx.restore();
@@ -208,7 +268,7 @@
     function resizeAtmo() {
       atmoWidth = window.innerWidth;
       atmoHeight = window.innerHeight;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       atmoCanvas.width = atmoWidth * dpr;
       atmoCanvas.height = atmoHeight * dpr;
       atmoCtx.scale(dpr, dpr);
@@ -218,9 +278,24 @@
     resizeAtmo();
     window.addEventListener("resize", resizeAtmo, { passive: true });
 
+    // Touch & pointer support across desktop, tablet, and mobile
     window.addEventListener("mousemove", (e) => {
       mousePos.x = e.clientX;
       mousePos.y = e.clientY;
+    }, { passive: true });
+
+    window.addEventListener("touchmove", (e) => {
+      if (e.touches && e.touches.length > 0) {
+        mousePos.x = e.touches[0].clientX;
+        mousePos.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    window.addEventListener("touchstart", (e) => {
+      if (e.touches && e.touches.length > 0) {
+        mousePos.x = e.touches[0].clientX;
+        mousePos.y = e.touches[0].clientY;
+      }
     }, { passive: true });
 
     if (currentAtmoMode !== "off") {
@@ -266,6 +341,7 @@
       case "aurora": return "🌌 Aurora (Bubbles & Snow)";
       case "bubbles": return "🫧 Bioluminescent Bubbles";
       case "snow": return "❄️ Zen Crystalline Snow";
+      case "vortex": return "🌀 Hypnotic Vortex & Sacred Waves";
       case "off": return "🌙 Atmospheric Cleared";
       default: return mode;
     }
@@ -280,6 +356,7 @@
           case "aurora": labelSpan.textContent = "Aurora"; break;
           case "bubbles": labelSpan.textContent = "Bubbles"; break;
           case "snow": labelSpan.textContent = "Snow"; break;
+          case "vortex": labelSpan.textContent = "Vortex"; break;
           case "off": labelSpan.textContent = "Zen Off"; break;
         }
       }
@@ -745,6 +822,13 @@
                 <span>Contact Terminal &amp; Direct Connect</span>
               </span>
               <span class="text-xs font-mono text-slate-500">Jump ↵</span>
+            </a>
+            <a href="intro.html" class="cmd-item">
+              <span class="flex items-center gap-3">
+                <span class="text-rose-400 font-mono text-xs">09</span>
+                <span>Cinematic WebGL Intro Splash</span>
+              </span>
+              <span class="text-xs font-mono text-slate-500">Play ↵</span>
             </a>
             <div class="cmd-item" id="cmd-toggle-atmosphere">
               <span class="flex items-center gap-3">
