@@ -492,7 +492,7 @@
       }
     }
   </style>
-  <link rel="stylesheet" crossorigin href="/assets/index-U5VpATBh.css">
+  <link rel="stylesheet" crossorigin href="/assets/index-qnDZewP9.css">
 </head>
 <body class="bg-background text-on-surface antialiased relative selection:bg-accent-red selection:text-white">
 
@@ -864,29 +864,29 @@
           <!-- 3D Stage Container -->
           <div class="spin-stage-container relative">
             <div class="spinning-card-wrapper" id="spinning-card-wrapper">
-              <div class="spinning-card-3d auto-spinning" id="spinning-skill-card">
+              <div class="spinning-card-3d" id="spinning-skill-card">
                 
                 <!-- FRONT FACE: CORE STACK & SYSTEMS ARCHITECTURE -->
                 <div class="spinning-card-face spinning-card-front relative overflow-hidden">
                   <div class="spin-light-streak"></div>
                   <!-- Cyber Corner Markers -->
-                  <div class="cyber-corner cyber-corner-tl"></div>
-                  <div class="cyber-corner cyber-corner-tr"></div>
-                  <div class="cyber-corner cyber-corner-bl"></div>
-                  <div class="cyber-corner cyber-corner-br"></div>
+                  <div class="cyber-corner cyber-corner-tl card-3d-layer-corners"></div>
+                  <div class="cyber-corner cyber-corner-tr card-3d-layer-corners"></div>
+                  <div class="cyber-corner cyber-corner-bl card-3d-layer-corners"></div>
+                  <div class="cyber-corner cyber-corner-br card-3d-layer-corners"></div>
 
                   <!-- Face Header -->
-                  <div>
+                  <div class="card-3d-layer-header">
                     <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
                       <div class="flex items-center gap-2">
                         <span class="font-mono text-[10px] text-accent-red bg-accent-red/10 border border-accent-red/20 px-2.5 py-1 rounded font-semibold tracking-wider uppercase flex items-center gap-1.5">
-                          <span class="w-1.5 h-1.5 rounded-full bg-accent-red"></span>
+                          <span class="w-1.5 h-1.5 rounded-full bg-accent-red telemetry-node-pulse"></span>
                           <span>CORE SYSTEMS ARSENAL</span>
                         </span>
                         <span class="font-mono text-[10px] text-white/50 tracking-wider">STAGE 01 // FRONT</span>
                       </div>
                       <div class="flex items-center gap-2 font-mono text-[11px] text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 telemetry-node-pulse"></span>
                         <span>120 FPS HARDWARE 3D MATRIX</span>
                       </div>
                     </div>
@@ -901,76 +901,100 @@
                   </div>
 
                   <!-- 4 Technology Pillar Pillars -->
-                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6 card-3d-layer-grid">
                     <!-- Pillar 1: Distributed Core -->
-                    <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent-red/40 transition-all">
+                    <div class="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-accent-red/50 transition-all group">
                       <div class="flex items-center justify-between text-accent-red mb-2">
                         <span class="font-mono text-[10px] uppercase tracking-wider font-semibold">Distributed</span>
-                        <i data-lucide="cpu" class="w-4 h-4"></i>
+                        <i data-lucide="cpu" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
                       </div>
                       <div class="font-display font-semibold text-white text-base mb-1">Systems Core</div>
                       <p class="font-mono text-[10px] text-slate-400 leading-relaxed">
                         Go &bull; Rust &bull; Java &bull; Python &bull; Raft &bull; gRPC &bull; Kafka
                       </p>
-                      <div class="mt-2 text-[10px] font-mono text-emerald-400 flex items-center gap-1">
-                        <span>●</span> <span>0.4ms concurrency</span>
+                      <!-- Micro SVG Sparkline -->
+                      <div class="h-4 w-full my-1.5 overflow-hidden flex items-center">
+                        <svg class="w-full h-3" viewBox="0 0 100 12" fill="none">
+                          <path d="M0 6 L20 6 L30 1 L40 11 L50 3 L60 9 L70 6 L100 6" stroke="#f43f5e" stroke-width="1.5" stroke-linecap="round" class="telemetry-sparkline" />
+                        </svg>
+                      </div>
+                      <div class="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> <span>0.4ms Concurrency</span>
                       </div>
                     </div>
 
                     <!-- Pillar 2: Modern Web Core -->
-                    <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent-cyan/40 transition-all">
+                    <div class="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-accent-cyan/50 transition-all group">
                       <div class="flex items-center justify-between text-accent-cyan mb-2">
                         <span class="font-mono text-[10px] uppercase tracking-wider font-semibold">Web Core</span>
-                        <i data-lucide="layers" class="w-4 h-4"></i>
+                        <i data-lucide="layers" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
                       </div>
                       <div class="font-display font-semibold text-white text-base mb-1">Full-Stack</div>
                       <p class="font-mono text-[10px] text-slate-400 leading-relaxed">
                         React 19 &bull; Next.js 15 &bull; TypeScript &bull; HTML5 &bull; CSS3
                       </p>
-                      <div class="mt-2 text-[10px] font-mono text-accent-cyan flex items-center gap-1">
-                        <span>●</span> <span>SSR &bull; Concurrent UI</span>
+                      <!-- Micro SVG Sparkline -->
+                      <div class="h-4 w-full my-1.5 overflow-hidden flex items-center">
+                        <svg class="w-full h-3" viewBox="0 0 100 12" fill="none">
+                          <path d="M0 6 L25 6 L35 2 L45 10 L55 4 L65 8 L75 6 L100 6" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" class="telemetry-sparkline" />
+                        </svg>
+                      </div>
+                      <div class="text-[10px] font-mono text-accent-cyan flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent-cyan"></span> <span>SSR &bull; Streaming UI</span>
                       </div>
                     </div>
 
                     <!-- Pillar 3: 3D Graphics -->
-                    <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-400/40 transition-all">
+                    <div class="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-amber-400/50 transition-all group">
                       <div class="flex items-center justify-between text-amber-400 mb-2">
                         <span class="font-mono text-[10px] uppercase tracking-wider font-semibold">GPU Graphics</span>
-                        <i data-lucide="box" class="w-4 h-4"></i>
+                        <i data-lucide="box" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
                       </div>
                       <div class="font-display font-semibold text-white text-base mb-1">3D &amp; Shaders</div>
                       <p class="font-mono text-[10px] text-slate-400 leading-relaxed">
                         Three.js &bull; WebGL 2 &bull; GLSL &bull; Raymarching &bull; Canvas
                       </p>
-                      <div class="mt-2 text-[10px] font-mono text-amber-400 flex items-center gap-1">
-                        <span>●</span> <span>Procedural Math</span>
+                      <!-- Micro SVG Sparkline -->
+                      <div class="h-4 w-full my-1.5 overflow-hidden flex items-center">
+                        <svg class="w-full h-3" viewBox="0 0 100 12" fill="none">
+                          <path d="M0 6 C20 1, 40 11, 60 6 C80 1, 90 11, 100 6" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" class="telemetry-sparkline" />
+                        </svg>
+                      </div>
+                      <div class="text-[10px] font-mono text-amber-400 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> <span>Procedural Math</span>
                       </div>
                     </div>
 
                     <!-- Pillar 4: Low-Latency Runtime -->
-                    <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-400/40 transition-all">
+                    <div class="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-emerald-400/50 transition-all group">
                       <div class="flex items-center justify-between text-emerald-400 mb-2">
                         <span class="font-mono text-[10px] uppercase tracking-wider font-semibold">Low-Latency</span>
-                        <i data-lucide="zap" class="w-4 h-4"></i>
+                        <i data-lucide="zap" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
                       </div>
                       <div class="font-display font-semibold text-white text-base mb-1">Runtime Sync</div>
                       <p class="font-mono text-[10px] text-slate-400 leading-relaxed">
                         WebSockets &bull; Web Workers &bull; Wasm &bull; Zero-GC Pools
                       </p>
-                      <div class="mt-2 text-[10px] font-mono text-emerald-400 flex items-center gap-1">
-                        <span>●</span> <span>8.33ms 120 FPS</span>
+                      <!-- Micro SVG Sparkline -->
+                      <div class="h-4 w-full my-1.5 overflow-hidden flex items-center">
+                        <svg class="w-full h-3" viewBox="0 0 100 12" fill="none">
+                          <path d="M0 8 L30 8 L35 2 L45 12 L50 4 L55 10 L60 8 L100 8" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" class="telemetry-sparkline" />
+                        </svg>
+                      </div>
+                      <div class="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> <span>Zero Dropped Frames</span>
                       </div>
                     </div>
                   </div>
 
                   <!-- Face Footer -->
-                  <div class="flex items-center justify-between border-t border-white/10 pt-4 font-mono text-xs flex-wrap gap-3">
+                  <div class="flex items-center justify-between border-t border-white/10 pt-4 font-mono text-xs flex-wrap gap-3 card-3d-layer-footer">
                     <span class="text-white/60 flex items-center gap-1.5">
                       <i data-lucide="hand" class="w-3.5 h-3.5 text-accent-red"></i>
-                      <span>Drag to spin in 3D &bull; Click card to pause</span>
+                      <span>Interactive 3D Stage &bull; Drag to spin with inertia</span>
                     </span>
-                    <button class="trigger-flip-inner flex items-center gap-1.5 text-accent-cyan hover:text-white transition-colors cursor-pointer bg-accent-cyan/10 hover:bg-accent-cyan/20 px-3 py-1 rounded-lg border border-accent-cyan/20">
-                      <span>View Architecture Specs</span>
+                    <button class="trigger-flip-inner flex items-center gap-1.5 text-accent-cyan hover:text-white transition-colors cursor-pointer bg-accent-cyan/10 hover:bg-accent-cyan/20 px-3 py-1.5 rounded-lg border border-accent-cyan/20 font-mono text-xs">
+                      <span>View Runtime Specifications</span>
                       <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                     </button>
                   </div>
@@ -980,23 +1004,23 @@
                 <div class="spinning-card-face spinning-card-back relative overflow-hidden">
                   <div class="spin-light-streak"></div>
                   <!-- Cyber Corner Markers -->
-                  <div class="cyber-corner cyber-corner-tl" style="border-color: rgba(56, 189, 248, 0.6);"></div>
-                  <div class="cyber-corner cyber-corner-tr" style="border-color: rgba(56, 189, 248, 0.6);"></div>
-                  <div class="cyber-corner cyber-corner-bl" style="border-color: rgba(56, 189, 248, 0.6);"></div>
-                  <div class="cyber-corner cyber-corner-br" style="border-color: rgba(56, 189, 248, 0.6);"></div>
+                  <div class="cyber-corner cyber-corner-tl card-3d-layer-corners" style="border-color: rgba(56, 189, 248, 0.7);"></div>
+                  <div class="cyber-corner cyber-corner-tr card-3d-layer-corners" style="border-color: rgba(56, 189, 248, 0.7);"></div>
+                  <div class="cyber-corner cyber-corner-bl card-3d-layer-corners" style="border-color: rgba(56, 189, 248, 0.7);"></div>
+                  <div class="cyber-corner cyber-corner-br card-3d-layer-corners" style="border-color: rgba(56, 189, 248, 0.7);"></div>
 
                   <!-- Face Header -->
-                  <div>
-                    <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+                  <div class="card-3d-layer-header">
+                    <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
                       <div class="flex items-center gap-2">
                         <span class="font-mono text-[10px] text-accent-cyan bg-accent-cyan/10 border border-accent-cyan/20 px-2.5 py-1 rounded font-semibold tracking-wider uppercase flex items-center gap-1.5">
-                          <span class="w-1.5 h-1.5 rounded-full bg-accent-cyan"></span>
+                          <span class="w-1.5 h-1.5 rounded-full bg-accent-cyan telemetry-node-pulse"></span>
                           <span>SYSTEMS TELEMETRY &amp; BENCHMARKS</span>
                         </span>
                         <span class="font-mono text-[10px] text-white/50 tracking-wider">STAGE 02 // BACK</span>
                       </div>
                       <div class="flex items-center gap-2 font-mono text-[11px] text-rose-400 bg-rose-500/10 px-2.5 py-1 rounded border border-rose-500/20">
-                        <span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-rose-400 telemetry-node-pulse"></span>
                         <span>HARDWARE P99 BENCHMARKS VERIFIED</span>
                       </div>
                     </div>
@@ -1005,42 +1029,109 @@
                       <span>Runtime Specifications</span>
                       <span class="text-accent-cyan font-light italic text-xl sm:text-2xl">// Latency Budgets</span>
                     </h3>
-                    <p class="font-body-md text-sm text-slate-300 mt-2 max-w-2xl font-light">
+                    <p class="font-body-md text-sm text-slate-300 mt-1.5 max-w-2xl font-light">
                       Rigorous sub-millisecond network profiling, distributed consensus verification, and frame budgeting guaranteeing deterministic performance.
                     </p>
                   </div>
 
                   <!-- 4 Benchmark Metric Cards -->
-                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
-                    <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent-cyan/40 transition-all">
-                      <div class="font-mono text-2xl font-bold text-accent-cyan">0.8ms</div>
-                      <div class="font-mono text-[11px] text-white font-semibold mt-1">P99 Serialization</div>
-                      <p class="font-mono text-[10px] text-slate-400 mt-1">Protobuf &amp; zero-copy payload packing over TCP</p>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-5 card-3d-layer-grid">
+                    <!-- Metric 1: Serialization -->
+                    <div class="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-accent-cyan/50 transition-all flex flex-col justify-between">
+                      <div>
+                        <div class="flex items-center justify-between">
+                          <span class="font-mono text-2xl sm:text-3xl font-bold text-accent-cyan tracking-tight">0.8ms</span>
+                          <span class="font-mono text-[9px] text-accent-cyan/80 bg-accent-cyan/10 px-1.5 py-0.5 rounded border border-accent-cyan/20">P99</span>
+                        </div>
+                        <div class="font-mono text-xs text-white font-semibold mt-1">P99 Serialization</div>
+                        <p class="font-mono text-[10px] text-slate-400 mt-0.5">Protobuf &amp; zero-copy payload packing over TCP</p>
+                      </div>
+                      <!-- Live SVG Packet Wave -->
+                      <div class="h-6 w-full my-2 overflow-hidden flex items-center">
+                        <svg class="w-full h-5" viewBox="0 0 160 20" fill="none">
+                          <path d="M0 10 L25 10 L35 3 L45 17 L55 6 L65 14 L75 10 L160 10" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="telemetry-sparkline" />
+                        </svg>
+                      </div>
+                      <div class="font-mono text-[9px] text-slate-400 pt-1.5 border-t border-white/5 flex justify-between">
+                        <span>ALLOC: 0 B/op</span>
+                        <span class="text-accent-cyan">LATENCY: &lt;820μs</span>
+                      </div>
                     </div>
-                    <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent-red/40 transition-all">
-                      <div class="font-mono text-2xl font-bold text-accent-red">100K+</div>
-                      <div class="font-mono text-[11px] text-white font-semibold mt-1">Events / Sec</div>
-                      <p class="font-mono text-[10px] text-slate-400 mt-1">Multi-core Goroutine &amp; AsyncIO event processing</p>
+
+                    <!-- Metric 2: Events / Sec -->
+                    <div class="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-accent-red/50 transition-all flex flex-col justify-between">
+                      <div>
+                        <div class="flex items-center justify-between">
+                          <span class="font-mono text-2xl sm:text-3xl font-bold text-accent-red tracking-tight">100K+</span>
+                          <span class="font-mono text-[9px] text-accent-red/80 bg-accent-red/10 px-1.5 py-0.5 rounded border border-accent-red/20">THROUGHPUT</span>
+                        </div>
+                        <div class="font-mono text-xs text-white font-semibold mt-1">Events / Sec</div>
+                        <p class="font-mono text-[10px] text-slate-400 mt-0.5">Multi-core Goroutine &amp; AsyncIO event processing</p>
+                      </div>
+                      <!-- Live SVG Throughput Curve -->
+                      <div class="h-6 w-full my-2 overflow-hidden flex items-center">
+                        <svg class="w-full h-5" viewBox="0 0 160 20" fill="none">
+                          <path d="M0 16 L20 14 L40 8 L60 12 L80 4 L100 8 L120 2 L140 6 L160 2" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" class="telemetry-sparkline" />
+                        </svg>
+                      </div>
+                      <div class="font-mono text-[9px] text-slate-400 pt-1.5 border-t border-white/5 flex justify-between">
+                        <span>GOROUTINES: 1,024</span>
+                        <span class="text-accent-red">DROP: 0.00%</span>
+                      </div>
                     </div>
-                    <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-400/40 transition-all">
-                      <div class="font-mono text-2xl font-bold text-emerald-400">8.33ms</div>
-                      <div class="font-mono text-[11px] text-white font-semibold mt-1">Frame Budget (120 FPS)</div>
-                      <p class="font-mono text-[10px] text-slate-400 mt-1">WebGL render loops decoupled from UI interactions</p>
+
+                    <!-- Metric 3: Frame Budget -->
+                    <div class="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-emerald-400/50 transition-all flex flex-col justify-between">
+                      <div>
+                        <div class="flex items-center justify-between">
+                          <span class="font-mono text-2xl sm:text-3xl font-bold text-emerald-400 tracking-tight">8.33ms</span>
+                          <span class="font-mono text-[9px] text-emerald-400/80 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">120 FPS</span>
+                        </div>
+                        <div class="font-mono text-xs text-white font-semibold mt-1">Frame Budget</div>
+                        <p class="font-mono text-[10px] text-slate-400 mt-0.5">WebGL render loops decoupled from UI interactions</p>
+                      </div>
+                      <!-- Live SVG Frame Wave -->
+                      <div class="h-6 w-full my-2 overflow-hidden flex items-center">
+                        <svg class="w-full h-5" viewBox="0 0 160 20" fill="none">
+                          <path d="M0 10 C30 5, 50 15, 80 10 C110 5, 130 15, 160 10" stroke="#10b981" stroke-width="2" stroke-linecap="round" class="telemetry-sparkline" />
+                        </svg>
+                      </div>
+                      <div class="font-mono text-[9px] text-slate-400 pt-1.5 border-t border-white/5 flex justify-between">
+                        <span>JITTER: &plusmn;0.03ms</span>
+                        <span class="text-emerald-400">DROPPED: 0</span>
+                      </div>
                     </div>
-                    <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-400/40 transition-all">
-                      <div class="font-mono text-2xl font-bold text-amber-400">0.00%</div>
-                      <div class="font-mono text-[11px] text-white font-semibold mt-1">Garbage Stutter (Zero GC)</div>
-                      <p class="font-mono text-[10px] text-slate-400 mt-1">Pre-allocated memory pooling for continuous blits</p>
+
+                    <!-- Metric 4: Garbage Stutter -->
+                    <div class="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-amber-400/50 transition-all flex flex-col justify-between">
+                      <div>
+                        <div class="flex items-center justify-between">
+                          <span class="font-mono text-2xl sm:text-3xl font-bold text-amber-400 tracking-tight">0.00%</span>
+                          <span class="font-mono text-[9px] text-amber-400/80 bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">ZERO GC</span>
+                        </div>
+                        <div class="font-mono text-xs text-white font-semibold mt-1">Garbage Stutter</div>
+                        <p class="font-mono text-[10px] text-slate-400 mt-0.5">Pre-allocated memory pooling for continuous blits</p>
+                      </div>
+                      <!-- Live SVG Flatline Memory Stability -->
+                      <div class="h-6 w-full my-2 overflow-hidden flex items-center">
+                        <svg class="w-full h-5" viewBox="0 0 160 20" fill="none">
+                          <path d="M0 10 L50 10 L55 8 L60 10 L110 10 L115 12 L120 10 L160 10" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" class="telemetry-sparkline" />
+                        </svg>
+                      </div>
+                      <div class="font-mono text-[9px] text-slate-400 pt-1.5 border-t border-white/5 flex justify-between">
+                        <span>HEAP: 12MB FLAT</span>
+                        <span class="text-amber-400">RESIDENCY: 100%</span>
+                      </div>
                     </div>
                   </div>
 
                   <!-- Face Footer -->
-                  <div class="flex items-center justify-between border-t border-white/10 pt-4 font-mono text-xs flex-wrap gap-3">
+                  <div class="flex items-center justify-between border-t border-white/10 pt-4 font-mono text-xs flex-wrap gap-3 card-3d-layer-footer">
                     <span class="text-white/60 flex items-center gap-1.5">
                       <i data-lucide="activity" class="w-3.5 h-3.5 text-accent-cyan"></i>
                       <span>Raft Cluster Quorum: Active &bull; Worker Pool: Healthy</span>
                     </span>
-                    <button class="trigger-flip-inner flex items-center gap-1.5 text-accent-red hover:text-white transition-colors cursor-pointer bg-accent-red/10 hover:bg-accent-red/20 px-3 py-1 rounded-lg border border-accent-red/20">
+                    <button class="trigger-flip-inner flex items-center gap-1.5 text-accent-red hover:text-white transition-colors cursor-pointer bg-accent-red/10 hover:bg-accent-red/20 px-3 py-1.5 rounded-lg border border-accent-red/20 font-mono text-xs">
                       <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
                       <span>Return to Primary Stack</span>
                     </button>
@@ -1051,13 +1142,23 @@
             </div>
           </div>
 
-          <!-- Quick-Snap Angle Presets -->
-          <div class="flex flex-wrap items-center justify-center gap-2 mt-6 font-mono text-xs text-slate-400">
-            <span class="text-[11px] mr-2 text-white/50">3D Perspectives:</span>
-            <button class="spin-preset-btn px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:border-accent-red/40 hover:text-white transition-all cursor-pointer" data-ry="0" data-rx="4">Front Focus</button>
-            <button class="spin-preset-btn px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:border-accent-red/40 hover:text-white transition-all cursor-pointer" data-ry="45" data-rx="8">Isometric Angle</button>
-            <button class="spin-preset-btn px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:border-accent-red/40 hover:text-white transition-all cursor-pointer" data-ry="180" data-rx="-4">Back Specs</button>
-            <button class="spin-preset-btn px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:border-accent-red/40 hover:text-white transition-all cursor-pointer" data-ry="-45" data-rx="8">Cyber Profile</button>
+          <!-- Quick-Snap Angle Presets Bar -->
+          <div class="flex flex-wrap items-center justify-center gap-2 mt-6 font-mono text-xs">
+            <div class="inline-flex items-center gap-1.5 p-1 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md">
+              <span class="text-[11px] px-2.5 text-white/50 hidden sm:inline">3D Perspectives:</span>
+              <button class="spin-preset-btn px-3 py-1.5 rounded-lg border border-transparent hover:border-white/20 hover:text-white text-slate-300 transition-all cursor-pointer active" data-ry="0" data-rx="4">
+                <span>⊞ Front Focus</span>
+              </button>
+              <button class="spin-preset-btn px-3 py-1.5 rounded-lg border border-transparent hover:border-white/20 hover:text-white text-slate-300 transition-all cursor-pointer" data-ry="45" data-rx="8">
+                <span>◬ Isometric Angle</span>
+              </button>
+              <button class="spin-preset-btn px-3 py-1.5 rounded-lg border border-transparent hover:border-white/20 hover:text-white text-slate-300 transition-all cursor-pointer" data-ry="180" data-rx="-4">
+                <span>⚡ Back Specs</span>
+              </button>
+              <button class="spin-preset-btn px-3 py-1.5 rounded-lg border border-transparent hover:border-white/20 hover:text-white text-slate-300 transition-all cursor-pointer" data-ry="-45" data-rx="8">
+                <span>◈ Cyber Profile</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -2775,10 +2876,12 @@
       })();
 
       // ==========================================
-      // 5.25 Interactive 3D Spinning Skill Card Engine
+      // 5.25 Ultra-Smooth 120 FPS 3D Skill Matrix Engine (No-Lag Physics Loop)
       // ==========================================
       (function init3DSpinningSkillCard() {
         const card = document.getElementById('spinning-skill-card');
+        const cardWrapper = document.getElementById('spinning-card-wrapper');
+        const stageContainer = document.querySelector('.spin-stage-container');
         const autoSpinBtn = document.getElementById('spin-card-autospin-toggle');
         const autoSpinLabel = document.getElementById('spin-card-autospin-label');
         const flipBtn = document.getElementById('spin-card-flip-btn');
@@ -2788,147 +2891,247 @@
 
         if (!card) return;
 
+        // Core Physics State (Decoupled 120 FPS Lerp Engine)
         let isAutoSpinning = true;
-        let isFlipped = false;
-        let currentRotY = 0;
-        let currentRotX = 4;
         let isDragging = false;
-        let startX = 0;
-        let startY = 0;
-        let lastRotY = 0;
-        let lastRotX = 0;
-        let velocityX = 0;
-        let velocityY = 0;
-        let animFrameId = null;
+        let isHovered = false;
 
-        function updateCardTransform() {
-          card.style.transform = `rotateY(${currentRotY}deg) rotateX(${currentRotX}deg)`;
+        let targetRotY = 0;
+        let currentRotY = 0;
+        let targetRotX = 4;
+        let currentRotX = 4;
+
+        let mouseTiltX = 0;
+        let mouseTiltY = 0;
+        let targetTiltX = 0;
+        let targetTiltY = 0;
+
+        let dragStartX = 0;
+        let dragStartY = 0;
+        let dragStartRotY = 0;
+        let dragStartRotX = 0;
+
+        let velocityRotY = 0;
+        let velocityRotX = 0;
+        let lastMoveTime = performance.now();
+        let lastPointerX = 0;
+        let lastPointerY = 0;
+
+        const AUTO_SPIN_INCREMENT = 0.28; // Velvet continuous orbit
+        const LERP_SMOOTHING = 0.088; // Buttery spring constant
+
+        function updatePresetButtons(ry) {
+          let norm = ((ry % 360) + 360) % 360;
+          let bestBtn = null;
+          let minDiff = Infinity;
+
+          presetBtns.forEach(btn => {
+            const btnRy = ((parseFloat(btn.getAttribute('data-ry')) || 0) % 360 + 360) % 360;
+            const diff = Math.min(Math.abs(norm - btnRy), 360 - Math.abs(norm - btnRy));
+            if (diff < minDiff) {
+              minDiff = diff;
+              bestBtn = btn;
+            }
+          });
+
+          if (bestBtn && minDiff < 35) {
+            presetBtns.forEach(b => b.classList.remove('active'));
+            bestBtn.classList.add('active');
+          }
         }
 
-        // Auto spin toggle
+        // Dedicated 120 FPS continuous render loop
+        function physicsTick() {
+          if (isAutoSpinning && !isDragging) {
+            targetRotY += AUTO_SPIN_INCREMENT;
+          }
+
+          // Buttery spring lerp
+          currentRotY += (targetRotY - currentRotY) * LERP_SMOOTHING;
+          currentRotX += (targetRotX - currentRotX) * LERP_SMOOTHING;
+          mouseTiltX += (targetTiltX - mouseTiltX) * LERP_SMOOTHING;
+          mouseTiltY += (targetTiltY - mouseTiltY) * LERP_SMOOTHING;
+
+          const finalRotY = currentRotY + mouseTiltY;
+          const finalRotX = currentRotX + mouseTiltX;
+
+          // GPU-accelerated 3D transform blit
+          card.style.transform = `rotateY(${finalRotY.toFixed(2)}deg) rotateX(${finalRotX.toFixed(2)}deg) translateZ(0)`;
+
+          // Dynamically compute optical sheen reflection
+          const sheenProgress = (((finalRotY % 360) + 360) % 360) / 360;
+          card.style.setProperty('--sheen-pos', `${(sheenProgress * 100).toFixed(1)}%`);
+
+          updatePresetButtons(currentRotY);
+
+          requestAnimationFrame(physicsTick);
+        }
+
+        requestAnimationFrame(physicsTick);
+
+        // Auto-spin toggle
         if (autoSpinBtn) {
-          autoSpinBtn.addEventListener('click', () => {
+          autoSpinBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             isAutoSpinning = !isAutoSpinning;
             if (isAutoSpinning) {
-              card.classList.add('auto-spinning');
-              card.style.transform = '';
               if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: ON';
               autoSpinBtn.classList.add('border-accent-red/50');
             } else {
-              card.classList.remove('auto-spinning');
-              currentRotY = isFlipped ? 180 : 0;
-              currentRotX = 4;
-              updateCardTransform();
               if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: OFF';
               autoSpinBtn.classList.remove('border-accent-red/50');
+              // Smoothly glide to nearest face (0° Front or 180° Back) so it never stays edge-on
+              const nearestFace = Math.round(targetRotY / 180) * 180;
+              targetRotY = nearestFace;
+              targetRotX = (Math.abs(Math.round(nearestFace / 180)) % 2 === 0) ? 4 : -4;
             }
           });
         }
 
-        // Flip 180 deg
-        function toggleFlip() {
-          isFlipped = !isFlipped;
+        // Flip mechanism (smooth 180° glide)
+        function triggerSmoothFlip(e) {
+          if (e) e.stopPropagation();
           isAutoSpinning = false;
-          card.classList.remove('auto-spinning');
           if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: OFF';
-          currentRotY = isFlipped ? 180 : 0;
-          currentRotX = isFlipped ? -4 : 4;
-          card.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-          updateCardTransform();
+          if (autoSpinBtn) autoSpinBtn.classList.remove('border-accent-red/50');
+
+          const curFacing = ((Math.round(targetRotY / 180) % 2) + 2) % 2;
+          if (curFacing === 0) {
+            targetRotY = Math.round(targetRotY / 180) * 180 + 180;
+            targetRotX = -4;
+          } else {
+            targetRotY = Math.round(targetRotY / 180) * 180 + 180;
+            targetRotX = 4;
+          }
         }
 
-        if (flipBtn) flipBtn.addEventListener('click', toggleFlip);
-        innerFlipTriggers.forEach(btn => btn.addEventListener('click', toggleFlip));
+        if (flipBtn) flipBtn.addEventListener('click', triggerSmoothFlip);
+        innerFlipTriggers.forEach(btn => btn.addEventListener('click', triggerSmoothFlip));
 
         // Reset
         if (resetBtn) {
-          resetBtn.addEventListener('click', () => {
-            isFlipped = false;
+          resetBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            targetRotY = 0;
+            targetRotX = 4;
             isAutoSpinning = true;
-            card.classList.add('auto-spinning');
-            card.style.transform = '';
-            card.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
             if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: ON';
+            if (autoSpinBtn) autoSpinBtn.classList.add('border-accent-red/50');
           });
         }
 
-        // Angle Presets
+        // Presets (Smooth Glide without CSS transition glitch)
         presetBtns.forEach(btn => {
-          btn.addEventListener('click', () => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
             isAutoSpinning = false;
-            card.classList.remove('auto-spinning');
             if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: OFF';
-            currentRotY = parseFloat(btn.getAttribute('data-ry')) || 0;
-            currentRotX = parseFloat(btn.getAttribute('data-rx')) || 0;
-            isFlipped = Math.abs(currentRotY) >= 120;
-            card.style.transition = 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
-            updateCardTransform();
+            if (autoSpinBtn) autoSpinBtn.classList.remove('border-accent-red/50');
+
+            const pRy = parseFloat(btn.getAttribute('data-ry')) || 0;
+            const pRx = parseFloat(btn.getAttribute('data-rx')) || 0;
+
+            const curCycles = Math.round((targetRotY - pRy) / 360);
+            targetRotY = curCycles * 360 + pRy;
+            targetRotX = pRx;
+
+            presetBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
           });
         });
 
-        // Drag to spin physics with inertia
+        // Magnetic Hover Tilt
+        if (stageContainer) {
+          stageContainer.addEventListener('pointerenter', () => {
+            isHovered = true;
+          });
+          stageContainer.addEventListener('pointerleave', () => {
+            isHovered = false;
+            targetTiltX = 0;
+            targetTiltY = 0;
+          });
+          stageContainer.addEventListener('pointermove', (e) => {
+            if (isDragging) return;
+            const rect = stageContainer.getBoundingClientRect();
+            const relX = (e.clientX - rect.left) / rect.width - 0.5;
+            const relY = (e.clientY - rect.top) / rect.height - 0.5;
+            targetTiltY = relX * 10;
+            targetTiltX = -relY * 8;
+          }, { passive: true });
+        }
+
+        // Pointer-Based High-Precision Drag (Desktop & Mobile Unified with setPointerCapture)
+        const dragSurface = cardWrapper || card;
+
         function onPointerDown(e) {
+          if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.trigger-flip-inner')) {
+            return;
+          }
           isDragging = true;
           isAutoSpinning = false;
-          card.classList.remove('auto-spinning');
           if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: OFF';
-          card.style.transition = 'none';
+          if (autoSpinBtn) autoSpinBtn.classList.remove('border-accent-red/50');
 
-          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-          startX = clientX;
-          startY = clientY;
-          lastRotY = currentRotY;
-          lastRotX = currentRotX;
-          velocityX = 0;
-          velocityY = 0;
+          card.classList.add('is-grabbing');
 
-          if (animFrameId) cancelAnimationFrame(animFrameId);
+          dragStartX = e.clientX;
+          dragStartY = e.clientY;
+          lastPointerX = e.clientX;
+          lastPointerY = e.clientY;
+          dragStartRotY = currentRotY;
+          dragStartRotX = currentRotX;
+          targetRotY = currentRotY;
+          targetRotX = currentRotX;
+          velocityRotY = 0;
+          velocityRotX = 0;
+          lastMoveTime = performance.now();
+
+          try {
+            dragSurface.setPointerCapture(e.pointerId);
+          } catch (_) {}
         }
 
         function onPointerMove(e) {
           if (!isDragging) return;
-          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-          const deltaX = clientX - startX;
-          const deltaY = clientY - startY;
+          const now = performance.now();
+          const dt = Math.max(now - lastMoveTime, 1);
 
-          const newRotY = lastRotY + deltaX * 0.45;
-          const newRotX = Math.max(-25, Math.min(25, lastRotX - deltaY * 0.3));
+          const deltaX = e.clientX - dragStartX;
+          const deltaY = e.clientY - dragStartY;
 
-          velocityX = newRotY - currentRotY;
-          velocityY = newRotX - currentRotX;
+          targetRotY = dragStartRotY + deltaX * 0.45;
+          targetRotX = Math.max(-28, Math.min(28, dragStartRotX - deltaY * 0.28));
 
-          currentRotY = newRotY;
-          currentRotX = newRotX;
-          updateCardTransform();
+          const moveDeltaX = e.clientX - lastPointerX;
+          const moveDeltaY = e.clientY - lastPointerY;
+          velocityRotY = (moveDeltaX * 0.45) / (dt / 16.6);
+          velocityRotX = (-moveDeltaY * 0.28) / (dt / 16.6);
+
+          lastPointerX = e.clientX;
+          lastPointerY = e.clientY;
+          lastMoveTime = now;
         }
 
-        function onPointerUp() {
+        function onPointerUp(e) {
           if (!isDragging) return;
           isDragging = false;
+          card.classList.remove('is-grabbing');
 
-          // Inertia damping loop
-          function applyInertia() {
-            if (Math.abs(velocityX) > 0.05 || Math.abs(velocityY) > 0.05) {
-              currentRotY += velocityX;
-              currentRotX = Math.max(-25, Math.min(25, currentRotX + velocityY));
-              velocityX *= 0.94;
-              velocityY *= 0.94;
-              updateCardTransform();
-              animFrameId = requestAnimationFrame(applyInertia);
-            }
-          }
-          applyInertia();
+          try {
+            dragSurface.releasePointerCapture(e.pointerId);
+          } catch (_) {}
+
+          // Apply silky inertia glide
+          const clampedVelY = Math.max(-18, Math.min(18, velocityRotY));
+          const clampedVelX = Math.max(-10, Math.min(10, velocityRotX));
+          targetRotY += clampedVelY * 8;
+          targetRotX = Math.max(-28, Math.min(28, targetRotX + clampedVelX * 4));
         }
 
-        card.addEventListener('mousedown', onPointerDown);
-        window.addEventListener('mousemove', onPointerMove);
-        window.addEventListener('mouseup', onPointerUp);
-
-        card.addEventListener('touchstart', onPointerDown, { passive: true });
-        window.addEventListener('touchmove', onPointerMove, { passive: true });
-        window.addEventListener('touchend', onPointerUp);
+        dragSurface.addEventListener('pointerdown', onPointerDown);
+        dragSurface.addEventListener('pointermove', onPointerMove, { passive: true });
+        dragSurface.addEventListener('pointerup', onPointerUp);
+        dragSurface.addEventListener('pointercancel', onPointerUp);
 
         if (window.lucide && typeof window.lucide.createIcons === 'function') {
           window.lucide.createIcons();

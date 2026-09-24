@@ -259,7 +259,7 @@
       atmoCanvas.style.width = "100vw";
       atmoCanvas.style.height = "100vh";
       atmoCanvas.style.pointerEvents = "none";
-      atmoCanvas.style.zIndex = "3";
+      atmoCanvas.style.zIndex = "1";
       document.body.appendChild(atmoCanvas);
     }
 

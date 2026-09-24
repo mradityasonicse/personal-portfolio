@@ -172,7 +172,7 @@ void main() {
     bgCanvas.style.width = '100vw';
     bgCanvas.style.height = '100vh';
     bgCanvas.style.pointerEvents = 'none';
-    bgCanvas.style.zIndex = '1';
+    bgCanvas.style.zIndex = '0';
     bgCanvas.style.opacity = '0.9';
     bgCanvas.style.transform = 'translate3d(0,0,0)';
     document.body.prepend(bgCanvas);
