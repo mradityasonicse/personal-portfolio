@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievements &amp; Honors - Aditya Soni | Academic &amp; Engineering Milestones</title>
+  <meta name="description" content="Academic distinctions, honors, and verified engineering certifications of Aditya Soni.">
+
+  <!-- Google Fonts (Optimized for Instant Load: Syne, Plus Jakarta Sans, JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Awwwards-Tier Design System & Luxury Themes -->
+  <link rel="stylesheet" href="assets/css/awwwards-theme.css">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#07090e",
+            "background": "#07090e",
+            "primary": "#e2e8f0",
+            "secondary": "#94a3b8",
+            "on-surface": "#f8fafc",
+            "on-surface-variant": "#94a3b8",
+            "on-tertiary-container": "#f43f5e",
+            "accent-red": "#f43f5e",
+            "surface-container-low": "#0b0f19",
+            "surface-container": "#0e1422",
+            "surface-container-high": "#141c2e",
+            "surface-container-highest": "#1c263c"
+          },
+          fontFamily: {
+            "display-xl": ["Syne", "sans-serif"],
+            "headline-lg": ["Syne", "sans-serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          spacing: {
+            "gutter": "24px",
+            "container-max": "1200px"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #0b1325;
+      color: #dae2fc;
+      font-family: 'Geist', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      border-left: 1px solid rgba(255, 255, 255, 0.06);
+      border-right: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-panel:hover {
+      border-color: rgba(234, 42, 35, 0.35);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(234, 42, 35, 0.12);
+    }
+
+    .hologram-border {
+      background: linear-gradient(135deg, rgba(234, 42, 35, 0.4), rgba(56, 189, 248, 0.4), rgba(52, 211, 153, 0.4));
+      padding: 1px;
+      border-radius: 1rem;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased relative selection:bg-accent-red selection:text-white">
+
+  <!-- Background Large Monolithic Watermark 'A' -->
+  <div class="bg-letter-a" aria-hidden="true">A</div>
+
+  <!-- Cinematic Scanlines & Film Texture Overlay -->
+  <div class="cinematic-scanlines" aria-hidden="true"></div>
+
+  <!-- Background WebGL Shader Canvas -->
+  <div class="fixed inset-0 z-0 pointer-events-none opacity-60">
+    <canvas id="achieve-shader-canvas" class="w-full h-full"></canvas>
+  </div>
+
+  <!-- Vertical Decorative Rail -->
+  <div class="fixed left-3 top-0 bottom-0 w-8 hidden lg:flex flex-col justify-center border-r border-white/10 opacity-60 z-20 pointer-events-none">
+    <p class="transform -rotate-90 whitespace-nowrap text-[8px] tracking-[0.3em] text-white/50 font-mono">
+      ACADEMIC EXCELLENCE // HONORS &amp; DISTINCTIONS // ADITYA SONI
+    </p>
+  </div>
+
+  <!-- Top Navigation Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/60 backdrop-blur-xl border-b border-white/10">
+    <div class="max-w-container-max mx-auto px-gutter h-16 md:h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 group">
+        <span class="font-display-xl text-xl md:text-2xl font-bold tracking-tight text-white group-hover:text-primary transition-colors">
+          ADITYA <span class="text-accent-red">SONI</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-7 font-label-sm text-xs tracking-widest uppercase">
+        <a href="index.html" class="text-on-surface-variant hover:text-accent-red transition-colors">Home</a>
+        <a href="about.html" class="text-on-surface-variant hover:text-accent-red transition-colors">About</a>
+        <a href="projects.html" class="text-on-surface-variant hover:text-accent-red transition-colors">Projects</a>
+        <a href="skills.html" class="text-on-surface-variant hover:text-accent-red transition-colors">Skills</a>
+        <a href="journey.html" class="text-on-surface-variant hover:text-accent-red transition-colors">Journey</a>
+        <a href="achievements.html" class="text-white border-b-2 border-accent-red pb-1 font-semibold">Achievements</a>
+        <a href="signature.html" class="text-on-surface-variant hover:text-accent-red transition-colors">Signature</a>
+        <a href="contact.html" class="text-on-surface-variant hover:text-accent-red transition-colors">Contact</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="journey.html" class="px-4 py-2 rounded-full border border-white/20 hover:border-accent-red text-white hover:text-accent-red text-xs font-mono uppercase tracking-wider transition-all flex items-center gap-2">
+          <span class="material-symbols-outlined text-[15px]">timeline</span>
+          <span>Timeline</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <div class="md:hidden">
+        <button id="mobile-menu-btn" class="p-2 text-white/80 hover:text-white" aria-label="Toggle Menu">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 flex flex-col gap-4 font-label-sm text-sm">
+      <a href="index.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Home</a>
+      <a href="about.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">About</a>
+      <a href="projects.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Projects</a>
+      <a href="skills.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Skills</a>
+      <a href="journey.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Journey</a>
+      <a href="achievements.html" class="text-accent-red py-2 border-b border-white/5 font-semibold">Achievements</a>
+      <a href="signature.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Signature</a>
+      <a href="contact.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Contact</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="relative z-10 pt-28 md:pt-36 pb-24">
+    <div class="max-w-container-max mx-auto px-gutter">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <p class="font-mono text-xs text-accent-red uppercase tracking-[0.25em] mb-2 flex items-center justify-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-accent-red animate-pulse"></span>
+          <span>Verified Credentials &bull; Academic Distinctions</span>
+        </p>
+        <h1 class="font-display-xl text-5xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight mb-4">
+          Honors &amp; <span class="text-accent-red italic">Achievements</span>
+        </h1>
+        <p class="text-base sm:text-lg text-on-surface-variant font-light leading-relaxed">
+          A documented record of scholastic dedication, STEM foundations, and software craftsmanship recognized throughout my engineering trajectory.
+        </p>
+      </div>
+
+      <!-- KPI Summary Cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+        <div class="glass-panel p-6 rounded-2xl text-center border border-white/10">
+          <div class="font-display-xl text-4xl sm:text-5xl font-bold text-emerald-400 mb-1">92%</div>
+          <div class="font-mono text-xs text-white/60 uppercase tracking-widest">Class 10th Aggregate</div>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl text-center border border-white/10">
+          <div class="font-display-xl text-4xl sm:text-5xl font-bold text-blue-400 mb-1">80%</div>
+          <div class="font-mono text-xs text-white/60 uppercase tracking-widest">Class 12th PCM Aggregate</div>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl text-center border border-white/10">
+          <div class="font-display-xl text-4xl sm:text-5xl font-bold text-accent-red mb-1">4-Year</div>
+          <div class="font-mono text-xs text-white/60 uppercase tracking-widest">B.Tech CSE Core (RISU)</div>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl text-center border border-white/10">
+          <div class="font-display-xl text-4xl sm:text-5xl font-bold text-amber-300 mb-1">100%</div>
+          <div class="font-mono text-xs text-white/60 uppercase tracking-widest">Production Integrity</div>
+        </div>
+      </div>
+
+      <!-- Academic Distinction Cards (Primary Focus) -->
+      <div class="space-y-8 mb-24">
+        
+        <!-- Card 1: B.Tech CSE Core at Rungta International Skills University -->
+        <div class="hologram-border">
+          <div class="glass-panel p-8 sm:p-10 rounded-2xl bg-surface/90 relative overflow-hidden">
+            <div class="flex flex-col lg:flex-row justify-between lg:items-center gap-6 mb-6">
+              <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-semibold mb-3">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  <span>CURRENT UNDERGRADUATE &bull; 2026 – 2030</span>
+                </div>
+                <h2 class="font-display-xl text-3xl sm:text-4xl font-bold text-white mb-1">
+                  B.Tech Computer Science &amp; Engineering (Core)
+                </h2>
+                <div class="font-mono text-sm text-accent-red font-semibold">
+                  Rungta International Skills University (RISU)
+                </div>
+              </div>
+              <div class="text-left lg:text-right">
+                <span class="inline-block px-4 py-2 rounded-xl bg-white/5 border border-white/15 text-white font-mono text-sm font-semibold">
+                  4-Year Full-Time Campus Degree
+                </span>
+              </div>
+            </div>
+
+            <p class="text-sm sm:text-base text-on-surface-variant font-light leading-relaxed mb-6">
+              Enrolled in the intensive 4-year B.Tech CSE Core curriculum from 2026 to 2030 at <strong>Rungta International Skills University</strong>. Focused on core systems design: Algorithm Analysis, Advanced Data Structures, Operating System Internals, Database Management Systems, Computer Networks, and Low-Latency Software Engineering.
+            </p>
+
+            <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10 font-mono text-xs">
+              <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-emerald-300">RISU University</span>
+              <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white">Algorithms &amp; Data Structures</span>
+              <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white">Computer Architecture</span>
+              <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white">Operating Systems</span>
+              <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white">Distributed Engineering</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Class 10th Secondary School Examination (2024 - 92%) -->
+        <div class="glass-panel p-8 sm:p-10 rounded-2xl relative overflow-hidden border border-white/15">
+          <div class="flex flex-col lg:flex-row justify-between lg:items-center gap-6 mb-6">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-semibold mb-3">
+                <span>YEAR: 2024 &bull; SECONDARY EDUCATION</span>
+              </div>
+              <h2 class="font-display-xl text-3xl sm:text-4xl font-bold text-white mb-1">
+                Class 10th Board Examination Distinction
+              </h2>
+              <div class="font-mono text-sm text-slate-300 font-semibold">
+                Secondary School Board Examination
+              </div>
+            </div>
+            <div class="text-left lg:text-right">
+              <div class="font-display-xl text-3xl sm:text-4xl font-bold text-emerald-400">92% Overall</div>
+              <div class="font-mono text-[11px] text-white/50 uppercase tracking-widest">Aggregate Score</div>
+            </div>
+          </div>
+
+          <p class="text-sm sm:text-base text-on-surface-variant font-light leading-relaxed mb-6">
+            Graduated secondary school with a distinguished <strong>92% overall aggregate</strong>, demonstrating exceptional scholastic aptitude in Mathematics, Computer Applications, Science, and Analytical Problem Solving.
+          </p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10 font-mono text-xs">
+            <div class="p-3 rounded bg-white/5 border border-white/10">
+              <div class="text-white/50 text-[10px]">MATHEMATICS</div>
+              <div class="text-white font-bold text-sm mt-0.5">High Distinction</div>
+            </div>
+            <div class="p-3 rounded bg-white/5 border border-white/10">
+              <div class="text-white/50 text-[10px]">COMPUTER SCIENCE</div>
+              <div class="text-white font-bold text-sm mt-0.5">Advanced Proficiency</div>
+            </div>
+            <div class="p-3 rounded bg-white/5 border border-white/10">
+              <div class="text-white/50 text-[10px]">SCIENCE &amp; PHYSICS</div>
+              <div class="text-white font-bold text-sm mt-0.5">Top Percentile</div>
+            </div>
+            <div class="p-3 rounded bg-white/5 border border-white/10">
+              <div class="text-white/50 text-[10px]">ACADEMIC HONORS</div>
+              <div class="text-emerald-400 font-bold text-sm mt-0.5">92% Aggregate</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Class 12th Senior Secondary Examination (2026 - 80%) -->
+        <div class="glass-panel p-8 sm:p-10 rounded-2xl relative overflow-hidden border border-white/15">
+          <div class="flex flex-col lg:flex-row justify-between lg:items-center gap-6 mb-6">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-300 text-xs font-mono font-semibold mb-3">
+                <span>YEAR: 2026 &bull; SENIOR SECONDARY</span>
+              </div>
+              <h2 class="font-display-xl text-3xl sm:text-4xl font-bold text-white mb-1">
+                Class 12th Senior Secondary Examination
+              </h2>
+              <div class="font-mono text-sm text-slate-300 font-semibold">
+                Physics, Chemistry &amp; Advanced Mathematics (PCM)
+              </div>
+            </div>
+            <div class="text-left lg:text-right">
+              <div class="font-display-xl text-3xl sm:text-4xl font-bold text-blue-300">80% Overall</div>
+              <div class="font-mono text-[11px] text-white/50 uppercase tracking-widest">Aggregate Score</div>
+            </div>
+          </div>
+
+          <p class="text-sm sm:text-base text-on-surface-variant font-light leading-relaxed mb-6">
+            Completed Senior Secondary education with an <strong>80% overall aggregate</strong> specializing in the rigorous STEM track: Physics, Chemistry, and Advanced Mathematics. Honed analytical calculus, vector mechanics, coordinate geometry, and logical rigor foundational to computer engineering.
+          </p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10 font-mono text-xs">
+            <div class="p-3 rounded bg-white/5 border border-white/10">
+              <div class="text-white/50 text-[10px]">ADVANCED CALCULUS</div>
+              <div class="text-white font-bold text-sm mt-0.5">Calculus &amp; Vectors</div>
+            </div>
+            <div class="p-3 rounded bg-white/5 border border-white/10">
+              <div class="text-white/50 text-[10px]">PHYSICS</div>
+              <div class="text-white font-bold text-sm mt-0.5">Mechanics &amp; Waves</div>
+            </div>
+            <div class="p-3 rounded bg-white/5 border border-white/10">
+              <div class="text-white/50 text-[10px]">CHEMISTRY</div>
+              <div class="text-white font-bold text-sm mt-0.5">Physical &amp; Organic</div>
+            </div>
+            <div class="p-3 rounded bg-white/5 border border-white/10">
+              <div class="text-blue-300 text-[10px]">PCM AGGREGATE</div>
+              <div class="text-blue-300 font-bold text-sm mt-0.5">80% Overall</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Technical Mastery Badges Grid -->
+      <div>
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <p class="font-mono text-xs text-accent-red uppercase tracking-[0.25em] mb-2">Applied Engineering Competencies</p>
+          <h2 class="font-display-xl text-4xl font-bold text-white tracking-tight">Verified Technical Badges</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="glass-panel p-6 rounded-2xl border border-white/10 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-accent-red/10 border border-accent-red/30 flex items-center justify-center text-accent-red shrink-0">
+              <span class="material-symbols-outlined text-2xl">verified</span>
+            </div>
+            <div>
+              <h3 class="font-display-xl text-xl text-white font-bold mb-1">Full-Stack Architecture</h3>
+              <p class="text-xs text-on-surface-variant font-light mb-2">Modern HTML5, CSS3, JavaScript ES6+, Python, and Java server systems.</p>
+              <span class="text-[10px] font-mono text-emerald-400 font-bold">PROFICIENCY: 95%+</span>
+            </div>
+          </div>
+
+          <div class="glass-panel p-6 rounded-2xl border border-white/10 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+              <span class="material-symbols-outlined text-2xl">speed</span>
+            </div>
+            <div>
+              <h3 class="font-display-xl text-xl text-white font-bold mb-1">Real-Time WebSockets</h3>
+              <p class="text-xs text-on-surface-variant font-light mb-2">Sub-millisecond bi-directional streaming, pub-sub broadcasting, and low-latency queuing.</p>
+              <span class="text-[10px] font-mono text-blue-300 font-bold">SOCKET LATENCY: &lt;1ms</span>
+            </div>
+          </div>
+
+          <div class="glass-panel p-6 rounded-2xl border border-white/10 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+              <span class="material-symbols-outlined text-2xl">view_in_ar</span>
+            </div>
+            <div>
+              <h3 class="font-display-xl text-xl text-white font-bold mb-1">WebGL &amp; 3D Graphics</h3>
+              <p class="text-xs text-on-surface-variant font-light mb-2">GLSL procedural fragment raymarching and hardware-accelerated 3D meshes.</p>
+              <span class="text-[10px] font-mono text-emerald-400 font-bold">FRAME RATE: 120 FPS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full py-12 bg-surface/80 border-t border-white/10 z-10 relative">
+    <div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="font-display-xl text-primary text-xl font-bold">
+        ADITYA <span class="text-accent-red">SONI</span>
+      </div>
+      <div class="flex gap-6 font-mono text-xs text-white/60">
+        <a href="index.html" class="hover:text-accent-red transition-colors">Home</a>
+        <a href="about.html" class="hover:text-accent-red transition-colors">About</a>
+        <a href="projects.html" class="hover:text-accent-red transition-colors">Projects</a>
+        <a href="skills.html" class="hover:text-accent-red transition-colors">Skills</a>
+        <a href="journey.html" class="hover:text-accent-red transition-colors">Journey</a>
+        <a href="signature.html" class="hover:text-accent-red transition-colors">Signature</a>
+        <a href="contact.html" class="hover:text-accent-red transition-colors">Contact</a>
+      </div>
+      <div class="font-mono text-xs text-white/40">
+        &copy; 2026 Aditya Soni &bull; Rungta International Skills University
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // WebGL Background Shader
+    (function initShader() {
+      const canvas = document.getElementById('achieve-shader-canvas');
+      if (!canvas) return;
+      const gl = canvas.getContext('webgl', { powerPreference: 'low-power', alpha: false, antialias: false });
+      if (!gl) return;
+
+      function resize() {
+        canvas.width = Math.floor(window.innerWidth * 0.5);
+        canvas.height = Math.floor(window.innerHeight * 0.5);
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      const vs = `attribute vec2 a_pos; varying vec2 v_uv; void main(){ v_uv = a_pos * 0.5 + 0.5; gl_Position = vec4(a_pos, 0.0, 1.0); }`;
+      const fs = `precision mediump float;
+        uniform float u_time;
+        varying vec2 v_uv;
+        void main() {
+          vec2 uv = v_uv;
+          vec3 deep = vec3(0.043, 0.074, 0.145);
+          float wave = sin(uv.x * 3.2 + u_time * 0.35) * cos(uv.y * 3.2 - u_time * 0.25);
+          vec3 redGlow = vec3(0.91, 0.16, 0.13) * 0.035 * wave;
+          gl_FragColor = vec4(deep + redGlow, 1.0);
+        }`;
+
+      function createShader(type, src) {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        return s;
+      }
+      const prog = gl.createProgram();
+      gl.attachShader(prog, createShader(gl.VERTEX_SHADER, vs));
+      gl.attachShader(prog, createShader(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+      const pos = gl.getAttribLocation(prog, 'a_pos');
+      gl.enableVertexAttribArray(pos);
+      gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+      const uTime = gl.getUniformLocation(prog, 'u_time');
+      let start = performance.now();
+      function render(now) {
+        gl.uniform1f(uTime, (now - start) * 0.001);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+    })();
+  </script>
+  <!-- Awwwards-Tier Core Interactive Engine (Spotlight, 3D Tilt, Magnetic Cursor, Cmd+K) -->
+  <script src="assets/js/awwwards-core.js"></script>
+</body>
+</html>

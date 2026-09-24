@@ -6,10 +6,17 @@
   <title>Aditya Soni - Signature &amp; Digital Identity</title>
   <meta name="description" content="Animated signature & digital identity mark of Aditya Soni - Systems Builder & Full-Stack Developer.">
   
+  <!-- Google Fonts (Optimized for Instant Load: Syne, Plus Jakarta Sans, JetBrains Mono) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,700;1,500;1,700&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Awwwards-Tier Design System & Luxury Themes -->
+  <link rel="stylesheet" href="assets/css/awwwards-theme.css">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -18,23 +25,23 @@
       theme: {
         extend: {
           colors: {
-            "surface": "#0b1325",
-            "background": "#0b1325",
-            "primary": "#c1c6da",
-            "secondary": "#c6c6c7",
-            "on-surface": "#dae2fc",
-            "on-surface-variant": "#c6c6cc",
-            "on-tertiary-container": "#ea2a23",
-            "accent-red": "#ea2a23",
-            "outline": "#909096",
-            "outline-variant": "#45464c",
-            "surface-container-low": "#131b2e"
+            "surface": "#07090e",
+            "background": "#07090e",
+            "primary": "#e2e8f0",
+            "secondary": "#94a3b8",
+            "on-surface": "#f8fafc",
+            "on-surface-variant": "#94a3b8",
+            "on-tertiary-container": "#f43f5e",
+            "accent-red": "#f43f5e",
+            "outline": "#334155",
+            "outline-variant": "#1e293b",
+            "surface-container-low": "#0b0f19"
           },
           fontFamily: {
-            "display-xl": ["EB Garamond", "serif"],
-            "headline-lg": ["EB Garamond", "serif"],
+            "display-xl": ["Syne", "sans-serif"],
+            "headline-lg": ["Syne", "sans-serif"],
             "label-sm": ["JetBrains Mono", "monospace"],
-            "body-md": ["Geist", "sans-serif"]
+            "body-md": ["Plus Jakarta Sans", "sans-serif"]
           },
           spacing: {
             "gutter": "24px",
@@ -133,10 +140,11 @@
 </head>
 <body class="bg-background text-on-surface antialiased relative min-h-screen flex flex-col justify-between selection:bg-accent-red selection:text-white">
 
-  <!-- Background Watermark -->
-  <div aria-hidden="true" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-[0.03] select-none">
-    <span class="text-white font-display-xl font-bold" style="font-size: 80vh; line-height: 1;">A</span>
-  </div>
+  <!-- Background Large Monolithic Watermark 'A' -->
+  <div class="bg-letter-a" aria-hidden="true">A</div>
+
+  <!-- Cinematic Scanlines & Film Texture Overlay -->
+  <div class="cinematic-scanlines" aria-hidden="true"></div>
 
   <!-- Background WebGL Shader Canvas -->
   <div class="fixed inset-0 z-[-1] pointer-events-none">
@@ -150,12 +158,14 @@
         ADITYA <span class="text-accent-red">SONI</span>
       </a>
       
-      <nav class="hidden md:flex items-center gap-8 font-label-sm text-xs tracking-widest uppercase">
+      <nav class="hidden md:flex items-center gap-7 font-label-sm text-xs tracking-widest uppercase">
         <a class="text-on-surface-variant hover:text-accent-red transition-colors" href="index.html">Home</a>
-        <a class="text-on-surface-variant hover:text-accent-red transition-colors" href="skills.html">Skills</a>
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors" href="about.html">About</a>
         <a class="text-on-surface-variant hover:text-accent-red transition-colors" href="projects.html">Projects</a>
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors" href="skills.html">Skills</a>
         <a class="text-on-surface-variant hover:text-accent-red transition-colors" href="journey.html">Journey</a>
-        <a class="text-white border-b-2 border-accent-red pb-1" href="signature.html">Signature</a>
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors" href="achievements.html">Achievements</a>
+        <a class="text-white border-b-2 border-accent-red pb-1 font-semibold" href="signature.html">Signature</a>
         <a class="text-on-surface-variant hover:text-accent-red transition-colors" href="contact.html">Contact</a>
       </nav>
 
@@ -759,5 +769,7 @@
       });
     });
   </script>
+  <!-- Awwwards-Tier Core Interactive Engine (Spotlight, 3D Tilt, Magnetic Cursor, Cmd+K) -->
+  <script src="assets/js/awwwards-core.js"></script>
 </body>
 </html>

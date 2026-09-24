@@ -59,23 +59,63 @@ void main() {
   v_uv = a_pos * 0.5 + 0.5;
   gl_Position = vec4(a_pos, 0.0, 1.0);
 }`;
-      const fs = `precision mediump float;
+      const fs = `precision highp float;
 uniform float u_time;
 uniform vec2 u_res;
+uniform vec2 u_mouse;
 varying vec2 v_uv;
+
+vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+float snoise(vec2 v){
+  const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+           -0.577350269189626, 0.024390243902439);
+  vec2 i  = floor(v + dot(v, C.yy) );
+  vec2 x0 = v -   i + dot(i, C.xx);
+  vec2 i1;
+  i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+  i = mod(i, 289.0);
+  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+  + i.x + vec3(0.0, i1.x, 1.0 ));
+  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+    dot(x12.zw,x12.zw)), 0.0);
+  m = m*m ;
+  m = m*m ;
+  vec3 x = 2.0 * fract(p * C.www) - 1.0;
+  vec3 h = abs(x) - 0.5;
+  vec3 ox = floor(x + 0.5);
+  vec3 a0 = x - ox;
+  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+  vec3 g;
+  g.x  = a0.x  * x0.x  + h.x  * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
+}
 
 void main() {
     vec2 uv = v_uv;
-    vec3 colorDeepOcean = vec3(0.02, 0.05, 0.12); 
-    vec3 colorTrench = vec3(0.04, 0.08, 0.18); 
-    vec3 colorBiolum = vec3(0.92, 0.16, 0.14);
-    
-    float wave = sin(uv.x * 4.0 + u_time * 0.8) * cos(uv.y * 4.0 - u_time * 0.5);
-    float mask = smoothstep(-0.4, 0.6, wave);
-    vec3 finalColor = mix(colorDeepOcean, colorTrench, mask);
-    
-    float dist = length(uv - vec2(0.5, 0.5));
-    finalColor += colorBiolum * exp(-3.8 * dist) * 0.12;
+    vec3 colorBg = vec3(0.02, 0.04, 0.09);
+    vec3 colorAccent = vec3(0.95, 0.24, 0.37); // Rose red
+    vec3 colorCyan = vec3(0.08, 0.65, 0.95);
+
+    float n = snoise(uv * 2.8 + u_time * 0.12);
+    vec2 mPos = u_mouse / max(u_res, vec2(1.0));
+    float distToMouse = length(uv - mPos);
+    float mouseGlow = exp(-8.0 * distToMouse);
+
+    float glow = exp(-8.0 * length(uv - 0.5 + vec2(cos(u_time * 0.7), sin(u_time * 0.5)) * 0.18));
+    float scanline = sin(uv.y * 320.0 + u_time * 4.0) * 0.012;
+    float grid = (step(0.992, fract(uv.x * 24.0)) + step(0.992, fract(uv.y * 24.0))) * 0.04;
+
+    vec3 finalColor = mix(colorBg, colorAccent * 0.12, n * 0.5 + 0.5);
+    finalColor += colorAccent * glow * 0.14;
+    finalColor += colorCyan * mouseGlow * 0.18;
+    finalColor += scanline;
+    finalColor += grid;
+
+    float mask = 1.0 - smoothstep(0.2, 0.85, length(uv - 0.5));
+    finalColor *= mix(0.65, 1.0, mask);
 
     gl_FragColor = vec4(finalColor, 1.0);
 }`;
@@ -101,6 +141,13 @@ void main() {
 
       const uTime = gl.getUniformLocation(prog, 'u_time');
       const uRes = gl.getUniformLocation(prog, 'u_res');
+      const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+      let mouseCoords = [window.innerWidth / 2, window.innerHeight / 2];
+      window.addEventListener('mousemove', (e) => {
+        mouseCoords[0] = e.clientX;
+        mouseCoords[1] = window.innerHeight - e.clientY;
+      }, { passive: true });
 
       let startTime = performance.now();
       function renderIntroShader(now) {
@@ -109,6 +156,7 @@ void main() {
         gl.viewport(0, 0, introShaderCanvas.width, introShaderCanvas.height);
         if (uTime) gl.uniform1f(uTime, t);
         if (uRes) gl.uniform2f(uRes, introShaderCanvas.width, introShaderCanvas.height);
+        if (uMouse) gl.uniform2f(uMouse, mouseCoords[0], mouseCoords[1]);
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
         introShaderRAF = requestAnimationFrame(renderIntroShader);
       }
@@ -228,7 +276,7 @@ void main() {
   const introCenterBox = document.getElementById('intro-center-box');
   const introProgressBar = document.getElementById('intro-progress-bar');
   const skipIntroBtn = document.getElementById('skip-intro-btn');
-  const INTRO_DURATION = 3000;
+  const INTRO_DURATION = 4200;
 
   setTimeout(() => {
     if (introCenterBox) {
@@ -250,15 +298,60 @@ void main() {
       setTimeout(() => {
         if (introStage) {
           introStage.style.display = 'none';
-          introStage.remove();
         }
-      }, 600);
+      }, 700);
     }
   }
+
+  function startIntro() {
+    if (!introStage) return;
+    introActive = true;
+    introStartTime = performance.now();
+    introStage.style.display = 'flex';
+    introStage.style.pointerEvents = 'auto';
+    introStage.style.opacity = '1';
+
+    if (introProgressBar) introProgressBar.style.width = '0%';
+    if (introCenterBox) {
+      introCenterBox.style.opacity = '1';
+      introCenterBox.style.transform = 'scale(1)';
+    }
+
+    // Reset boat positions
+    introBoats[0].x = -140;
+    introBoats[0].y = height * 0.32;
+    introBoats[1].x = -210;
+    introBoats[1].y = height * 0.22;
+
+    if (introShaderCanvas && !introShaderRAF) {
+      const gl = introShaderCanvas.getContext('webgl') || introShaderCanvas.getContext('experimental-webgl');
+      if (gl) {
+        let startTime = performance.now();
+        function renderIntroShader(now) {
+          if (!introActive) return;
+          const t = (now - startTime) * 0.001;
+          gl.viewport(0, 0, introShaderCanvas.width, introShaderCanvas.height);
+          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+          introShaderRAF = requestAnimationFrame(renderIntroShader);
+        }
+        introShaderRAF = requestAnimationFrame(renderIntroShader);
+      }
+    }
+  }
+
+  window.replayIntro = startIntro;
 
   if (skipIntroBtn) {
     skipIntroBtn.addEventListener('click', dismissIntro, { passive: true });
   }
+
+  // Auto-wire replay buttons if present in DOM
+  document.addEventListener('DOMContentLoaded', () => {
+    const replayBtn = document.getElementById('replay-intro-btn');
+    if (replayBtn) replayBtn.addEventListener('click', startIntro);
+    const mobileReplayBtn = document.getElementById('mobile-replay-btn');
+    if (mobileReplayBtn) mobileReplayBtn.addEventListener('click', startIntro);
+  });
 
   let introStartTime = performance.now();
 

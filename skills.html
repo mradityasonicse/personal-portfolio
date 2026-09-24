@@ -5,10 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aditya Soni - Skills &amp; Technologies</title>
   
+  <!-- Google Fonts (Optimized for Instant Load: Syne, Plus Jakarta Sans, JetBrains Mono) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,700;1,500;1,700&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Awwwards-Tier Design System & Luxury Themes -->
+  <link rel="stylesheet" href="assets/css/awwwards-theme.css">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -17,25 +24,26 @@
       theme: {
         extend: {
           colors: {
-            "surface": "#0b1325",
-            "background": "#0b1325",
-            "primary": "#c1c6da",
-            "secondary": "#c6c6c7",
-            "on-surface": "#dae2fc",
-            "on-surface-variant": "#c6c6cc",
-            "on-tertiary-container": "#ea2a23",
-            "outline": "#909096",
-            "outline-variant": "#45464c",
-            "surface-container-low": "#131b2e",
-            "surface-container-high": "#222a3d",
-            "surface-container": "#171f32"
+            "surface": "#07090e",
+            "background": "#07090e",
+            "primary": "#e2e8f0",
+            "secondary": "#94a3b8",
+            "on-surface": "#f8fafc",
+            "on-surface-variant": "#94a3b8",
+            "on-tertiary-container": "#f43f5e",
+            "accent-red": "#f43f5e",
+            "outline": "#334155",
+            "outline-variant": "#1e293b",
+            "surface-container-low": "#0b0f19",
+            "surface-container-high": "#141c2e",
+            "surface-container": "#0e1422"
           },
           fontFamily: {
-            "display-xl": ["EB Garamond", "serif"],
-            "headline-lg": ["EB Garamond", "serif"],
+            "display-xl": ["Syne", "sans-serif"],
+            "headline-lg": ["Syne", "sans-serif"],
             "label-sm": ["JetBrains Mono", "monospace"],
-            "body-md": ["Geist", "sans-serif"],
-            "stat-lg": ["Geist", "sans-serif"]
+            "body-md": ["Plus Jakarta Sans", "sans-serif"],
+            "stat-lg": ["Plus Jakarta Sans", "sans-serif"]
           },
           spacing: {
             "gutter": "24px",
@@ -127,10 +135,11 @@
 </head>
 <body class="bg-background text-on-surface antialiased relative min-h-screen flex flex-col justify-between selection:bg-on-tertiary-container selection:text-white">
 
-  <!-- Large Background Watermark -->
-  <div aria-hidden="true" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-[0.025] select-none">
-    <span class="text-white font-display-xl font-bold" style="font-size: 80vh; line-height: 1;">A</span>
-  </div>
+  <!-- Background Large Monolithic Watermark 'A' -->
+  <div class="bg-letter-a" aria-hidden="true">A</div>
+
+  <!-- Cinematic Scanlines & Film Texture Overlay -->
+  <div class="cinematic-scanlines" aria-hidden="true"></div>
 
   <!-- Top Navigation Bar -->
   <header class="fixed top-0 w-full z-50 bg-surface/50 backdrop-blur-xl border-b border-white/10">
@@ -139,11 +148,13 @@
         ADITYA <span class="text-on-tertiary-container">SONI</span>
       </a>
       
-      <nav class="hidden md:flex items-center gap-8 font-label-sm text-xs tracking-widest uppercase">
+      <nav class="hidden md:flex items-center gap-7 font-label-sm text-xs tracking-widest uppercase">
         <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="index.html">Home</a>
-        <a class="text-white border-b-2 border-on-tertiary-container pb-1" href="skills.html">Skills</a>
+        <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="about.html">About</a>
         <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="projects.html">Projects</a>
+        <a class="text-white border-b-2 border-on-tertiary-container pb-1 font-semibold" href="skills.html">Skills</a>
         <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="journey.html">Journey</a>
+        <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="achievements.html">Achievements</a>
         <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="signature.html">Signature</a>
         <a class="text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="contact.html">Contact</a>
       </nav>
@@ -157,112 +168,533 @@
   <!-- Main Content -->
   <main class="flex-grow z-10 pt-32 px-6 md:px-gutter max-w-container-max mx-auto w-full pb-24 relative">
     
-    <div class="mb-16 md:mb-20">
-      <p class="font-label-sm text-xs text-on-tertiary-container uppercase tracking-[0.25em] mb-2">Technical Matrix</p>
+    <div class="mb-12 md:mb-16">
+      <p class="font-label-sm text-xs text-on-tertiary-container uppercase tracking-[0.25em] mb-2 flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-on-tertiary-container animate-pulse"></span>
+        <span>Technical Matrix &bull; Architectural Capabilities</span>
+      </p>
       <h1 class="font-display-xl text-5xl md:text-7xl font-bold text-white tracking-tight mb-4">
-        Skills &amp; <span class="text-on-surface-variant">Technologies</span>
+        Skills &amp; <span class="text-on-tertiary-container italic">Technologies</span>
       </h1>
-      <p class="font-body-md text-on-surface-variant max-w-xl text-base leading-relaxed">
-        A comprehensive overview of backend, systems, frontend, graphics, and performance tooling used across production environments.
+      <p class="font-body-md text-on-surface-variant max-w-2xl text-base leading-relaxed font-light">
+        A deep-dive into distributed systems, low-latency microservices, responsive web architectures, and hardware-accelerated WebGL graphics operating under rigid frame budgets.
       </p>
     </div>
 
+    <!-- Category Filter Tabs -->
+    <div class="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-white/10" id="skill-filter-tabs">
+      <button class="skill-filter-btn px-4 py-2 rounded-xl font-label-sm text-xs uppercase tracking-wider transition-all bg-on-tertiary-container text-white shadow-lg shadow-on-tertiary-container/20 border border-on-tertiary-container" data-category="all">
+        All Capabilities (4)
+      </button>
+      <button class="skill-filter-btn px-4 py-2 rounded-xl font-label-sm text-xs uppercase tracking-wider transition-all text-on-surface-variant hover:text-white bg-white/5 border border-white/10 hover:border-white/20" data-category="systems">
+        Distributed Systems
+      </button>
+      <button class="skill-filter-btn px-4 py-2 rounded-xl font-label-sm text-xs uppercase tracking-wider transition-all text-on-surface-variant hover:text-white bg-white/5 border border-white/10 hover:border-white/20" data-category="frontend">
+        Full-Stack &amp; Web
+      </button>
+      <button class="skill-filter-btn px-4 py-2 rounded-xl font-label-sm text-xs uppercase tracking-wider transition-all text-on-surface-variant hover:text-white bg-white/5 border border-white/10 hover:border-white/20" data-category="graphics">
+        3D &amp; WebGL
+      </button>
+      <button class="skill-filter-btn px-4 py-2 rounded-xl font-label-sm text-xs uppercase tracking-wider transition-all text-on-surface-variant hover:text-white bg-white/5 border border-white/10 hover:border-white/20" data-category="performance">
+        Low-Latency Runtime
+      </button>
+    </div>
+
+    <!-- ==================== 3D SPINNING SKILL CARD SHOWCASE ==================== -->
+    <div class="mb-14">
+      <!-- Control Bar Header -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6 p-4 rounded-2xl bg-surface-container-low/40 backdrop-blur-xl border border-white/10">
+        <div class="flex items-center gap-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-on-tertiary-container animate-ping"></span>
+          <span class="font-mono text-xs text-white uppercase tracking-wider font-semibold">3D Interactive Skill Matrix</span>
+          <span class="hidden sm:inline font-mono text-[10px] text-accent-cyan bg-accent-cyan/10 px-2 py-0.5 rounded border border-accent-cyan/20">DRAG • ORBIT • 360°</span>
+        </div>
+        
+        <!-- Controls -->
+        <div class="flex items-center gap-2">
+          <button id="spin-card-autospin-toggle" class="glass-pill px-3 py-1.5 font-label-sm text-[11px] text-white hover:text-on-tertiary-container flex items-center gap-1.5 transition-all cursor-pointer border border-white/15" title="Toggle Auto-Spinning in 3D">
+            <i data-lucide="rotate-cw" class="w-3.5 h-3.5 text-on-tertiary-container"></i>
+            <span id="spin-card-autospin-label">Auto-Spin: ON</span>
+          </button>
+          <button id="spin-card-flip-btn" class="glass-pill px-3 py-1.5 font-label-sm text-[11px] text-white hover:text-accent-cyan flex items-center gap-1.5 transition-all cursor-pointer border border-white/15" title="Flip Card to View Architecture Specs">
+            <i data-lucide="repeat" class="w-3.5 h-3.5 text-accent-cyan"></i>
+            <span>Flip 180°</span>
+          </button>
+          <button id="spin-card-reset-btn" class="glass-pill px-2.5 py-1.5 font-label-sm text-[11px] text-slate-400 hover:text-white flex items-center gap-1 transition-all cursor-pointer border border-white/10" title="Reset 3D Perspective">
+            <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">Reset</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3D Stage Container -->
+      <div class="spin-stage-container relative">
+        <div class="spinning-card-wrapper" id="spinning-card-wrapper">
+          <div class="spinning-card-3d auto-spinning" id="spinning-skill-card">
+            
+            <!-- FRONT FACE: CORE STACK & SYSTEMS ARCHITECTURE -->
+            <div class="spinning-card-face spinning-card-front relative overflow-hidden">
+              <div class="spin-light-streak"></div>
+              <!-- Cyber Corner Markers -->
+              <div class="cyber-corner cyber-corner-tl"></div>
+              <div class="cyber-corner cyber-corner-tr"></div>
+              <div class="cyber-corner cyber-corner-bl"></div>
+              <div class="cyber-corner cyber-corner-br"></div>
+
+              <!-- Face Header -->
+              <div>
+                <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono text-[10px] text-on-tertiary-container bg-on-tertiary-container/10 border border-on-tertiary-container/20 px-2.5 py-1 rounded font-semibold tracking-wider uppercase flex items-center gap-1.5">
+                      <span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span>
+                      <span>CORE SYSTEMS ARSENAL</span>
+                    </span>
+                    <span class="font-mono text-[10px] text-white/50 tracking-wider">STAGE 01 // FRONT</span>
+                  </div>
+                  <div class="flex items-center gap-2 font-mono text-[11px] text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>120 FPS HARDWARE 3D MATRIX</span>
+                  </div>
+                </div>
+
+                <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight flex items-center gap-3">
+                  <span>Aditya Soni</span>
+                  <span class="text-on-tertiary-container font-light italic text-xl sm:text-2xl">// Full-Stack &amp; Systems</span>
+                </h2>
+                <p class="font-body-md text-sm text-slate-300 mt-2 max-w-2xl font-light">
+                  Synthesizing low-level system efficiency with reactive frontend architecture, high-frequency WebSockets, and hardware-accelerated 3D shaders.
+                </p>
+              </div>
+
+              <!-- 4 Technology Pillar Pillars -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+                <!-- Pillar 1: Distributed Core -->
+                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-on-tertiary-container/40 transition-all">
+                  <div class="flex items-center justify-between text-on-tertiary-container mb-2">
+                    <span class="font-mono text-[10px] uppercase tracking-wider font-semibold">Distributed</span>
+                    <i data-lucide="cpu" class="w-4 h-4"></i>
+                  </div>
+                  <div class="font-display font-semibold text-white text-base mb-1">Systems Core</div>
+                  <p class="font-mono text-[10px] text-slate-400 leading-relaxed">
+                    Go &bull; Rust &bull; Java &bull; Python &bull; Raft &bull; gRPC &bull; Kafka
+                  </p>
+                  <div class="mt-2 text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+                    <span>●</span> <span>0.4ms concurrency</span>
+                  </div>
+                </div>
+
+                <!-- Pillar 2: Modern Web Core -->
+                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent-cyan/40 transition-all">
+                  <div class="flex items-center justify-between text-accent-cyan mb-2">
+                    <span class="font-mono text-[10px] uppercase tracking-wider font-semibold">Web Core</span>
+                    <i data-lucide="layers" class="w-4 h-4"></i>
+                  </div>
+                  <div class="font-display font-semibold text-white text-base mb-1">Full-Stack</div>
+                  <p class="font-mono text-[10px] text-slate-400 leading-relaxed">
+                    React 19 &bull; Next.js 15 &bull; TypeScript &bull; HTML5 &bull; CSS3
+                  </p>
+                  <div class="mt-2 text-[10px] font-mono text-accent-cyan flex items-center gap-1">
+                    <span>●</span> <span>SSR &bull; Concurrent UI</span>
+                  </div>
+                </div>
+
+                <!-- Pillar 3: 3D Graphics -->
+                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-400/40 transition-all">
+                  <div class="flex items-center justify-between text-amber-400 mb-2">
+                    <span class="font-mono text-[10px] uppercase tracking-wider font-semibold">GPU Graphics</span>
+                    <i data-lucide="box" class="w-4 h-4"></i>
+                  </div>
+                  <div class="font-display font-semibold text-white text-base mb-1">3D &amp; Shaders</div>
+                  <p class="font-mono text-[10px] text-slate-400 leading-relaxed">
+                    Three.js &bull; WebGL 2 &bull; GLSL &bull; Raymarching &bull; Canvas
+                  </p>
+                  <div class="mt-2 text-[10px] font-mono text-amber-400 flex items-center gap-1">
+                    <span>●</span> <span>Procedural Math</span>
+                  </div>
+                </div>
+
+                <!-- Pillar 4: Low-Latency Runtime -->
+                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-400/40 transition-all">
+                  <div class="flex items-center justify-between text-emerald-400 mb-2">
+                    <span class="font-mono text-[10px] uppercase tracking-wider font-semibold">Low-Latency</span>
+                    <i data-lucide="zap" class="w-4 h-4"></i>
+                  </div>
+                  <div class="font-display font-semibold text-white text-base mb-1">Runtime Sync</div>
+                  <p class="font-mono text-[10px] text-slate-400 leading-relaxed">
+                    WebSockets &bull; Web Workers &bull; Wasm &bull; Zero-GC Pools
+                  </p>
+                  <div class="mt-2 text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+                    <span>●</span> <span>8.33ms 120 FPS</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Face Footer -->
+              <div class="flex items-center justify-between border-t border-white/10 pt-4 font-mono text-xs flex-wrap gap-3">
+                <span class="text-white/60 flex items-center gap-1.5">
+                  <i data-lucide="hand" class="w-3.5 h-3.5 text-on-tertiary-container"></i>
+                  <span>Drag to spin in 3D &bull; Click card to pause</span>
+                </span>
+                <button class="trigger-flip-inner flex items-center gap-1.5 text-accent-cyan hover:text-white transition-colors cursor-pointer bg-accent-cyan/10 hover:bg-accent-cyan/20 px-3 py-1 rounded-lg border border-accent-cyan/20">
+                  <span>View Architecture Specs</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- BACK FACE: ARCHITECTURAL TELEMETRY & LATENCY BENCHMARKS -->
+            <div class="spinning-card-face spinning-card-back relative overflow-hidden">
+              <div class="spin-light-streak"></div>
+              <!-- Cyber Corner Markers -->
+              <div class="cyber-corner cyber-corner-tl" style="border-color: rgba(56, 189, 248, 0.6);"></div>
+              <div class="cyber-corner cyber-corner-tr" style="border-color: rgba(56, 189, 248, 0.6);"></div>
+              <div class="cyber-corner cyber-corner-bl" style="border-color: rgba(56, 189, 248, 0.6);"></div>
+              <div class="cyber-corner cyber-corner-br" style="border-color: rgba(56, 189, 248, 0.6);"></div>
+
+              <!-- Face Header -->
+              <div>
+                <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono text-[10px] text-accent-cyan bg-accent-cyan/10 border border-accent-cyan/20 px-2.5 py-1 rounded font-semibold tracking-wider uppercase flex items-center gap-1.5">
+                      <span class="w-1.5 h-1.5 rounded-full bg-accent-cyan"></span>
+                      <span>SYSTEMS TELEMETRY &amp; BENCHMARKS</span>
+                    </span>
+                    <span class="font-mono text-[10px] text-white/50 tracking-wider">STAGE 02 // BACK</span>
+                  </div>
+                  <div class="flex items-center gap-2 font-mono text-[11px] text-rose-400 bg-rose-500/10 px-2.5 py-1 rounded border border-rose-500/20">
+                    <span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse"></span>
+                    <span>HARDWARE P99 BENCHMARKS VERIFIED</span>
+                  </div>
+                </div>
+
+                <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight flex items-center gap-3">
+                  <span>Runtime Specifications</span>
+                  <span class="text-accent-cyan font-light italic text-xl sm:text-2xl">// Latency Budgets</span>
+                </h2>
+                <p class="font-body-md text-sm text-slate-300 mt-2 max-w-2xl font-light">
+                  Rigorous sub-millisecond network profiling, distributed consensus verification, and frame budgeting guaranteeing deterministic performance.
+                </p>
+              </div>
+
+              <!-- 4 Benchmark Metric Cards -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent-cyan/40 transition-all">
+                  <div class="font-mono text-2xl font-bold text-accent-cyan">0.8ms</div>
+                  <div class="font-mono text-[11px] text-white font-semibold mt-1">P99 Serialization</div>
+                  <p class="font-mono text-[10px] text-slate-400 mt-1">Protobuf &amp; zero-copy payload packing over TCP</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent-red/40 transition-all">
+                  <div class="font-mono text-2xl font-bold text-accent-red">100K+</div>
+                  <div class="font-mono text-[11px] text-white font-semibold mt-1">Events / Sec</div>
+                  <p class="font-mono text-[10px] text-slate-400 mt-1">Multi-core Goroutine &amp; AsyncIO event processing</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-400/40 transition-all">
+                  <div class="font-mono text-2xl font-bold text-emerald-400">8.33ms</div>
+                  <div class="font-mono text-[11px] text-white font-semibold mt-1">Frame Budget (120 FPS)</div>
+                  <p class="font-mono text-[10px] text-slate-400 mt-1">WebGL render loops decoupled from UI interactions</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-400/40 transition-all">
+                  <div class="font-mono text-2xl font-bold text-amber-400">0.00%</div>
+                  <div class="font-mono text-[11px] text-white font-semibold mt-1">Garbage Stutter (Zero GC)</div>
+                  <p class="font-mono text-[10px] text-slate-400 mt-1">Pre-allocated memory pooling for continuous blits</p>
+                </div>
+              </div>
+
+              <!-- Face Footer -->
+              <div class="flex items-center justify-between border-t border-white/10 pt-4 font-mono text-xs flex-wrap gap-3">
+                <span class="text-white/60 flex items-center gap-1.5">
+                  <i data-lucide="activity" class="w-3.5 h-3.5 text-accent-cyan"></i>
+                  <span>Raft Cluster Quorum: Active &bull; Worker Pool: Healthy</span>
+                </span>
+                <button class="trigger-flip-inner flex items-center gap-1.5 text-on-tertiary-container hover:text-white transition-colors cursor-pointer bg-on-tertiary-container/10 hover:bg-on-tertiary-container/20 px-3 py-1 rounded-lg border border-on-tertiary-container/20">
+                  <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                  <span>Return to Primary Stack</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick-Snap Angle Presets -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mt-6 font-mono text-xs text-slate-400">
+        <span class="text-[11px] mr-2 text-white/50">3D Perspectives:</span>
+        <button class="spin-preset-btn px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:border-on-tertiary-container/40 hover:text-white transition-all cursor-pointer" data-ry="0" data-rx="4">Front Focus</button>
+        <button class="spin-preset-btn px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:border-on-tertiary-container/40 hover:text-white transition-all cursor-pointer" data-ry="45" data-rx="8">Isometric Angle</button>
+        <button class="spin-preset-btn px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:border-on-tertiary-container/40 hover:text-white transition-all cursor-pointer" data-ry="180" data-rx="-4">Back Specs</button>
+        <button class="spin-preset-btn px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:border-on-tertiary-container/40 hover:text-white transition-all cursor-pointer" data-ry="-45" data-rx="8">Cyber Profile</button>
+      </div>
+    </div>
+
     <!-- Bento Grid Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6" id="skills-bento-grid">
       
-      <!-- Distributed Systems Card -->
-      <div class="glass-card md:col-span-12 lg:col-span-7 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-xl p-8 flex flex-col justify-between group">
-        <div class="mb-6 flex justify-between items-start">
-          <div>
-            <span class="font-label-sm text-[10px] text-on-tertiary-container uppercase tracking-widest">Back-End &amp; Infrastructure</span>
-            <h2 class="font-headline-lg text-2xl md:text-3xl text-primary mt-1">Distributed Systems</h2>
+      <!-- Card 1: Distributed Systems, Languages & Back-End -->
+      <div class="skill-bento-card glass-card md:col-span-12 lg:col-span-7 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-2xl p-7 md:p-8 flex flex-col justify-between group hover:border-on-tertiary-container/40 transition-all duration-300" data-category="systems">
+        <div>
+          <div class="mb-6 flex justify-between items-start">
+            <div>
+              <span class="font-label-sm text-[10px] text-on-tertiary-container uppercase tracking-widest px-2.5 py-1 rounded bg-on-tertiary-container/10 border border-on-tertiary-container/20 font-semibold">Resilience &bull; Core Languages</span>
+              <h2 class="font-headline-lg text-2xl md:text-3xl text-white mt-2 font-bold group-hover:text-primary transition-colors">Distributed Systems &amp; Backend</h2>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-outline group-hover:text-on-tertiary-container group-hover:border-on-tertiary-container/30 transition-all">
+              <span class="material-symbols-outlined text-2xl">dns</span>
+            </div>
           </div>
-          <span class="material-symbols-outlined text-outline-variant group-hover:text-on-tertiary-container transition-colors text-3xl">dns</span>
+
+          <p class="font-body-md text-on-surface-variant text-sm mb-6 leading-relaxed font-light">
+            Designing fault-tolerant backends, event streaming message buses, and container orchestration architectures using Python, Java, Go, and Rust.
+          </p>
+
+          <!-- Progress Metrics -->
+          <div class="space-y-4 mb-6">
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">Python (AsyncIO, Automation, Data Pipelines)</span>
+                <span class="text-emerald-400 font-bold">95%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-emerald-500 to-green-300 rounded-full" data-target="95%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">Java (Core OOP, JVM, Multi-Threading)</span>
+                <span class="text-amber-400 font-bold">90%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-amber-500 to-yellow-300 rounded-full" data-target="90%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">Go (Golang) Microservices</span>
+                <span class="text-on-tertiary-container font-bold">92%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-on-tertiary-container to-orange-500 rounded-full" data-target="92%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">Docker &amp; Container Orchestration</span>
+                <span class="text-blue-400 font-bold">88%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full" data-target="88%"></div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <p class="font-body-md text-on-surface-variant text-sm mb-6 leading-relaxed">
-          Designing fault-tolerant backends, event streaming pipelines, and container orchestration for resilient production environments.
-        </p>
-
-        <div class="flex flex-wrap gap-2 pt-2 border-t border-white/10">
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Go (Golang)</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Rust</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Kubernetes</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Apache Kafka</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">gRPC &amp; Protobuf</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">PostgreSQL</span>
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-emerald-400/50 hover:text-white cursor-pointer transition-colors" data-skill="python">Python</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-amber-400/50 hover:text-white cursor-pointer transition-colors" data-skill="java">Java</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-on-tertiary-container/50 hover:text-white cursor-pointer transition-colors" data-skill="golang">Go (Golang)</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-on-tertiary-container/50 hover:text-white cursor-pointer transition-colors" data-skill="rust">Rust</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-on-tertiary-container/50 hover:text-white cursor-pointer transition-colors" data-skill="k8s">Kubernetes</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-on-tertiary-container/50 hover:text-white cursor-pointer transition-colors" data-skill="kafka">Apache Kafka</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-on-tertiary-container/50 hover:text-white cursor-pointer transition-colors" data-skill="grpc">gRPC &amp; Protobuf</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-on-tertiary-container/50 hover:text-white cursor-pointer transition-colors" data-skill="postgres">PostgreSQL</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-on-tertiary-container/50 hover:text-white cursor-pointer transition-colors" data-skill="docker">Docker</span>
         </div>
       </div>
 
-      <!-- Full-Stack Card -->
-      <div class="glass-card md:col-span-12 lg:col-span-5 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-xl p-8 flex flex-col justify-between group">
-        <div class="mb-6 flex justify-between items-start">
-          <div>
-            <span class="font-label-sm text-[10px] text-on-tertiary-container uppercase tracking-widest">Modern Web</span>
-            <h2 class="font-headline-lg text-2xl md:text-3xl text-primary mt-1">Full-Stack Development</h2>
+      <!-- Card 2: Modern Full-Stack & UI/UX -->
+      <div class="skill-bento-card glass-card md:col-span-12 lg:col-span-5 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-2xl p-7 md:p-8 flex flex-col justify-between group hover:border-blue-400/40 transition-all duration-300" data-category="frontend">
+        <div>
+          <div class="mb-6 flex justify-between items-start">
+            <div>
+              <span class="font-label-sm text-[10px] text-blue-400 uppercase tracking-widest px-2.5 py-1 rounded bg-blue-400/10 border border-blue-400/20 font-semibold">Web Core &bull; Modern UI/UX</span>
+              <h2 class="font-headline-lg text-2xl md:text-3xl text-white mt-2 font-bold group-hover:text-primary transition-colors">Full-Stack Development</h2>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-outline group-hover:text-blue-400 group-hover:border-blue-400/30 transition-all">
+              <span class="material-symbols-outlined text-2xl">layers</span>
+            </div>
           </div>
-          <span class="material-symbols-outlined text-outline-variant group-hover:text-on-tertiary-container transition-colors text-3xl">layers</span>
+
+          <p class="font-body-md text-on-surface-variant text-sm mb-6 leading-relaxed font-light">
+            Crafting end-to-end applications with atomic React architecture, HTML5, CSS3, JavaScript, TypeScript, React 19, and Next.js 15.
+          </p>
+
+          <!-- Progress Metrics -->
+          <div class="space-y-4 mb-6">
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">HTML5 &amp; Semantic Architecture</span>
+                <span class="text-orange-400 font-bold">98%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-orange-500 to-amber-300 rounded-full" data-target="98%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">CSS3 &amp; Modern Layouts</span>
+                <span class="text-blue-400 font-bold">95%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-blue-500 to-cyan-300 rounded-full" data-target="95%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">JavaScript (ES6+) &amp; TypeScript</span>
+                <span class="text-yellow-400 font-bold">96%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-yellow-500 to-amber-300 rounded-full" data-target="96%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">React 19 &amp; Next.js 15</span>
+                <span class="text-cyan-400 font-bold">92%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-cyan-500 to-teal-300 rounded-full" data-target="92%"></div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <p class="font-body-md text-on-surface-variant text-sm mb-6 leading-relaxed">
-          End-to-end full-stack architectures with clean component modularity, server components, and responsive state synchronization.
-        </p>
-
-        <div class="flex flex-wrap gap-2 pt-2 border-t border-white/10">
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">TypeScript</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">React 19</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Next.js App Router</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Node.js</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Tailwind CSS</span>
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-orange-400/50 hover:text-white cursor-pointer transition-colors" data-skill="html">HTML5</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-blue-400/50 hover:text-white cursor-pointer transition-colors" data-skill="css">CSS3</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-yellow-400/50 hover:text-white cursor-pointer transition-colors" data-skill="javascript">JavaScript</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-blue-400/50 hover:text-white cursor-pointer transition-colors" data-skill="typescript">TypeScript</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-blue-400/50 hover:text-white cursor-pointer transition-colors" data-skill="react">React 19</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-blue-400/50 hover:text-white cursor-pointer transition-colors" data-skill="nextjs">Next.js 15</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-blue-400/50 hover:text-white cursor-pointer transition-colors" data-skill="tailwind">Tailwind CSS</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-blue-400/50 hover:text-white cursor-pointer transition-colors" data-skill="nodejs">Node.js</span>
         </div>
       </div>
 
-      <!-- 3D / WebGL Card -->
-      <div class="glass-card md:col-span-12 lg:col-span-5 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-xl p-8 flex flex-col justify-between group">
-        <div class="mb-6 flex justify-between items-start">
-          <div>
-            <span class="font-label-sm text-[10px] text-on-tertiary-container uppercase tracking-widest">Interactive Visuals</span>
-            <h2 class="font-headline-lg text-2xl md:text-3xl text-primary mt-1">3D Graphics &amp; WebGL</h2>
+      <!-- Card 3: 3D Graphics & WebGL Shaders -->
+      <div class="skill-bento-card glass-card md:col-span-12 lg:col-span-5 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-2xl p-7 md:p-8 flex flex-col justify-between group hover:border-amber-400/40 transition-all duration-300" data-category="graphics">
+        <div>
+          <div class="mb-6 flex justify-between items-start">
+            <div>
+              <span class="font-label-sm text-[10px] text-amber-400 uppercase tracking-widest px-2.5 py-1 rounded bg-amber-400/10 border border-amber-400/20 font-semibold">GPU Pipelines &bull; Math</span>
+              <h2 class="font-headline-lg text-2xl md:text-3xl text-white mt-2 font-bold group-hover:text-primary transition-colors">3D Graphics &amp; WebGL</h2>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-outline group-hover:text-amber-400 group-hover:border-amber-400/30 transition-all">
+              <span class="material-symbols-outlined text-2xl">view_in_ar</span>
+            </div>
           </div>
-          <span class="material-symbols-outlined text-outline-variant group-hover:text-on-tertiary-container transition-colors text-3xl">view_in_ar</span>
+
+          <p class="font-body-md text-on-surface-variant text-sm mb-6 leading-relaxed font-light">
+            Harnessing graphics card hardware pipelines through WebGL, procedural GLSL fragment &amp; vertex shaders, Three.js mesh instances, and canvas particle matrices.
+          </p>
+
+          <!-- Progress Metrics -->
+          <div class="space-y-4 mb-6">
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">Three.js / React Three Fiber</span>
+                <span class="text-amber-400 font-bold">88%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-amber-500 to-yellow-300 rounded-full" data-target="88%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">GLSL Custom Shaders &amp; Math</span>
+                <span class="text-on-tertiary-container font-bold">82%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-on-tertiary-container to-orange-400 rounded-full" data-target="82%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">WebGL 2.0 / Canvas 2D Pipeline</span>
+                <span class="text-cyan-400 font-bold">86%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-cyan-500 to-blue-400 rounded-full" data-target="86%"></div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <p class="font-body-md text-on-surface-variant text-sm mb-6 leading-relaxed">
-          Hardware-accelerated web experiences, procedural geometry shaders, and real-time 3D scenes.
-        </p>
-
-        <div class="flex flex-wrap gap-2 pt-2 border-t border-white/10">
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Three.js</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">GLSL / Custom Shaders</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">WebGL API</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Canvas 2D</span>
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-amber-400/50 hover:text-white cursor-pointer transition-colors" data-skill="threejs">Three.js</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-amber-400/50 hover:text-white cursor-pointer transition-colors" data-skill="glsl">GLSL Shaders</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-amber-400/50 hover:text-white cursor-pointer transition-colors" data-skill="webgl">WebGL 2</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-amber-400/50 hover:text-white cursor-pointer transition-colors" data-skill="raymarching">Raymarching</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-amber-400/50 hover:text-white cursor-pointer transition-colors" data-skill="canvas2d">Canvas 2D</span>
         </div>
       </div>
 
-      <!-- Performance Card -->
-      <div class="glass-card md:col-span-12 lg:col-span-7 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-xl p-8 flex flex-col justify-between group">
-        <div class="mb-6 flex justify-between items-start">
-          <div>
-            <span class="font-label-sm text-[10px] text-on-tertiary-container uppercase tracking-widest">Runtime &amp; Scalability</span>
-            <h2 class="font-headline-lg text-2xl md:text-3xl text-primary mt-1">Performance &amp; Real-Time</h2>
+      <!-- Card 4: Low-Latency Runtime & Optimization -->
+      <div class="skill-bento-card glass-card md:col-span-12 lg:col-span-7 bg-surface-container-low/40 backdrop-blur-xl border border-white/10 rounded-2xl p-7 md:p-8 flex flex-col justify-between group hover:border-on-tertiary-container/40 transition-all duration-300" data-category="performance">
+        <div>
+          <div class="mb-6 flex justify-between items-start">
+            <div>
+              <span class="font-label-sm text-[10px] text-cyan-400 uppercase tracking-widest px-2.5 py-1 rounded bg-cyan-400/10 border border-cyan-400/20 font-semibold">Sub-Millisecond &bull; Zero GC</span>
+              <h2 class="font-headline-lg text-2xl md:text-3xl text-white mt-2 font-bold group-hover:text-primary transition-colors">Low-Latency Runtime &amp; Performance</h2>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-outline group-hover:text-cyan-400 group-hover:border-cyan-400/30 transition-all">
+              <span class="material-symbols-outlined text-2xl">speed</span>
+            </div>
           </div>
-          <span class="material-symbols-outlined text-outline-variant group-hover:text-on-tertiary-container transition-colors text-3xl">speed</span>
+
+          <p class="font-body-md text-on-surface-variant text-sm mb-6 leading-relaxed font-light">
+            Engineering zero-garbage-collection object pools, multi-threaded Web Workers, binary WebSocket serialization, and maintaining rigid 8ms frame budgets for butter-smooth 120 FPS execution.
+          </p>
+
+          <!-- Progress Metrics -->
+          <div class="space-y-4 mb-6">
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">WebSockets &amp; Real-Time Streaming</span>
+                <span class="text-cyan-400 font-bold">94%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-cyan-500 to-teal-300 rounded-full" data-target="94%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">Web Workers &amp; Multi-threading</span>
+                <span class="text-on-tertiary-container font-bold">90%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-on-tertiary-container to-rose-400 rounded-full" data-target="90%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-label-sm mb-1.5">
+                <span class="text-white font-medium">Object Pooling &amp; Zero-GC Optimization</span>
+                <span class="text-emerald-400 font-bold">92%</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="progress-bar-fill h-full bg-gradient-to-r from-emerald-500 to-green-300 rounded-full" data-target="92%"></div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <p class="font-body-md text-on-surface-variant text-sm mb-6 leading-relaxed">
-          Optimizing frame budgets, sub-millisecond socket messaging, multi-threading with Web Workers, and low-level memory efficiency.
-        </p>
-
-        <div class="flex flex-wrap gap-2 pt-2 border-t border-white/10">
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">WebSockets</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Web Workers</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">WebAssembly (Wasm)</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Performance Profiling</span>
-          <span class="glass-panel px-3 py-1 rounded font-label-sm text-xs text-white border border-white/10">Caching &amp; Redis</span>
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-cyan-400/50 hover:text-white cursor-pointer transition-colors" data-skill="websockets">WebSockets</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-cyan-400/50 hover:text-white cursor-pointer transition-colors" data-skill="webworkers">Web Workers</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-cyan-400/50 hover:text-white cursor-pointer transition-colors" data-skill="wasm">WebAssembly (Wasm)</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-cyan-400/50 hover:text-white cursor-pointer transition-colors" data-skill="redis">Redis Caching</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-cyan-400/50 hover:text-white cursor-pointer transition-colors" data-skill="pooling">Zero-GC Pools</span>
+          <span class="skill-tag glass-panel px-3 py-1 rounded-lg font-label-sm text-[11px] text-white/90 border border-white/10 hover:border-cyan-400/50 hover:text-white cursor-pointer transition-colors" data-skill="fps">120 FPS Budgeting</span>
         </div>
       </div>
 
     </div>
+
+
   </main>
 
   <!-- Footer -->
@@ -281,25 +713,391 @@
       </div>
     </div>
   </footer>
+
   <script>
+    // Skill telemetry dictionary
+    const skillTelemetry = {
+      html: {
+        title: "HTML5 Semantic Web Architecture",
+        stats: "Semantics: 100% Validated | W3C / WCAG AAA Compliant | Zero Overhead",
+        desc: "Accessible markup structures, metadata optimization for search engines, and critical rendering path efficiency."
+      },
+      css: {
+        title: "CSS3 Modern Layouts & Visual Tokens",
+        stats: "Render Engine: Composited GPU Layers | Flexbox & Subgrid | Zero Jank",
+        desc: "Modular design tokens, fluid clamp typography, glassmorphism filters, and hardware-accelerated transitions."
+      },
+      javascript: {
+        title: "JavaScript (ES6+ / Modern Engine)",
+        stats: "Engine: V8 JIT Optimization | Event Loop Task Scheduling | Zero Memory Leaks",
+        desc: "Asynchronous programming with async/await, closures, prototypical inheritance, and real-time DOM updates."
+      },
+      python: {
+        title: "Python 3 Automation & Data Pipelines",
+        stats: "Runtime: AsyncIO Concurrency | PyPI Ecosystem | Microsecond Script Execution",
+        desc: "Rapid server development, asynchronous automation scripts, scientific math processing, and API pipelines."
+      },
+      java: {
+        title: "Java (Core, OOP & JVM Multi-Threading)",
+        stats: "Compilation: JIT C2 Compiler | JVM Memory Model | High Concurrency",
+        desc: "Robust object-oriented architectures, concurrent executor services, memory tuning, and enterprise resilience."
+      },
+      golang: {
+        title: "Go (Golang) Microservices Engine",
+        stats: "Concurrency: Goroutines/Channels | Avg P99: 1.2ms | Throughput: 45k req/s",
+        desc: "High-throughput backend services using net/http, sync.Pool memory caching, and gRPC endpoints for distributed coordination."
+      },
+      rust: {
+        title: "Rust Systems & Memory Safety",
+        stats: "Memory Safety: Zero-Cost Abstractions | Zero GC Stalls | SIMD Vectorized",
+        desc: "Low-level system kernels, WebAssembly bindings, and memory-safe concurrent data pipelines."
+      },
+      k8s: {
+        title: "Kubernetes Orchestration & Helm",
+        stats: "Deployments: Autoscaling HPA | Service Meshes | Rolling Updates: Zero Downtime",
+        desc: "Container lifecycle management, ingress controllers, resilient replica sets, and declarative configs."
+      },
+      kafka: {
+        title: "Apache Kafka Event Bus",
+        stats: "Broker Throughput: 120MB/s | Consumer Groups: Partition Rebalancing | Low Latency",
+        desc: "Distributed event streaming, dead letter queues, and consumer commit pipelines."
+      },
+      grpc: {
+        title: "gRPC & Protocol Buffers",
+        stats: "Serialization: Binary Protobuf | Compression: Snappy/Gzip | HTTP/2 Multiplexing",
+        desc: "Type-safe inter-service remote procedure calls with contract generation."
+      },
+      postgres: {
+        title: "PostgreSQL & Database Optimization",
+        stats: "Query Optimization: EXPLAIN ANALYZE | Connection Pooling: PgBouncer | Indexing: B-Tree & GIN",
+        desc: "Relational persistence with ACID compliance, JSONB documents, and schema migrations."
+      },
+      docker: {
+        title: "Docker Containerization",
+        stats: "Multi-stage Builds | Alpine Distroless Images < 25MB | Security Hardened",
+        desc: "Reproducible development and production container packaging."
+      },
+      typescript: {
+        title: "TypeScript Static Type Safety",
+        stats: "Strict Mode: 100% | Zero Any Toleration | Discriminated Unions & Generics",
+        desc: "Enterprise client and server architecture with robust type definitions and zero compile errors."
+      },
+      react: {
+        title: "React 19 & Server Components",
+        stats: "Hydration: Concurrent Mode | Compiler Optimizations | Custom Hooks Architecture",
+        desc: "Component-driven design systems, custom state management hooks, and DOM diffing performance."
+      },
+      nextjs: {
+        title: "Next.js 15 App Router",
+        stats: "Rendering: Streaming SSR & ISR | Edge Middleware | Zero Layout Shift (CLS < 0.01)",
+        desc: "Modern full-stack web applications with server actions, SEO optimization, and hybrid caching."
+      },
+      tailwind: {
+        title: "Tailwind CSS & Design Tokens",
+        stats: "Bundle Footprint: < 12KB Purged | HSL Semantic Palettes | Glassmorphism Tokens",
+        desc: "Maintainable, responsive CSS architectures utilizing utility classes and custom theme extensions."
+      },
+      nodejs: {
+        title: "Node.js Runtime & Async I/O",
+        stats: "Event Loop: Non-Blocking I/O | Libuv Threadpool | Fastify & Express Microservices",
+        desc: "High-performance JavaScript backend APIs with streaming responses and cluster processes."
+      },
+      threejs: {
+        title: "Three.js & 3D Web Graphics",
+        stats: "Draw Calls: Batched InstancedMesh | Geometry Memory Optimizations | 120 FPS Target",
+        desc: "Procedural geometry generation, custom materials, lighting models, and camera controls."
+      },
+      glsl: {
+        title: "GLSL Custom Shaders & Raymarching",
+        stats: "Fragment Compute: Per-Pixel Raymarch | Signed Distance Functions (SDF) | SIMD GPU",
+        desc: "Hardware-accelerated shader programming for procedural noise, volumetric lighting, and water wakes."
+      },
+      webgl: {
+        title: "WebGL 2.0 Direct Context",
+        stats: "Buffer Allocation: Static & Dynamic VBOs | Zero Frame Stalls | OffscreenCanvas Support",
+        desc: "Direct low-level GPU programming bypassing bulky game engine abstractions for maximum FPS."
+      },
+      raymarching: {
+        title: "Signed Distance Field Raymarching",
+        stats: "Iterations: Adaptive Step Count | Soft Shadows & AO | Real-Time GPU Reflection",
+        desc: "Mathematical 3D rendering algorithm constructing complex fractal geometry purely inside pixel shaders."
+      },
+      canvas2d: {
+        title: "HTML5 Canvas 2D Physics Pipeline",
+        stats: "Render Rate: 120 FPS | Path2D Caching | Particle Capacity: 5,000+ active items",
+        desc: "Hardware-composited 2D physics simulations, custom bezier path tracing, and interactive canvas graphics."
+      },
+      websockets: {
+        title: "WebSockets & Binary Streaming",
+        stats: "Connection Overhead: Single Handshake | Binary Frames (ArrayBuffer) | Latency: < 5ms",
+        desc: "Bi-directional persistent streaming protocols for real-time telemetry and multiplayer collaboration."
+      },
+      webworkers: {
+        title: "Web Workers Multi-Threading",
+        stats: "Main Thread Jitter: 0ms | Transferable Objects (SharedArrayBuffer) | Thread Pool: 4 workers",
+        desc: "Offloading intensive CPU physics calculations and heavy data parsing away from the UI thread."
+      },
+      wasm: {
+        title: "WebAssembly (Wasm) Integration",
+        stats: "Execution Speed: Near-Native C/Rust | Linear Memory Management | JIT Pre-compiled",
+        desc: "Running computation-heavy modules in the browser with predictable execution time."
+      },
+      redis: {
+        title: "Redis In-Memory Data Store",
+        stats: "Read/Write Latency: < 1ms | Pub/Sub Streaming | LRU Eviction & Cache Invalidation",
+        desc: "Fast distributed cache, session store, rate limiting, and pub/sub message broker."
+      },
+      pooling: {
+        title: "Object Pooling & Zero-GC Memory",
+        stats: "GC Pauses: 0ms in Animation Loop | Pre-allocated Structs | Steady Memory Heap",
+        desc: "Eliminating garbage collector frame drops by recycling memory buffers and physics particle instances."
+      },
+      fps: {
+        title: "120 FPS Rigid Frame Budgeting",
+        stats: "Frame Time: < 8.33ms Budget | Cumulative Layout Shift: 0.000 | First Input Delay: 1ms",
+        desc: "Exhaustive profiling through Chrome DevTools Performance panel, ensuring hitch-free scrolling."
+      }
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.glass-card, .glass-panel, h1, h2, .grid > div');
+      // Intersection Observer for Scroll Reveals & Progress Bars
+      const revealElements = document.querySelectorAll('.glass-card, .glass-panel, h1, h2, #skills-bento-grid > div');
+      const progressBars = document.querySelectorAll('.progress-bar-fill');
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
+            
+            // If element contains progress bars, animate them
+            const bars = entry.target.querySelectorAll('.progress-bar-fill');
+            bars.forEach(bar => {
+              const target = bar.getAttribute('data-target') || '90%';
+              bar.style.width = target;
+            });
           }
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-      cards.forEach((el, index) => {
+      revealElements.forEach((el, index) => {
         el.classList.add('reveal');
-        el.style.transitionDelay = `${(index % 4) * 100}ms`;
+        el.style.transitionDelay = `${(index % 4) * 80}ms`;
         observer.observe(el);
       });
+
+      // Filter tabs functionality
+      const filterBtns = document.querySelectorAll('.skill-filter-btn');
+      const cards = document.querySelectorAll('.skill-bento-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const category = btn.getAttribute('data-category');
+
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-on-tertiary-container', 'text-white', 'shadow-lg', 'shadow-on-tertiary-container/20', 'border-on-tertiary-container');
+            b.classList.add('text-on-surface-variant', 'bg-white/5', 'border-white/10');
+          });
+          btn.classList.add('bg-on-tertiary-container', 'text-white', 'shadow-lg', 'shadow-on-tertiary-container/20', 'border-on-tertiary-container');
+          btn.classList.remove('text-on-surface-variant', 'bg-white/5', 'border-white/10');
+
+          cards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.style.display = 'flex';
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 20);
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(10px)';
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 200);
+            }
+          });
+        });
+      });
+
+      // Skill badge click inspector
+      const skillTags = document.querySelectorAll('.skill-tag');
+      const inspectorDisplay = document.getElementById('skill-inspector-display');
+
+      skillTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+          const skillKey = tag.getAttribute('data-skill');
+          const data = skillTelemetry[skillKey];
+          if (!data || !inspectorDisplay) return;
+
+          // Pulse active state on tag
+          skillTags.forEach(t => t.classList.remove('border-on-tertiary-container', 'text-white', 'bg-white/15'));
+          tag.classList.add('border-on-tertiary-container', 'text-white', 'bg-white/15');
+
+          inspectorDisplay.innerHTML = `
+            <p class="text-white font-semibold flex items-center gap-2">
+              <span class="text-on-tertiary-container">&gt;</span>
+              <span>[TELEMETRY INSPECTION] ${data.title}</span>
+            </p>
+            <p class="text-emerald-400 font-mono text-[11px]">&gt; ${data.stats}</p>
+            <p class="text-white/80 leading-relaxed font-mono text-[11px]">&gt; ${data.desc}</p>
+          `;
+        });
+      });
+
+      // 3D Spinning Skill Card Engine
+      (function init3DSpinningSkillCard() {
+        const card = document.getElementById('spinning-skill-card');
+        const autoSpinBtn = document.getElementById('spin-card-autospin-toggle');
+        const autoSpinLabel = document.getElementById('spin-card-autospin-label');
+        const flipBtn = document.getElementById('spin-card-flip-btn');
+        const resetBtn = document.getElementById('spin-card-reset-btn');
+        const innerFlipTriggers = document.querySelectorAll('.trigger-flip-inner');
+        const presetBtns = document.querySelectorAll('.spin-preset-btn');
+
+        if (!card) return;
+
+        let isAutoSpinning = true;
+        let isFlipped = false;
+        let currentRotY = 0;
+        let currentRotX = 4;
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let lastRotY = 0;
+        let lastRotX = 0;
+        let velocityX = 0;
+        let velocityY = 0;
+        let animFrameId = null;
+
+        function updateCardTransform() {
+          card.style.transform = `rotateY(${currentRotY}deg) rotateX(${currentRotX}deg)`;
+        }
+
+        if (autoSpinBtn) {
+          autoSpinBtn.addEventListener('click', () => {
+            isAutoSpinning = !isAutoSpinning;
+            if (isAutoSpinning) {
+              card.classList.add('auto-spinning');
+              card.style.transform = '';
+              if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: ON';
+            } else {
+              card.classList.remove('auto-spinning');
+              currentRotY = isFlipped ? 180 : 0;
+              currentRotX = 4;
+              updateCardTransform();
+              if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: OFF';
+            }
+          });
+        }
+
+        function toggleFlip() {
+          isFlipped = !isFlipped;
+          isAutoSpinning = false;
+          card.classList.remove('auto-spinning');
+          if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: OFF';
+          currentRotY = isFlipped ? 180 : 0;
+          currentRotX = isFlipped ? -4 : 4;
+          card.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+          updateCardTransform();
+        }
+
+        if (flipBtn) flipBtn.addEventListener('click', toggleFlip);
+        innerFlipTriggers.forEach(btn => btn.addEventListener('click', toggleFlip));
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', () => {
+            isFlipped = false;
+            isAutoSpinning = true;
+            card.classList.add('auto-spinning');
+            card.style.transform = '';
+            card.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+            if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: ON';
+          });
+        }
+
+        presetBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            isAutoSpinning = false;
+            card.classList.remove('auto-spinning');
+            if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: OFF';
+            currentRotY = parseFloat(btn.getAttribute('data-ry')) || 0;
+            currentRotX = parseFloat(btn.getAttribute('data-rx')) || 0;
+            isFlipped = Math.abs(currentRotY) >= 120;
+            card.style.transition = 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+            updateCardTransform();
+          });
+        });
+
+        function onPointerDown(e) {
+          isDragging = true;
+          isAutoSpinning = false;
+          card.classList.remove('auto-spinning');
+          if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: OFF';
+          card.style.transition = 'none';
+
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          startX = clientX;
+          startY = clientY;
+          lastRotY = currentRotY;
+          lastRotX = currentRotX;
+          velocityX = 0;
+          velocityY = 0;
+
+          if (animFrameId) cancelAnimationFrame(animFrameId);
+        }
+
+        function onPointerMove(e) {
+          if (!isDragging) return;
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          const deltaX = clientX - startX;
+          const deltaY = clientY - startY;
+
+          const newRotY = lastRotY + deltaX * 0.45;
+          const newRotX = Math.max(-25, Math.min(25, lastRotX - deltaY * 0.3));
+
+          velocityX = newRotY - currentRotY;
+          velocityY = newRotX - currentRotX;
+
+          currentRotY = newRotY;
+          currentRotX = newRotX;
+          updateCardTransform();
+        }
+
+        function onPointerUp() {
+          if (!isDragging) return;
+          isDragging = false;
+
+          function applyInertia() {
+            if (Math.abs(velocityX) > 0.05 || Math.abs(velocityY) > 0.05) {
+              currentRotY += velocityX;
+              currentRotX = Math.max(-25, Math.min(25, currentRotX + velocityY));
+              velocityX *= 0.94;
+              velocityY *= 0.94;
+              updateCardTransform();
+              animFrameId = requestAnimationFrame(applyInertia);
+            }
+          }
+          applyInertia();
+        }
+
+        card.addEventListener('mousedown', onPointerDown);
+        window.addEventListener('mousemove', onPointerMove);
+        window.addEventListener('mouseup', onPointerUp);
+
+        card.addEventListener('touchstart', onPointerDown, { passive: true });
+        window.addEventListener('touchmove', onPointerMove, { passive: true });
+        window.addEventListener('touchend', onPointerUp);
+
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
+      })();
     });
   </script>
   <!-- Background Aerial Flight & Helicopter Animation -->
   <script src="flight.js"></script>
+  <!-- Awwwards-Tier Core Interactive Engine (Spotlight, 3D Tilt, Magnetic Cursor, Cmd+K) -->
+  <script src="assets/js/awwwards-core.js"></script>
 </body>
 </html>

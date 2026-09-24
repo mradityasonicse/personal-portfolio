@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About &amp; Philosophy - Aditya Soni | Systems Builder &amp; Full-Stack Architect</title>
+  <meta name="description" content="Engineering philosophy, developer rig, lab workstation specs, and interactive terminal of Aditya Soni.">
+
+  <!-- Google Fonts (Optimized for Instant Load: Syne, Plus Jakarta Sans, JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Awwwards-Tier Design System & Luxury Themes -->
+  <link rel="stylesheet" href="assets/css/awwwards-theme.css">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#07090e",
+            "background": "#07090e",
+            "primary": "#e2e8f0",
+            "secondary": "#94a3b8",
+            "on-surface": "#f8fafc",
+            "on-surface-variant": "#94a3b8",
+            "on-tertiary-container": "#f43f5e",
+            "accent-red": "#f43f5e",
+            "surface-container-low": "#0b0f19",
+            "surface-container": "#0e1422",
+            "surface-container-high": "#141c2e",
+            "surface-container-highest": "#1c263c"
+          },
+          fontFamily: {
+            "display-xl": ["Syne", "sans-serif"],
+            "headline-lg": ["Syne", "sans-serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          spacing: {
+            "gutter": "24px",
+            "container-max": "1200px"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #0b1325;
+      color: #dae2fc;
+      font-family: 'Geist', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      border-left: 1px solid rgba(255, 255, 255, 0.06);
+      border-right: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-panel:hover {
+      border-color: rgba(234, 42, 35, 0.35);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(234, 42, 35, 0.12);
+    }
+
+    .ambient-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(234, 42, 35, 0.06) 0%, rgba(11, 19, 37, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Terminal blinker */
+    .cli-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 15px;
+      background-color: #ea2a23;
+      vertical-align: middle;
+      animation: blink 0.9s infinite;
+    }
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased relative selection:bg-accent-red selection:text-white">
+
+  <!-- Background Large Monolithic Watermark 'A' -->
+  <div class="bg-letter-a" aria-hidden="true">A</div>
+
+  <!-- Cinematic Scanlines & Film Texture Overlay -->
+  <div class="cinematic-scanlines" aria-hidden="true"></div>
+
+  <!-- Background WebGL Shader Canvas -->
+  <div class="fixed inset-0 z-0 pointer-events-none opacity-60">
+    <canvas id="about-shader-canvas" class="w-full h-full"></canvas>
+  </div>
+
+  <!-- Vertical Decorative Rail -->
+  <div class="fixed left-3 top-0 bottom-0 w-8 hidden lg:flex flex-col justify-center border-r border-white/10 opacity-60 z-20 pointer-events-none">
+    <p class="transform -rotate-90 whitespace-nowrap text-[8px] tracking-[0.3em] text-white/50 font-mono">
+      ENGINEERING LAB // PHILOSOPHY &amp; ARCHITECTURE // ADITYA SONI
+    </p>
+  </div>
+
+  <!-- Top Navigation Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/60 backdrop-blur-xl border-b border-white/10">
+    <div class="max-w-container-max mx-auto px-gutter h-16 md:h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 group">
+        <span class="font-display-xl text-xl md:text-2xl font-bold tracking-tight text-white group-hover:text-primary transition-colors">
+          ADITYA <span class="text-accent-red">SONI</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-7 font-label-sm text-xs tracking-widest uppercase">
+        <a href="index.html" class="text-on-surface-variant hover:text-accent-red transition-colors">Home</a>
+        <a href="about.html" class="text-white border-b-2 border-accent-red pb-1 font-semibold">About</a>
+        <a href="projects.html" class="text-on-surface-variant hover:text-accent-red transition-colors">Projects</a>
+        <a href="skills.html" class="text-on-surface-variant hover:text-accent-red transition-colors">Skills</a>
+        <a href="journey.html" class="text-on-surface-variant hover:text-accent-red transition-colors">Journey</a>
+        <a href="achievements.html" class="text-on-surface-variant hover:text-accent-red transition-colors">Achievements</a>
+        <a href="signature.html" class="text-on-surface-variant hover:text-accent-red transition-colors">Signature</a>
+        <a href="contact.html" class="text-on-surface-variant hover:text-accent-red transition-colors">Contact</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="index.html" class="px-4 py-2 rounded-full border border-white/20 hover:border-accent-red text-white hover:text-accent-red text-xs font-mono uppercase tracking-wider transition-all flex items-center gap-2">
+          <span class="material-symbols-outlined text-[15px]">play_circle</span>
+          <span>Intro</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <div class="md:hidden">
+        <button id="mobile-menu-btn" class="p-2 text-white/80 hover:text-white" aria-label="Toggle Menu">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 flex flex-col gap-4 font-label-sm text-sm">
+      <a href="index.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Home</a>
+      <a href="about.html" class="text-accent-red py-2 border-b border-white/5 font-semibold">About</a>
+      <a href="projects.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Projects</a>
+      <a href="skills.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Skills</a>
+      <a href="journey.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Journey</a>
+      <a href="achievements.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Achievements</a>
+      <a href="signature.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Signature</a>
+      <a href="contact.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Contact</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="relative z-10 pt-28 md:pt-36 pb-24">
+    <div class="max-w-container-max mx-auto px-gutter">
+      
+      <!-- Section 1: Hero & Story -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
+        <div class="lg:col-span-7 text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-red/10 border border-accent-red/30 text-accent-red text-[11px] font-mono tracking-widest uppercase mb-4">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-red animate-ping"></span>
+            <span>Architect &bull; Systems Thinker &bull; Craftsman</span>
+          </div>
+
+          <h1 class="font-display-xl text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6">
+            Engineering From <br><span class="text-accent-red italic">First Principles.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-on-surface-variant font-light leading-relaxed mb-6">
+            I am <strong>Aditya Soni</strong>, an engineer committed to high-throughput systems, low-latency protocols, and hardware-accelerated interactive web interfaces. Currently pursuing a 4-year <strong>B.Tech in Computer Science &amp; Engineering Core (2026–2030)</strong> at <strong>Rungta International Skills University (RISU)</strong>.
+          </p>
+
+          <p class="text-base text-on-surface-variant font-light leading-relaxed mb-8">
+            My journey bridges rigorous academic excellence (<strong>92% aggregate in Class 10th</strong>, <strong>80% in Senior Secondary PCM</strong>) with deep programmatic curiosity—from low-level runtime engines to reactive full-stack web applications and 120 FPS WebGL shader pipelines.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="projects.html" class="px-6 py-3.5 bg-white text-surface font-semibold text-xs uppercase tracking-widest rounded hover:bg-slate-200 transition-all flex items-center gap-2 shadow-lg">
+              <span>View Projects</span>
+              <span class="material-symbols-outlined text-[16px] text-accent-red">arrow_forward</span>
+            </a>
+            <a href="contact.html" class="px-6 py-3.5 glass-panel rounded border border-white/20 text-white font-mono text-xs uppercase tracking-widest hover:border-accent-red transition-all flex items-center gap-2">
+              <span>Get In Touch</span>
+              <span class="material-symbols-outlined text-[16px] text-blue-400">send</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Profile Frame & Coordinates -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-sm">
+            <!-- Ambient Backdrop Glow -->
+            <div class="absolute -inset-4 bg-gradient-to-r from-accent-red/20 to-blue-600/20 rounded-3xl blur-2xl opacity-60"></div>
+            
+            <div class="relative glass-panel rounded-3xl p-6 border border-white/15 overflow-hidden">
+              <!-- Corner Crosshairs -->
+              <span class="absolute top-2 left-2 text-white/40 font-mono text-xs">+</span>
+              <span class="absolute top-2 right-2 text-white/40 font-mono text-xs">+</span>
+              <span class="absolute bottom-2 left-2 text-white/40 font-mono text-xs">+</span>
+              <span class="absolute bottom-2 right-2 text-white/40 font-mono text-xs">+</span>
+
+              <div class="w-full aspect-[4/5] rounded-2xl overflow-hidden mb-5 border border-white/10 shadow-2xl relative">
+                <img 
+                  src="assets/11982553177829055786_WhatsApp_Image_2026-08-27_at_7.png" 
+                  alt="Aditya Soni" 
+                  class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4">
+                  <div class="font-display-xl text-xl text-white font-bold">Aditya Soni</div>
+                  <div class="font-mono text-[11px] text-emerald-400">B.Tech CSE Core &bull; 2026–2030</div>
+                </div>
+              </div>
+
+              <!-- Quick Meta HUD -->
+              <div class="space-y-2 pt-2 border-t border-white/10 font-mono text-xs">
+                <div class="flex justify-between items-center text-slate-300">
+                  <span class="text-white/50">Institution:</span>
+                  <span class="text-white font-medium text-right">Rungta Int. Skills Univ.</span>
+                </div>
+                <div class="flex justify-between items-center text-slate-300">
+                  <span class="text-white/50">Secondary (10th):</span>
+                  <span class="text-emerald-400 font-bold">92% Overall</span>
+                </div>
+                <div class="flex justify-between items-center text-slate-300">
+                  <span class="text-white/50">Senior Sec. (12th):</span>
+                  <span class="text-blue-300 font-bold">80% PCM Aggregate</span>
+                </div>
+                <div class="flex justify-between items-center text-slate-300">
+                  <span class="text-white/50">Location:</span>
+                  <span class="text-white">India (Open to Remote)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Core Engineering Pillars -->
+      <div class="mb-24">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <p class="font-mono text-xs text-accent-red uppercase tracking-[0.25em] mb-2">Architectural Tenets</p>
+          <h2 class="font-display-xl text-4xl sm:text-5xl font-bold text-white tracking-tight">The Three Core Pillars</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Pillar 1 -->
+          <div class="glass-panel p-8 rounded-2xl relative group">
+            <div class="w-12 h-12 rounded-xl bg-accent-red/10 border border-accent-red/30 flex items-center justify-center text-accent-red mb-6 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">memory</span>
+            </div>
+            <h3 class="font-display-xl text-2xl text-white font-bold mb-3">Mechanical Sympathy</h3>
+            <p class="text-sm text-on-surface-variant font-light leading-relaxed">
+              Software is only as good as its harmony with hardware. I write code that honors CPU caches, V8 JIT optimizations, asynchronous event loop queues, and GPU shader memory bandwidth.
+            </p>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="glass-panel p-8 rounded-2xl relative group">
+            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">speed</span>
+            </div>
+            <h3 class="font-display-xl text-2xl text-white font-bold mb-3">Zero-Lag Latency</h3>
+            <p class="text-sm text-on-surface-variant font-light leading-relaxed">
+              Every millisecond of round-trip network time and frame stutter costs trust. I build systems with sub-millisecond WebSocket channels, stateful stream parsing, and locked 120 FPS renders.
+            </p>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="glass-panel p-8 rounded-2xl relative group">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">draw</span>
+            </div>
+            <h3 class="font-display-xl text-2xl text-white font-bold mb-3">Radical Aesthetic Craft</h3>
+            <p class="text-sm text-on-surface-variant font-light leading-relaxed">
+              Utilitarian power doesn't have to look plain. Inspired by Awwwards standards and modern UI leaders, I engineer dark luxury glassmorphism, mathematical Bézier easing, and kinetic typography.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Interactive Developer CLI Playground -->
+      <div class="mb-24">
+        <div class="glass-panel rounded-3xl border border-white/15 p-6 sm:p-10 relative overflow-hidden shadow-2xl">
+          <!-- Terminal Title Bar -->
+          <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+              <span class="font-mono text-xs text-white/60 ml-2">aditya@risu-workstation: ~/philosophy</span>
+            </div>
+            <div class="font-mono text-[10px] text-accent-red tracking-wider">BASH v5.2 • LIVE CLI</div>
+          </div>
+
+          <!-- Terminal Output Log -->
+          <div id="cli-output" class="font-mono text-xs sm:text-sm text-slate-300 space-y-3 min-h-[220px] max-h-[360px] overflow-y-auto mb-4 pr-2">
+            <div class="text-white/60">
+              Welcome to Aditya Soni's interactive terminal. Type <span class="text-accent-red font-bold">help</span> to view available system commands.
+            </div>
+            <div class="text-emerald-400">
+              [SYSTEM]: All services initialized. Node v22.1.0, Python 3.12, OpenJDK 21, RISU Core ready.
+            </div>
+          </div>
+
+          <!-- Input Bar -->
+          <div class="flex items-center gap-2 pt-2 border-t border-white/10 font-mono text-xs sm:text-sm">
+            <span class="text-accent-red font-bold">aditya@risu:~$</span>
+            <input 
+              id="cli-input" 
+              type="text" 
+              placeholder="type command (e.g. bio, education, skills, stack, quote, contact, clear)"
+              class="flex-1 bg-transparent border-none text-white focus:outline-none focus:ring-0 font-mono text-xs sm:text-sm"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <span class="cli-cursor"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Developer Lab Setup & Tools -->
+      <div>
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <p class="font-mono text-xs text-blue-400 uppercase tracking-[0.25em] mb-2">Workstation Rig</p>
+          <h2 class="font-display-xl text-4xl sm:text-5xl font-bold text-white tracking-tight">The Developer Lab</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 font-mono text-xs">
+          <!-- Rig Card 1 -->
+          <div class="glass-panel p-6 rounded-xl border border-white/10">
+            <div class="text-accent-red font-bold mb-2 flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">terminal</span>
+              <span>ENVIRONMENT</span>
+            </div>
+            <ul class="space-y-2 text-white/70">
+              <li><strong class="text-white">Editor:</strong> VS Code &amp; Neovim</li>
+              <li><strong class="text-white">Shell:</strong> Zsh &bull; Oh My Posh</li>
+              <li><strong class="text-white">OS:</strong> Windows 11 &amp; Arch Linux</li>
+              <li><strong class="text-white">Font:</strong> JetBrains Mono NF</li>
+            </ul>
+          </div>
+
+          <!-- Rig Card 2 -->
+          <div class="glass-panel p-6 rounded-xl border border-white/10">
+            <div class="text-blue-400 font-bold mb-2 flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">code</span>
+              <span>LANGUAGES</span>
+            </div>
+            <ul class="space-y-2 text-white/70">
+              <li><strong class="text-white">TypeScript / JS:</strong> ES2024</li>
+              <li><strong class="text-white">Python:</strong> AsyncIO, FastAPI</li>
+              <li><strong class="text-white">Java:</strong> JVM, OOP Systems</li>
+              <li><strong class="text-white">HTML5 &amp; CSS3:</strong> Modern Grid</li>
+            </ul>
+          </div>
+
+          <!-- Rig Card 3 -->
+          <div class="glass-panel p-6 rounded-xl border border-white/10">
+            <div class="text-emerald-400 font-bold mb-2 flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">palette</span>
+              <span>DESIGN &amp; 3D</span>
+            </div>
+            <ul class="space-y-2 text-white/70">
+              <li><strong class="text-white">3D Engine:</strong> Three.js &bull; WebGL</li>
+              <li><strong class="text-white">UI Tooling:</strong> Figma</li>
+              <li><strong class="text-white">Motion:</strong> MotionSite AI &bull; CSS</li>
+              <li><strong class="text-white">Shaders:</strong> GLSL Raymarching</li>
+            </ul>
+          </div>
+
+          <!-- Rig Card 4 -->
+          <div class="glass-panel p-6 rounded-xl border border-white/10">
+            <div class="text-amber-400 font-bold mb-2 flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">school</span>
+              <span>ACADEMICS</span>
+            </div>
+            <ul class="space-y-2 text-white/70">
+              <li><strong class="text-white">Degree:</strong> B.Tech CSE Core</li>
+              <li><strong class="text-white">Period:</strong> 2026 – 2030 (4 Years)</li>
+              <li><strong class="text-white">University:</strong> RISU</li>
+              <li><strong class="text-white">Honors:</strong> 92% (10th), 80% (12th)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full py-12 bg-surface/80 border-t border-white/10 z-10 relative">
+    <div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="font-display-xl text-primary text-xl font-bold">
+        ADITYA <span class="text-accent-red">SONI</span>
+      </div>
+      <div class="flex gap-6 font-mono text-xs text-white/60">
+        <a href="index.html" class="hover:text-accent-red transition-colors">Home</a>
+        <a href="projects.html" class="hover:text-accent-red transition-colors">Projects</a>
+        <a href="skills.html" class="hover:text-accent-red transition-colors">Skills</a>
+        <a href="journey.html" class="hover:text-accent-red transition-colors">Journey</a>
+        <a href="achievements.html" class="hover:text-accent-red transition-colors">Achievements</a>
+        <a href="https://github.com/mradityasonicse" target="_blank" rel="noopener noreferrer" class="hover:text-accent-red transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/in/aditya-soni-698114370" target="_blank" rel="noopener noreferrer" class="hover:text-accent-red transition-colors">LinkedIn</a>
+      </div>
+      <div class="font-mono text-xs text-white/40">
+        &copy; 2026 Aditya Soni &bull; Rungta International Skills University
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts: CLI Engine & WebGL Shader -->
+  <script>
+    // 1. Interactive CLI Terminal Simulator
+    (function initCLI() {
+      const input = document.getElementById('cli-input');
+      const output = document.getElementById('cli-output');
+      if (!input || !output) return;
+
+      const commands = {
+        help: `Available commands:
+  • <span class="text-accent-red">bio</span>        - Brief engineering summary of Aditya Soni
+  • <span class="text-accent-red">education</span>  - Academic scores and current degree details
+  • <span class="text-accent-red">skills</span>     - Core technical stack and languages
+  • <span class="text-accent-red">stack</span>      - Current production tools and libraries
+  • <span class="text-accent-red">quote</span>      - First-principles engineering philosophy quote
+  • <span class="text-accent-red">contact</span>    - Direct communication channels (WhatsApp & Gmail)
+  • <span class="text-accent-red">clear</span>      - Clear terminal screen`,
+
+        bio: `ADITYA SONI
+Full-Stack Developer & Systems Builder.
+Specializing in high-throughput distributed backends, WebSocket pipelines, and 120 FPS WebGL interfaces. Currently enrolled in 4-Year B.Tech CSE Core at Rungta International Skills University (2026–2030).`,
+
+        education: `ACADEMIC HONORS:
+• 2024: Class 10th Secondary Board — 92% Overall Aggregate (Distinction)
+• 2026: Class 12th Senior Secondary — 80% Overall Aggregate (PCM Track)
+• 2026–2030: B.Tech Computer Science & Engineering (Core) at Rungta International Skills University (RISU)`,
+
+        skills: `LANGUAGES & FRAMEWORKS:
+• Languages: HTML5 (98%), CSS3 (95%), JavaScript ES6+ (96%), Python (95%), Java (90%), Go, Rust
+• Frontend: React 19, Next.js 15, Tailwind CSS, Three.js, WebGL 2.0
+• Systems: Low-latency WebSockets, Kafka Streaming, Docker, RESTful APIs`,
+
+        stack: `DEVELOPER RIG:
+• OS: Windows 11 Pro / Arch Linux
+• Editor: VS Code (One Dark Pro) & Neovim
+• Runtime: Node.js 22 LTS, OpenJDK 21, Python 3.12
+• Hardware: Multi-core workstation, high-refresh 120Hz display`,
+
+        quote: `"Simplicity is prerequisite for reliability. Measure twice, profile once, and never let latency steal the user's attention." — Aditya Soni`,
+
+        contact: `CONTACT INFO:
+• WhatsApp: +91 91316 31253 (direct message routing active)
+• Email: mradityasoni.cse@gmail.com
+• GitHub: https://github.com/mradityasonicse
+• LinkedIn: https://www.linkedin.com/in/aditya-soni-698114370`
+      };
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const val = input.value.trim().toLowerCase();
+          if (!val) return;
+
+          // Echo user line
+          const echoLine = document.createElement('div');
+          echoLine.className = 'text-white flex gap-2';
+          echoLine.innerHTML = `<span class="text-accent-red font-bold">aditya@risu:~$</span> <span>${input.value}</span>`;
+          output.appendChild(echoLine);
+
+          if (val === 'clear') {
+            output.innerHTML = '';
+          } else if (commands[val]) {
+            const respLine = document.createElement('div');
+            respLine.className = 'text-slate-300 whitespace-pre-line pl-4 border-l-2 border-accent-red/40 my-2';
+            respLine.innerHTML = commands[val];
+            output.appendChild(respLine);
+          } else {
+            const errLine = document.createElement('div');
+            errLine.className = 'text-red-400 pl-4';
+            errLine.innerHTML = `command not found: "${val}". Type <span class="text-accent-red font-bold">help</span> for command list.`;
+            output.appendChild(errLine);
+          }
+
+          input.value = '';
+          output.scrollTop = output.scrollHeight;
+        }
+      });
+    })();
+
+    // 2. Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // 3. WebGL Background Shader (Dark Navy & Crimson Wave)
+    (function initShader() {
+      const canvas = document.getElementById('about-shader-canvas');
+      if (!canvas) return;
+      const gl = canvas.getContext('webgl', { powerPreference: 'low-power', alpha: false, antialias: false });
+      if (!gl) return;
+
+      function resize() {
+        canvas.width = Math.floor(window.innerWidth * 0.5);
+        canvas.height = Math.floor(window.innerHeight * 0.5);
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      const vs = `attribute vec2 a_pos; varying vec2 v_uv; void main(){ v_uv = a_pos * 0.5 + 0.5; gl_Position = vec4(a_pos, 0.0, 1.0); }`;
+      const fs = `precision mediump float;
+        uniform float u_time;
+        varying vec2 v_uv;
+        void main() {
+          vec2 uv = v_uv;
+          vec3 deep = vec3(0.043, 0.074, 0.145);
+          float wave = sin(uv.x * 3.5 + u_time * 0.4) * cos(uv.y * 3.5 - u_time * 0.3);
+          vec3 redGlow = vec3(0.91, 0.16, 0.13) * 0.04 * wave;
+          gl_FragColor = vec4(deep + redGlow, 1.0);
+        }`;
+
+      function createShader(type, src) {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        return s;
+      }
+      const prog = gl.createProgram();
+      gl.attachShader(prog, createShader(gl.VERTEX_SHADER, vs));
+      gl.attachShader(prog, createShader(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+      const pos = gl.getAttribLocation(prog, 'a_pos');
+      gl.enableVertexAttribArray(pos);
+      gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+      const uTime = gl.getUniformLocation(prog, 'u_time');
+      let start = performance.now();
+      function render(now) {
+        gl.uniform1f(uTime, (now - start) * 0.001);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+    })();
+  </script>
+  <!-- Awwwards-Tier Core Interactive Engine (Spotlight, 3D Tilt, Magnetic Cursor, Cmd+K) -->
+  <script src="assets/js/awwwards-core.js"></script>
+</body>
+</html>

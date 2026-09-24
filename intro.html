@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Aditya Soni - Cinematic Intro Experience</title>
+  <!-- Google Fonts (Optimized for Instant Load: Syne, Plus Jakarta Sans, JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Awwwards-Tier Design System & Luxury Themes -->
+  <link rel="stylesheet" href="assets/css/awwwards-theme.css">
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#07090e",
+            "background": "#07090e",
+            "primary": "#e2e8f0",
+            "accent-red": "#f43f5e",
+            "on-surface": "#f8fafc",
+            "on-surface-variant": "#94a3b8"
+          },
+          fontFamily: {
+            "display-xl": ["Syne", "sans-serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .letter-reveal {
+      opacity: 0;
+      transform: translateY(24px) scale(0.95);
+      animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeSlideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .typewriter-text {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #ea2a23;
+      width: 0;
+      animation: typing 2.2s steps(36, end) 1.2s forwards, blink-caret .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #ea2a23; }
+    }
+
+    .progress-line {
+      width: 0%;
+      height: 3px;
+      background-color: #ea2a23;
+      box-shadow: 0 0 15px rgba(234, 42, 35, 0.8);
+      animation: progress 4.2s linear forwards;
+    }
+
+    @keyframes progress {
+      to { width: 100%; }
+    }
+    
+    .skip-btn {
+      transition: all 0.3s ease;
+    }
+    .skip-btn:hover {
+      box-shadow: 0 0 25px rgba(234, 42, 35, 0.5);
+      border-color: rgba(234, 42, 35, 0.8);
+      color: #ffffff;
+      background-color: rgba(234, 42, 35, 0.2);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface m-0 p-0 overflow-hidden w-full h-screen relative font-body-md select-none">
+
+  <!-- Background WebGL Shader Canvas -->
+  <div class="absolute inset-0 w-full h-full z-0 pointer-events-none">
+    <canvas id="intro-shader-canvas" class="w-full h-full block"></canvas>
+  </div>
+
+  <!-- Scanline & Atmospheric Vignette -->
+  <div class="absolute inset-0 bg-gradient-to-t from-[#02040a] via-transparent to-[#02040a] opacity-80 pointer-events-none z-10"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(2,4,10,0.85)_100%)] pointer-events-none z-10"></div>
+
+  <!-- Main Content Center Stage -->
+  <main class="relative z-20 w-full h-full flex flex-col items-center justify-center px-6">
+    
+    <!-- Central Editorial Box with Corner Crosshairs -->
+    <div class="relative py-8 px-10 sm:px-16 border-y border-white/20 backdrop-blur-xl bg-white/[0.03] shadow-[0_0_60px_rgba(234,42,35,0.25)] text-center max-w-4xl w-full">
+      <!-- Corner Crosshairs -->
+      <span class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 text-white/50 text-base font-mono">+</span>
+      <span class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-white/50 text-base font-mono">+</span>
+      <span class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 text-white/50 text-base font-mono">+</span>
+      <span class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 text-white/50 text-base font-mono">+</span>
+
+      <div class="font-mono text-xs text-accent-red tracking-[0.3em] uppercase mb-3 flex items-center justify-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent-red animate-ping"></span>
+        <span>INITIALIZING PRODUCTION INTERFACE</span>
+      </div>
+
+      <!-- Animated Letter-by-Letter Name -->
+      <h1 class="font-display-xl text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-white drop-shadow-[0_0_35px_rgba(234,42,35,0.6)] flex items-center justify-center flex-wrap" id="animated-name">
+        <!-- Injected via JavaScript for staggered reveal -->
+      </h1>
+
+      <!-- Subtitle -->
+      <div class="mt-6 font-mono text-xs sm:text-sm text-slate-300 tracking-[0.25em] flex items-center justify-center">
+        <span class="typewriter-text inline-block">SYSTEMS BUILDER • FULL-STACK ARCHITECT • 2026</span>
+      </div>
+    </div>
+
+    <!-- Quick Academic & University Badge -->
+    <div class="mt-6 font-mono text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-4 py-1.5 rounded-full flex items-center gap-2 backdrop-blur-md">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+      <span>B.Tech CSE Core &bull; Rungta International Skills University (RISU)</span>
+    </div>
+
+  </main>
+
+  <!-- Skip / Enter Button -->
+  <div class="absolute bottom-10 right-10 z-30">
+    <a href="index.html" class="skip-btn px-6 py-3 border border-white/20 rounded-full font-mono text-xs uppercase tracking-widest text-white bg-surface/40 backdrop-blur-md flex items-center gap-2 group cursor-pointer shadow-xl">
+      <span>Enter Portfolio</span>
+      <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+    </a>
+  </div>
+
+  <!-- Bottom Progress Line -->
+  <div class="absolute bottom-0 left-0 w-full z-30 bg-surface-container-low h-[3px]">
+    <div class="progress-line"></div>
+  </div>
+
+  <!-- WebGL Shader Script (from Stitch 5e51ebe58de74500a938d3f5018505db) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Staggered Letter Reveal
+      const nameContainer = document.getElementById('animated-name');
+      const firstName = "ADITYA";
+      const lastName = "SONI";
+      const delay = 0.08;
+      let currentIndex = 0;
+
+      // First name letters
+      const firstWrapper = document.createElement('div');
+      firstWrapper.className = 'inline-flex mr-4';
+      firstName.split('').forEach((char) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        span.className = 'letter-reveal inline-block';
+        span.style.animationDelay = `${currentIndex * delay}s`;
+        firstWrapper.appendChild(span);
+        currentIndex++;
+      });
+      nameContainer.appendChild(firstWrapper);
+
+      // Last name letters in accent-red
+      const lastWrapper = document.createElement('div');
+      lastWrapper.className = 'inline-flex text-accent-red';
+      lastName.split('').forEach((char) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        span.className = 'letter-reveal inline-block';
+        span.style.animationDelay = `${currentIndex * delay}s`;
+        lastWrapper.appendChild(span);
+        currentIndex++;
+      });
+      nameContainer.appendChild(lastWrapper);
+
+      // Automatic Redirect after 4.2 seconds
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 4200);
+
+      // 2. Simplex WebGL Kinetic Shader
+      const canvas = document.getElementById('intro-shader-canvas');
+      if (!canvas) return;
+
+      const gl = canvas.getContext('webgl', { powerPreference: 'high-performance', alpha: false, antialias: false });
+      if (!gl) return;
+
+      function resize() {
+        canvas.width = Math.floor(window.innerWidth * 0.75);
+        canvas.height = Math.floor(window.innerHeight * 0.75);
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      const vs = `attribute vec2 a_pos; varying vec2 v_uv; void main(){ v_uv = a_pos * 0.5 + 0.5; gl_Position = vec4(a_pos, 0.0, 1.0); }`;
+      const fs = `precision highp float;
+        uniform float u_time;
+        varying vec2 v_uv;
+
+        vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+        float snoise(vec2 v){
+          const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+          vec2 i  = floor(v + dot(v, C.yy) );
+          vec2 x0 = v -   i + dot(i, C.xx);
+          vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+          vec4 x12 = x0.xyxy + C.xxzz;
+          x12.xy -= i1;
+          i = mod(i, 289.0);
+          vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 )) + i.x + vec3(0.0, i1.x, 1.0 ));
+          vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+          m = m*m ; m = m*m ;
+          vec3 x = 2.0 * fract(p * C.www) - 1.0;
+          vec3 h = abs(x) - 0.5;
+          vec3 ox = floor(x + 0.5);
+          vec3 a0 = x - ox;
+          m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+          vec3 g;
+          g.x  = a0.x  * x0.x  + h.x  * x0.y;
+          g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+          return 130.0 * dot(m, g);
+        }
+
+        void main() {
+          vec2 uv = v_uv;
+          vec3 colorBg = vec3(0.02, 0.04, 0.09);
+          vec3 colorAccent = vec3(0.92, 0.16, 0.14);
+          float n = snoise(uv * 3.5 + u_time * 0.15);
+          float glow = exp(-8.0 * length(uv - 0.5));
+          float scanline = sin(uv.y * 360.0 + u_time * 4.0) * 0.015;
+          float grid = (step(0.985, fract(uv.x * 24.0)) + step(0.985, fract(uv.y * 24.0))) * 0.04;
+          vec3 finalColor = mix(colorBg, colorAccent * 0.15, n * 0.5 + 0.5);
+          finalColor += colorAccent * glow * 0.15 + scanline + grid;
+          gl_FragColor = vec4(finalColor, 1.0);
+        }`;
+
+      function createShader(type, src) {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        return s;
+      }
+      const prog = gl.createProgram();
+      gl.attachShader(prog, createShader(gl.VERTEX_SHADER, vs));
+      gl.attachShader(prog, createShader(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+      const pos = gl.getAttribLocation(prog, 'a_pos');
+      gl.enableVertexAttribArray(pos);
+      gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+      const uTime = gl.getUniformLocation(prog, 'u_time');
+      let start = performance.now();
+      function render(now) {
+        gl.uniform1f(uTime, (now - start) * 0.001);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+    });
+  </script>
+  <!-- Awwwards-Tier Core Interactive Engine (Spotlight, 3D Tilt, Magnetic Cursor, Cmd+K) -->
+  <script src="assets/js/awwwards-core.js"></script>
+</body>
+</html>

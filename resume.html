@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aditya Soni — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 16mm;
+    }
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .resume-container {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #07090e;
+      color: #e2e8f0;
+    }
+    .font-syne {
+      font-family: 'Syne', sans-serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="py-10 px-4 min-h-screen flex flex-col items-center">
+
+  <!-- Top Action Toolbar (No Print) -->
+  <div class="no-print max-w-4xl w-full flex justify-between items-center mb-8 px-2">
+    <a href="index.html" class="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-slate-400 hover:text-rose-400 transition-colors">
+      <span>&larr; Back to Portfolio</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <button onclick="window.print()" class="px-5 py-2.5 rounded-lg bg-rose-500 hover:bg-rose-600 text-white font-mono text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(244,63,94,0.3)] flex items-center gap-2 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+        </svg>
+        <span>Print / Save PDF</span>
+      </button>
+      <a href="assets/resume.pdf" download="Aditya_Soni_Resume.pdf" class="px-5 py-2.5 rounded-lg bg-white/10 hover:bg-white/15 text-white font-mono text-xs uppercase tracking-wider border border-white/20 transition-all flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+        </svg>
+        <span>Download PDF</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- A4 Clean Resume Paper -->
+  <main class="resume-container max-w-4xl w-full bg-[#0b0f19] border border-white/10 rounded-2xl p-8 sm:p-12 shadow-2xl print:bg-white print:text-slate-900 print:border-none print:shadow-none print:p-0">
+    
+    <!-- Header -->
+    <header class="border-b border-white/10 pb-6 mb-8 print:border-slate-200">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 class="font-syne text-3xl sm:text-4xl font-bold tracking-tight text-white print:text-slate-900">
+            ADITYA <span class="text-rose-500">SONI</span>
+          </h1>
+          <p class="font-mono text-xs sm:text-sm text-slate-400 mt-1 uppercase tracking-widest print:text-slate-600">
+            Systems Builder &bull; Full-Stack Developer &bull; Creative Technologist
+          </p>
+        </div>
+        <div class="font-mono text-xs text-slate-400 space-y-1 sm:text-right print:text-slate-600">
+          <div><a href="mailto:mradityasoni.cse@gmail.com" class="hover:text-rose-400 print:text-slate-900">mradityasoni.cse@gmail.com</a></div>
+          <div>+91 93018 73385 &bull; Bhilai, India</div>
+          <div>
+            <a href="https://github.com/mradityasonicse" target="_blank" class="hover:text-rose-400 text-rose-400 print:text-slate-800">github.com/mradityasonicse</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Sections -->
+    <div class="space-y-7 text-xs sm:text-sm leading-relaxed">
+
+      <!-- Executive Profile -->
+      <section>
+        <h2 class="font-mono text-[11px] uppercase tracking-widest text-rose-500 font-bold mb-2 flex items-center gap-2 print:text-rose-700">
+          <span>// Executive Summary</span>
+        </h2>
+        <p class="text-slate-300 print:text-slate-700 leading-relaxed">
+          High-performance full-stack developer and distributed systems architect specializing in real-time WebSockets, hardware-accelerated 3D graphics (WebGL/GLSL), and resilient microservices. Obsessed with sub-millisecond P99 latency, fluid 120 FPS browser interactions, clean modular code, and verifiable engineering outcomes.
+        </p>
+      </section>
+
+      <!-- Technical Skills Matrix -->
+      <section>
+        <h2 class="font-mono text-[11px] uppercase tracking-widest text-rose-500 font-bold mb-3 flex items-center gap-2 print:text-rose-700">
+          <span>// Technical Expertise</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+          <div class="bg-white/[0.02] border border-white/10 rounded-xl p-3.5 print:bg-slate-50 print:border-slate-200">
+            <div class="font-mono font-semibold text-white print:text-slate-900 mb-1 text-[11px] text-cyan-400">Languages &amp; Core</div>
+            <div class="text-slate-300 print:text-slate-700">TypeScript, JavaScript (ESNext), Go (Golang), Rust, Python, SQL, C/C++</div>
+          </div>
+          <div class="bg-white/[0.02] border border-white/10 rounded-xl p-3.5 print:bg-slate-50 print:border-slate-200">
+            <div class="font-mono font-semibold text-white print:text-slate-900 mb-1 text-[11px] text-rose-400">Frontend &amp; Graphics</div>
+            <div class="text-slate-300 print:text-slate-700">React 19, Next.js 15, WebGL 2.0, Three.js, GLSL Shaders, Tailwind CSS, Canvas 2D</div>
+          </div>
+          <div class="bg-white/[0.02] border border-white/10 rounded-xl p-3.5 print:bg-slate-50 print:border-slate-200">
+            <div class="font-mono font-semibold text-white print:text-slate-900 mb-1 text-[11px] text-emerald-400">Backend &amp; Systems</div>
+            <div class="text-slate-300 print:text-slate-700">Node.js, WebSockets, gRPC, Protobuf, Redis Pub/Sub, Docker, PostgreSQL, Linux</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Engineering Projects -->
+      <section>
+        <h2 class="font-mono text-[11px] uppercase tracking-widest text-rose-500 font-bold mb-3 flex items-center gap-2 print:text-rose-700">
+          <span>// Featured Engineering Projects</span>
+        </h2>
+
+        <div class="space-y-4">
+          <!-- Project 1 -->
+          <div class="border-l-2 border-rose-500 pl-4 py-0.5">
+            <div class="flex justify-between items-baseline mb-1">
+              <h3 class="font-semibold text-white text-sm print:text-slate-900">
+                PulseStream &mdash; Distributed Real-Time Telemetry Engine
+              </h3>
+              <span class="font-mono text-[10px] text-slate-400 print:text-slate-500">Go &bull; Redis &bull; Protobuf &bull; WebSockets</span>
+            </div>
+            <p class="text-slate-300 print:text-slate-700 text-xs mb-1">
+              High-throughput event streaming engine handling 100,000+ serialized telemetry events per second with 0.8ms P99 packet delivery and multi-threaded Web Worker canvas rendering.
+            </p>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="border-l-2 border-cyan-400 pl-4 py-0.5">
+            <div class="flex justify-between items-baseline mb-1">
+              <h3 class="font-semibold text-white text-sm print:text-slate-900">
+                Hyperion &mdash; Volumetric 3D Raymarching Pipeline
+              </h3>
+              <span class="font-mono text-[10px] text-slate-400 print:text-slate-500">WebGL 2.0 &bull; Three.js &bull; GLSL &bull; Linear Algebra</span>
+            </div>
+            <p class="text-slate-300 print:text-slate-700 text-xs mb-1">
+              Pure mathematical sphere-tracing raymarcher simulating procedural atmospheric clouds, signed distance fields (SDF), and Mie lighting without loading external polygon geometry.
+            </p>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="border-l-2 border-rose-500 pl-4 py-0.5">
+            <div class="flex justify-between items-baseline mb-1">
+              <h3 class="font-semibold text-white text-sm print:text-slate-900">
+                Aditi &mdash; Real-Time Video &amp; Collaboration Platform
+              </h3>
+              <span class="font-mono text-[10px] text-slate-400 print:text-slate-500">React 19 &bull; WebRTC &bull; Next.js 15 &bull; Docker</span>
+            </div>
+            <p class="text-slate-300 print:text-slate-700 text-xs mb-1">
+              Peer-to-peer and SFU video conferencing system with low-latency media pipelines, adaptive bitrate scaling, and synchronized collaborative state management.
+            </p>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="border-l-2 border-emerald-400 pl-4 py-0.5">
+            <div class="flex justify-between items-baseline mb-1">
+              <h3 class="font-semibold text-white text-sm print:text-slate-900">
+                Aura &mdash; Distributed Raft Consensus Task Queue
+              </h3>
+              <span class="font-mono text-[10px] text-slate-400 print:text-slate-500">Rust &bull; Go &bull; Raft &bull; gRPC</span>
+            </div>
+            <p class="text-slate-300 print:text-slate-700 text-xs mb-1">
+              Fault-tolerant distributed job coordinator with sub-15ms leader failover, heartbeat recovery, and exactly-once execution guarantees across heterogeneous clusters.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education & Milestones -->
+      <section>
+        <h2 class="font-mono text-[11px] uppercase tracking-widest text-rose-500 font-bold mb-3 flex items-center gap-2 print:text-rose-700">
+          <span>// Education &amp; Academic Honors</span>
+        </h2>
+        <div class="space-y-3">
+          <div class="flex justify-between items-baseline">
+            <div>
+              <div class="font-semibold text-white text-sm print:text-slate-900">B.Tech in Computer Science &amp; Engineering (Core)</div>
+              <div class="text-slate-400 text-xs print:text-slate-600">Rungta International Skills University</div>
+            </div>
+            <div class="font-mono text-xs text-rose-400 print:text-rose-700 font-semibold">2026 &ndash; 2030</div>
+          </div>
+          <div class="flex justify-between items-baseline">
+            <div>
+              <div class="font-semibold text-white text-sm print:text-slate-900">Secondary School Certificate (Class 10th)</div>
+              <div class="text-slate-400 text-xs print:text-slate-600">CBSE Board &bull; Academic Excellence</div>
+            </div>
+            <div class="font-mono text-xs text-emerald-400 print:text-emerald-700 font-semibold">2024 &bull; 92.0%</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Footer Seal -->
+    <footer class="mt-8 pt-6 border-t border-white/10 flex justify-between items-center font-mono text-[10px] text-slate-500 print:border-slate-200">
+      <div>Portfolio: adityasoni.dev &bull; Verified Candidate Identity</div>
+      <div>Aditya Soni &copy; 2026</div>
+    </footer>
+
+  </main>
+
+</body>
+</html>
