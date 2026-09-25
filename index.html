@@ -2398,11 +2398,21 @@
               </a>
             </div>
 
-            <div class="mt-8">
-              <a href="contact.html" class="glass-pill px-4 py-2 font-mono text-xs text-white/90 hover:text-rose-400 hover:border-rose-500/40 inline-flex items-center gap-2 group transition-all">
-                <span>Open Dedicated Terminal Page</span>
-                <span class="material-symbols-outlined text-[15px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </a>
+
+            <!-- Free Database Vault Live Status & Admin Trigger -->
+            <div class="mt-8 pt-6 border-t border-white/10">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-emerald-400 font-mono text-[11px] uppercase tracking-wider font-semibold">Free Cloud &amp; Local Database Active</span>
+              </div>
+              <p class="text-xs text-slate-400 font-light leading-relaxed mb-4">
+                All client inquiries are automatically recorded into a persistent database vault and forwarded to Aditya's inbox free of cost.
+              </p>
+              <button type="button" onclick="window.PortfolioDB.openVault()" class="glass-pill px-4 py-2 font-mono text-xs text-white/90 hover:text-cyan-400 hover:border-cyan-400/40 inline-flex items-center gap-2 group transition-all cursor-pointer shadow-sm">
+                <span class="material-symbols-outlined text-[17px] text-cyan-400">database</span>
+                <span>View Database Vault</span>
+                <span class="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform text-slate-400">arrow_forward</span>
+              </button>
             </div>
           </div>
 
@@ -2426,13 +2436,13 @@
                 <textarea id="message" name="message" rows="4" required placeholder="Tell me about your project or inquiry..." class="input-glass font-body-md text-white py-3 px-1 w-full placeholder:text-white/20 text-sm resize-none"></textarea>
               </div>
 
-              <button type="submit" class="btn-red font-label-sm text-xs font-bold uppercase tracking-widest py-4 px-8 rounded-lg flex items-center justify-center gap-3 w-full group">
-                <span>Send Message</span>
+              <button type="submit" id="contact-submit-btn" class="btn-red font-label-sm text-xs font-bold uppercase tracking-widest py-4 px-8 rounded-lg flex items-center justify-center gap-3 w-full group cursor-pointer shadow-lg hover:shadow-accent-red/25 transition-all">
+                <span id="contact-btn-text">Send Message &amp; Save to Database</span>
                 <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
               </button>
 
-              <div id="form-feedback" class="hidden font-label-sm text-xs text-center text-green-400 py-2">
-                Thank you! Your message has been sent successfully.
+              <div id="form-feedback" class="hidden font-mono text-xs text-center text-emerald-400 py-2.5 px-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                ✓ Message successfully recorded in Database Vault &amp; dispatched!
               </div>
             </form>
           </div>
@@ -2831,32 +2841,66 @@
         });
       });
 
-      // Contact Form Submission Handler
+      // Contact Form Submission Handler (Integrated with Free Database Vault)
       const form = document.getElementById('contact-form');
       const feedback = document.getElementById('form-feedback');
+      const submitBtn = document.getElementById('contact-submit-btn');
+      const submitText = document.getElementById('contact-btn-text');
+
       if (form && feedback) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
           e.preventDefault();
           
           // Get form values
           const name = document.getElementById('name').value.trim();
           const email = document.getElementById('email').value.trim();
           const message = document.getElementById('message').value.trim();
-          
-          // Format the message for WhatsApp
-          const whatsappNumber = '919131631253';
-          const text = `*New Portfolio Message*\n\n*Name:* ${name}\n*Email:* ${email}\n\n*Message:*\n${message}`;
-          const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
-          
-          // Show feedback
-          feedback.classList.remove('hidden');
-          form.reset();
-          setTimeout(() => feedback.classList.add('hidden'), 5000);
 
-          // Open WhatsApp (new window with fallback to direct location redirect)
-          const newWindow = window.open(whatsappUrl, '_blank');
-          if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-            window.location.href = whatsappUrl;
+          if (!name || !email || !message) return;
+
+          // UI Loading state
+          if (submitBtn) submitBtn.disabled = true;
+          if (submitText) submitText.textContent = 'Saving to Database Vault...';
+
+          try {
+            // 1. Save to Free Database Vault (IndexedDB + LocalStorage + FormSubmit Cloud Sync)
+            let record = null;
+            if (window.PortfolioDB && window.PortfolioDB.saveContact) {
+              record = await window.PortfolioDB.saveContact(name, email, message, 'Portfolio Contact Form');
+            }
+
+            // 2. Show feedback with unique record ID
+            feedback.innerHTML = `
+              <span class="flex items-center justify-center gap-1.5 font-semibold text-emerald-400">
+                <span class="material-symbols-outlined text-base">verified</span>
+                Message successfully saved to Database Vault ${record ? '(#' + record.id + ')' : ''} &amp; dispatched!
+              </span>
+            `;
+            feedback.classList.remove('hidden');
+            form.reset();
+
+            // 3. Show HUD toast notification
+            showToast(`Inquiry recorded in Database Vault ${record ? '(#' + record.id + ')' : ''}`);
+
+            // 4. Also open WhatsApp direct link as seamless multi-channel communication
+            const whatsappNumber = '919131631253';
+            const text = `*New Portfolio Inquiry [DB Ref: ${record ? record.id : 'NEW'}]*\n\n*Name:* ${name}\n*Email:* ${email}\n\n*Message:*\n${message}`;
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+            
+            setTimeout(() => {
+              window.open(whatsappUrl, '_blank');
+            }, 600);
+
+            setTimeout(() => {
+              feedback.classList.add('hidden');
+            }, 7000);
+          } catch (err) {
+            console.error('Contact submission error:', err);
+            feedback.innerHTML = `<span class="text-rose-400">Message saved locally. Thank you!</span>`;
+            feedback.classList.remove('hidden');
+          } finally {
+            if (submitBtn) submitBtn.disabled = false;
+            if (submitText) submitText.textContent = 'Send Message & Save to Database';
           }
         });
       }
@@ -4068,5 +4112,9 @@
   <script src="flight.js"></script>
   <!-- Awwwards-Tier Core Interactive Engine (Spotlight, 3D Tilt, Magnetic Cursor, Cmd+K) -->
   <script src="assets/js/awwwards-core.js"></script>
+  <!-- Free-of-Cost Hybrid Database Vault Engine -->
+  <script src="assets/js/db-vault.js"></script>
+  <!-- Astra AI Assistant Neural Chatbot -->
+  <script src="assets/js/ai-chatbot.js"></script>
 </body>
 </html>

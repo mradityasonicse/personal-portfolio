@@ -315,7 +315,7 @@
     const form = document.getElementById('contact-form');
     const feedback = document.getElementById('form-feedback');
     if (form && feedback) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         // Get form values
@@ -323,21 +323,24 @@
         const email = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
 
-        // Format the message for WhatsApp
-        const whatsappNumber = '919131631253';
-        const text = `*New Portfolio Message*\n\n*Name:* ${name}\n*Email:* ${email}\n\n*Message:*\n${message}`;
-        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+        if (!name || !email || !message) return;
+
+        let record = null;
+        if (window.PortfolioDB && window.PortfolioDB.saveContact) {
+          record = await window.PortfolioDB.saveContact(name, email, message, 'Dedicated Contact Page');
+        }
 
         // Show feedback
+        feedback.innerHTML = `✓ Message saved to Database Vault ${record ? '(#' + record.id + ')' : ''} &amp; sent!`;
         feedback.classList.remove('hidden');
         form.reset();
-        setTimeout(() => feedback.classList.add('hidden'), 5000);
+        setTimeout(() => feedback.classList.add('hidden'), 6000);
 
-        // Open WhatsApp (new window with fallback to direct location redirect)
-        const newWindow = window.open(whatsappUrl, '_blank');
-        if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-          window.location.href = whatsappUrl;
-        }
+        // Optional WhatsApp direct link fallback
+        const whatsappNumber = '919131631253';
+        const text = `*New Portfolio Message [DB Ref: ${record ? record.id : 'NEW'}]*\n\n*Name:* ${name}\n*Email:* ${email}\n\n*Message:*\n${message}`;
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+        setTimeout(() => window.open(whatsappUrl, '_blank'), 600);
       });
     }
 
@@ -358,9 +361,13 @@
       });
     });
   </script>
-  <!-- Background Aerial Flight & Helicopter Animation -->
+  <!-- Background Cosmic Fluid & Sacred Geometry Engine -->
   <script src="flight.js"></script>
   <!-- Awwwards-Tier Core Interactive Engine (Spotlight, 3D Tilt, Magnetic Cursor, Cmd+K) -->
   <script src="assets/js/awwwards-core.js"></script>
+  <!-- Free-of-Cost Hybrid Database Vault Engine -->
+  <script src="assets/js/db-vault.js"></script>
+  <!-- Astra AI Assistant Neural Chatbot -->
+  <script src="assets/js/ai-chatbot.js"></script>
 </body>
 </html>
