@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -159,18 +159,6 @@
       .reveal {
         transition-duration: 0.3s !important;
       }
-    }
-
-    #back-to-top-btn {
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(0.85);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    #back-to-top-btn.is-visible {
-      opacity: 1 !important;
-      pointer-events: auto !important;
-      transform: scale(1) !important;
     }
 
     /* High-Performance GPU Accelerated Signature Engine */
@@ -513,7 +501,7 @@
     <!-- WebGL Kinetic Organic Noise Shader from Screen 7005a1570aed4b6b8feae4d235d95076 -->
     <canvas id="intro-shader-canvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-85"></canvas>
     
-    <!-- Hypnotic Cosmic Portal Canvas -->
+    <!-- Intro Fleet Canvas (Supersonic Fighter Squadron & Tactical Speedboats) -->
     <canvas id="intro-fleet-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
 
     <!-- Scanline & Atmospheric Vignette -->
@@ -592,177 +580,78 @@
   <div class="cinematic-scanlines" aria-hidden="true"></div>
 
   <!-- Fixed Top Navigation Bar -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-2xl border-b border-white/10">
-    <div class="max-w-container-max mx-auto px-gutter h-16 md:h-20 flex items-center justify-between gap-4">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/50 backdrop-blur-xl border-b border-white/10">
+    <div class="max-w-container-max mx-auto px-gutter h-16 md:h-20 flex items-center justify-between">
       <!-- Brand / Logo -->
-      <a href="#home" class="flex items-center gap-2 group flex-shrink-0 mr-4 lg:mr-8">
+      <a href="#home" class="flex items-center gap-2 group">
         <span class="serif-font text-xl md:text-2xl font-bold tracking-tight text-white group-hover:text-primary transition-colors">
           ADITYA <span class="text-accent-red">SONI</span>
         </span>
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-5 xl:gap-7 font-label-sm text-xs tracking-widest uppercase">
+      <nav class="hidden lg:flex items-center gap-6 font-label-sm text-xs tracking-widest uppercase">
         <a href="#home" class="nav-link text-white nav-underline active pb-1 hover:text-accent-red transition-colors" data-section="home">Home</a>
-        <a href="#about" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="about">About</a>
-        <a href="#skills" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="skills">Skills</a>
+        <a href="about.html" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors">About</a>
         <a href="#projects" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="projects">Projects</a>
+        <a href="#skills" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="skills">Skills</a>
         <a href="#journey" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="journey">Journey</a>
-        <a href="#achievements" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="achievements">Achievements</a>
+        <a href="achievements.html" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors">Achievements</a>
         <a href="#signature" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="signature">Signature</a>
         <a href="#contact" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="contact">Contact</a>
       </nav>
 
-      <!-- Action Button -->
-      <div class="hidden md:flex items-center gap-3 flex-shrink-0">
-        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="glass-pill px-5 py-2 font-label-sm text-xs uppercase tracking-wider text-white hover:text-accent-red hover:border-accent-red/50 transition-all flex items-center gap-2 group shadow-sm">
+      <!-- Action Buttons -->
+      <div class="hidden md:flex items-center gap-3">
+        <!-- Audio Soundscape Toggle Button -->
+        <button id="soundtrack-toggle-btn" class="glass-pill px-3 py-1.5 font-label-sm text-[11px] text-white/90 hover:text-accent-red hover:border-accent-red/50 transition-all flex items-center gap-2 cursor-pointer" title="Toggle Ambient Cyber Soundscape">
+          <div class="audio-eq-container paused" id="audio-eq-bars">
+            <div class="audio-eq-bar"></div>
+            <div class="audio-eq-bar"></div>
+            <div class="audio-eq-bar"></div>
+            <div class="audio-eq-bar"></div>
+          </div>
+          <span id="audio-sound-label">Audio: OFF</span>
+        </button>
+
+        <button data-open-cmd class="glass-pill px-3 py-1.5 font-mono text-[11px] text-slate-300 hover:text-white flex items-center gap-2 cursor-pointer transition-all hover:border-rose-500/40" title="Open Command Palette (Ctrl+K)">
+          <i data-lucide="command" class="w-3.5 h-3.5 text-rose-500"></i>
+          <span>⌘K</span>
+        </button>
+        <button id="replay-intro-btn" class="glass-pill px-3.5 py-1.5 font-label-sm text-[11px] uppercase tracking-wider text-white/90 hover:text-accent-red hover:border-accent-red/50 transition-all flex items-center gap-1.5 cursor-pointer" title="Replay Cinematic Intro">
+          <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-accent-red"></i>
+          <span>Intro</span>
+        </button>
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="glass-pill px-4 py-1.5 font-label-sm text-xs uppercase tracking-wider text-primary hover:text-accent-red hover:border-accent-red/50 transition-all flex items-center gap-1.5 group">
           <span>Resume</span>
-          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-accent-red"></i>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
         </a>
       </div>
 
-      <!-- Mobile Top Navigation Actions (Menu + Quick Resume) -->
+      <!-- Mobile Menu Button -->
       <div class="lg:hidden flex items-center gap-2">
-        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/90 text-[11px] font-mono uppercase tracking-wider hover:border-accent-red/50 transition-all flex items-center gap-1.5">
-          <span>Resume</span>
-          <span class="material-symbols-outlined text-[13px] text-accent-red">open_in_new</span>
-        </a>
-        <button id="mobile-menu-btn" class="p-2 text-white/90 hover:text-white rounded-lg bg-white/5 border border-white/10 hover:border-accent-red/40 transition-all flex items-center justify-center cursor-pointer" aria-label="Toggle Navigation">
-          <span id="mobile-menu-icon" class="material-symbols-outlined text-2xl transition-transform">menu</span>
+        <button id="mobile-replay-btn" class="p-2 text-white/80 hover:text-accent-red" title="Replay Intro">
+          <span class="material-symbols-outlined text-xl text-accent-red">replay</span>
+        </button>
+        <button id="mobile-menu-btn" class="p-2 text-white/80 hover:text-white" aria-label="Toggle Navigation">
+          <span class="material-symbols-outlined text-2xl">menu</span>
         </button>
       </div>
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-[#07090e]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 flex flex-col gap-2 font-label-sm text-sm shadow-2xl max-h-[80vh] overflow-y-auto">
-      <div class="text-[11px] font-mono text-accent-red uppercase tracking-widest pb-2 border-b border-white/10 flex items-center justify-between">
-        <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-accent-red animate-ping"></span>PORTFOLIO SECTIONS</span>
-        <span class="text-white/40">v2.6</span>
-      </div>
-      <a href="#home" class="mobile-nav-link text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="home">
-        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">home</span>Home</span>
-        <span class="text-[10px] font-mono text-white/40">01</span>
-      </a>
-      <a href="#about" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="about">
-        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">person</span>About</span>
-        <span class="text-[10px] font-mono text-white/40">02</span>
-      </a>
-      <a href="#skills" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="skills">
-        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">memory</span>Skills</span>
-        <span class="text-[10px] font-mono text-white/40">03</span>
-      </a>
-      <a href="#projects" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="projects">
-        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">terminal</span>Projects</span>
-        <span class="text-[10px] font-mono text-white/40">04</span>
-      </a>
-      <a href="#journey" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="journey">
-        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">timeline</span>Journey</span>
-        <span class="text-[10px] font-mono text-white/40">05</span>
-      </a>
-      <a href="#achievements" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="achievements">
-        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">school</span>Achievements</span>
-        <span class="text-[10px] font-mono text-white/40">06</span>
-      </a>
-      <a href="#signature" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="signature">
-        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">draw</span>Signature Studio</span>
-        <span class="text-[10px] font-mono text-white/40">07</span>
-      </a>
-      <a href="#contact" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="contact">
-        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">mail</span>Contact</span>
-        <span class="text-[10px] font-mono text-white/40">08</span>
-      </a>
-
-      <!-- Quick Deep-Dive Links in Mobile Menu -->
-      <div class="pt-3 flex flex-col gap-2">
-        <div class="text-[10px] font-mono text-white/40 uppercase tracking-widest">Dedicated Deep-Dive Pages</div>
-        <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-          <a href="about.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 flex items-center justify-between transition-all">
-            <span>Philosophy Lab</span>
-            <span class="material-symbols-outlined text-xs text-accent-red">arrow_forward</span>
-          </a>
-          <a href="projects.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 flex items-center justify-between transition-all">
-            <span>Full Projects</span>
-            <span class="material-symbols-outlined text-xs text-accent-red">arrow_forward</span>
-          </a>
-          <a href="skills.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 flex items-center justify-between transition-all">
-            <span>Skill Matrix</span>
-            <span class="material-symbols-outlined text-xs text-accent-red">arrow_forward</span>
-          </a>
-          <a href="achievements.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 flex items-center justify-between transition-all">
-            <span>Distinctions</span>
-            <span class="material-symbols-outlined text-xs text-accent-red">arrow_forward</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Action in Menu -->
-      <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="mt-2 text-center py-3 bg-accent-red hover:bg-accent-red/90 text-white rounded-xl font-semibold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-lg shadow-accent-red/25 transition-all">
-        <span>View Official Resume (PDF)</span>
-        <span class="material-symbols-outlined text-sm">open_in_new</span>
-      </a>
+    <div id="mobile-menu" class="hidden lg:hidden bg-surface/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 flex flex-col gap-3 font-label-sm text-sm">
+      <a href="#home" class="mobile-nav-link text-accent-red py-1.5 border-b border-white/5">Home</a>
+      <a href="about.html" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">About</a>
+      <a href="#projects" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">Projects</a>
+      <a href="#skills" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">Skills</a>
+      <a href="#journey" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">Journey</a>
+      <a href="achievements.html" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">Achievements</a>
+      <a href="#signature" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">Signature</a>
+      <a href="#contact" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">Contact</a>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="mt-2 text-center py-2.5 bg-accent-red text-white rounded font-semibold uppercase tracking-wider text-xs">View Resume</a>
     </div>
   </header>
-
-  <!-- ==================== FIXED MOBILE LOWER AREA NAVIGATION BAR (BOTTOM NAVIGATION DOCK) ==================== -->
-  <nav id="mobile-bottom-nav" class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#07090e]/92 backdrop-blur-2xl border-t border-white/10 px-1.5 py-1.5 shadow-[0_-12px_40px_rgba(0,0,0,0.85)] pb-[calc(env(safe-area-inset-bottom,0px)+6px)] transition-all duration-300">
-    <div class="max-w-md mx-auto grid grid-cols-6 items-center justify-items-center">
-      
-      <!-- Home Tab -->
-      <a href="#home" class="mobile-bottom-tab flex flex-col items-center justify-center py-1 px-1 rounded-xl text-accent-red transition-all group active:scale-95" data-section="home" aria-label="Navigate to Home">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center relative">
-          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110">home</span>
-          <span class="tab-indicator absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-accent-red shadow-[0_0_8px_#ea2a23]"></span>
-        </div>
-        <span class="text-[9px] font-mono tracking-tight font-semibold mt-0.5">Home</span>
-      </a>
-
-      <!-- About Tab -->
-      <a href="#about" class="mobile-bottom-tab flex flex-col items-center justify-center py-1 px-1 rounded-xl text-white/60 hover:text-white transition-all group active:scale-95" data-section="about" aria-label="Navigate to About">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center relative">
-          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110">person</span>
-          <span class="tab-indicator hidden absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-accent-red shadow-[0_0_8px_#ea2a23]"></span>
-        </div>
-        <span class="text-[9px] font-mono tracking-tight mt-0.5">About</span>
-      </a>
-
-      <!-- Skills Tab -->
-      <a href="#skills" class="mobile-bottom-tab flex flex-col items-center justify-center py-1 px-1 rounded-xl text-white/60 hover:text-white transition-all group active:scale-95" data-section="skills" aria-label="Navigate to Skills">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center relative">
-          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110">memory</span>
-          <span class="tab-indicator hidden absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-accent-red shadow-[0_0_8px_#ea2a23]"></span>
-        </div>
-        <span class="text-[9px] font-mono tracking-tight mt-0.5">Skills</span>
-      </a>
-
-      <!-- Projects Tab -->
-      <a href="#projects" class="mobile-bottom-tab flex flex-col items-center justify-center py-1 px-1 rounded-xl text-white/60 hover:text-white transition-all group active:scale-95" data-section="projects" aria-label="Navigate to Projects">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center relative">
-          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110">terminal</span>
-          <span class="tab-indicator hidden absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-accent-red shadow-[0_0_8px_#ea2a23]"></span>
-        </div>
-        <span class="text-[9px] font-mono tracking-tight mt-0.5">Projects</span>
-      </a>
-
-      <!-- Journey Tab -->
-      <a href="#journey" class="mobile-bottom-tab flex flex-col items-center justify-center py-1 px-1 rounded-xl text-white/60 hover:text-white transition-all group active:scale-95" data-section="journey" aria-label="Navigate to Journey">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center relative">
-          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110">timeline</span>
-          <span class="tab-indicator hidden absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-accent-red shadow-[0_0_8px_#ea2a23]"></span>
-        </div>
-        <span class="text-[9px] font-mono tracking-tight mt-0.5">Journey</span>
-      </a>
-
-      <!-- Contact Tab -->
-      <a href="#contact" class="mobile-bottom-tab flex flex-col items-center justify-center py-1 px-1 rounded-xl text-white/60 hover:text-white transition-all group active:scale-95" data-section="contact" aria-label="Navigate to Contact">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center relative">
-          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110">mail</span>
-          <span class="tab-indicator hidden absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-accent-red shadow-[0_0_8px_#ea2a23]"></span>
-        </div>
-        <span class="text-[9px] font-mono tracking-tight mt-0.5">Contact</span>
-      </a>
-
-    </div>
-  </nav>
 
   <!-- Vertical Decorative Rail (Desktop) -->
   <div class="fixed left-3 top-0 bottom-0 w-8 hidden lg:flex flex-col justify-center border-r border-white/10 opacity-60 z-20 pointer-events-none">
@@ -822,20 +711,20 @@
             </div>
 
             <!-- Metrics / Stats Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 pt-6 border-t border-white/10">
-              <div class="glass-pill p-2.5 sm:p-3.5 text-center">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/10">
+              <div class="glass-pill p-3.5 text-center">
                 <div class="font-display text-2xl sm:text-3xl font-extrabold text-rose-500 mb-0.5">3+</div>
                 <div class="font-mono text-[10px] text-slate-400 uppercase tracking-widest">Years Experience</div>
               </div>
-              <div class="glass-pill p-2.5 sm:p-3.5 text-center">
+              <div class="glass-pill p-3.5 text-center">
                 <div class="font-display text-2xl sm:text-3xl font-extrabold text-cyan-400 mb-0.5">100%</div>
                 <div class="font-mono text-[10px] text-slate-400 uppercase tracking-widest">Production Integrity</div>
               </div>
-              <div class="glass-pill p-2.5 sm:p-3.5 text-center">
+              <div class="glass-pill p-3.5 text-center">
                 <div class="font-display text-2xl sm:text-3xl font-extrabold text-rose-400 mb-0.5">120 FPS</div>
                 <div class="font-mono text-[10px] text-slate-400 uppercase tracking-widest">GPU Rendering</div>
               </div>
-              <div class="glass-pill p-2.5 sm:p-3.5 text-center">
+              <div class="glass-pill p-3.5 text-center">
                 <div class="font-display text-2xl sm:text-3xl font-extrabold text-emerald-400 mb-0.5">&lt;1 ms</div>
                 <div class="font-mono text-[10px] text-slate-400 uppercase tracking-widest">Socket Latency</div>
               </div>
@@ -843,8 +732,8 @@
           </div>
 
           <!-- Right Column: Circular Orbit Profile Frame with Rotating Text, Radar Rings & Floating Status -->
-          <div class="lg:col-span-5 flex justify-center items-center relative py-4 lg:py-8 order-first lg:order-last">
-            <div class="relative w-[250px] h-[250px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] lg:w-[440px] lg:h-[440px] rounded-full flex items-center justify-center">
+          <div class="lg:col-span-5 flex justify-center items-center relative py-8">
+            <div class="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] md:w-[440px] md:h-[440px] rounded-full flex items-center justify-center">
               
               <!-- Celestial Orbit Rings & Satellites (From Stitch Reference 465fbe8ad9804f6ebeb38d71b8029fbf) -->
               <div class="orbit-radar-ring-outer">
@@ -880,200 +769,31 @@
               <!-- Center Profile Image Frame -->
               <div class="profile-image-wrapper group shadow-[0_0_60px_rgba(234,42,35,0.35)] relative overflow-hidden glass-panel border border-white/20 transition-transform duration-500 hover:scale-[1.03] hover:border-accent-red/60">
                 <img 
-                  src="assets/aditya_profile.png" 
+                  src="assets/11982553177829055786_WhatsApp_Image_2026-08-27_at_7.png" 
                   alt="Aditya Soni" 
-                  class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                  onerror="this.src='assets/11982553177829055786_WhatsApp_Image_2026-08-27_at_7.png'"
+                  class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                  onerror="this.src='assets/6296019163469535870_image_png.png'"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+              </div>
+
+              <!-- Floating Live Telemetry Status Card (From Reference 465fbe8ad9804f6ebeb38d71b8029fbf) -->
+              <div class="absolute -bottom-4 md:bottom-4 -right-2 md:-right-6 glass-panel border border-white/15 p-4 rounded-2xl z-30 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl min-w-[230px] border-l-4 border-l-accent-red">
+                <p class="font-label-sm text-[10px] text-accent-red mb-1 flex items-center gap-2 font-bold tracking-wider">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 cyber-beacon-pulse"></span>
+                  <span>LOCATION &bull; ACTIVE</span>
+                </p>
+                <p class="font-label-sm text-[11px] text-white/90 mb-1 font-mono">India // Remote &amp; Global</p>
+                <div class="flex items-center gap-1.5 font-label-sm text-[10px] text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 w-fit">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span>OPEN FOR FULL-TIME ROLES</span>
+                </div>
               </div>
 
             </div>
           </div>
 
         </div>
-      </div>
-    </section>
-
-    <!-- ==================== SECTION: ABOUT ==================== -->
-    <section id="about" class="py-24 md:py-32 relative">
-      <div class="ambient-glow -top-20 -left-20"></div>
-
-      <div class="max-w-container-max mx-auto px-gutter relative z-10">
-        
-        <!-- Section Header -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 md:mb-16 gap-6">
-          <div>
-            <p class="font-label-sm text-xs text-accent-red uppercase tracking-[0.25em] mb-2 flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-accent-red animate-pulse"></span>
-              <span>Architectural Tenets &bull; Academic Pedigree</span>
-            </p>
-            <h2 class="font-display-xl text-5xl md:text-7xl font-bold text-white tracking-tight">
-              Engineering From <span class="text-accent-red italic">First Principles</span>
-            </h2>
-          </div>
-          <div class="flex flex-col items-start md:items-end gap-3">
-            <p class="font-body-md text-on-surface-variant max-w-md text-sm sm:text-base leading-relaxed font-light">
-              Designing distributed systems with hardware sympathy, sub-millisecond network topologies, and Awwwards-tier craft.
-            </p>
-            <a href="about.html" class="glass-pill px-4 py-2 font-mono text-xs text-white/90 hover:text-accent-red hover:border-accent-red/50 inline-flex items-center gap-2 group transition-all">
-              <span>Explore Dedicated Philosophy &amp; Lab</span>
-              <span class="material-symbols-outlined text-[15px] group-hover:translate-x-1 transition-transform text-accent-red">arrow_forward</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Bento Grid: Identity & Foundations -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
-          
-          <!-- Identity & Academic Foundation Card -->
-          <div class="lg:col-span-7 glass-card p-8 sm:p-10 rounded-3xl bg-surface-container-low/40 backdrop-blur-xl border border-white/10 flex flex-col justify-between relative overflow-hidden group">
-            <div class="relative z-10">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-red/10 border border-accent-red/30 text-accent-red text-[11px] font-mono tracking-widest uppercase mb-4">
-                <span class="w-1.5 h-1.5 rounded-full bg-accent-red animate-ping"></span>
-                <span>Undergraduate Engineer &bull; B.Tech CSE Core</span>
-              </div>
-
-              <h3 class="font-display-xl text-3xl sm:text-4xl font-bold text-white mb-4">
-                Aditya Soni
-              </h3>
-
-              <p class="text-slate-300 text-sm sm:text-base font-light leading-relaxed mb-6">
-                Currently pursuing a 4-year <strong>B.Tech in Computer Science &amp; Engineering Core (2026–2030)</strong> at <strong>Rungta International Skills University (RISU)</strong>. My approach unites academic discipline with rigorous systems engineering—focusing on distributed algorithms, operating system internals, low-overhead WebSocket pipelines, and GPU hardware acceleration.
-              </p>
-
-              <!-- Academic Honors Badges -->
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 font-mono text-xs">
-                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10">
-                  <div class="text-emerald-400 font-bold text-lg sm:text-xl">92%</div>
-                  <div class="text-white/60 text-[10px] uppercase tracking-wider mt-0.5">Class 10th Distinction</div>
-                  <div class="text-[10px] text-emerald-400/80">Secondary Board Exam</div>
-                </div>
-                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10">
-                  <div class="text-cyan-400 font-bold text-lg sm:text-xl">80%</div>
-                  <div class="text-white/60 text-[10px] uppercase tracking-wider mt-0.5">Class 12th PCM</div>
-                  <div class="text-[10px] text-cyan-400/80">Senior Secondary STEM</div>
-                </div>
-                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10">
-                  <div class="text-rose-400 font-bold text-lg sm:text-xl">2026-30</div>
-                  <div class="text-white/60 text-[10px] uppercase tracking-wider mt-0.5">4-Year Degree</div>
-                  <div class="text-[10px] text-rose-400/80">RISU University</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- CTAs -->
-            <div class="flex flex-wrap items-center gap-3 pt-6 border-t border-white/10 relative z-10">
-              <a href="about.html" class="px-5 py-2.5 bg-accent-red hover:bg-accent-red/90 text-white font-mono text-xs uppercase tracking-wider rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-accent-red/25">
-                <span>View Full Philosophy</span>
-                <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
-              </a>
-              <a href="#projects" class="px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/15 text-white font-mono text-xs uppercase tracking-wider rounded-xl transition-all flex items-center gap-2">
-                <span>See Projects</span>
-                <span class="material-symbols-outlined text-[15px]">arrow_downward</span>
-              </a>
-              <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/15 text-white/80 hover:text-white font-mono text-xs uppercase tracking-wider rounded-xl transition-all flex items-center gap-2">
-                <span>Resume</span>
-                <span class="material-symbols-outlined text-[15px]">open_in_new</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Interactive CLI / Workstation Rig HUD -->
-          <div class="lg:col-span-5 glass-card p-6 sm:p-8 rounded-3xl bg-surface-container-low/40 backdrop-blur-xl border border-white/10 flex flex-col justify-between">
-            <div>
-              <!-- Terminal Header -->
-              <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
-                <div class="flex items-center gap-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-                  <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
-                  <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
-                  <span class="font-mono text-[11px] text-white/60 ml-2">aditya@risu: ~/about</span>
-                </div>
-                <div class="font-mono text-[10px] text-accent-red tracking-widest uppercase">LIVE SYSTEM</div>
-              </div>
-
-              <!-- Terminal Body -->
-              <div class="font-mono text-xs text-slate-300 space-y-2 mb-4">
-                <div class="text-white/60">$ cat profile.json</div>
-                <div class="bg-black/40 p-3.5 rounded-xl border border-white/5 text-[11px] space-y-1 text-slate-300 overflow-x-auto">
-                  <div><span class="text-rose-400">"name"</span>: <span class="text-emerald-300">"Aditya Soni"</span>,</div>
-                  <div><span class="text-rose-400">"education"</span>: <span class="text-emerald-300">"B.Tech CSE Core (RISU)"</span>,</div>
-                  <div><span class="text-rose-400">"graduating"</span>: <span class="text-cyan-300">2030</span>,</div>
-                  <div><span class="text-rose-400">"focus"</span>: [<span class="text-amber-300">"Distributed Systems"</span>, <span class="text-amber-300">"3D WebGL"</span>, <span class="text-amber-300">"Real-time Sockets"</span>],</div>
-                  <div><span class="text-rose-400">"status"</span>: <span class="text-emerald-400">"Open for Internships &amp; Collaborations"</span></div>
-                </div>
-              </div>
-
-              <!-- Workstation Specifications -->
-              <div class="pt-3 border-t border-white/10 font-mono text-[11px] space-y-2">
-                <div class="text-white/50 uppercase tracking-widest text-[10px]">Lab Workstation Rig</div>
-                <div class="grid grid-cols-2 gap-2 text-white/80">
-                  <div class="p-2 rounded-lg bg-white/[0.02] border border-white/5">
-                    <span class="text-white/40 block text-[9px]">TOOLING</span>
-                    <span>VS Code • Neovim • Zsh</span>
-                  </div>
-                  <div class="p-2 rounded-lg bg-white/[0.02] border border-white/5">
-                    <span class="text-white/40 block text-[9px]">STACK</span>
-                    <span>TS • Python • Java • WebGL</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Terminal Hint -->
-            <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-white/50">
-              <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>Shell Ready</span>
-              <a href="about.html" class="text-accent-red hover:underline flex items-center gap-1">Open Interactive CLI &rarr;</a>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Three Core Engineering Pillars -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          <!-- Pillar 1 -->
-          <div class="glass-card p-7 rounded-2xl bg-surface-container-low/40 backdrop-blur-xl border border-white/10 hover:border-accent-red/40 transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-accent-red/10 border border-accent-red/30 flex items-center justify-center text-accent-red mb-5 group-hover:scale-110 transition-transform">
-              <span class="material-symbols-outlined text-2xl">memory</span>
-            </div>
-            <h4 class="font-headline-lg text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-              Mechanical Sympathy
-            </h4>
-            <p class="font-body-md text-on-surface-variant text-sm font-light leading-relaxed">
-              Writing code with reverence for the underlying silicon: CPU cache line friendliness, V8 JIT memory allocation patterns, and GPU shader pipelining.
-            </p>
-          </div>
-
-          <!-- Pillar 2 -->
-          <div class="glass-card p-7 rounded-2xl bg-surface-container-low/40 backdrop-blur-xl border border-white/10 hover:border-cyan-400/40 transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-110 transition-transform">
-              <span class="material-symbols-outlined text-2xl">speed</span>
-            </div>
-            <h4 class="font-headline-lg text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-              Zero-Lag Protocols
-            </h4>
-            <p class="font-body-md text-on-surface-variant text-sm font-light leading-relaxed">
-              Sub-millisecond latency budgets with persistent binary WebSockets, non-blocking asynchronous event loops, and locked 120 FPS rendering.
-            </p>
-          </div>
-
-          <!-- Pillar 3 -->
-          <div class="glass-card p-7 rounded-2xl bg-surface-container-low/40 backdrop-blur-xl border border-white/10 hover:border-emerald-400/40 transition-all group">
-            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5 group-hover:scale-110 transition-transform">
-              <span class="material-symbols-outlined text-2xl">draw</span>
-            </div>
-            <h4 class="font-headline-lg text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-              Radical Aesthetic Craft
-            </h4>
-            <p class="font-body-md text-on-surface-variant text-sm font-light leading-relaxed">
-              Utilitarian power packaged in luxury design: tailored cubic Bézier curves, atmospheric glassmorphism, and responsive typography.
-            </p>
-          </div>
-
-        </div>
-
       </div>
     </section>
 
@@ -1094,15 +814,9 @@
               Engineering <span class="text-accent-red italic">Prowess</span>
             </h2>
           </div>
-          <div class="flex flex-col items-start md:items-end gap-3">
-            <p class="font-body-md text-on-surface-variant max-w-md text-sm sm:text-base leading-relaxed font-light">
-              Engineered for high throughput, microsecond latency budgets, responsive UI synchrony, and GPU-driven rendering.
-            </p>
-            <a href="skills.html" class="glass-pill px-4 py-2 font-mono text-xs text-white/90 hover:text-cyan-400 hover:border-cyan-500/40 inline-flex items-center gap-2 group transition-all">
-              <span>View Dedicated Skills Page</span>
-              <span class="material-symbols-outlined text-[15px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-            </a>
-          </div>
+          <p class="font-body-md text-on-surface-variant max-w-md text-sm sm:text-base leading-relaxed font-light">
+            Engineered for high throughput, microsecond latency budgets, responsive UI synchrony, and GPU-driven rendering.
+          </p>
         </div>
 
         <!-- Skills Filter Tabs -->
@@ -1402,24 +1116,18 @@
               Featured <span class="text-accent-red">Projects</span>
             </h2>
           </div>
-          <div class="flex flex-col items-start md:items-end gap-3">
-            <p class="font-body-md text-on-surface-variant max-w-lg text-sm sm:text-base leading-relaxed font-light">
-              Architected for resilience, extreme performance, and visual elegance. From low-latency streaming engines to WebGL procedural universes.
-            </p>
-            <a href="projects.html" class="glass-pill px-4 py-2 font-mono text-xs text-white/90 hover:text-rose-400 hover:border-rose-500/40 inline-flex items-center gap-2 group transition-all">
-              <span>View Dedicated Projects Page</span>
-              <span class="material-symbols-outlined text-[15px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-            </a>
-          </div>
+          <p class="font-body-md text-on-surface-variant max-w-lg text-sm sm:text-base leading-relaxed font-light">
+            Architected for resilience, extreme performance, and visual elegance. From low-latency streaming engines to WebGL procedural universes.
+          </p>
         </div>
 
         <!-- Category Filter Tabs -->
         <div class="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-white/10" id="project-filter-tabs">
           <button class="project-filter-btn px-4 py-2 rounded-xl font-label-sm text-xs uppercase tracking-wider transition-all bg-accent-red text-white shadow-lg shadow-accent-red/20 border border-accent-red" data-category="all">
-            All Projects (7)
+            All Projects (6)
           </button>
           <button class="project-filter-btn px-4 py-2 rounded-xl font-label-sm text-xs uppercase tracking-wider transition-all text-on-surface-variant hover:text-white bg-white/5 border border-white/10 hover:border-white/20" data-category="fullstack">
-            Full-Stack (3)
+            Full-Stack (2)
           </button>
           <button class="project-filter-btn px-4 py-2 rounded-xl font-label-sm text-xs uppercase tracking-wider transition-all text-on-surface-variant hover:text-white bg-white/5 border border-white/10 hover:border-white/20" data-category="systems">
             Distributed Systems (2)
@@ -1433,80 +1141,10 @@
           </button>
         </div>
 
-        <!-- Projects Grid (7 Masterpiece Cards) -->
+        <!-- Projects Grid (6 Masterpiece Cards) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
           
-          <!-- Project 1: Buddha The Spa (Premier Featured Project) -->
-          <div class="project-card cascade-ready glass-panel rounded-2xl spotlight-card tilt-card p-6 sm:p-7 flex flex-col justify-between group border border-white/10 hover:border-amber-400/60 transition-all duration-300" data-category="fullstack">
-            <div>
-              <!-- Visual Mockup Banner -->
-              <div class="w-full h-44 rounded-xl bg-gradient-to-br from-[#1c150c] via-[#241a0e] to-[#362512] border border-amber-500/20 mb-6 p-4 flex flex-col justify-between relative overflow-hidden group-hover:border-amber-400/40 transition-all shadow-[inset_0_0_30px_rgba(245,158,11,0.08)]">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.22),transparent_65%)] pointer-events-none"></div>
-                <div class="flex items-center justify-between z-10">
-                  <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
-                    <span class="font-mono text-[10px] text-amber-300 font-semibold tracking-wider uppercase">buddhathespa.com</span>
-                  </div>
-                  <span class="font-mono text-[10px] text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/30 font-medium">LIVE PRODUCTION</span>
-                </div>
-                <!-- Mini Spa Brand Wireframe -->
-                <div class="relative z-10 py-1">
-                  <div class="text-amber-200 font-serif text-lg tracking-wide flex items-center gap-1.5 font-semibold">
-                    <span class="text-amber-400 text-xl leading-none">ॐ</span>
-                    <span>BUDDHA THE SPA</span>
-                  </div>
-                  <div class="text-amber-300/70 text-[11px] font-light tracking-wider">Luxury Sanctuary &bull; Marine Drive, Telibandha</div>
-                  <div class="flex items-center gap-2 mt-1">
-                    <span class="text-amber-400 text-xs font-semibold">★ 4.9</span>
-                    <span class="text-white/40 text-[10px]">(128+ Verified Reviews)</span>
-                    <span class="text-emerald-400 text-[10px] font-mono bg-emerald-500/10 px-1.5 py-0.2 rounded border border-emerald-500/20">Soundproof Suites</span>
-                  </div>
-                </div>
-                <!-- Bottom Status -->
-                <div class="flex items-center justify-between text-[10px] font-mono text-white/60 z-10 pt-2 border-t border-amber-500/15">
-                  <span class="text-amber-200/80">WhatsApp Concierge Engine</span>
-                  <span class="text-amber-400 font-semibold">&lt; 0.6s FCP | 98 CWV</span>
-                </div>
-              </div>
-
-              <div class="flex justify-between items-start mb-3">
-                <span class="font-label-sm text-[10px] text-amber-400 uppercase tracking-widest px-2.5 py-1 rounded bg-amber-400/10 border border-amber-400/20 font-semibold">Luxury Web &bull; Full-Stack</span>
-                <span class="material-symbols-outlined text-outline group-hover:text-amber-400 transition-colors text-2xl">spa</span>
-              </div>
-
-              <h3 class="font-headline-lg text-2xl text-white font-bold mb-2 group-hover:text-primary transition-colors">
-                Buddha The Spa
-              </h3>
-              <p class="font-body-md text-on-surface-variant text-sm leading-relaxed mb-6 font-light">
-                Premier luxury wellness web platform & booking sanctuary featuring dynamic therapy selectors, soundproof suite scheduling, hyper-local SEO ranking #1, and automated WhatsApp concierge routing.
-              </p>
-            </div>
-
-            <div>
-              <div class="flex flex-wrap gap-1.5 mb-6 pt-4 border-t border-white/10">
-                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-amber-200 bg-amber-400/10 border border-amber-400/20">HTML5 / CSS3</span>
-                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Tailwind CSS</span>
-                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">JavaScript</span>
-                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">JSON-LD Schema</span>
-                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">WhatsApp API</span>
-                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Local SEO</span>
-              </div>
-
-              <div class="flex items-center justify-between font-label-sm text-xs">
-                <a href="https://www.buddhathespa.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-amber-400 hover:text-white transition-colors">
-                  <span class="material-symbols-outlined text-base">language</span>
-                  <span>Live Site</span>
-                  <span class="material-symbols-outlined text-xs">arrow_outward</span>
-                </a>
-                <button class="project-modal-btn flex items-center gap-1.5 text-amber-400 hover:text-white transition-colors cursor-pointer" data-project="buddhaspa">
-                  <span>Architecture</span>
-                  <span class="material-symbols-outlined text-base">arrow_outward</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 2: Nexus Cloud Workspace -->
+          <!-- Project 1: Nexus Cloud Workspace -->
           <div class="project-card cascade-ready glass-panel rounded-2xl spotlight-card tilt-card p-6 sm:p-7 flex flex-col justify-between group border border-white/10 hover:border-emerald-500/50 transition-all duration-300" data-category="fullstack">
             <div>
               <!-- Visual Mockup Banner -->
@@ -1831,53 +1469,53 @@
             </div>
           </div>
 
-          <!-- Project 6: Hypnotic Fluid & Sacred Geometry Dynamics Engine -->
-          <div class="project-card cascade-ready glass-panel rounded-2xl spotlight-card tilt-card p-6 sm:p-7 flex flex-col justify-between group border border-white/10 hover:border-cyan-400/50 transition-all duration-300" data-category="graphics">
+          <!-- Project 6: Hydrodynamic Maritime Fleet Simulator -->
+          <div class="project-card cascade-ready glass-panel rounded-2xl spotlight-card tilt-card p-6 sm:p-7 flex flex-col justify-between group border border-white/10 hover:border-blue-400/50 transition-all duration-300" data-category="graphics">
             <div>
               <!-- Visual Mockup Banner -->
-              <div class="w-full h-44 rounded-xl bg-gradient-to-br from-[#020b18] via-[#08182f] to-[#120722] border border-white/10 mb-6 p-4 flex flex-col justify-between relative overflow-hidden group-hover:border-cyan-400/30 transition-all">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,240,255,0.25),transparent_65%)] pointer-events-none"></div>
+              <div class="w-full h-44 rounded-xl bg-gradient-to-br from-[#04101e] to-[#0c2443] border border-white/10 mb-6 p-4 flex flex-col justify-between relative overflow-hidden group-hover:border-blue-400/30 transition-all">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.2),transparent_60%)] pointer-events-none"></div>
                 <div class="flex items-center justify-between z-10">
-                  <span class="font-mono text-[10px] text-cyan-400 uppercase tracking-widest flex items-center gap-1.5">
-                    <span class="material-symbols-outlined text-cyan-400 text-sm">all_inclusive</span>
-                    <span>SACRED HARMONICS</span>
+                  <span class="font-mono text-[10px] text-blue-400 uppercase tracking-widest flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-blue-400 text-sm">sailing</span>
+                    <span>PHYSICS SIMULATION</span>
                   </span>
                   <span class="font-mono text-[10px] text-white/70">120 HZ SYNC</span>
                 </div>
-                <!-- Simulated Hypnotic Wave Orbit Diagram -->
+                <!-- Simulated Boat Fleet Diagram -->
                 <div class="relative py-2 flex items-center justify-center z-10">
-                  <div class="w-36 h-12 border border-cyan-500/30 rounded-full flex items-center justify-center bg-cyan-950/20 backdrop-blur-sm relative">
-                    <div class="absolute -left-1.5 w-3.5 h-3.5 bg-rose-500 rounded-full shadow-[0_0_12px_#f43f5e] animate-pulse"></div>
-                    <div class="text-[9px] font-mono text-cyan-300 tracking-widest uppercase">QUANTUM ATTRACTOR</div>
-                    <div class="absolute -right-1.5 w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_10px_#00f0ff]"></div>
+                  <div class="w-32 h-10 border border-white/20 rounded-full flex items-center justify-center bg-white/5 relative">
+                    <div class="absolute -left-2 w-3 h-3 bg-accent-red rounded-full shadow-[0_0_10px_#ea2a23]"></div>
+                    <div class="text-[9px] font-mono text-white/70 tracking-widest uppercase">FLAGSHIP WAKE</div>
+                    <div class="absolute -right-2 w-2 h-2 bg-cyan-400 rounded-full"></div>
                   </div>
                 </div>
                 <div class="flex items-center justify-between text-[10px] font-mono text-white/50 z-10 pt-2 border-t border-white/5">
-                  <span>Zero-GC Attractor Math</span>
-                  <span class="text-cyan-400">Butter-Smooth 120 FPS</span>
+                  <span>Zero-GC Particle Pooling</span>
+                  <span class="text-blue-400">Butter-Smooth 120 FPS</span>
                 </div>
               </div>
 
               <div class="flex justify-between items-start mb-3">
-                <span class="font-label-sm text-[10px] text-cyan-400 uppercase tracking-widest px-2.5 py-1 rounded bg-cyan-400/10 border border-cyan-400/20 font-semibold">Hypnotic Physics &bull; Canvas</span>
-                <span class="material-symbols-outlined text-outline group-hover:text-cyan-400 transition-colors text-2xl">cyclone</span>
+                <span class="font-label-sm text-[10px] text-blue-400 uppercase tracking-widest px-2.5 py-1 rounded bg-blue-400/10 border border-blue-400/20 font-semibold">Physics &bull; Canvas</span>
+                <span class="material-symbols-outlined text-outline group-hover:text-blue-400 transition-colors text-2xl">kayaking</span>
               </div>
 
               <h3 class="font-headline-lg text-2xl text-white font-bold mb-2 group-hover:text-primary transition-colors">
-                Hypnotic Fluid Dynamics Engine
+                Maritime Fleet Simulator
               </h3>
               <p class="font-body-md text-on-surface-variant text-sm leading-relaxed mb-6 font-light">
-                Mathematical attractor & sacred geometry engine featuring zero-garbage collection particle pooling, interactive celestial ripples, and 120Hz smooth scrolling sync.
+                Physics-driven nautical vessel animation engine with zero-garbage collection particle pooling, procedural boat wakes, and 120Hz smooth scrolling sync.
               </p>
             </div>
 
             <div>
               <div class="flex flex-wrap gap-1.5 mb-6 pt-4 border-t border-white/10">
                 <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">HTML5 Canvas</span>
-                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Attractor Math</span>
-                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Sacred Harmonics</span>
-                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Fluid Ripples</span>
-                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">120Hz Sync</span>
+                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Object Pooling</span>
+                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Fluid Wakes</span>
+                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Vector Math</span>
+                <span class="px-2 py-0.5 rounded font-label-sm text-[10px] text-white bg-white/5 border border-white/10">Touch Optimizations</span>
               </div>
 
               <div class="flex items-center justify-between font-label-sm text-xs">
@@ -1915,12 +1553,6 @@
           <p class="font-body-md text-on-surface-variant text-base leading-relaxed font-light">
             Tracking milestones from computer science foundations and rigorous mathematics to building distributed high-concurrency systems and real-time graphics pipelines.
           </p>
-          <div class="mt-4">
-            <a href="journey.html" class="glass-pill px-4 py-2 font-mono text-xs text-white/90 hover:text-cyan-400 hover:border-cyan-500/40 inline-flex items-center gap-2 group transition-all">
-              <span>View Full Locomotive Timeline Page</span>
-              <span class="material-symbols-outlined text-[15px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-            </a>
-          </div>
         </div>
 
         <!-- Vertical Timeline Section -->
@@ -2042,108 +1674,6 @@
           </div>
         </div>
 
-    </section>
-
-    <!-- ==================== SECTION: ACHIEVEMENTS ==================== -->
-    <section id="achievements" class="py-24 md:py-32 relative">
-      <div class="ambient-glow -bottom-32 -left-20"></div>
-
-      <div class="max-w-container-max mx-auto px-gutter relative z-10">
-        
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 md:mb-16 gap-6">
-          <div>
-            <p class="font-label-sm text-xs text-accent-red uppercase tracking-[0.25em] mb-2 flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-accent-red animate-pulse"></span>
-              <span>Scholastic &bull; Systems Distinctions</span>
-            </p>
-            <h2 class="font-display-xl text-5xl md:text-7xl font-bold text-white tracking-tight">
-              Academic &amp; <span class="text-accent-red italic">Honors</span>
-            </h2>
-          </div>
-          <div class="flex flex-col items-start md:items-end gap-3">
-            <p class="font-body-md text-on-surface-variant max-w-md text-sm sm:text-base leading-relaxed font-light">
-              Demonstrated academic excellence in STEM, algorithmic problem solving, and software engineering discipline.
-            </p>
-            <a href="achievements.html" class="glass-pill px-4 py-2 font-mono text-xs text-white/90 hover:text-accent-red hover:border-accent-red/50 inline-flex items-center gap-2 group transition-all">
-              <span>View Dedicated Distinctions Page</span>
-              <span class="material-symbols-outlined text-[15px] group-hover:translate-x-1 transition-transform text-accent-red">arrow_forward</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Distinction KPI Cards -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
-          <div class="glass-card p-6 rounded-2xl text-center bg-surface-container-low/40 border border-white/10">
-            <div class="font-display-xl text-4xl sm:text-5xl font-bold text-emerald-400 mb-1">92%</div>
-            <div class="font-mono text-xs text-white/60 uppercase tracking-widest">Class 10th Aggregate</div>
-          </div>
-          <div class="glass-card p-6 rounded-2xl text-center bg-surface-container-low/40 border border-white/10">
-            <div class="font-display-xl text-4xl sm:text-5xl font-bold text-cyan-400 mb-1">80%</div>
-            <div class="font-mono text-xs text-white/60 uppercase tracking-widest">Class 12th PCM STEM</div>
-          </div>
-          <div class="glass-card p-6 rounded-2xl text-center bg-surface-container-low/40 border border-white/10">
-            <div class="font-display-xl text-4xl sm:text-5xl font-bold text-accent-red mb-1">4-Year</div>
-            <div class="font-mono text-xs text-white/60 uppercase tracking-widest">B.Tech CSE Core (RISU)</div>
-          </div>
-          <div class="glass-card p-6 rounded-2xl text-center bg-surface-container-low/40 border border-white/10">
-            <div class="font-display-xl text-4xl sm:text-5xl font-bold text-amber-300 mb-1">100%</div>
-            <div class="font-mono text-xs text-white/60 uppercase tracking-widest">Production Integrity</div>
-          </div>
-        </div>
-
-        <!-- Featured Distinction Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-          
-          <!-- Card 1 -->
-          <div class="glass-card p-8 rounded-3xl bg-surface-container-low/40 border border-white/10 flex flex-col justify-between group hover:border-accent-red/40 transition-all">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-semibold">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                  B.Tech CSE Core &bull; 2026–2030
-                </span>
-                <span class="font-mono text-xs text-white/40">RISU</span>
-              </div>
-              <h3 class="font-display-xl text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
-                Rungta International Skills University
-              </h3>
-              <p class="font-body-md text-on-surface-variant text-sm font-light leading-relaxed mb-6">
-                Pursuing an intensive 4-year undergraduate curriculum specializing in Advanced Data Structures, Algorithms, Computer Systems Architecture, OS Internals, and Distributed Cloud Computing.
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10 font-mono text-[11px]">
-              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-emerald-300">Campus Full-Time</span>
-              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-white/80">Computer Networks</span>
-              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-white/80">Systems Engineering</span>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="glass-card p-8 rounded-3xl bg-surface-container-low/40 border border-white/10 flex flex-col justify-between group hover:border-accent-red/40 transition-all">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-semibold">
-                  Secondary &bull; Senior Secondary
-                </span>
-                <span class="font-mono text-xs text-white/40">Honors</span>
-              </div>
-              <h3 class="font-display-xl text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
-                Board Scholastic Distinctions
-              </h3>
-              <p class="font-body-md text-on-surface-variant text-sm font-light leading-relaxed mb-6">
-                Achieved <strong>92% overall aggregate</strong> in Secondary School (Class 10th) with High Distinctions in Mathematics &amp; Computer Applications, followed by <strong>80% PCM Aggregate</strong> in Senior Secondary STEM (Class 12th).
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10 font-mono text-[11px]">
-              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-emerald-300">92% Secondary</span>
-              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-cyan-300">80% Senior Sec. PCM</span>
-              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-amber-300">Advanced Calculus</span>
-            </div>
-          </div>
-
-        </div>
-
       </div>
     </section>
 
@@ -2166,12 +1696,6 @@
           <p class="font-body-md text-on-surface-variant text-base sm:text-lg leading-relaxed">
             Real-time vector stroke synthesis animating my personal signature and verified digital mark.
           </p>
-          <div class="mt-4">
-            <a href="signature.html" class="glass-pill px-4 py-2 font-mono text-xs text-white/90 hover:text-rose-400 hover:border-rose-500/40 inline-flex items-center gap-2 group transition-all">
-              <span>Launch Fullscreen Signature Studio</span>
-              <span class="material-symbols-outlined text-[15px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-            </a>
-          </div>
         </div>
 
         <!-- Main Signature Showcase Panel -->
@@ -2409,23 +1933,6 @@
                 <span class="material-symbols-outlined text-xl">mail</span>
               </a>
             </div>
-
-
-            <!-- Free Database Vault Live Status & Admin Trigger -->
-            <div class="mt-8 pt-6 border-t border-white/10">
-              <div class="flex items-center gap-2 mb-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span class="text-emerald-400 font-mono text-[11px] uppercase tracking-wider font-semibold">Free Cloud &amp; Local Database Active</span>
-              </div>
-              <p class="text-xs text-slate-400 font-light leading-relaxed mb-4">
-                All client inquiries are automatically recorded into a persistent database vault and forwarded to Aditya's inbox free of cost.
-              </p>
-              <button type="button" onclick="window.PortfolioDB.openVault()" class="glass-pill px-4 py-2 font-mono text-xs text-white/90 hover:text-cyan-400 hover:border-cyan-400/40 inline-flex items-center gap-2 group transition-all cursor-pointer shadow-sm">
-                <span class="material-symbols-outlined text-[17px] text-cyan-400">database</span>
-                <span>View Database Vault</span>
-                <span class="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform text-slate-400">arrow_forward</span>
-              </button>
-            </div>
           </div>
 
           <!-- Right Column: Glassmorphism Contact Form -->
@@ -2448,13 +1955,13 @@
                 <textarea id="message" name="message" rows="4" required placeholder="Tell me about your project or inquiry..." class="input-glass font-body-md text-white py-3 px-1 w-full placeholder:text-white/20 text-sm resize-none"></textarea>
               </div>
 
-              <button type="submit" id="contact-submit-btn" class="btn-red font-label-sm text-xs font-bold uppercase tracking-widest py-4 px-8 rounded-lg flex items-center justify-center gap-3 w-full group cursor-pointer shadow-lg hover:shadow-accent-red/25 transition-all">
-                <span id="contact-btn-text">Send Message &amp; Save to Database</span>
+              <button type="submit" class="btn-red font-label-sm text-xs font-bold uppercase tracking-widest py-4 px-8 rounded-lg flex items-center justify-center gap-3 w-full group">
+                <span>Send Message</span>
                 <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
               </button>
 
-              <div id="form-feedback" class="hidden font-mono text-xs text-center text-emerald-400 py-2.5 px-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-                ✓ Message successfully recorded in Database Vault &amp; dispatched!
+              <div id="form-feedback" class="hidden font-label-sm text-xs text-center text-green-400 py-2">
+                Thank you! Your message has been sent successfully.
               </div>
             </form>
           </div>
@@ -2466,7 +1973,7 @@
   </main>
 
   <!-- Global Footer -->
-  <footer class="w-full py-12 pb-28 lg:pb-12 bg-surface/80 border-t border-white/10 relative z-20">
+  <footer class="w-full py-12 bg-surface/80 border-t border-white/10 relative z-20">
     <div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-6">
       <div class="flex items-center gap-3">
         <a href="#signature" class="font-display-xl text-xl font-bold tracking-tight text-white hover:text-accent-red transition-colors flex items-center gap-2">
@@ -2489,17 +1996,20 @@
     </div>
   </footer>
 
+  <!-- Custom Luxury Desktop Cursor Elements -->
+  <div id="custom-cursor-dot" class="hidden md:block"></div>
+  <div id="custom-cursor-ring" class="hidden md:block"></div>
 
   <!-- HUD Toast Notification -->
-  <div id="toast-notification" class="fixed bottom-20 lg:bottom-6 left-1/2 -translate-x-1/2 z-[10001] px-5 py-3 rounded-full bg-surface/90 border border-accent-red/40 backdrop-blur-2xl text-white font-mono text-xs flex items-center gap-3 shadow-2xl transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
+  <div id="toast-notification" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[10001] px-5 py-3 rounded-full bg-surface/90 border border-accent-red/40 backdrop-blur-2xl text-white font-mono text-xs flex items-center gap-3 shadow-2xl transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
     <span class="material-symbols-outlined text-accent-red text-base">check_circle</span>
     <span id="toast-message">Email copied to clipboard!</span>
   </div>
 
   <!-- Floating Quick Navigation Dock & Scroll Progress -->
-  <div id="floating-quick-dock" class="fixed bottom-36 right-4 lg:bottom-24 lg:right-6 z-30 flex flex-col items-center gap-2">
+  <div id="floating-quick-dock" class="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-2">
     <!-- Back to top button with circular SVG scroll progress ring -->
-    <button id="back-to-top-btn" class="w-11 h-11 lg:w-12 lg:h-12 rounded-full glass-panel border border-white/20 flex items-center justify-center text-white hover:text-accent-red hover:border-accent-red/50 shadow-2xl transition-all duration-300 relative group bg-surface/80 opacity-0 pointer-events-none scale-90" aria-label="Back to Top">
+    <button id="back-to-top-btn" class="w-12 h-12 rounded-full glass-panel border border-white/20 flex items-center justify-center text-white hover:text-accent-red hover:border-accent-red/50 shadow-2xl transition-all relative group bg-surface/80" aria-label="Back to Top">
       <svg class="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 48 48">
         <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"></circle>
         <circle id="scroll-progress-circle" cx="24" cy="24" r="20" fill="none" stroke="#ea2a23" stroke-width="2.5" stroke-dasharray="125.6" stroke-dashoffset="125.6" stroke-linecap="round"></circle>
@@ -2507,8 +2017,8 @@
       <span class="material-symbols-outlined text-lg group-hover:-translate-y-0.5 transition-transform">arrow_upward</span>
     </button>
 
-    <!-- Keyboard Shortcuts trigger (Desktop Only) -->
-    <button id="shortcuts-trigger-btn" class="w-9 h-9 rounded-full glass-panel border border-white/10 hidden lg:flex items-center justify-center text-white/60 hover:text-white hover:border-white/30 text-xs font-mono shadow-lg transition-all" title="View Keyboard Shortcuts (or press ?)">
+    <!-- Keyboard Shortcuts trigger -->
+    <button id="shortcuts-trigger-btn" class="w-9 h-9 rounded-full glass-panel border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-white/30 text-xs font-mono shadow-lg transition-all" title="View Keyboard Shortcuts (or press ?)">
       <span>?</span>
     </button>
   </div>
@@ -2639,15 +2149,14 @@
         varying vec2 v_uv;
 
         float grid(vec2 uv, float spacing) {
-          vec2 g = abs(fract(uv / spacing - 0.5) - 0.5);
-          vec2 lines = smoothstep(0.01, 0.04, g);
+          vec2 lines = abs(fract(uv / spacing - 0.5) - 0.5) / fwidth(uv / spacing);
           return 1.0 - min(lines.x, lines.y);
         }
 
         void main() {
           vec2 uv = v_uv;
           vec2 center = uv - 0.5;
-          center.x *= u_resolution.x / max(u_resolution.y, 1.0);
+          center.x *= u_resolution.x / u_resolution.y;
 
           vec3 color = vec3(0.043, 0.074, 0.145);
           float wave = sin(center.x * 2.5 + u_time * 0.4) * cos(center.y * 2.5 - u_time * 0.25);
@@ -2667,24 +2176,13 @@
         const s = gl.createShader(type);
         gl.shaderSource(s, src);
         gl.compileShader(s);
-        if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
-          console.warn('Shader compile failed:', gl.getShaderInfoLog(s));
-        }
         return s;
       }
 
       const prog = gl.createProgram();
-      const vShader = createShader(gl.VERTEX_SHADER, vs);
-      const fShader = createShader(gl.FRAGMENT_SHADER, fs);
-      gl.attachShader(prog, vShader);
-      gl.attachShader(prog, fShader);
+      gl.attachShader(prog, createShader(gl.VERTEX_SHADER, vs));
+      gl.attachShader(prog, createShader(gl.FRAGMENT_SHADER, fs));
       gl.linkProgram(prog);
-
-      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
-        console.warn('Hero shader program failed to link:', gl.getProgramInfoLog(prog));
-        return;
-      }
-
       gl.useProgram(prog);
 
       const buf = gl.createBuffer();
@@ -2692,10 +2190,8 @@
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
 
       const pos = gl.getAttribLocation(prog, 'a_position');
-      if (pos >= 0) {
-        gl.enableVertexAttribArray(pos);
-        gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
-      }
+      gl.enableVertexAttribArray(pos);
+      gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
 
       const uTime = gl.getUniformLocation(prog, 'u_time');
       const uRes = gl.getUniformLocation(prog, 'u_resolution');
@@ -2716,7 +2212,6 @@
       function render(t) {
         if (!isShaderVisible) return;
         gl.viewport(0, 0, canvas.width, canvas.height);
-        gl.useProgram(prog);
         if (uTime) gl.uniform1f(uTime, t * 0.001);
         if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
         if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
@@ -2743,55 +2238,28 @@
 
       bars.forEach(b => observer.observe(b));
 
-      // Mobile Menu Toggle & Icon Switcher
+      // Mobile Menu Toggle
       const mobileBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
-      const mobileMenuIcon = document.getElementById('mobile-menu-icon');
-      
       if (mobileBtn && mobileMenu) {
         mobileBtn.addEventListener('click', () => {
-          const isClosed = mobileMenu.classList.toggle('hidden');
-          if (mobileMenuIcon) {
-            mobileMenuIcon.textContent = isClosed ? 'menu' : 'close';
-          }
+          mobileMenu.classList.toggle('hidden');
         });
         document.querySelectorAll('.mobile-nav-link').forEach(link => {
           link.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
-            if (mobileMenuIcon) mobileMenuIcon.textContent = 'menu';
           });
         });
       }
 
-      // Mobile Bottom Navigation Tabs & Smooth Scroll
-      const mobileBottomTabs = document.querySelectorAll('.mobile-bottom-tab');
-      mobileBottomTabs.forEach(tab => {
-        tab.addEventListener('click', (e) => {
-          const targetId = tab.getAttribute('href');
-          if (targetId && targetId.startsWith('#')) {
-            const targetEl = document.querySelector(targetId);
-            if (targetEl) {
-              e.preventDefault();
-              targetEl.scrollIntoView({ behavior: 'smooth' });
-              // Also ensure mobile top menu is closed
-              if (mobileMenu) mobileMenu.classList.add('hidden');
-              if (mobileMenuIcon) mobileMenuIcon.textContent = 'menu';
-            }
-          }
-        });
-      });
-
       // Active Section Highlighting on Scroll using IntersectionObserver (Optimized for performance)
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
-      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
       
       const navObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const current = entry.target.getAttribute('id');
-            
-            // 1. Desktop Nav Links
             navLinks.forEach(link => {
               link.classList.remove('active', 'text-white');
               link.classList.add('text-on-surface-variant');
@@ -2800,34 +2268,9 @@
                 link.classList.remove('text-on-surface-variant');
               }
             });
-
-            // 2. Top Mobile Dropdown Links
-            mobileNavLinks.forEach(link => {
-              if (link.getAttribute('data-section') === current) {
-                link.classList.add('text-accent-red');
-                link.classList.remove('text-white/80');
-              } else {
-                link.classList.remove('text-accent-red');
-                link.classList.add('text-white/80');
-              }
-            });
-
-            // 3. Mobile Lower Area Navigation Dock Tabs
-            mobileBottomTabs.forEach(tab => {
-              const indicator = tab.querySelector('.tab-indicator');
-              if (tab.getAttribute('data-section') === current) {
-                tab.classList.add('text-accent-red');
-                tab.classList.remove('text-white/60');
-                if (indicator) indicator.classList.remove('hidden');
-              } else {
-                tab.classList.remove('text-accent-red');
-                tab.classList.add('text-white/60');
-                if (indicator) indicator.classList.add('hidden');
-              }
-            });
           }
         });
-      }, { threshold: 0.25 });
+      }, { threshold: 0.3 });
       sections.forEach(section => navObserver.observe(section));
 
       // 4. Ultra-Smooth Scroll Entrance Reveal (Cards, Milestones, Headers)
@@ -2868,66 +2311,32 @@
         });
       });
 
-      // Contact Form Submission Handler (Integrated with Free Database Vault)
+      // Contact Form Submission Handler
       const form = document.getElementById('contact-form');
       const feedback = document.getElementById('form-feedback');
-      const submitBtn = document.getElementById('contact-submit-btn');
-      const submitText = document.getElementById('contact-btn-text');
-
       if (form && feedback) {
-        form.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', (e) => {
           e.preventDefault();
           
           // Get form values
           const name = document.getElementById('name').value.trim();
           const email = document.getElementById('email').value.trim();
           const message = document.getElementById('message').value.trim();
+          
+          // Format the message for WhatsApp
+          const whatsappNumber = '919131631253';
+          const text = `*New Portfolio Message*\n\n*Name:* ${name}\n*Email:* ${email}\n\n*Message:*\n${message}`;
+          const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+          
+          // Show feedback
+          feedback.classList.remove('hidden');
+          form.reset();
+          setTimeout(() => feedback.classList.add('hidden'), 5000);
 
-          if (!name || !email || !message) return;
-
-          // UI Loading state
-          if (submitBtn) submitBtn.disabled = true;
-          if (submitText) submitText.textContent = 'Saving to Database Vault...';
-
-          try {
-            // 1. Save to Free Database Vault (IndexedDB + LocalStorage + FormSubmit Cloud Sync)
-            let record = null;
-            if (window.PortfolioDB && window.PortfolioDB.saveContact) {
-              record = await window.PortfolioDB.saveContact(name, email, message, 'Portfolio Contact Form');
-            }
-
-            // 2. Show feedback with unique record ID
-            feedback.innerHTML = `
-              <span class="flex items-center justify-center gap-1.5 font-semibold text-emerald-400">
-                <span class="material-symbols-outlined text-base">verified</span>
-                Message successfully saved to Database Vault ${record ? '(#' + record.id + ')' : ''} &amp; dispatched!
-              </span>
-            `;
-            feedback.classList.remove('hidden');
-            form.reset();
-
-            // 3. Show HUD toast notification
-            showToast(`Inquiry recorded in Database Vault ${record ? '(#' + record.id + ')' : ''}`);
-
-            // 4. Also open WhatsApp direct link as seamless multi-channel communication
-            const whatsappNumber = '919131631253';
-            const text = `*New Portfolio Inquiry [DB Ref: ${record ? record.id : 'NEW'}]*\n\n*Name:* ${name}\n*Email:* ${email}\n\n*Message:*\n${message}`;
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
-            
-            setTimeout(() => {
-              window.open(whatsappUrl, '_blank');
-            }, 600);
-
-            setTimeout(() => {
-              feedback.classList.add('hidden');
-            }, 7000);
-          } catch (err) {
-            console.error('Contact submission error:', err);
-            feedback.innerHTML = `<span class="text-rose-400">Message saved locally. Thank you!</span>`;
-            feedback.classList.remove('hidden');
-          } finally {
-            if (submitBtn) submitBtn.disabled = false;
-            if (submitText) submitText.textContent = 'Send Message & Save to Database';
+          // Open WhatsApp (new window with fallback to direct location redirect)
+          const newWindow = window.open(whatsappUrl, '_blank');
+          if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+            window.location.href = whatsappUrl;
           }
         });
       }
@@ -3041,12 +2450,10 @@
       })();
 
       // ==========================================
-      // 5.25 Ultra-Smooth 120 FPS 3D Skill Matrix Engine (No-Lag Physics Loop)
+      // 5.25 Interactive 3D Spinning Skill Card Engine
       // ==========================================
       (function init3DSpinningSkillCard() {
         const card = document.getElementById('spinning-skill-card');
-        const cardWrapper = document.getElementById('spinning-card-wrapper');
-        const stageContainer = document.querySelector('.spin-stage-container');
         const autoSpinBtn = document.getElementById('spin-card-autospin-toggle');
         const autoSpinLabel = document.getElementById('spin-card-autospin-label');
         const flipBtn = document.getElementById('spin-card-flip-btn');
@@ -3056,247 +2463,147 @@
 
         if (!card) return;
 
-        // Core Physics State (Decoupled 120 FPS Lerp Engine)
         let isAutoSpinning = true;
-        let isDragging = false;
-        let isHovered = false;
-
-        let targetRotY = 0;
+        let isFlipped = false;
         let currentRotY = 0;
-        let targetRotX = 4;
         let currentRotX = 4;
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let lastRotY = 0;
+        let lastRotX = 0;
+        let velocityX = 0;
+        let velocityY = 0;
+        let animFrameId = null;
 
-        let mouseTiltX = 0;
-        let mouseTiltY = 0;
-        let targetTiltX = 0;
-        let targetTiltY = 0;
-
-        let dragStartX = 0;
-        let dragStartY = 0;
-        let dragStartRotY = 0;
-        let dragStartRotX = 0;
-
-        let velocityRotY = 0;
-        let velocityRotX = 0;
-        let lastMoveTime = performance.now();
-        let lastPointerX = 0;
-        let lastPointerY = 0;
-
-        const AUTO_SPIN_INCREMENT = 0.28; // Velvet continuous orbit
-        const LERP_SMOOTHING = 0.088; // Buttery spring constant
-
-        function updatePresetButtons(ry) {
-          let norm = ((ry % 360) + 360) % 360;
-          let bestBtn = null;
-          let minDiff = Infinity;
-
-          presetBtns.forEach(btn => {
-            const btnRy = ((parseFloat(btn.getAttribute('data-ry')) || 0) % 360 + 360) % 360;
-            const diff = Math.min(Math.abs(norm - btnRy), 360 - Math.abs(norm - btnRy));
-            if (diff < minDiff) {
-              minDiff = diff;
-              bestBtn = btn;
-            }
-          });
-
-          if (bestBtn && minDiff < 35) {
-            presetBtns.forEach(b => b.classList.remove('active'));
-            bestBtn.classList.add('active');
-          }
+        function updateCardTransform() {
+          card.style.transform = `rotateY(${currentRotY}deg) rotateX(${currentRotX}deg)`;
         }
 
-        // Dedicated 120 FPS continuous render loop
-        function physicsTick() {
-          if (isAutoSpinning && !isDragging) {
-            targetRotY += AUTO_SPIN_INCREMENT;
-          }
-
-          // Buttery spring lerp
-          currentRotY += (targetRotY - currentRotY) * LERP_SMOOTHING;
-          currentRotX += (targetRotX - currentRotX) * LERP_SMOOTHING;
-          mouseTiltX += (targetTiltX - mouseTiltX) * LERP_SMOOTHING;
-          mouseTiltY += (targetTiltY - mouseTiltY) * LERP_SMOOTHING;
-
-          const finalRotY = currentRotY + mouseTiltY;
-          const finalRotX = currentRotX + mouseTiltX;
-
-          // GPU-accelerated 3D transform blit
-          card.style.transform = `rotateY(${finalRotY.toFixed(2)}deg) rotateX(${finalRotX.toFixed(2)}deg) translateZ(0)`;
-
-          // Dynamically compute optical sheen reflection
-          const sheenProgress = (((finalRotY % 360) + 360) % 360) / 360;
-          card.style.setProperty('--sheen-pos', `${(sheenProgress * 100).toFixed(1)}%`);
-
-          updatePresetButtons(currentRotY);
-
-          requestAnimationFrame(physicsTick);
-        }
-
-        requestAnimationFrame(physicsTick);
-
-        // Auto-spin toggle
+        // Auto spin toggle
         if (autoSpinBtn) {
-          autoSpinBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
+          autoSpinBtn.addEventListener('click', () => {
             isAutoSpinning = !isAutoSpinning;
             if (isAutoSpinning) {
+              card.classList.add('auto-spinning');
+              card.style.transform = '';
               if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: ON';
               autoSpinBtn.classList.add('border-accent-red/50');
             } else {
+              card.classList.remove('auto-spinning');
+              currentRotY = isFlipped ? 180 : 0;
+              currentRotX = 4;
+              updateCardTransform();
               if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: OFF';
               autoSpinBtn.classList.remove('border-accent-red/50');
-              // Smoothly glide to nearest face (0° Front or 180° Back) so it never stays edge-on
-              const nearestFace = Math.round(targetRotY / 180) * 180;
-              targetRotY = nearestFace;
-              targetRotX = (Math.abs(Math.round(nearestFace / 180)) % 2 === 0) ? 4 : -4;
             }
           });
         }
 
-        // Flip mechanism (smooth 180° glide)
-        function triggerSmoothFlip(e) {
-          if (e) e.stopPropagation();
+        // Flip 180 deg
+        function toggleFlip() {
+          isFlipped = !isFlipped;
           isAutoSpinning = false;
+          card.classList.remove('auto-spinning');
           if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: OFF';
-          if (autoSpinBtn) autoSpinBtn.classList.remove('border-accent-red/50');
-
-          const curFacing = ((Math.round(targetRotY / 180) % 2) + 2) % 2;
-          if (curFacing === 0) {
-            targetRotY = Math.round(targetRotY / 180) * 180 + 180;
-            targetRotX = -4;
-          } else {
-            targetRotY = Math.round(targetRotY / 180) * 180 + 180;
-            targetRotX = 4;
-          }
+          currentRotY = isFlipped ? 180 : 0;
+          currentRotX = isFlipped ? -4 : 4;
+          card.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+          updateCardTransform();
         }
 
-        if (flipBtn) flipBtn.addEventListener('click', triggerSmoothFlip);
-        innerFlipTriggers.forEach(btn => btn.addEventListener('click', triggerSmoothFlip));
+        if (flipBtn) flipBtn.addEventListener('click', toggleFlip);
+        innerFlipTriggers.forEach(btn => btn.addEventListener('click', toggleFlip));
 
         // Reset
         if (resetBtn) {
-          resetBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            targetRotY = 0;
-            targetRotX = 4;
+          resetBtn.addEventListener('click', () => {
+            isFlipped = false;
             isAutoSpinning = true;
+            card.classList.add('auto-spinning');
+            card.style.transform = '';
+            card.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
             if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: ON';
-            if (autoSpinBtn) autoSpinBtn.classList.add('border-accent-red/50');
           });
         }
 
-        // Presets (Smooth Glide without CSS transition glitch)
+        // Angle Presets
         presetBtns.forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
+          btn.addEventListener('click', () => {
             isAutoSpinning = false;
+            card.classList.remove('auto-spinning');
             if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: OFF';
-            if (autoSpinBtn) autoSpinBtn.classList.remove('border-accent-red/50');
-
-            const pRy = parseFloat(btn.getAttribute('data-ry')) || 0;
-            const pRx = parseFloat(btn.getAttribute('data-rx')) || 0;
-
-            const curCycles = Math.round((targetRotY - pRy) / 360);
-            targetRotY = curCycles * 360 + pRy;
-            targetRotX = pRx;
-
-            presetBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            currentRotY = parseFloat(btn.getAttribute('data-ry')) || 0;
+            currentRotX = parseFloat(btn.getAttribute('data-rx')) || 0;
+            isFlipped = Math.abs(currentRotY) >= 120;
+            card.style.transition = 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+            updateCardTransform();
           });
         });
 
-        // Magnetic Hover Tilt
-        if (stageContainer) {
-          stageContainer.addEventListener('pointerenter', () => {
-            isHovered = true;
-          });
-          stageContainer.addEventListener('pointerleave', () => {
-            isHovered = false;
-            targetTiltX = 0;
-            targetTiltY = 0;
-          });
-          stageContainer.addEventListener('pointermove', (e) => {
-            if (isDragging) return;
-            const rect = stageContainer.getBoundingClientRect();
-            const relX = (e.clientX - rect.left) / rect.width - 0.5;
-            const relY = (e.clientY - rect.top) / rect.height - 0.5;
-            targetTiltY = relX * 10;
-            targetTiltX = -relY * 8;
-          }, { passive: true });
-        }
-
-        // Pointer-Based High-Precision Drag (Desktop & Mobile Unified with setPointerCapture)
-        const dragSurface = cardWrapper || card;
-
+        // Drag to spin physics with inertia
         function onPointerDown(e) {
-          if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.trigger-flip-inner')) {
-            return;
-          }
           isDragging = true;
           isAutoSpinning = false;
+          card.classList.remove('auto-spinning');
           if (autoSpinLabel) autoSpinLabel.textContent = 'Auto-Spin: OFF';
-          if (autoSpinBtn) autoSpinBtn.classList.remove('border-accent-red/50');
+          card.style.transition = 'none';
 
-          card.classList.add('is-grabbing');
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          startX = clientX;
+          startY = clientY;
+          lastRotY = currentRotY;
+          lastRotX = currentRotX;
+          velocityX = 0;
+          velocityY = 0;
 
-          dragStartX = e.clientX;
-          dragStartY = e.clientY;
-          lastPointerX = e.clientX;
-          lastPointerY = e.clientY;
-          dragStartRotY = currentRotY;
-          dragStartRotX = currentRotX;
-          targetRotY = currentRotY;
-          targetRotX = currentRotX;
-          velocityRotY = 0;
-          velocityRotX = 0;
-          lastMoveTime = performance.now();
-
-          try {
-            dragSurface.setPointerCapture(e.pointerId);
-          } catch (_) {}
+          if (animFrameId) cancelAnimationFrame(animFrameId);
         }
 
         function onPointerMove(e) {
           if (!isDragging) return;
-          const now = performance.now();
-          const dt = Math.max(now - lastMoveTime, 1);
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          const deltaX = clientX - startX;
+          const deltaY = clientY - startY;
 
-          const deltaX = e.clientX - dragStartX;
-          const deltaY = e.clientY - dragStartY;
+          const newRotY = lastRotY + deltaX * 0.45;
+          const newRotX = Math.max(-25, Math.min(25, lastRotX - deltaY * 0.3));
 
-          targetRotY = dragStartRotY + deltaX * 0.45;
-          targetRotX = Math.max(-28, Math.min(28, dragStartRotX - deltaY * 0.28));
+          velocityX = newRotY - currentRotY;
+          velocityY = newRotX - currentRotX;
 
-          const moveDeltaX = e.clientX - lastPointerX;
-          const moveDeltaY = e.clientY - lastPointerY;
-          velocityRotY = (moveDeltaX * 0.45) / (dt / 16.6);
-          velocityRotX = (-moveDeltaY * 0.28) / (dt / 16.6);
-
-          lastPointerX = e.clientX;
-          lastPointerY = e.clientY;
-          lastMoveTime = now;
+          currentRotY = newRotY;
+          currentRotX = newRotX;
+          updateCardTransform();
         }
 
-        function onPointerUp(e) {
+        function onPointerUp() {
           if (!isDragging) return;
           isDragging = false;
-          card.classList.remove('is-grabbing');
 
-          try {
-            dragSurface.releasePointerCapture(e.pointerId);
-          } catch (_) {}
-
-          // Apply silky inertia glide
-          const clampedVelY = Math.max(-18, Math.min(18, velocityRotY));
-          const clampedVelX = Math.max(-10, Math.min(10, velocityRotX));
-          targetRotY += clampedVelY * 8;
-          targetRotX = Math.max(-28, Math.min(28, targetRotX + clampedVelX * 4));
+          // Inertia damping loop
+          function applyInertia() {
+            if (Math.abs(velocityX) > 0.05 || Math.abs(velocityY) > 0.05) {
+              currentRotY += velocityX;
+              currentRotX = Math.max(-25, Math.min(25, currentRotX + velocityY));
+              velocityX *= 0.94;
+              velocityY *= 0.94;
+              updateCardTransform();
+              animFrameId = requestAnimationFrame(applyInertia);
+            }
+          }
+          applyInertia();
         }
 
-        dragSurface.addEventListener('pointerdown', onPointerDown);
-        dragSurface.addEventListener('pointermove', onPointerMove, { passive: true });
-        dragSurface.addEventListener('pointerup', onPointerUp);
-        dragSurface.addEventListener('pointercancel', onPointerUp);
+        card.addEventListener('mousedown', onPointerDown);
+        window.addEventListener('mousemove', onPointerMove);
+        window.addEventListener('mouseup', onPointerUp);
+
+        card.addEventListener('touchstart', onPointerDown, { passive: true });
+        window.addEventListener('touchmove', onPointerMove, { passive: true });
+        window.addEventListener('touchend', onPointerUp);
 
         if (window.lucide && typeof window.lucide.createIcons === 'function') {
           window.lucide.createIcons();
@@ -3403,21 +2710,6 @@
 
         // Project detailed architecture database
         const projectsData = {
-          buddhaspa: {
-            category: 'Full-Stack Web & Luxury Brand Platform',
-            status: 'Production Live (buddhathespa.com)',
-            title: 'Buddha The Spa — Luxury Sanctuary & Concierge Platform',
-            desc: 'A high-performance digital wellness platform and booking engine for Raipur\'s premier luxury day spa opposite Marine Drive, Telibandha. Engineered with sub-second core web vitals, interactive therapy suite catalog (Swedish Therapy, Deep Tissue, Aroma Oil, Ayurvedic Potli), localized structured schema dominance, and automated WhatsApp concierge routing.',
-            highlights: [
-              { label: 'Core Web Vitals', val: 'Sub-600ms First Contentful Paint with 98+ Google Lighthouse score across mobile & desktop' },
-              { label: 'Therapy Suite Engine', val: 'Dynamic interactive catalog highlighting massage protocols, benefits, pricing, and duration filters' },
-              { label: 'Local Geo-SEO Dominance', val: 'Schema.org DaySpa & LocalBusiness JSON-LD markup ranking #1 for luxury spa queries in Raipur, CG' },
-              { label: 'Concierge Automation', val: 'Direct WhatsApp API & telecommunication integration for frictionless zero-friction suite reservations' }
-            ],
-            stack: ['HTML5', 'Modern CSS3', 'Tailwind CSS', 'JavaScript ES6+', 'JSON-LD Structured Data', 'Vercel Edge', 'WhatsApp Business API'],
-            github: 'https://www.buddhathespa.com/',
-            liveUrl: 'https://www.buddhathespa.com/'
-          },
           nexus: {
             category: 'Full-Stack & Cloud Architecture',
             status: 'Production Deployed',
@@ -3489,17 +2781,17 @@
             github: 'https://github.com/mradityasonicse'
           },
           maritime: {
-            category: 'Hypnotic Physics & Mathematics',
+            category: 'Physics & Simulation',
             status: 'Active in Background',
-            title: 'Hypnotic Fluid & Quantum Dynamics Engine',
-            desc: 'Mathematical attractor & sacred geometry engine featuring zero-garbage collection particle pooling, interactive celestial ripples, and 120Hz smooth scrolling sync across mobile and desktop displays.',
+            title: 'Hydrodynamic Maritime Fleet Simulator',
+            desc: 'Physics-driven nautical vessel animation engine featuring zero-garbage collection particle pooling, procedural boat wakes, and 120Hz smooth scrolling sync across mobile and desktop displays.',
             highlights: [
-              { label: 'Attractor Math', val: 'Concentric harmonograph rings and continuous Lissajous attractor streams' },
-              { label: 'Fluid Ripples', val: 'Touch & pointer-emitted celestial ripples with gentle chromatic dispersion' },
+              { label: 'Particle Pooling', val: 'Pre-allocated fixed memory pool eliminating GC garbage stutter' },
+              { label: 'Fluid Dynamics', val: 'Procedural hydrodynamic boat wakes with natural dissipative friction' },
               { label: 'Touch Decoupling', val: 'Intelligent touch-scroll detection granting 100% GPU to 120Hz momentum' },
-              { label: 'Zero-GC Pooling', val: 'Pre-allocated fixed memory pools eliminating garbage collection stutters' }
+              { label: 'Vessel Hierarchy', val: 'Supersonic flagship, tactical patrol escorts, cruisers, and luxury yachts' }
             ],
-            stack: ['HTML5 Canvas', 'Attractor Math', 'Harmonic Physics', 'Vector Calculus', 'WebGL Shader', 'JavaScript'],
+            stack: ['HTML5 Canvas', 'Object Pooling', 'Fluid Wakes', 'Vector Physics', 'WebGL Noise', 'JavaScript'],
             github: 'https://github.com/mradityasonicse'
           }
         };
@@ -3512,19 +2804,7 @@
           modalStatus.textContent = p.status;
           modalTitle.textContent = p.title;
           modalDesc.textContent = p.desc;
-          if (p.liveUrl) {
-            modalGithub.innerHTML = `
-              <span class="material-symbols-outlined text-base">language</span>
-              <span>Visit Live Website</span>
-            `;
-            modalGithub.setAttribute('href', p.liveUrl);
-          } else {
-            modalGithub.innerHTML = `
-              <span class="material-symbols-outlined text-base">code</span>
-              <span>GitHub Repository</span>
-            `;
-            modalGithub.setAttribute('href', p.github);
-          }
+          modalGithub.setAttribute('href', p.github);
 
           modalHighlights.innerHTML = p.highlights.map(h => `
             <div class="glass-panel p-4 rounded-xl border border-white/10 bg-white/[0.02]">
@@ -3589,34 +2869,19 @@
         if (sBackdrop) sBackdrop.addEventListener('click', toggleShortcuts);
         if (sClose) sClose.addEventListener('click', toggleShortcuts);
 
-        // Circular Scroll Progress & Back to Top Visibility
-        function updateBackToTop() {
-          const scrollY = window.scrollY;
+        // Circular Scroll Progress
+        window.addEventListener('scroll', () => {
           const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
           if (totalHeight > 0 && progressCircle) {
-            const progress = Math.min(Math.max(scrollY / totalHeight, 0), 1);
+            const progress = Math.min(Math.max(window.scrollY / totalHeight, 0), 1);
             const circumference = 125.6;
             progressCircle.style.strokeDashoffset = `${circumference * (1 - progress)}`;
           }
-
-          if (backToTopBtn) {
-            if (scrollY > 350) {
-              backToTopBtn.classList.add('is-visible');
-            } else {
-              backToTopBtn.classList.remove('is-visible');
-            }
-          }
-        }
-        window.addEventListener('scroll', updateBackToTop, { passive: true });
-        updateBackToTop();
+        }, { passive: true });
 
         if (backToTopBtn) {
           backToTopBtn.addEventListener('click', () => {
-            if (window.__lenis) {
-              window.__lenis.scrollTo(0, { duration: 1.1 });
-            } else {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           });
         }
 
@@ -3656,7 +2921,53 @@
         });
       })();
 
+      // ==========================================
+      // 5.5 Luxury Custom Cursor Engine (Desktop)
+      // ==========================================
+      (function initCustomCursor() {
+        if (window.innerWidth < 1024) return;
+        const dot = document.getElementById('custom-cursor-dot');
+        const ring = document.getElementById('custom-cursor-ring');
+        if (!dot || !ring) return;
 
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
+
+        window.addEventListener('pointermove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+        }, { passive: true });
+
+        function animateRing() {
+          ringX += (mouseX - ringX) * 0.18;
+          ringY += (mouseY - ringY) * 0.18;
+          ring.style.transform = `translate3d(${ringX.toFixed(1)}px, ${ringY.toFixed(1)}px, 0) translate(-50%, -50%)`;
+          requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        // Enlarge ring on interactive elements
+        const hoverTargets = document.querySelectorAll('a, button, input, textarea, .skill-tag, .project-card, .glass-card, .sig-color-btn, .sig-style-btn');
+        hoverTargets.forEach(el => {
+          el.addEventListener('mouseenter', () => {
+            ring.style.width = '54px';
+            ring.style.height = '54px';
+            ring.style.borderColor = 'rgba(234, 42, 35, 0.8)';
+            ring.style.backgroundColor = 'rgba(234, 42, 35, 0.05)';
+            dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(1.5)`;
+          });
+          el.addEventListener('mouseleave', () => {
+            ring.style.width = '38px';
+            ring.style.height = '38px';
+            ring.style.borderColor = 'rgba(234, 42, 35, 0.45)';
+            ring.style.backgroundColor = 'transparent';
+            dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(1)`;
+          });
+        });
+      })();
       // ==========================================
       // 6. Interactive Vector Signature Animation & Drawing Pad Engine
       // ==========================================
@@ -4150,13 +3461,9 @@
       })();
     });
   </script>
-  <!-- Hypnotic Cosmic Fluid & Sacred Geometry Engine -->
+  <!-- Background Maritime Boat Fleet & Hydrodynamic Wave Animation -->
   <script src="flight.js"></script>
   <!-- Awwwards-Tier Core Interactive Engine (Spotlight, 3D Tilt, Magnetic Cursor, Cmd+K) -->
   <script src="assets/js/awwwards-core.js"></script>
-  <!-- Free-of-Cost Hybrid Database Vault Engine -->
-  <script src="assets/js/db-vault.js"></script>
-  <!-- Astra AI Assistant Neural Chatbot -->
-  <script src="assets/js/ai-chatbot.js"></script>
 </body>
 </html>
