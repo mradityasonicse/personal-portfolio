@@ -548,7 +548,7 @@ void main() {
     const targetCenterX = pointer.active ? width * 0.5 + (pointer.x - width * 0.5) * 0.15 : width * 0.5;
     const targetCenterY = pointer.active ? height * 0.45 + (pointer.y - height * 0.45) * 0.15 : height * 0.45;
 
-    renderHypnoticGeometry(bgCtx, targetCenterX, targetCenterY, timeSec);
+    // Harmonograph / spiderweb geometric lines removed as requested by user to keep background clean and pristine
 
     // 1. Render Interactive Ripples
     for (let i = 0; i < MAX_RIPPLES; i++) {
