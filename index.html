@@ -580,23 +580,23 @@
   <div class="cinematic-scanlines" aria-hidden="true"></div>
 
   <!-- Fixed Top Navigation Bar -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/75 backdrop-blur-2xl border-b border-white/10">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-2xl border-b border-white/10">
     <div class="max-w-container-max mx-auto px-gutter h-16 md:h-20 flex items-center justify-between gap-4">
       <!-- Brand / Logo -->
-      <a href="#home" class="flex items-center gap-2 group flex-shrink-0 mr-6 lg:mr-10">
+      <a href="#home" class="flex items-center gap-2 group flex-shrink-0 mr-4 lg:mr-8">
         <span class="serif-font text-xl md:text-2xl font-bold tracking-tight text-white group-hover:text-primary transition-colors">
           ADITYA <span class="text-accent-red">SONI</span>
         </span>
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-6 xl:gap-8 font-label-sm text-xs tracking-widest uppercase">
+      <nav class="hidden lg:flex items-center gap-5 xl:gap-7 font-label-sm text-xs tracking-widest uppercase">
         <a href="#home" class="nav-link text-white nav-underline active pb-1 hover:text-accent-red transition-colors" data-section="home">Home</a>
-        <a href="about.html" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors">About</a>
-        <a href="#projects" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="projects">Projects</a>
+        <a href="#about" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="about">About</a>
         <a href="#skills" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="skills">Skills</a>
+        <a href="#projects" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="projects">Projects</a>
         <a href="#journey" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="journey">Journey</a>
-        <a href="achievements.html" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors">Achievements</a>
+        <a href="#achievements" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="achievements">Achievements</a>
         <a href="#signature" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="signature">Signature</a>
         <a href="#contact" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="contact">Contact</a>
       </nav>
@@ -609,30 +609,148 @@
         </a>
       </div>
 
-      <!-- Mobile Menu Button -->
+      <!-- Mobile Top Navigation Actions (Menu + Quick Resume) -->
       <div class="lg:hidden flex items-center gap-2">
-        <button id="mobile-menu-btn" class="p-2 text-white/80 hover:text-white" aria-label="Toggle Navigation">
-          <span class="material-symbols-outlined text-2xl">menu</span>
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/90 text-[11px] font-mono uppercase tracking-wider hover:border-accent-red/50 transition-all flex items-center gap-1.5">
+          <span>Resume</span>
+          <span class="material-symbols-outlined text-[13px] text-accent-red">open_in_new</span>
+        </a>
+        <button id="mobile-menu-btn" class="p-2 text-white/90 hover:text-white rounded-lg bg-white/5 border border-white/10 hover:border-accent-red/40 transition-all flex items-center justify-center cursor-pointer" aria-label="Toggle Navigation">
+          <span id="mobile-menu-icon" class="material-symbols-outlined text-2xl transition-transform">menu</span>
         </button>
       </div>
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-surface/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 flex flex-col gap-3 font-label-sm text-sm">
-      <a href="#home" class="mobile-nav-link text-accent-red py-2 border-b border-white/5">Home</a>
-      <a href="about.html" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">About</a>
-      <a href="#projects" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">Projects</a>
-      <a href="#skills" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">Skills</a>
-      <a href="#journey" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">Journey</a>
-      <a href="achievements.html" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">Achievements</a>
-      <a href="#signature" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">Signature</a>
-      <a href="#contact" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">Contact</a>
-      <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="mt-2 text-center py-2.5 bg-accent-red text-white rounded font-semibold uppercase tracking-wider text-xs flex items-center justify-center gap-1.5">
-        <span>View Resume</span>
-        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+    <div id="mobile-menu" class="hidden lg:hidden bg-[#07090e]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 flex flex-col gap-2 font-label-sm text-sm shadow-2xl max-h-[80vh] overflow-y-auto">
+      <div class="text-[11px] font-mono text-accent-red uppercase tracking-widest pb-2 border-b border-white/10 flex items-center justify-between">
+        <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-accent-red animate-ping"></span>PORTFOLIO SECTIONS</span>
+        <span class="text-white/40">v2.6</span>
+      </div>
+      <a href="#home" class="mobile-nav-link text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="home">
+        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">home</span>Home</span>
+        <span class="text-[10px] font-mono text-white/40">01</span>
+      </a>
+      <a href="#about" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="about">
+        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">person</span>About</span>
+        <span class="text-[10px] font-mono text-white/40">02</span>
+      </a>
+      <a href="#skills" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="skills">
+        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">memory</span>Skills</span>
+        <span class="text-[10px] font-mono text-white/40">03</span>
+      </a>
+      <a href="#projects" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="projects">
+        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">terminal</span>Projects</span>
+        <span class="text-[10px] font-mono text-white/40">04</span>
+      </a>
+      <a href="#journey" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="journey">
+        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">timeline</span>Journey</span>
+        <span class="text-[10px] font-mono text-white/40">05</span>
+      </a>
+      <a href="#achievements" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="achievements">
+        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">school</span>Achievements</span>
+        <span class="text-[10px] font-mono text-white/40">06</span>
+      </a>
+      <a href="#signature" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="signature">
+        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">draw</span>Signature Studio</span>
+        <span class="text-[10px] font-mono text-white/40">07</span>
+      </a>
+      <a href="#contact" class="mobile-nav-link text-white/80 hover:text-accent-red py-2.5 border-b border-white/5 flex items-center justify-between transition-colors" data-section="contact">
+        <span class="flex items-center gap-3"><span class="material-symbols-outlined text-lg">mail</span>Contact</span>
+        <span class="text-[10px] font-mono text-white/40">08</span>
+      </a>
+
+      <!-- Quick Deep-Dive Links in Mobile Menu -->
+      <div class="pt-3 flex flex-col gap-2">
+        <div class="text-[10px] font-mono text-white/40 uppercase tracking-widest">Dedicated Deep-Dive Pages</div>
+        <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+          <a href="about.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 flex items-center justify-between transition-all">
+            <span>Philosophy Lab</span>
+            <span class="material-symbols-outlined text-xs text-accent-red">arrow_forward</span>
+          </a>
+          <a href="projects.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 flex items-center justify-between transition-all">
+            <span>Full Projects</span>
+            <span class="material-symbols-outlined text-xs text-accent-red">arrow_forward</span>
+          </a>
+          <a href="skills.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 flex items-center justify-between transition-all">
+            <span>Skill Matrix</span>
+            <span class="material-symbols-outlined text-xs text-accent-red">arrow_forward</span>
+          </a>
+          <a href="achievements.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 flex items-center justify-between transition-all">
+            <span>Distinctions</span>
+            <span class="material-symbols-outlined text-xs text-accent-red">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Action in Menu -->
+      <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="mt-2 text-center py-3 bg-accent-red hover:bg-accent-red/90 text-white rounded-xl font-semibold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-lg shadow-accent-red/25 transition-all">
+        <span>View Official Resume (PDF)</span>
+        <span class="material-symbols-outlined text-sm">open_in_new</span>
       </a>
     </div>
   </header>
+
+  <!-- ==================== FIXED MOBILE LOWER AREA NAVIGATION BAR (BOTTOM NAVIGATION DOCK) ==================== -->
+  <nav id="mobile-bottom-nav" class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#07090e]/92 backdrop-blur-2xl border-t border-white/10 px-1.5 py-1.5 shadow-[0_-12px_40px_rgba(0,0,0,0.85)] pb-[calc(env(safe-area-inset-bottom,0px)+6px)] transition-all duration-300">
+    <div class="max-w-md mx-auto grid grid-cols-6 items-center justify-items-center">
+      
+      <!-- Home Tab -->
+      <a href="#home" class="mobile-bottom-tab flex flex-col items-center justify-center py-1 px-1 rounded-xl text-accent-red transition-all group active:scale-95" data-section="home" aria-label="Navigate to Home">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center relative">
+          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110">home</span>
+          <span class="tab-indicator absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-accent-red shadow-[0_0_8px_#ea2a23]"></span>
+        </div>
+        <span class="text-[9px] font-mono tracking-tight font-semibold mt-0.5">Home</span>
+      </a>
+
+      <!-- About Tab -->
+      <a href="#about" class="mobile-bottom-tab flex flex-col items-center justify-center py-1 px-1 rounded-xl text-white/60 hover:text-white transition-all group active:scale-95" data-section="about" aria-label="Navigate to About">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center relative">
+          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110">person</span>
+          <span class="tab-indicator hidden absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-accent-red shadow-[0_0_8px_#ea2a23]"></span>
+        </div>
+        <span class="text-[9px] font-mono tracking-tight mt-0.5">About</span>
+      </a>
+
+      <!-- Skills Tab -->
+      <a href="#skills" class="mobile-bottom-tab flex flex-col items-center justify-center py-1 px-1 rounded-xl text-white/60 hover:text-white transition-all group active:scale-95" data-section="skills" aria-label="Navigate to Skills">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center relative">
+          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110">memory</span>
+          <span class="tab-indicator hidden absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-accent-red shadow-[0_0_8px_#ea2a23]"></span>
+        </div>
+        <span class="text-[9px] font-mono tracking-tight mt-0.5">Skills</span>
+      </a>
+
+      <!-- Projects Tab -->
+      <a href="#projects" class="mobile-bottom-tab flex flex-col items-center justify-center py-1 px-1 rounded-xl text-white/60 hover:text-white transition-all group active:scale-95" data-section="projects" aria-label="Navigate to Projects">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center relative">
+          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110">terminal</span>
+          <span class="tab-indicator hidden absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-accent-red shadow-[0_0_8px_#ea2a23]"></span>
+        </div>
+        <span class="text-[9px] font-mono tracking-tight mt-0.5">Projects</span>
+      </a>
+
+      <!-- Journey Tab -->
+      <a href="#journey" class="mobile-bottom-tab flex flex-col items-center justify-center py-1 px-1 rounded-xl text-white/60 hover:text-white transition-all group active:scale-95" data-section="journey" aria-label="Navigate to Journey">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center relative">
+          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110">timeline</span>
+          <span class="tab-indicator hidden absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-accent-red shadow-[0_0_8px_#ea2a23]"></span>
+        </div>
+        <span class="text-[9px] font-mono tracking-tight mt-0.5">Journey</span>
+      </a>
+
+      <!-- Contact Tab -->
+      <a href="#contact" class="mobile-bottom-tab flex flex-col items-center justify-center py-1 px-1 rounded-xl text-white/60 hover:text-white transition-all group active:scale-95" data-section="contact" aria-label="Navigate to Contact">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center relative">
+          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110">mail</span>
+          <span class="tab-indicator hidden absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-accent-red shadow-[0_0_8px_#ea2a23]"></span>
+        </div>
+        <span class="text-[9px] font-mono tracking-tight mt-0.5">Contact</span>
+      </a>
+
+    </div>
+  </nav>
 
   <!-- Vertical Decorative Rail (Desktop) -->
   <div class="fixed left-3 top-0 bottom-0 w-8 hidden lg:flex flex-col justify-center border-r border-white/10 opacity-60 z-20 pointer-events-none">
@@ -762,6 +880,188 @@
           </div>
 
         </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION: ABOUT ==================== -->
+    <section id="about" class="py-24 md:py-32 relative">
+      <div class="ambient-glow -top-20 -left-20"></div>
+
+      <div class="max-w-container-max mx-auto px-gutter relative z-10">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 md:mb-16 gap-6">
+          <div>
+            <p class="font-label-sm text-xs text-accent-red uppercase tracking-[0.25em] mb-2 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-accent-red animate-pulse"></span>
+              <span>Architectural Tenets &bull; Academic Pedigree</span>
+            </p>
+            <h2 class="font-display-xl text-5xl md:text-7xl font-bold text-white tracking-tight">
+              Engineering From <span class="text-accent-red italic">First Principles</span>
+            </h2>
+          </div>
+          <div class="flex flex-col items-start md:items-end gap-3">
+            <p class="font-body-md text-on-surface-variant max-w-md text-sm sm:text-base leading-relaxed font-light">
+              Designing distributed systems with hardware sympathy, sub-millisecond network topologies, and Awwwards-tier craft.
+            </p>
+            <a href="about.html" class="glass-pill px-4 py-2 font-mono text-xs text-white/90 hover:text-accent-red hover:border-accent-red/50 inline-flex items-center gap-2 group transition-all">
+              <span>Explore Dedicated Philosophy &amp; Lab</span>
+              <span class="material-symbols-outlined text-[15px] group-hover:translate-x-1 transition-transform text-accent-red">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento Grid: Identity & Foundations -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
+          
+          <!-- Identity & Academic Foundation Card -->
+          <div class="lg:col-span-7 glass-card p-8 sm:p-10 rounded-3xl bg-surface-container-low/40 backdrop-blur-xl border border-white/10 flex flex-col justify-between relative overflow-hidden group">
+            <div class="relative z-10">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-red/10 border border-accent-red/30 text-accent-red text-[11px] font-mono tracking-widest uppercase mb-4">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-red animate-ping"></span>
+                <span>Undergraduate Engineer &bull; B.Tech CSE Core</span>
+              </div>
+
+              <h3 class="font-display-xl text-3xl sm:text-4xl font-bold text-white mb-4">
+                Aditya Soni
+              </h3>
+
+              <p class="text-slate-300 text-sm sm:text-base font-light leading-relaxed mb-6">
+                Currently pursuing a 4-year <strong>B.Tech in Computer Science &amp; Engineering Core (2026–2030)</strong> at <strong>Rungta International Skills University (RISU)</strong>. My approach unites academic discipline with rigorous systems engineering—focusing on distributed algorithms, operating system internals, low-overhead WebSocket pipelines, and GPU hardware acceleration.
+              </p>
+
+              <!-- Academic Honors Badges -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 font-mono text-xs">
+                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10">
+                  <div class="text-emerald-400 font-bold text-lg sm:text-xl">92%</div>
+                  <div class="text-white/60 text-[10px] uppercase tracking-wider mt-0.5">Class 10th Distinction</div>
+                  <div class="text-[10px] text-emerald-400/80">Secondary Board Exam</div>
+                </div>
+                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10">
+                  <div class="text-cyan-400 font-bold text-lg sm:text-xl">80%</div>
+                  <div class="text-white/60 text-[10px] uppercase tracking-wider mt-0.5">Class 12th PCM</div>
+                  <div class="text-[10px] text-cyan-400/80">Senior Secondary STEM</div>
+                </div>
+                <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10">
+                  <div class="text-rose-400 font-bold text-lg sm:text-xl">2026-30</div>
+                  <div class="text-white/60 text-[10px] uppercase tracking-wider mt-0.5">4-Year Degree</div>
+                  <div class="text-[10px] text-rose-400/80">RISU University</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-wrap items-center gap-3 pt-6 border-t border-white/10 relative z-10">
+              <a href="about.html" class="px-5 py-2.5 bg-accent-red hover:bg-accent-red/90 text-white font-mono text-xs uppercase tracking-wider rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-accent-red/25">
+                <span>View Full Philosophy</span>
+                <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+              </a>
+              <a href="#projects" class="px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/15 text-white font-mono text-xs uppercase tracking-wider rounded-xl transition-all flex items-center gap-2">
+                <span>See Projects</span>
+                <span class="material-symbols-outlined text-[15px]">arrow_downward</span>
+              </a>
+              <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/15 text-white/80 hover:text-white font-mono text-xs uppercase tracking-wider rounded-xl transition-all flex items-center gap-2">
+                <span>Resume</span>
+                <span class="material-symbols-outlined text-[15px]">open_in_new</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Interactive CLI / Workstation Rig HUD -->
+          <div class="lg:col-span-5 glass-card p-6 sm:p-8 rounded-3xl bg-surface-container-low/40 backdrop-blur-xl border border-white/10 flex flex-col justify-between">
+            <div>
+              <!-- Terminal Header -->
+              <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                  <span class="font-mono text-[11px] text-white/60 ml-2">aditya@risu: ~/about</span>
+                </div>
+                <div class="font-mono text-[10px] text-accent-red tracking-widest uppercase">LIVE SYSTEM</div>
+              </div>
+
+              <!-- Terminal Body -->
+              <div class="font-mono text-xs text-slate-300 space-y-2 mb-4">
+                <div class="text-white/60">$ cat profile.json</div>
+                <div class="bg-black/40 p-3.5 rounded-xl border border-white/5 text-[11px] space-y-1 text-slate-300 overflow-x-auto">
+                  <div><span class="text-rose-400">"name"</span>: <span class="text-emerald-300">"Aditya Soni"</span>,</div>
+                  <div><span class="text-rose-400">"education"</span>: <span class="text-emerald-300">"B.Tech CSE Core (RISU)"</span>,</div>
+                  <div><span class="text-rose-400">"graduating"</span>: <span class="text-cyan-300">2030</span>,</div>
+                  <div><span class="text-rose-400">"focus"</span>: [<span class="text-amber-300">"Distributed Systems"</span>, <span class="text-amber-300">"3D WebGL"</span>, <span class="text-amber-300">"Real-time Sockets"</span>],</div>
+                  <div><span class="text-rose-400">"status"</span>: <span class="text-emerald-400">"Open for Internships &amp; Collaborations"</span></div>
+                </div>
+              </div>
+
+              <!-- Workstation Specifications -->
+              <div class="pt-3 border-t border-white/10 font-mono text-[11px] space-y-2">
+                <div class="text-white/50 uppercase tracking-widest text-[10px]">Lab Workstation Rig</div>
+                <div class="grid grid-cols-2 gap-2 text-white/80">
+                  <div class="p-2 rounded-lg bg-white/[0.02] border border-white/5">
+                    <span class="text-white/40 block text-[9px]">TOOLING</span>
+                    <span>VS Code • Neovim • Zsh</span>
+                  </div>
+                  <div class="p-2 rounded-lg bg-white/[0.02] border border-white/5">
+                    <span class="text-white/40 block text-[9px]">STACK</span>
+                    <span>TS • Python • Java • WebGL</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Terminal Hint -->
+            <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-white/50">
+              <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>Shell Ready</span>
+              <a href="about.html" class="text-accent-red hover:underline flex items-center gap-1">Open Interactive CLI &rarr;</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Three Core Engineering Pillars -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Pillar 1 -->
+          <div class="glass-card p-7 rounded-2xl bg-surface-container-low/40 backdrop-blur-xl border border-white/10 hover:border-accent-red/40 transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-accent-red/10 border border-accent-red/30 flex items-center justify-center text-accent-red mb-5 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">memory</span>
+            </div>
+            <h4 class="font-headline-lg text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+              Mechanical Sympathy
+            </h4>
+            <p class="font-body-md text-on-surface-variant text-sm font-light leading-relaxed">
+              Writing code with reverence for the underlying silicon: CPU cache line friendliness, V8 JIT memory allocation patterns, and GPU shader pipelining.
+            </p>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="glass-card p-7 rounded-2xl bg-surface-container-low/40 backdrop-blur-xl border border-white/10 hover:border-cyan-400/40 transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">speed</span>
+            </div>
+            <h4 class="font-headline-lg text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+              Zero-Lag Protocols
+            </h4>
+            <p class="font-body-md text-on-surface-variant text-sm font-light leading-relaxed">
+              Sub-millisecond latency budgets with persistent binary WebSockets, non-blocking asynchronous event loops, and locked 120 FPS rendering.
+            </p>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="glass-card p-7 rounded-2xl bg-surface-container-low/40 backdrop-blur-xl border border-white/10 hover:border-emerald-400/40 transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">draw</span>
+            </div>
+            <h4 class="font-headline-lg text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+              Radical Aesthetic Craft
+            </h4>
+            <p class="font-body-md text-on-surface-variant text-sm font-light leading-relaxed">
+              Utilitarian power packaged in luxury design: tailored cubic Bézier curves, atmospheric glassmorphism, and responsive typography.
+            </p>
+          </div>
+
+        </div>
+
       </div>
     </section>
 
@@ -1730,6 +2030,108 @@
           </div>
         </div>
 
+    </section>
+
+    <!-- ==================== SECTION: ACHIEVEMENTS ==================== -->
+    <section id="achievements" class="py-24 md:py-32 relative">
+      <div class="ambient-glow -bottom-32 -left-20"></div>
+
+      <div class="max-w-container-max mx-auto px-gutter relative z-10">
+        
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 md:mb-16 gap-6">
+          <div>
+            <p class="font-label-sm text-xs text-accent-red uppercase tracking-[0.25em] mb-2 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-accent-red animate-pulse"></span>
+              <span>Scholastic &bull; Systems Distinctions</span>
+            </p>
+            <h2 class="font-display-xl text-5xl md:text-7xl font-bold text-white tracking-tight">
+              Academic &amp; <span class="text-accent-red italic">Honors</span>
+            </h2>
+          </div>
+          <div class="flex flex-col items-start md:items-end gap-3">
+            <p class="font-body-md text-on-surface-variant max-w-md text-sm sm:text-base leading-relaxed font-light">
+              Demonstrated academic excellence in STEM, algorithmic problem solving, and software engineering discipline.
+            </p>
+            <a href="achievements.html" class="glass-pill px-4 py-2 font-mono text-xs text-white/90 hover:text-accent-red hover:border-accent-red/50 inline-flex items-center gap-2 group transition-all">
+              <span>View Dedicated Distinctions Page</span>
+              <span class="material-symbols-outlined text-[15px] group-hover:translate-x-1 transition-transform text-accent-red">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Distinction KPI Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
+          <div class="glass-card p-6 rounded-2xl text-center bg-surface-container-low/40 border border-white/10">
+            <div class="font-display-xl text-4xl sm:text-5xl font-bold text-emerald-400 mb-1">92%</div>
+            <div class="font-mono text-xs text-white/60 uppercase tracking-widest">Class 10th Aggregate</div>
+          </div>
+          <div class="glass-card p-6 rounded-2xl text-center bg-surface-container-low/40 border border-white/10">
+            <div class="font-display-xl text-4xl sm:text-5xl font-bold text-cyan-400 mb-1">80%</div>
+            <div class="font-mono text-xs text-white/60 uppercase tracking-widest">Class 12th PCM STEM</div>
+          </div>
+          <div class="glass-card p-6 rounded-2xl text-center bg-surface-container-low/40 border border-white/10">
+            <div class="font-display-xl text-4xl sm:text-5xl font-bold text-accent-red mb-1">4-Year</div>
+            <div class="font-mono text-xs text-white/60 uppercase tracking-widest">B.Tech CSE Core (RISU)</div>
+          </div>
+          <div class="glass-card p-6 rounded-2xl text-center bg-surface-container-low/40 border border-white/10">
+            <div class="font-display-xl text-4xl sm:text-5xl font-bold text-amber-300 mb-1">100%</div>
+            <div class="font-mono text-xs text-white/60 uppercase tracking-widest">Production Integrity</div>
+          </div>
+        </div>
+
+        <!-- Featured Distinction Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          
+          <!-- Card 1 -->
+          <div class="glass-card p-8 rounded-3xl bg-surface-container-low/40 border border-white/10 flex flex-col justify-between group hover:border-accent-red/40 transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-semibold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  B.Tech CSE Core &bull; 2026–2030
+                </span>
+                <span class="font-mono text-xs text-white/40">RISU</span>
+              </div>
+              <h3 class="font-display-xl text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                Rungta International Skills University
+              </h3>
+              <p class="font-body-md text-on-surface-variant text-sm font-light leading-relaxed mb-6">
+                Pursuing an intensive 4-year undergraduate curriculum specializing in Advanced Data Structures, Algorithms, Computer Systems Architecture, OS Internals, and Distributed Cloud Computing.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10 font-mono text-[11px]">
+              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-emerald-300">Campus Full-Time</span>
+              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-white/80">Computer Networks</span>
+              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-white/80">Systems Engineering</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass-card p-8 rounded-3xl bg-surface-container-low/40 border border-white/10 flex flex-col justify-between group hover:border-accent-red/40 transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-semibold">
+                  Secondary &bull; Senior Secondary
+                </span>
+                <span class="font-mono text-xs text-white/40">Honors</span>
+              </div>
+              <h3 class="font-display-xl text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                Board Scholastic Distinctions
+              </h3>
+              <p class="font-body-md text-on-surface-variant text-sm font-light leading-relaxed mb-6">
+                Achieved <strong>92% overall aggregate</strong> in Secondary School (Class 10th) with High Distinctions in Mathematics &amp; Computer Applications, followed by <strong>80% PCM Aggregate</strong> in Senior Secondary STEM (Class 12th).
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10 font-mono text-[11px]">
+              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-emerald-300">92% Secondary</span>
+              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-cyan-300">80% Senior Sec. PCM</span>
+              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-amber-300">Advanced Calculus</span>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </section>
 
@@ -2042,7 +2444,7 @@
   </main>
 
   <!-- Global Footer -->
-  <footer class="w-full py-12 bg-surface/80 border-t border-white/10 relative z-20">
+  <footer class="w-full py-12 pb-28 lg:pb-12 bg-surface/80 border-t border-white/10 relative z-20">
     <div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-6">
       <div class="flex items-center gap-3">
         <a href="#signature" class="font-display-xl text-xl font-bold tracking-tight text-white hover:text-accent-red transition-colors flex items-center gap-2">
@@ -2067,15 +2469,15 @@
 
 
   <!-- HUD Toast Notification -->
-  <div id="toast-notification" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[10001] px-5 py-3 rounded-full bg-surface/90 border border-accent-red/40 backdrop-blur-2xl text-white font-mono text-xs flex items-center gap-3 shadow-2xl transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
+  <div id="toast-notification" class="fixed bottom-20 lg:bottom-6 left-1/2 -translate-x-1/2 z-[10001] px-5 py-3 rounded-full bg-surface/90 border border-accent-red/40 backdrop-blur-2xl text-white font-mono text-xs flex items-center gap-3 shadow-2xl transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
     <span class="material-symbols-outlined text-accent-red text-base">check_circle</span>
     <span id="toast-message">Email copied to clipboard!</span>
   </div>
 
   <!-- Floating Quick Navigation Dock & Scroll Progress -->
-  <div id="floating-quick-dock" class="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-2">
+  <div id="floating-quick-dock" class="fixed bottom-20 right-4 lg:bottom-6 lg:right-6 z-30 flex flex-col items-center gap-2">
     <!-- Back to top button with circular SVG scroll progress ring -->
-    <button id="back-to-top-btn" class="w-12 h-12 rounded-full glass-panel border border-white/20 flex items-center justify-center text-white hover:text-accent-red hover:border-accent-red/50 shadow-2xl transition-all relative group bg-surface/80" aria-label="Back to Top">
+    <button id="back-to-top-btn" class="w-11 h-11 lg:w-12 lg:h-12 rounded-full glass-panel border border-white/20 flex items-center justify-center text-white hover:text-accent-red hover:border-accent-red/50 shadow-2xl transition-all relative group bg-surface/80" aria-label="Back to Top">
       <svg class="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 48 48">
         <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"></circle>
         <circle id="scroll-progress-circle" cx="24" cy="24" r="20" fill="none" stroke="#ea2a23" stroke-width="2.5" stroke-dasharray="125.6" stroke-dashoffset="125.6" stroke-linecap="round"></circle>
@@ -2304,28 +2706,55 @@
 
       bars.forEach(b => observer.observe(b));
 
-      // Mobile Menu Toggle
+      // Mobile Menu Toggle & Icon Switcher
       const mobileBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+      
       if (mobileBtn && mobileMenu) {
         mobileBtn.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
+          const isClosed = mobileMenu.classList.toggle('hidden');
+          if (mobileMenuIcon) {
+            mobileMenuIcon.textContent = isClosed ? 'menu' : 'close';
+          }
         });
         document.querySelectorAll('.mobile-nav-link').forEach(link => {
           link.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
+            if (mobileMenuIcon) mobileMenuIcon.textContent = 'menu';
           });
         });
       }
 
+      // Mobile Bottom Navigation Tabs & Smooth Scroll
+      const mobileBottomTabs = document.querySelectorAll('.mobile-bottom-tab');
+      mobileBottomTabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+          const targetId = tab.getAttribute('href');
+          if (targetId && targetId.startsWith('#')) {
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+              e.preventDefault();
+              targetEl.scrollIntoView({ behavior: 'smooth' });
+              // Also ensure mobile top menu is closed
+              if (mobileMenu) mobileMenu.classList.add('hidden');
+              if (mobileMenuIcon) mobileMenuIcon.textContent = 'menu';
+            }
+          }
+        });
+      });
+
       // Active Section Highlighting on Scroll using IntersectionObserver (Optimized for performance)
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
       
       const navObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const current = entry.target.getAttribute('id');
+            
+            // 1. Desktop Nav Links
             navLinks.forEach(link => {
               link.classList.remove('active', 'text-white');
               link.classList.add('text-on-surface-variant');
@@ -2334,9 +2763,34 @@
                 link.classList.remove('text-on-surface-variant');
               }
             });
+
+            // 2. Top Mobile Dropdown Links
+            mobileNavLinks.forEach(link => {
+              if (link.getAttribute('data-section') === current) {
+                link.classList.add('text-accent-red');
+                link.classList.remove('text-white/80');
+              } else {
+                link.classList.remove('text-accent-red');
+                link.classList.add('text-white/80');
+              }
+            });
+
+            // 3. Mobile Lower Area Navigation Dock Tabs
+            mobileBottomTabs.forEach(tab => {
+              const indicator = tab.querySelector('.tab-indicator');
+              if (tab.getAttribute('data-section') === current) {
+                tab.classList.add('text-accent-red');
+                tab.classList.remove('text-white/60');
+                if (indicator) indicator.classList.remove('hidden');
+              } else {
+                tab.classList.remove('text-accent-red');
+                tab.classList.add('text-white/60');
+                if (indicator) indicator.classList.add('hidden');
+              }
+            });
           }
         });
-      }, { threshold: 0.3 });
+      }, { threshold: 0.25 });
       sections.forEach(section => navObserver.observe(section));
 
       // 4. Ultra-Smooth Scroll Entrance Reveal (Cards, Milestones, Headers)
