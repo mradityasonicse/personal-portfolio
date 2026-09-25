@@ -580,17 +580,17 @@
   <div class="cinematic-scanlines" aria-hidden="true"></div>
 
   <!-- Fixed Top Navigation Bar -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/50 backdrop-blur-xl border-b border-white/10">
-    <div class="max-w-container-max mx-auto px-gutter h-16 md:h-20 flex items-center justify-between">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/75 backdrop-blur-2xl border-b border-white/10">
+    <div class="max-w-container-max mx-auto px-gutter h-16 md:h-20 flex items-center justify-between gap-4">
       <!-- Brand / Logo -->
-      <a href="#home" class="flex items-center gap-2 group">
+      <a href="#home" class="flex items-center gap-2 group flex-shrink-0 mr-6 lg:mr-10">
         <span class="serif-font text-xl md:text-2xl font-bold tracking-tight text-white group-hover:text-primary transition-colors">
           ADITYA <span class="text-accent-red">SONI</span>
         </span>
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-6 font-label-sm text-xs tracking-widest uppercase">
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8 font-label-sm text-xs tracking-widest uppercase">
         <a href="#home" class="nav-link text-white nav-underline active pb-1 hover:text-accent-red transition-colors" data-section="home">Home</a>
         <a href="about.html" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors">About</a>
         <a href="#projects" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="projects">Projects</a>
@@ -601,44 +601,16 @@
         <a href="#contact" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="contact">Contact</a>
       </nav>
 
-      <!-- Action Buttons -->
-      <div class="hidden md:flex items-center gap-3">
-        <!-- Audio Soundscape Toggle Button -->
-        <button id="soundtrack-toggle-btn" class="glass-pill px-3 py-1.5 font-label-sm text-[11px] text-white/90 hover:text-accent-red hover:border-accent-red/50 transition-all flex items-center gap-2 cursor-pointer" title="Toggle Ambient Cyber Soundscape">
-          <div class="audio-eq-container paused" id="audio-eq-bars">
-            <div class="audio-eq-bar"></div>
-            <div class="audio-eq-bar"></div>
-            <div class="audio-eq-bar"></div>
-            <div class="audio-eq-bar"></div>
-          </div>
-          <span id="audio-sound-label">Audio: OFF</span>
-        </button>
-
-        <!-- Relaxation Atmosphere Toggle Button (Bubbles / Snow / Aurora) -->
-        <button id="atmosphere-toggle-btn" class="atmosphere-toggle-btn glass-pill text-white/90 hover:text-cyan-400 transition-all flex items-center gap-1.5 cursor-pointer" title="Toggle Hypnotic Relaxation Atmosphere (Bubbles &amp; Snow)">
-          <div class="atmo-glow-dot"></div>
-          <span class="atmo-mode-text">Aurora</span>
-        </button>
-
-        <button data-open-cmd class="glass-pill px-3 py-1.5 font-mono text-[11px] text-slate-300 hover:text-white flex items-center gap-2 cursor-pointer transition-all hover:border-rose-500/40" title="Open Command Palette (Ctrl+K)">
-          <i data-lucide="command" class="w-3.5 h-3.5 text-rose-500"></i>
-          <span>⌘K</span>
-        </button>
-        <button id="replay-intro-btn" class="glass-pill px-3.5 py-1.5 font-label-sm text-[11px] uppercase tracking-wider text-white/90 hover:text-accent-red hover:border-accent-red/50 transition-all flex items-center gap-1.5 cursor-pointer" title="Replay Cinematic Intro">
-          <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-accent-red"></i>
-          <span>Intro</span>
-        </button>
-        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="glass-pill px-4 py-1.5 font-label-sm text-xs uppercase tracking-wider text-primary hover:text-accent-red hover:border-accent-red/50 transition-all flex items-center gap-1.5 group">
+      <!-- Action Button -->
+      <div class="hidden md:flex items-center gap-3 flex-shrink-0">
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="glass-pill px-5 py-2 font-label-sm text-xs uppercase tracking-wider text-white hover:text-accent-red hover:border-accent-red/50 transition-all flex items-center gap-2 group shadow-sm">
           <span>Resume</span>
-          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-accent-red"></i>
         </a>
       </div>
 
       <!-- Mobile Menu Button -->
       <div class="lg:hidden flex items-center gap-2">
-        <button id="mobile-replay-btn" class="p-2 text-white/80 hover:text-accent-red" title="Replay Intro">
-          <span class="material-symbols-outlined text-xl text-accent-red">replay</span>
-        </button>
         <button id="mobile-menu-btn" class="p-2 text-white/80 hover:text-white" aria-label="Toggle Navigation">
           <span class="material-symbols-outlined text-2xl">menu</span>
         </button>
@@ -647,22 +619,18 @@
 
     <!-- Mobile Dropdown Menu -->
     <div id="mobile-menu" class="hidden lg:hidden bg-surface/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 flex flex-col gap-3 font-label-sm text-sm">
-      <a href="#home" class="mobile-nav-link text-accent-red py-1.5 border-b border-white/5">Home</a>
-      <a href="about.html" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">About</a>
-      <a href="#projects" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">Projects</a>
-      <a href="#skills" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">Skills</a>
-      <a href="#journey" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">Journey</a>
-      <a href="achievements.html" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">Achievements</a>
-      <a href="#signature" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">Signature</a>
-      <a href="#contact" class="mobile-nav-link text-white/80 hover:text-accent-red py-1.5 border-b border-white/5">Contact</a>
-      <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="mt-2 text-center py-2.5 bg-accent-red text-white rounded font-semibold uppercase tracking-wider text-xs">View Resume</a>
-      <div class="flex items-center justify-between pt-2 border-t border-white/10 mt-1">
-        <button class="atmosphere-toggle-btn glass-pill text-white/90 py-1.5 px-3 flex items-center gap-2">
-          <div class="atmo-glow-dot"></div>
-          <span class="text-xs">Atmosphere: <span class="atmo-mode-text font-bold text-cyan-400">Aurora</span></span>
-        </button>
-        <button data-open-cmd class="glass-pill px-3 py-1.5 font-mono text-xs text-rose-400">⌘K Search</button>
-      </div>
+      <a href="#home" class="mobile-nav-link text-accent-red py-2 border-b border-white/5">Home</a>
+      <a href="about.html" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">About</a>
+      <a href="#projects" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">Projects</a>
+      <a href="#skills" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">Skills</a>
+      <a href="#journey" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">Journey</a>
+      <a href="achievements.html" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">Achievements</a>
+      <a href="#signature" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">Signature</a>
+      <a href="#contact" class="mobile-nav-link text-white/80 hover:text-accent-red py-2 border-b border-white/5">Contact</a>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="mt-2 text-center py-2.5 bg-accent-red text-white rounded font-semibold uppercase tracking-wider text-xs flex items-center justify-center gap-1.5">
+        <span>View Resume</span>
+        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+      </a>
     </div>
   </header>
 
