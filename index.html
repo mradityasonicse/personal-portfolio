@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -159,6 +159,18 @@
       .reveal {
         transition-duration: 0.3s !important;
       }
+    }
+
+    #back-to-top-btn {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.85);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    #back-to-top-btn.is-visible {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      transform: scale(1) !important;
     }
 
     /* High-Performance GPU Accelerated Signature Engine */
@@ -810,20 +822,20 @@
             </div>
 
             <!-- Metrics / Stats Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/10">
-              <div class="glass-pill p-3.5 text-center">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 pt-6 border-t border-white/10">
+              <div class="glass-pill p-2.5 sm:p-3.5 text-center">
                 <div class="font-display text-2xl sm:text-3xl font-extrabold text-rose-500 mb-0.5">3+</div>
                 <div class="font-mono text-[10px] text-slate-400 uppercase tracking-widest">Years Experience</div>
               </div>
-              <div class="glass-pill p-3.5 text-center">
+              <div class="glass-pill p-2.5 sm:p-3.5 text-center">
                 <div class="font-display text-2xl sm:text-3xl font-extrabold text-cyan-400 mb-0.5">100%</div>
                 <div class="font-mono text-[10px] text-slate-400 uppercase tracking-widest">Production Integrity</div>
               </div>
-              <div class="glass-pill p-3.5 text-center">
+              <div class="glass-pill p-2.5 sm:p-3.5 text-center">
                 <div class="font-display text-2xl sm:text-3xl font-extrabold text-rose-400 mb-0.5">120 FPS</div>
                 <div class="font-mono text-[10px] text-slate-400 uppercase tracking-widest">GPU Rendering</div>
               </div>
-              <div class="glass-pill p-3.5 text-center">
+              <div class="glass-pill p-2.5 sm:p-3.5 text-center">
                 <div class="font-display text-2xl sm:text-3xl font-extrabold text-emerald-400 mb-0.5">&lt;1 ms</div>
                 <div class="font-mono text-[10px] text-slate-400 uppercase tracking-widest">Socket Latency</div>
               </div>
@@ -831,8 +843,8 @@
           </div>
 
           <!-- Right Column: Circular Orbit Profile Frame with Rotating Text, Radar Rings & Floating Status -->
-          <div class="lg:col-span-5 flex justify-center items-center relative py-8">
-            <div class="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] md:w-[440px] md:h-[440px] rounded-full flex items-center justify-center">
+          <div class="lg:col-span-5 flex justify-center items-center relative py-4 lg:py-8 order-first lg:order-last">
+            <div class="relative w-[250px] h-[250px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] lg:w-[440px] lg:h-[440px] rounded-full flex items-center justify-center">
               
               <!-- Celestial Orbit Rings & Satellites (From Stitch Reference 465fbe8ad9804f6ebeb38d71b8029fbf) -->
               <div class="orbit-radar-ring-outer">
@@ -2485,9 +2497,9 @@
   </div>
 
   <!-- Floating Quick Navigation Dock & Scroll Progress -->
-  <div id="floating-quick-dock" class="fixed bottom-20 right-4 lg:bottom-6 lg:right-6 z-30 flex flex-col items-center gap-2">
+  <div id="floating-quick-dock" class="fixed bottom-36 right-4 lg:bottom-24 lg:right-6 z-30 flex flex-col items-center gap-2">
     <!-- Back to top button with circular SVG scroll progress ring -->
-    <button id="back-to-top-btn" class="w-11 h-11 lg:w-12 lg:h-12 rounded-full glass-panel border border-white/20 flex items-center justify-center text-white hover:text-accent-red hover:border-accent-red/50 shadow-2xl transition-all relative group bg-surface/80" aria-label="Back to Top">
+    <button id="back-to-top-btn" class="w-11 h-11 lg:w-12 lg:h-12 rounded-full glass-panel border border-white/20 flex items-center justify-center text-white hover:text-accent-red hover:border-accent-red/50 shadow-2xl transition-all duration-300 relative group bg-surface/80 opacity-0 pointer-events-none scale-90" aria-label="Back to Top">
       <svg class="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 48 48">
         <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"></circle>
         <circle id="scroll-progress-circle" cx="24" cy="24" r="20" fill="none" stroke="#ea2a23" stroke-width="2.5" stroke-dasharray="125.6" stroke-dashoffset="125.6" stroke-linecap="round"></circle>
@@ -2495,8 +2507,8 @@
       <span class="material-symbols-outlined text-lg group-hover:-translate-y-0.5 transition-transform">arrow_upward</span>
     </button>
 
-    <!-- Keyboard Shortcuts trigger -->
-    <button id="shortcuts-trigger-btn" class="w-9 h-9 rounded-full glass-panel border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-white/30 text-xs font-mono shadow-lg transition-all" title="View Keyboard Shortcuts (or press ?)">
+    <!-- Keyboard Shortcuts trigger (Desktop Only) -->
+    <button id="shortcuts-trigger-btn" class="w-9 h-9 rounded-full glass-panel border border-white/10 hidden lg:flex items-center justify-center text-white/60 hover:text-white hover:border-white/30 text-xs font-mono shadow-lg transition-all" title="View Keyboard Shortcuts (or press ?)">
       <span>?</span>
     </button>
   </div>
@@ -2627,14 +2639,15 @@
         varying vec2 v_uv;
 
         float grid(vec2 uv, float spacing) {
-          vec2 lines = abs(fract(uv / spacing - 0.5) - 0.5) / fwidth(uv / spacing);
+          vec2 g = abs(fract(uv / spacing - 0.5) - 0.5);
+          vec2 lines = smoothstep(0.01, 0.04, g);
           return 1.0 - min(lines.x, lines.y);
         }
 
         void main() {
           vec2 uv = v_uv;
           vec2 center = uv - 0.5;
-          center.x *= u_resolution.x / u_resolution.y;
+          center.x *= u_resolution.x / max(u_resolution.y, 1.0);
 
           vec3 color = vec3(0.043, 0.074, 0.145);
           float wave = sin(center.x * 2.5 + u_time * 0.4) * cos(center.y * 2.5 - u_time * 0.25);
@@ -2654,13 +2667,24 @@
         const s = gl.createShader(type);
         gl.shaderSource(s, src);
         gl.compileShader(s);
+        if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+          console.warn('Shader compile failed:', gl.getShaderInfoLog(s));
+        }
         return s;
       }
 
       const prog = gl.createProgram();
-      gl.attachShader(prog, createShader(gl.VERTEX_SHADER, vs));
-      gl.attachShader(prog, createShader(gl.FRAGMENT_SHADER, fs));
+      const vShader = createShader(gl.VERTEX_SHADER, vs);
+      const fShader = createShader(gl.FRAGMENT_SHADER, fs);
+      gl.attachShader(prog, vShader);
+      gl.attachShader(prog, fShader);
       gl.linkProgram(prog);
+
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+        console.warn('Hero shader program failed to link:', gl.getProgramInfoLog(prog));
+        return;
+      }
+
       gl.useProgram(prog);
 
       const buf = gl.createBuffer();
@@ -2668,8 +2692,10 @@
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
 
       const pos = gl.getAttribLocation(prog, 'a_position');
-      gl.enableVertexAttribArray(pos);
-      gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+      if (pos >= 0) {
+        gl.enableVertexAttribArray(pos);
+        gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+      }
 
       const uTime = gl.getUniformLocation(prog, 'u_time');
       const uRes = gl.getUniformLocation(prog, 'u_resolution');
@@ -2690,6 +2716,7 @@
       function render(t) {
         if (!isShaderVisible) return;
         gl.viewport(0, 0, canvas.width, canvas.height);
+        gl.useProgram(prog);
         if (uTime) gl.uniform1f(uTime, t * 0.001);
         if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
         if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
@@ -3562,19 +3589,34 @@
         if (sBackdrop) sBackdrop.addEventListener('click', toggleShortcuts);
         if (sClose) sClose.addEventListener('click', toggleShortcuts);
 
-        // Circular Scroll Progress
-        window.addEventListener('scroll', () => {
+        // Circular Scroll Progress & Back to Top Visibility
+        function updateBackToTop() {
+          const scrollY = window.scrollY;
           const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
           if (totalHeight > 0 && progressCircle) {
-            const progress = Math.min(Math.max(window.scrollY / totalHeight, 0), 1);
+            const progress = Math.min(Math.max(scrollY / totalHeight, 0), 1);
             const circumference = 125.6;
             progressCircle.style.strokeDashoffset = `${circumference * (1 - progress)}`;
           }
-        }, { passive: true });
+
+          if (backToTopBtn) {
+            if (scrollY > 350) {
+              backToTopBtn.classList.add('is-visible');
+            } else {
+              backToTopBtn.classList.remove('is-visible');
+            }
+          }
+        }
+        window.addEventListener('scroll', updateBackToTop, { passive: true });
+        updateBackToTop();
 
         if (backToTopBtn) {
           backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (window.__lenis) {
+              window.__lenis.scrollTo(0, { duration: 1.1 });
+            } else {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
           });
         }
 

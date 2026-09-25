@@ -18,7 +18,7 @@
   // 1. Hypnotic Relaxation Canvas Engine (Bubbles & Snow)
   // ==========================================
   const ATMOSPHERE_MODES = ["aurora", "bubbles", "snow", "vortex", "off"];
-  let currentAtmoMode = localStorage.getItem("portfolio_atmosphere") || "aurora";
+  let currentAtmoMode = localStorage.getItem("portfolio_atmosphere") || "off";
   let atmoCanvas = null;
   let atmoCtx = null;
   let atmoWidth = window.innerWidth;
@@ -26,8 +26,9 @@
   let atmoRAF = null;
   let mousePos = { x: -1000, y: -1000 };
 
-  const MAX_SNOW = 65;
-  const MAX_BUBBLES = 38;
+  const isMobileScreen = window.innerWidth < 1024 || window.matchMedia("(pointer: coarse)").matches;
+  const MAX_SNOW = isMobileScreen ? 20 : 50;
+  const MAX_BUBBLES = isMobileScreen ? 12 : 28;
   const snowFlakes = [];
   const bubbles = [];
 
@@ -174,9 +175,9 @@
       }
     }
 
-    // --- DRAW BIOLUMINESCENT BUBBLES (if active) ---
-    if (currentAtmoMode === "aurora" || currentAtmoMode === "bubbles" || currentAtmoMode === "vortex") {
-      const bLimit = currentAtmoMode === "vortex" ? Math.floor(bubbles.length * 0.5) : bubbles.length;
+    // --- DRAW BIOLUMINESCENT BUBBLES (only when explicitly set to 'bubbles') ---
+    if (currentAtmoMode === "bubbles") {
+      const bLimit = bubbles.length;
       for (let i = 0; i < bLimit; i++) {
         const b = bubbles[i];
 
@@ -259,8 +260,9 @@
       atmoCanvas.style.width = "100vw";
       atmoCanvas.style.height = "100vh";
       atmoCanvas.style.pointerEvents = "none";
-      atmoCanvas.style.zIndex = "1";
-      document.body.appendChild(atmoCanvas);
+      atmoCanvas.style.zIndex = "0";
+      atmoCanvas.style.opacity = "0.75";
+      document.body.prepend(atmoCanvas);
     }
 
     atmoCtx = atmoCanvas.getContext("2d");
@@ -387,14 +389,16 @@
     function startLenis() {
       if (typeof window.Lenis === "undefined") return;
 
+      const isTouch = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024;
       const lenis = new window.Lenis({
-        duration: 1.25,
+        duration: 1.1,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: "vertical",
         gestureOrientation: "vertical",
         smoothWheel: true,
-        wheelMultiplier: 1.0,
-        touchMultiplier: 1.4,
+        wheelMultiplier: 0.85,
+        touchMultiplier: 1.0,
+        syncTouch: false,
         infinite: false,
       });
 
@@ -531,14 +535,19 @@
 
     const magneticElements = document.querySelectorAll(".glass-pill, .btn-action, [data-magnetic]");
     magneticElements.forEach((el) => {
+      let rect = null;
+      el.addEventListener("mouseenter", () => {
+        rect = el.getBoundingClientRect();
+      });
       el.addEventListener("mousemove", (e) => {
-        const rect = el.getBoundingClientRect();
+        if (!rect) rect = el.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        el.style.transform = `translate3d(${x * 0.24}px, ${y * 0.24}px, 0)`;
+        el.style.transform = `translate3d(${x * 0.22}px, ${y * 0.22}px, 0)`;
         el.style.transition = "transform 0.08s ease-out";
       });
       el.addEventListener("mouseleave", () => {
+        rect = null;
         el.style.transform = "translate3d(0, 0, 0)";
         el.style.transition = "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)";
       });
@@ -546,16 +555,24 @@
   }
 
   // ==========================================
-  // 5. Subtle 3D Perspective Tilt on Cards
+  // 5. Subtle 3D Perspective Tilt on Cards (GPU Accelerated)
   // ==========================================
   function init3DTilt() {
+    if (window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024) return;
+
     const tiltElements = document.querySelectorAll(".tilt-card, .spotlight-card");
     tiltElements.forEach((el) => {
       let reqId = null;
       let rotX = 0, rotY = 0;
+      let rect = null;
+
+      el.addEventListener("mouseenter", () => {
+        rect = el.getBoundingClientRect();
+        el.style.transition = "none";
+      });
 
       el.addEventListener("mousemove", (e) => {
-        const rect = el.getBoundingClientRect();
+        if (!rect) rect = el.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         el.style.setProperty("--mouse-x", `${x}px`);
@@ -563,8 +580,8 @@
 
         const midX = rect.width / 2;
         const midY = rect.height / 2;
-        rotX = ((y - midY) / midY) * -5.0;
-        rotY = ((x - midX) / midX) * 5.0;
+        rotX = ((y - midY) / midY) * -4.0;
+        rotY = ((x - midX) / midX) * 4.0;
 
         if (!reqId) {
           reqId = requestAnimationFrame(() => {
@@ -576,12 +593,9 @@
 
       el.addEventListener("mouseleave", () => {
         if (reqId) cancelAnimationFrame(reqId);
+        rect = null;
         el.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
         el.style.transition = "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
-      });
-
-      el.addEventListener("mouseenter", () => {
-        el.style.transition = "none";
       });
     });
   }

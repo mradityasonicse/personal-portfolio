@@ -91,11 +91,11 @@
 
     const root = document.createElement('div');
     root.id = 'astra-ai-root';
-    root.className = 'fixed bottom-5 right-5 z-[9999] font-sans';
+    root.className = 'fixed bottom-20 right-4 lg:bottom-6 lg:right-6 z-[9999] font-sans';
 
     root.innerHTML = `
       <!-- Floating AI Launcher Widget -->
-      <button id="astra-launcher-btn" class="w-14 h-14 rounded-full bg-[#0d121e] border-2 border-accent-red/60 text-white flex items-center justify-center shadow-[0_0_25px_rgba(234,42,35,0.4)] hover:shadow-[0_0_35px_rgba(234,42,35,0.7)] hover:border-accent-red hover:scale-105 transition-all duration-300 relative cursor-pointer group" aria-label="Open AI Assistant">
+      <button id="astra-launcher-btn" class="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#0d121e] border-2 border-accent-red/60 text-white flex items-center justify-center shadow-[0_0_25px_rgba(234,42,35,0.4)] hover:shadow-[0_0_35px_rgba(234,42,35,0.7)] hover:border-accent-red hover:scale-105 transition-all duration-300 relative cursor-pointer group" aria-label="Open AI Assistant">
         <!-- Glowing Pulse Rings -->
         <span class="absolute inset-0 rounded-full border border-accent-red animate-ping opacity-30 pointer-events-none"></span>
         <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-cyan-400 border-2 border-[#0d121e] flex items-center justify-center text-[9px] font-mono font-bold text-black" id="astra-unread-badge">1</span>
@@ -110,7 +110,7 @@
       </button>
 
       <!-- Glassmorphic Chat Window -->
-      <div id="astra-chat-window" class="fixed bottom-22 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[420px] h-[550px] max-h-[82vh] bg-[#080d18]/95 backdrop-blur-2xl border border-white/15 rounded-2xl shadow-[0_25px_70px_rgba(0,0,0,0.85)] flex flex-col overflow-hidden transition-all duration-300 transform scale-90 opacity-0 pointer-events-none origin-bottom-right">
+      <div id="astra-chat-window" class="fixed bottom-36 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[420px] h-[550px] max-h-[75vh] bg-[#080d18]/95 backdrop-blur-2xl border border-white/15 rounded-2xl shadow-[0_25px_70px_rgba(0,0,0,0.85)] flex flex-col overflow-hidden transition-all duration-300 transform scale-90 opacity-0 pointer-events-none origin-bottom-right">
         
         <!-- Header -->
         <div class="px-5 py-3.5 border-b border-white/10 bg-white/[0.02] flex items-center justify-between">

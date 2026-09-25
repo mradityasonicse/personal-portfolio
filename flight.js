@@ -132,32 +132,48 @@ void main() {
         return s;
       }
       const p = gl.createProgram();
-      gl.attachShader(p, createShader(gl, gl.VERTEX_SHADER, vs));
-      gl.attachShader(p, createShader(gl, gl.FRAGMENT_SHADER, fs));
+      const vsShader = createShader(gl, gl.VERTEX_SHADER, vs);
+      const fsShader = createShader(gl, gl.FRAGMENT_SHADER, fs);
+      gl.attachShader(p, vsShader);
+      gl.attachShader(p, fsShader);
       gl.linkProgram(p);
-      gl.useProgram(p);
 
-      const buf = gl.createBuffer();
-      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-
-      const aPos = gl.getAttribLocation(p, 'a_pos');
-      gl.enableVertexAttribArray(aPos);
-      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-
-      const uTime = gl.getUniformLocation(p, 'u_time');
-      const uRes = gl.getUniformLocation(p, 'u_res');
+      let introProgram = null;
+      let uTime = null;
+      let uRes = null;
       let startTime = performance.now();
 
-      function renderIntroShader(now) {
-        if (!introActive) return;
-        const t = (now - startTime) * 0.001;
-        gl.uniform1f(uTime, t);
-        gl.uniform2f(uRes, introShaderCanvas.width, introShaderCanvas.height);
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      if (gl.getProgramParameter(p, gl.LINK_STATUS)) {
+        introProgram = p;
+        gl.useProgram(introProgram);
+
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+
+        const aPos = gl.getAttribLocation(introProgram, 'a_pos');
+        if (aPos >= 0) {
+          gl.enableVertexAttribArray(aPos);
+          gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+        }
+
+        uTime = gl.getUniformLocation(introProgram, 'u_time');
+        uRes = gl.getUniformLocation(introProgram, 'u_res');
+
+        function renderIntroShader(now) {
+          if (!introActive || !introProgram) return;
+          gl.useProgram(introProgram);
+          const t = (now - startTime) * 0.001;
+          if (uTime) gl.uniform1f(uTime, t);
+          if (uRes) gl.uniform2f(uRes, introShaderCanvas.width, introShaderCanvas.height);
+          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+          introShaderRAF = requestAnimationFrame(renderIntroShader);
+        }
+        window.__renderIntroShader = renderIntroShader;
         introShaderRAF = requestAnimationFrame(renderIntroShader);
+      } else {
+        console.warn('Intro WebGL shader fallback:', gl.getProgramInfoLog(p));
       }
-      introShaderRAF = requestAnimationFrame(renderIntroShader);
     }
   }
 
@@ -372,19 +388,8 @@ void main() {
       introCenterBox.style.transform = 'scale(1)';
     }
 
-    if (introShaderCanvas && !introShaderRAF) {
-      const gl = introShaderCanvas.getContext('webgl') || introShaderCanvas.getContext('experimental-webgl');
-      if (gl) {
-        let startTime = performance.now();
-        function renderIntroShader(now) {
-          if (!introActive) return;
-          const t = (now - startTime) * 0.001;
-          gl.viewport(0, 0, introShaderCanvas.width, introShaderCanvas.height);
-          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-          introShaderRAF = requestAnimationFrame(renderIntroShader);
-        }
-        introShaderRAF = requestAnimationFrame(renderIntroShader);
-      }
+    if (introShaderCanvas && !introShaderRAF && window.__renderIntroShader) {
+      introShaderRAF = requestAnimationFrame(window.__renderIntroShader);
     }
   }
 
