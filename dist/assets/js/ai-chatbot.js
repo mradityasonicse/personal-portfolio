@@ -3,7 +3,7 @@
  * Interactive conversational AI trained on Aditya's systems architecture, projects, education, and credentials.
  * Features:
  * - Natural NLP keyword and intent parsing with contextual memory
- * - Direct in-chat Contact Database Vault integration (100% free of cost)
+ * - Direct in-chat contact integration
  * - Quick-action prompt chips
  * - WebAudio subtle cyber acoustic feedback
  * - Mobile & desktop optimized glassmorphic floating UI
@@ -160,7 +160,7 @@
             🎓 Distinctions
           </button>
           <button class="astra-chip px-2.5 py-1 rounded-full bg-white/5 hover:bg-purple-500/15 border border-white/10 hover:border-purple-400/40 text-slate-300 hover:text-white whitespace-nowrap transition-all cursor-pointer">
-            🗄️ Database Vault
+            📬 Contact
           </button>
         </div>
 
@@ -237,7 +237,7 @@
         Greetings! I am Astra, Aditya Soni's AI Agent.
       </p>
       <p class="text-slate-300 font-light leading-relaxed">
-        I can walk you through Aditya's <strong>Distributed Systems architecture</strong>, <strong>120 FPS WebGL Shaders</strong>, or <strong>save an inquiry directly into his free database vault</strong>.
+        I can walk you through Aditya's <strong>Distributed Systems architecture</strong>, <strong>120 FPS WebGL Shaders</strong>, or <strong>help you connect directly with Aditya</strong>.
       </p>
       <div class="mt-2 text-xs font-mono text-cyan-300 flex items-center gap-1">
         <span>What would you like to explore?</span>
@@ -316,32 +316,18 @@
   function generateAIResponse(query) {
     const q = query.toLowerCase().trim();
 
-    // 1. Direct Database Vault Trigger
-    if (q.includes('vault') || q.includes('database') || q.includes('records') || q.includes('submissions') || q.includes('inbox')) {
-      if (window.PortfolioDB && window.PortfolioDB.openVault) {
-        setTimeout(() => window.PortfolioDB.openVault(), 600);
-      }
-      return `
-        <p class="font-bold text-emerald-400 mb-1 flex items-center gap-1">
-          <span class="material-symbols-outlined text-base">database</span> Database Vault Opened!
-        </p>
-        <p>I have opened the <strong>Free Contact Database Vault</strong> on your screen. You can view all saved client inquiries, search by keyword, and export directly as CSV or JSON format.</p>
-        <p class="mt-2 text-xs text-slate-400">All submissions are saved automatically in IndexedDB and forwarded via FormSubmit cloud sync at zero cost.</p>
-      `;
-    }
-
-    // 2. Direct message / inquiry flow
-    if (q.includes('message') || q.includes('contact') || q.includes('hire') || q.includes('reach out') || q.includes('talk') || q.includes('email') || q.includes('call')) {
+    // 1. Direct message / inquiry flow
+    if (q.includes('message') || q.includes('contact') || q.includes('hire') || q.includes('reach out') || q.includes('talk') || q.includes('email') || q.includes('call') || q.includes('inbox') || q.includes('vault') || q.includes('database')) {
       return `
         <div class="space-y-2">
           <p class="font-semibold text-white">Let's connect you directly with Aditya!</p>
-          <p>You can contact him instantly via:</p>
+          <p>You can reach him instantly via:</p>
           <ul class="space-y-1 font-mono text-[11px] text-slate-300">
             <li>📧 Email: <a href="mailto:mradityasoni.cse@gmail.com" class="text-cyan-400 underline">mradityasoni.cse@gmail.com</a></li>
             <li>💬 WhatsApp: <a href="https://wa.me/919131631253" target="_blank" class="text-emerald-400 underline">+91 9131631253</a></li>
             <li>💼 LinkedIn: <a href="${KNOWLEDGE.identity.linkedin}" target="_blank" class="text-rose-400 underline">aditya-soni-698114370</a></li>
           </ul>
-          <p class="text-xs text-white/80 pt-1">Or type your <strong>Name, Email, and Message</strong> right here, and I will write it directly into Aditya's database vault!</p>
+          <p class="text-xs text-white/80 pt-1">You can also leave a message directly using the contact form below.</p>
           <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="mt-1 px-3 py-1 rounded bg-accent-red/20 text-accent-red border border-accent-red/30 text-xs font-mono hover:bg-accent-red hover:text-white transition-all cursor-pointer">
             Jump to Contact Form ↓
           </button>
@@ -449,22 +435,16 @@
     if (emailMatch) {
       const email = emailMatch[0];
       const name = query.split(/[,:\n]/)[0].replace(/my name is|i am/gi, '').trim() || 'Website Visitor';
-      const msg = query;
-
-      if (window.PortfolioDB && window.PortfolioDB.saveContact) {
-        window.PortfolioDB.saveContact(name, email, msg, 'Astra AI Chatbot');
-      }
 
       return `
         <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">
           <p class="font-bold flex items-center gap-1.5 mb-1">
             <span class="material-symbols-outlined text-base">check_circle</span>
-            Inquiry Saved in Database Vault!
+            Message Received!
           </p>
           <p class="text-xs text-slate-200">
-            Thank you, <strong>${escapeHtml(name)}</strong>! Your message with email <strong>${escapeHtml(email)}</strong> has been recorded into Aditya's database vault and forwarded directly to his inbox.
+            Thank you, <strong>${escapeHtml(name)}</strong>! Please use the contact section below to send your direct message to Aditya's inbox.
           </p>
-          <p class="text-[11px] text-emerald-400 mt-2 font-mono">Status: Synced to IndexedDB + FormSubmit Cloud</p>
         </div>
       `;
     }

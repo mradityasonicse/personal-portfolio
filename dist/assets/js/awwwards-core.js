@@ -16,9 +16,9 @@
 
   // ==========================================
   // 1. Hypnotic Relaxation Canvas Engine (Bubbles & Snow)
-  // ==========================================
-  const ATMOSPHERE_MODES = ["aurora", "bubbles", "snow", "vortex", "off"];
-  let currentAtmoMode = localStorage.getItem("portfolio_atmosphere") || "off";
+  const ATMOSPHERE_MODES = ["off"];
+  let currentAtmoMode = "off";
+  localStorage.setItem("portfolio_atmosphere", "off");
   let atmoCanvas = null;
   let atmoCtx = null;
   let atmoWidth = window.innerWidth;
@@ -250,7 +250,7 @@
   }
 
   function initAtmosphereEngine() {
-    atmoCanvas = document.getElementById("relaxation-atmosphere-canvas");
+    return; // Atmosphere canvas engine disabled for clean experience
     if (!atmoCanvas) {
       atmoCanvas = document.createElement("canvas");
       atmoCanvas.id = "relaxation-atmosphere-canvas";
@@ -844,12 +844,14 @@
               </span>
               <span class="text-xs font-mono text-slate-500">Play ↵</span>
             </a>
-            <div class="cmd-item" id="cmd-toggle-atmosphere">
+
+
+            <div class="cmd-item" id="cmd-toggle-audio">
               <span class="flex items-center gap-3">
-                <span class="text-cyan-400 font-mono text-xs">✨</span>
-                <span>Switch Relaxation Atmosphere (Bubbles / Snow)</span>
+                <span class="text-purple-400 font-mono text-xs">🎵</span>
+                <span>Toggle Cyber Lo-Fi Ambient Audio Station</span>
               </span>
-              <span class="text-xs font-mono text-slate-500">Cycle ↵</span>
+              <span class="text-xs font-mono text-purple-400">Audio ↵</span>
             </div>
             <div class="cmd-item" id="cmd-open-resume">
               <span class="flex items-center gap-3">
@@ -927,13 +929,19 @@
       if (e.target === paletteBackdrop) closePalette();
     });
 
-    // Wire cmd-toggle-atmosphere
-    const cmdAtmo = document.getElementById("cmd-toggle-atmosphere");
-    if (cmdAtmo) {
-      cmdAtmo.addEventListener("click", () => {
+
+
+
+
+
+
+    // Wire cmd-toggle-audio
+    const cmdAudio = document.getElementById("cmd-toggle-audio");
+    if (cmdAudio) {
+      cmdAudio.addEventListener("click", () => {
         closePalette();
-        const nextIdx = (ATMOSPHERE_MODES.indexOf(currentAtmoMode) + 1) % ATMOSPHERE_MODES.length;
-        setAtmosphereMode(ATMOSPHERE_MODES[nextIdx]);
+        const playerBtn = document.getElementById("lofi-player-toggle");
+        if (playerBtn) playerBtn.click();
       });
     }
 

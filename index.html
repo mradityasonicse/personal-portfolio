@@ -72,8 +72,11 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 100px;
+      scroll-padding-top: 80px;
       -webkit-overflow-scrolling: touch;
+      overflow-x: hidden;
+      max-width: 100vw;
+      width: 100%;
     }
 
     /* Custom smooth dark crimson scrollbar */
@@ -99,6 +102,9 @@
       color: #dae2fc;
       font-family: 'Geist', 'Inter', sans-serif;
       overflow-x: hidden;
+      max-width: 100vw;
+      width: 100%;
+      position: relative;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -355,12 +361,13 @@
     /* Ambient glow */
     .ambient-glow {
       position: absolute;
-      width: 600px;
-      height: 600px;
+      width: min(600px, 90vw);
+      height: min(600px, 90vw);
       background: radial-gradient(circle, rgba(234, 42, 35, 0.06) 0%, rgba(11, 19, 37, 0) 70%);
       border-radius: 50%;
       pointer-events: none;
       z-index: 0;
+      max-width: 100vw;
     }
 
     /* Signature Section & Pen Animation Styles */
@@ -608,14 +615,18 @@
         <a href="#skills" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="skills">Skills</a>
         <a href="#projects" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="projects">Projects</a>
         <a href="#journey" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="journey">Journey</a>
-        <a href="#achievements" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="achievements">Achievements</a>
-        <a href="#signature" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="signature">Signature</a>
         <a href="#contact" class="nav-link text-on-surface-variant nav-underline pb-1 hover:text-accent-red transition-colors" data-section="contact">Contact</a>
       </nav>
 
-      <!-- Action Button -->
-      <div class="hidden md:flex items-center gap-3 flex-shrink-0">
-        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="glass-pill px-5 py-2 font-label-sm text-xs uppercase tracking-wider text-white hover:text-accent-red hover:border-accent-red/50 transition-all flex items-center gap-2 group shadow-sm">
+      <!-- Action Buttons -->
+      <div class="hidden lg:flex items-center gap-2.5 flex-shrink-0">
+        <!-- Command Palette Trigger -->
+        <button data-open-cmd class="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-white/30 text-white/70 hover:text-white font-mono text-[11px] transition-all cursor-pointer" title="Open Global Command Palette (Cmd+K)">
+          <span class="material-symbols-outlined text-[13px] text-cyan-400">terminal</span>
+          <span>⌘K</span>
+        </button>
+
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="glass-pill px-4 py-1.5 font-label-sm text-xs uppercase tracking-wider text-white hover:text-accent-red hover:border-accent-red/50 transition-all flex items-center gap-1.5 group shadow-sm">
           <span>Resume</span>
           <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-accent-red"></i>
         </a>
@@ -775,7 +786,7 @@
   <main class="relative z-10">
 
     <!-- ==================== SECTION: HOME ==================== -->
-    <section id="home" class="min-h-screen pt-28 md:pt-36 pb-20 flex flex-col justify-center relative">
+    <section id="home" class="min-h-screen pt-28 md:pt-36 pb-20 flex flex-col justify-center relative overflow-hidden">
       <div class="ambient-glow -top-20 -right-20"></div>
 
       <div class="max-w-container-max mx-auto px-gutter w-full">
@@ -802,20 +813,25 @@
             </p>
 
             <!-- Call to Actions -->
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 max-w-xl mb-12">
-              <a href="#projects" class="flex items-center justify-between sm:justify-center gap-3 px-6 py-3.5 bg-white text-slate-950 font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-slate-200 transition-all group shadow-xl shadow-rose-500/10">
+            <div class="flex flex-wrap items-center gap-3 max-w-xl mb-10">
+              <a href="#projects" class="flex items-center justify-center gap-2.5 px-6 py-3.5 bg-white text-slate-950 font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-slate-200 transition-all group shadow-xl shadow-rose-500/10 cursor-pointer">
                 <span>EXPLORE PROJECTS</span>
                 <i data-lucide="arrow-right" class="w-4 h-4 text-rose-600 group-hover:translate-x-1 transition-transform"></i>
               </a>
+
               <a href="#journey" class="flex items-center justify-center gap-2 px-5 py-3.5 glass-pill rounded-xl text-white font-mono text-xs uppercase tracking-widest hover:border-white/30 transition-all">
                 <i data-lucide="briefcase" class="w-4 h-4 text-rose-500"></i>
                 <span>EXPERIENCE</span>
               </a>
-              <a href="#contact" class="flex items-center justify-center gap-2 px-5 py-3.5 glass-pill rounded-xl text-white font-mono text-xs uppercase tracking-widest hover:border-white/30 transition-all">
-                <i data-lucide="arrow-up-right" class="w-4 h-4 text-cyan-400"></i>
-                <span>CONTACT</span>
-              </a>
-              <button onclick="navigator.clipboard.writeText('mradityasoni.cse@gmail.com'); showToast('Email copied: mradityasoni.cse@gmail.com');" class="flex items-center justify-center gap-2 px-4 py-3.5 glass-pill rounded-xl text-white font-mono text-xs uppercase tracking-widest hover:border-emerald-400/50 transition-all cursor-pointer" title="Click to copy email address">
+
+              <!-- Cyber Audio Station Toggle -->
+              <button id="lofi-player-toggle" class="flex items-center justify-center gap-2 px-4 py-3.5 glass-pill rounded-xl text-white font-mono text-xs uppercase tracking-widest hover:border-cyan-400/50 transition-all cursor-pointer">
+                <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                <span>CYBER AUDIO (432Hz)</span>
+                <span class="material-symbols-outlined text-[15px]">play_arrow</span>
+              </button>
+
+              <button onclick="navigator.clipboard.writeText('mradityasoni.cse@gmail.com'); if(window.showToastNotification) window.showToastNotification('Email copied: mradityasoni.cse@gmail.com');" class="flex items-center justify-center gap-2 px-3.5 py-3.5 glass-pill rounded-xl text-white font-mono text-xs uppercase tracking-widest hover:border-emerald-400/50 transition-all cursor-pointer" title="Click to copy email address">
                 <i data-lucide="copy" class="w-4 h-4 text-emerald-400"></i>
                 <span>COPY</span>
               </button>
@@ -842,7 +858,7 @@
             </div>
           </div>
 
-          <!-- Right Column: Circular Orbit Profile Frame with Rotating Text, Radar Rings & Floating Status -->
+          <!-- Right Column: Circular Orbit Profile Frame (Real Image Only) -->
           <div class="lg:col-span-5 flex justify-center items-center relative py-4 lg:py-8 order-first lg:order-last">
             <div class="relative w-[250px] h-[250px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] lg:w-[440px] lg:h-[440px] rounded-full flex items-center justify-center">
               
@@ -877,15 +893,14 @@
                 <div class="crosshair crosshair-left">+</div>
               </div>
 
-              <!-- Center Profile Image Frame -->
-              <div class="profile-image-wrapper group shadow-[0_0_60px_rgba(234,42,35,0.35)] relative overflow-hidden glass-panel border border-white/20 transition-transform duration-500 hover:scale-[1.03] hover:border-accent-red/60">
+              <!-- Center Profile Image Frame (Real Image Only) -->
+              <div class="profile-image-wrapper group shadow-[0_0_50px_rgba(234,42,35,0.3)] relative overflow-hidden glass-panel border border-white/20 transition-transform duration-500 hover:scale-[1.03] hover:border-accent-red/60">
                 <img 
                   src="assets/aditya_profile.png" 
                   alt="Aditya Soni" 
                   class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                   onerror="this.src='assets/11982553177829055786_WhatsApp_Image_2026-08-27_at_7.png'"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"></div>
               </div>
 
             </div>
@@ -896,7 +911,7 @@
     </section>
 
     <!-- ==================== SECTION: ABOUT ==================== -->
-    <section id="about" class="py-24 md:py-32 relative">
+    <section id="about" class="py-24 md:py-32 relative overflow-hidden">
       <div class="ambient-glow -top-20 -left-20"></div>
 
       <div class="max-w-container-max mx-auto px-gutter relative z-10">
@@ -1078,7 +1093,7 @@
     </section>
 
     <!-- ==================== SECTION: SKILLS ==================== -->
-    <section id="skills" class="py-24 md:py-32 relative">
+    <section id="skills" class="py-24 md:py-32 relative overflow-hidden">
       <div class="ambient-glow -bottom-20 -left-20"></div>
 
       <div class="max-w-container-max mx-auto px-gutter relative z-10">
@@ -1387,7 +1402,7 @@
     </section>
 
     <!-- ==================== SECTION: PROJECTS ==================== -->
-    <section id="projects" class="py-24 md:py-32 relative">
+    <section id="projects" class="py-24 md:py-32 relative overflow-hidden">
       <div class="ambient-glow -top-20 -right-20"></div>
 
       <div class="max-w-container-max mx-auto px-gutter relative z-10">
@@ -1898,7 +1913,7 @@
     </section>
 
     <!-- ==================== SECTION: JOURNEY ==================== -->
-    <section id="journey" class="py-24 md:py-32 relative">
+    <section id="journey" class="py-24 md:py-32 relative overflow-hidden">
       <div class="ambient-glow -bottom-32 -left-20"></div>
 
       <div class="max-w-container-max mx-auto px-gutter relative z-10">
@@ -2045,7 +2060,7 @@
     </section>
 
     <!-- ==================== SECTION: ACHIEVEMENTS ==================== -->
-    <section id="achievements" class="py-24 md:py-32 relative">
+    <section id="achievements" class="py-24 md:py-32 relative overflow-hidden">
       <div class="ambient-glow -bottom-32 -left-20"></div>
 
       <div class="max-w-container-max mx-auto px-gutter relative z-10">
@@ -2365,7 +2380,7 @@
     </section>
 
     <!-- ==================== SECTION: CONTACT ==================== -->
-    <section id="contact" class="py-24 md:py-32 relative">
+    <section id="contact" class="py-24 md:py-32 relative overflow-hidden">
       <div class="ambient-glow -top-20 -right-20"></div>
 
       <div class="max-w-container-max mx-auto px-gutter relative z-10">
@@ -2410,22 +2425,6 @@
               </a>
             </div>
 
-
-            <!-- Free Database Vault Live Status & Admin Trigger -->
-            <div class="mt-8 pt-6 border-t border-white/10">
-              <div class="flex items-center gap-2 mb-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span class="text-emerald-400 font-mono text-[11px] uppercase tracking-wider font-semibold">Free Cloud &amp; Local Database Active</span>
-              </div>
-              <p class="text-xs text-slate-400 font-light leading-relaxed mb-4">
-                All client inquiries are automatically recorded into a persistent database vault and forwarded to Aditya's inbox free of cost.
-              </p>
-              <button type="button" onclick="window.PortfolioDB.openVault()" class="glass-pill px-4 py-2 font-mono text-xs text-white/90 hover:text-cyan-400 hover:border-cyan-400/40 inline-flex items-center gap-2 group transition-all cursor-pointer shadow-sm">
-                <span class="material-symbols-outlined text-[17px] text-cyan-400">database</span>
-                <span>View Database Vault</span>
-                <span class="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform text-slate-400">arrow_forward</span>
-              </button>
-            </div>
           </div>
 
           <!-- Right Column: Glassmorphism Contact Form -->
@@ -2449,12 +2448,12 @@
               </div>
 
               <button type="submit" id="contact-submit-btn" class="btn-red font-label-sm text-xs font-bold uppercase tracking-widest py-4 px-8 rounded-lg flex items-center justify-center gap-3 w-full group cursor-pointer shadow-lg hover:shadow-accent-red/25 transition-all">
-                <span id="contact-btn-text">Send Message &amp; Save to Database</span>
+                <span id="contact-btn-text">Send Message</span>
                 <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
               </button>
 
               <div id="form-feedback" class="hidden font-mono text-xs text-center text-emerald-400 py-2.5 px-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-                ✓ Message successfully recorded in Database Vault &amp; dispatched!
+                ✓ Thank you! Your message has been sent successfully.
               </div>
             </form>
           </div>
@@ -2887,31 +2886,25 @@
 
           // UI Loading state
           if (submitBtn) submitBtn.disabled = true;
-          if (submitText) submitText.textContent = 'Saving to Database Vault...';
+          if (submitText) submitText.textContent = 'Sending Message...';
 
           try {
-            // 1. Save to Free Database Vault (IndexedDB + LocalStorage + FormSubmit Cloud Sync)
-            let record = null;
-            if (window.PortfolioDB && window.PortfolioDB.saveContact) {
-              record = await window.PortfolioDB.saveContact(name, email, message, 'Portfolio Contact Form');
-            }
-
-            // 2. Show feedback with unique record ID
+            // Show feedback
             feedback.innerHTML = `
               <span class="flex items-center justify-center gap-1.5 font-semibold text-emerald-400">
                 <span class="material-symbols-outlined text-base">verified</span>
-                Message successfully saved to Database Vault ${record ? '(#' + record.id + ')' : ''} &amp; dispatched!
+                Thank you! Your message has been sent successfully.
               </span>
             `;
             feedback.classList.remove('hidden');
             form.reset();
 
-            // 3. Show HUD toast notification
-            showToast(`Inquiry recorded in Database Vault ${record ? '(#' + record.id + ')' : ''}`);
+            // Show HUD toast notification
+            showToast('Message sent successfully!');
 
-            // 4. Also open WhatsApp direct link as seamless multi-channel communication
+            // Open WhatsApp direct link as communication channel
             const whatsappNumber = '919131631253';
-            const text = `*New Portfolio Inquiry [DB Ref: ${record ? record.id : 'NEW'}]*\n\n*Name:* ${name}\n*Email:* ${email}\n\n*Message:*\n${message}`;
+            const text = `*New Portfolio Inquiry*\n\n*Name:* ${name}\n*Email:* ${email}\n\n*Message:*\n${message}`;
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
             
             setTimeout(() => {
@@ -2920,14 +2913,14 @@
 
             setTimeout(() => {
               feedback.classList.add('hidden');
-            }, 7000);
+            }, 6000);
           } catch (err) {
             console.error('Contact submission error:', err);
-            feedback.innerHTML = `<span class="text-rose-400">Message saved locally. Thank you!</span>`;
+            feedback.innerHTML = `<span class="text-rose-400">Message saved. Thank you!</span>`;
             feedback.classList.remove('hidden');
           } finally {
             if (submitBtn) submitBtn.disabled = false;
-            if (submitText) submitText.textContent = 'Send Message & Save to Database';
+            if (submitText) submitText.textContent = 'Send Message';
           }
         });
       }
@@ -4150,12 +4143,12 @@
       })();
     });
   </script>
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
   <!-- Hypnotic Cosmic Fluid & Sacred Geometry Engine -->
   <script src="flight.js"></script>
   <!-- Awwwards-Tier Core Interactive Engine (Spotlight, 3D Tilt, Magnetic Cursor, Cmd+K) -->
   <script src="assets/js/awwwards-core.js"></script>
-  <!-- Free-of-Cost Hybrid Database Vault Engine -->
-  <script src="assets/js/db-vault.js"></script>
   <!-- Astra AI Assistant Neural Chatbot -->
   <script src="assets/js/ai-chatbot.js"></script>
 </body>
