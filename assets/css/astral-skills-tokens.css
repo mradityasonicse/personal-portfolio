@@ -1,0 +1,204 @@
+/* ==========================================================================
+   ASTRAL OS v2.0 — DESIGN TOKENS ENGINE
+   Standardized architectural variables for high-performance portfolio
+   Compliant with Articles 1.1 - 1.8 of the ASTRAL Constitution
+   ========================================================================== */
+
+:root,
+html.dark {
+  /* --- 1.6 COLOR PALETTE (60/30/10 + ELECTRIC ACCENT) --- */
+  /* 60% DOMINANT VOID (Near-black obsidian, no default blue) */
+  --astral-void: #05070c;
+  --astral-void-rgb: 5, 7, 12;
+
+  /* 30% STRUCTURAL SURFACES & SHADOWS */
+  --astral-surface-0: #080c14;
+  --astral-surface-1: #0d121c;
+  --astral-surface-2: #131a28;
+  --astral-surface-card: rgba(13, 18, 28, 0.82);
+  --astral-surface-card-hover: rgba(19, 26, 40, 0.95);
+
+  /* 10% LUMINOUS TEXT & INTERFACES */
+  --astral-text-pure: #ffffff;
+  --astral-text-primary: #f1f5f9;
+  --astral-text-secondary: #94a3b8;
+  --astral-text-tertiary: #64748b;
+  --astral-text-parchment: #ece8e1;
+
+  /* THE ELECTRIC ACCENT (Crimson-Ruby Pulse) */
+  --astral-accent-electric: #f43f5e;
+  --astral-accent-rgb: 244, 63, 94;
+  --astral-accent-glow: rgba(244, 63, 94, 0.35);
+  --astral-accent-subtle: rgba(244, 63, 94, 0.12);
+
+  /* SPARE SECONDARY SCORE (Cinematic Gold) */
+  --astral-gold-score: #d4af37;
+  --astral-gold-rgb: 212, 175, 55;
+
+  /* STRUCTURAL BORDERS & LIGHT SEPARATORS */
+  --astral-border-subtle: rgba(255, 255, 255, 0.07);
+  --astral-border-medium: rgba(255, 255, 255, 0.14);
+  --astral-border-focused: rgba(244, 63, 94, 0.55);
+
+  /* --- 1.5 TYPOGRAPHY TOKENS --- */
+  --font-astral-display: 'Syne', sans-serif;
+  --font-astral-serif: 'Newsreader', serif;
+  --font-astral-body: 'Plus Jakarta Sans', sans-serif;
+  --font-astral-mono: 'JetBrains Mono', monospace;
+
+  /* --- 1.7 MOTION TOKENS --- */
+  --astral-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --astral-duration-in: 600ms;
+  --astral-duration-out: 400ms;
+  --astral-stagger: 60ms;
+
+  /* --- 1.4 STRUCTURAL SHADOW & LIGHT --- */
+  --astral-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --astral-shadow-md: 0 12px 32px rgba(0, 0, 0, 0.7);
+  --astral-shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.85);
+  --astral-shadow-electric: 0 0 25px rgba(244, 63, 94, 0.22);
+}
+
+html.light,
+html:not(.dark) {
+  --astral-void: #f8fafc;
+  --astral-void-rgb: 248, 250, 252;
+  --astral-surface-0: #ffffff;
+  --astral-surface-1: #f1f5f9;
+  --astral-surface-2: #e2e8f0;
+  --astral-surface-card: rgba(255, 255, 255, 0.92);
+  --astral-surface-card-hover: rgba(255, 255, 255, 0.98);
+
+  --astral-text-pure: #0f172a;
+  --astral-text-primary: #1e293b;
+  --astral-text-secondary: #475569;
+  --astral-text-tertiary: #64748b;
+  --astral-text-parchment: #0f172a;
+
+  --astral-accent-electric: #e11d48;
+  --astral-accent-rgb: 225, 29, 72;
+  --astral-accent-glow: rgba(225, 29, 72, 0.25);
+  --astral-accent-subtle: rgba(225, 29, 72, 0.08);
+
+  --astral-gold-score: #b45309;
+  --astral-gold-rgb: 180, 83, 9;
+
+  --astral-border-subtle: rgba(15, 23, 42, 0.08);
+  --astral-border-medium: rgba(15, 23, 42, 0.16);
+  --astral-border-focused: rgba(225, 29, 72, 0.5);
+
+  --font-astral-display: 'Syne', sans-serif;
+  --font-astral-serif: 'Newsreader', serif;
+  --font-astral-body: 'Plus Jakarta Sans', sans-serif;
+  --font-astral-mono: 'JetBrains Mono', monospace;
+
+  --astral-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --astral-duration-in: 600ms;
+  --astral-duration-out: 400ms;
+  --astral-stagger: 60ms;
+
+  --astral-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --astral-shadow-md: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(15, 23, 42, 0.05);
+  --astral-shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+  --astral-shadow-electric: 0 0 20px rgba(225, 29, 72, 0.15);
+}
+
+/* Light Mode Overrides for Tailwind Astral utilities */
+html.light .bg-astral-void,
+html:not(.dark) .bg-astral-void {
+  background-color: #f8fafc !important;
+}
+html.light .bg-astral-surface,
+html:not(.dark) .bg-astral-surface {
+  background-color: #ffffff !important;
+}
+html.light .bg-astral-surface-raised,
+html:not(.dark) .bg-astral-surface-raised {
+  background-color: #f1f5f9 !important;
+}
+html.light .text-astral-parchment,
+html:not(.dark) .text-astral-parchment {
+  color: #0f172a !important;
+}
+html.light .text-astral-muted,
+html:not(.dark) .text-astral-muted {
+  color: #475569 !important;
+}
+html.light .border-astral-border,
+html:not(.dark) .border-astral-border {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+html.light .astral-telemetry-tag,
+html:not(.dark) .astral-telemetry-tag {
+  background: rgba(15, 23, 42, 0.04) !important;
+  border-color: rgba(15, 23, 42, 0.09) !important;
+  color: #334155 !important;
+}
+html.light .astral-telemetry-tag:hover,
+html.light .astral-telemetry-tag.active,
+html:not(.dark) .astral-telemetry-tag:hover,
+html:not(.dark) .astral-telemetry-tag.active {
+  background: rgba(225, 29, 72, 0.08) !important;
+  border-color: rgba(225, 29, 72, 0.4) !important;
+  color: #e11d48 !important;
+}
+
+/* ==========================================================================
+   ASTRAL UTILITIES & MOTION CLASSES
+   ========================================================================== */
+
+/* Motion reveal container */
+.astral-stagger-parent > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--astral-duration-in) var(--astral-ease),
+              transform var(--astral-duration-in) var(--astral-ease);
+}
+
+.astral-stagger-parent.in-view > *:nth-child(1) { transition-delay: calc(var(--astral-stagger) * 1); opacity: 1; transform: translateY(0); }
+.astral-stagger-parent.in-view > *:nth-child(2) { transition-delay: calc(var(--astral-stagger) * 2); opacity: 1; transform: translateY(0); }
+.astral-stagger-parent.in-view > *:nth-child(3) { transition-delay: calc(var(--astral-stagger) * 3); opacity: 1; transform: translateY(0); }
+.astral-stagger-parent.in-view > *:nth-child(4) { transition-delay: calc(var(--astral-stagger) * 4); opacity: 1; transform: translateY(0); }
+.astral-stagger-parent.in-view > *:nth-child(5) { transition-delay: calc(var(--astral-stagger) * 5); opacity: 1; transform: translateY(0); }
+.astral-stagger-parent.in-view > *:nth-child(6) { transition-delay: calc(var(--astral-stagger) * 6); opacity: 1; transform: translateY(0); }
+
+/* Structural steel module card */
+.astral-module-card {
+  background: var(--astral-surface-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--astral-border-subtle);
+  border-top: 1px solid var(--astral-border-medium);
+  box-shadow: var(--astral-shadow-md);
+  transition: border-color var(--astral-duration-out) var(--astral-ease),
+              box-shadow var(--astral-duration-out) var(--astral-ease),
+              transform var(--astral-duration-out) var(--astral-ease);
+}
+
+.astral-module-card:hover {
+  border-color: var(--astral-border-focused);
+  box-shadow: var(--astral-shadow-lg), var(--astral-shadow-electric);
+  transform: translateY(-2px);
+}
+
+/* Mechanical telemetry pill */
+.astral-telemetry-tag {
+  font-family: var(--font-astral-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--astral-border-subtle);
+  color: var(--astral-text-secondary);
+  transition: all var(--astral-duration-out) var(--astral-ease);
+}
+
+.astral-telemetry-tag:hover,
+.astral-telemetry-tag.active {
+  background: var(--astral-accent-subtle);
+  border-color: var(--astral-accent-electric);
+  color: #ffffff;
+  box-shadow: 0 0 12px var(--astral-accent-glow);
+}

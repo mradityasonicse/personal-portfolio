@@ -5,25 +5,56 @@
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Syne:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-:root {
-  --canvas: #07090e;
-  --canvas-rgb: 7, 9, 14;
-  --surface: #0d121c;
-  --surface-card: rgba(15, 21, 33, 0.72);
+:root,
+html.dark {
+  --canvas: #05070c;
+  --canvas-rgb: 5, 7, 12;
+  --surface: #0a0e16;
+  --surface-rgb: 10, 14, 22;
+  --surface-card: rgba(15, 23, 42, 0.65);
   --surface-card-hover: rgba(22, 30, 46, 0.85);
   --border-glass: rgba(255, 255, 255, 0.08);
   --border-glass-hover: rgba(255, 255, 255, 0.22);
   
-  --accent-crimson: #f43f5e;
-  --accent-crimson-rgb: 244, 63, 94;
-  --accent-cyan: #38bdf8;
-  --accent-cyan-rgb: 56, 189, 248;
+  --accent-crimson: #ea2a23;
+  --accent-crimson-rgb: 234, 42, 35;
+  --accent-cyan: #00f0ff;
+  --accent-cyan-rgb: 0, 240, 255;
   --accent-violet: #818cf8;
   --accent-emerald: #10b981;
 
   --text-pure: #ffffff;
   --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-tech: 'Space Grotesk', sans-serif;
+}
+
+html.light,
+html:not(.dark) {
+  --canvas: #f8fafc;
+  --canvas-rgb: 248, 250, 252;
+  --surface: #ffffff;
+  --surface-rgb: 255, 255, 255;
+  --surface-card: rgba(255, 255, 255, 0.92);
+  --surface-card-hover: rgba(255, 255, 255, 0.98);
+  --border-glass: rgba(15, 23, 42, 0.08);
+  --border-glass-hover: rgba(225, 29, 72, 0.35);
+
+  --accent-crimson: #e11d48;
+  --accent-crimson-rgb: 225, 29, 72;
+  --accent-cyan: #0284c7;
+  --accent-cyan-rgb: 2, 132, 199;
+  --accent-violet: #6366f1;
+  --accent-emerald: #059669;
+
+  --text-pure: #0f172a;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
   --text-muted: #64748b;
 
   --font-display: 'Syne', sans-serif;
@@ -937,5 +968,729 @@ body {
 .tech-ticker-track:hover {
   animation-play-state: paused;
 }
+
+/* Aceternity UI & Skiper UI Inspired Border Beam */
+.border-beam-glow {
+  position: relative;
+  isolation: isolate;
+}
+.border-beam-glow::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--beam-angle, 0deg) at 50% 50%, transparent 0%, transparent 70%, #ea2a23 85%, #00f0ff 95%, transparent 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: beamRotate 4.5s linear infinite;
+  opacity: 0.85;
+}
+@keyframes beamRotate {
+  0% { --beam-angle: 0deg; }
+  100% { --beam-angle: 360deg; }
+}
+@property --beam-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ==========================================================================
+   9. HIGH-END AESTHETIC LIGHT THEME ENGINE (APPLE / STRIPE / LINEAR PRESS)
+   Precision Designed for Aditya Soni - Supreme Readability & Luxury Micro-Tactility
+   ========================================================================== */
+
+html.light,
+html:not(.dark) {
+  color-scheme: light;
+}
+
+html.light body,
+html:not(.dark) body {
+  background-color: #f8fafc !important;
+  color: #1e293b !important;
+  background-image: 
+    radial-gradient(circle at 12% 18%, rgba(225, 29, 72, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 88% 68%, rgba(2, 132, 199, 0.035) 0%, transparent 45%),
+    radial-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 100% 100%, 32px 32px !important;
+}
+
+/* --- Cards & Panels in Light Mode --- */
+html.light .glass-panel,
+html.light .glass-card,
+html.light .project-card,
+html.light .glass-awwwards,
+html.light .spotlight-card,
+html:not(.dark) .glass-panel,
+html:not(.dark) .glass-card,
+html:not(.dark) .project-card,
+html:not(.dark) .glass-awwwards,
+html:not(.dark) .spotlight-card {
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 
+    0 10px 30px -5px rgba(0, 0, 0, 0.04),
+    0 20px 25px -5px rgba(0, 0, 0, 0.03),
+    0 0 0 1px rgba(15, 23, 42, 0.05) !important;
+}
+
+html.light .glass-panel:hover,
+html.light .glass-card:hover,
+html.light .project-card:hover,
+html.light .glass-awwwards:hover,
+html.light .spotlight-card:hover,
+html:not(.dark) .glass-panel:hover,
+html:not(.dark) .glass-card:hover,
+html:not(.dark) .project-card:hover,
+html:not(.dark) .glass-awwwards:hover,
+html:not(.dark) .spotlight-card:hover {
+  box-shadow: 
+    0 20px 40px -10px rgba(0, 0, 0, 0.08),
+    0 0 24px -4px rgba(225, 29, 72, 0.16),
+    0 0 0 1px rgba(225, 29, 72, 0.28) !important;
+  border-color: rgba(225, 29, 72, 0.35) !important;
+}
+
+/* --- Spotlight cursor glow in light mode --- */
+html.light .spotlight-card::before,
+html:not(.dark) .spotlight-card::before {
+  background: radial-gradient(
+    600px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(225, 29, 72, 0.08),
+    transparent 45%
+  ) !important;
+}
+
+/* --- Header & Navigation Bar in Light Mode --- */
+html.light header,
+html:not(.dark) header {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+html.light header .serif-font,
+html:not(.dark) header .serif-font {
+  color: #0f172a !important;
+}
+
+html.light header .nav-link,
+html:not(.dark) header .nav-link {
+  color: #475569 !important;
+}
+
+html.light header .nav-link:hover,
+html.light header .nav-link.active,
+html:not(.dark) header .nav-link:hover,
+html:not(.dark) header .nav-link.active {
+  color: #e11d48 !important;
+}
+
+/* --- Mobile Bottom Dock & Dropdown Menu --- */
+html.light #mobile-bottom-nav,
+html:not(.dark) #mobile-bottom-nav {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.06) !important;
+}
+
+html.light #mobile-bottom-nav .text-white,
+html.light #mobile-bottom-nav .text-on-surface-variant,
+html:not(.dark) #mobile-bottom-nav .text-white,
+html:not(.dark) #mobile-bottom-nav .text-on-surface-variant {
+  color: #475569 !important;
+}
+
+html.light #mobile-menu,
+html:not(.dark) #mobile-menu {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light #mobile-menu .text-white,
+html.light #mobile-menu .text-white\/80,
+html.light #mobile-menu .text-white\/90,
+html:not(.dark) #mobile-menu .text-white,
+html:not(.dark) #mobile-menu .text-white\/80,
+html:not(.dark) #mobile-menu .text-white\/90 {
+  color: #0f172a !important;
+}
+
+html.light #mobile-menu .border-white\/10,
+html.light #mobile-menu .border-white\/5,
+html:not(.dark) #mobile-menu .border-white\/10,
+html:not(.dark) #mobile-menu .border-white\/5 {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* --- Tailwind Dark Background Classes Override in Light Mode --- */
+html.light .bg-\[\#07090e\],
+html.light .bg-\[\#05070c\],
+html.light .bg-\[\#060709\],
+html.light .bg-\[\#06080e\],
+html.light .bg-\[\#070a10\],
+html.light .bg-\[\#070b12\],
+html.light .bg-\[\#090d15\],
+html.light .bg-\[\#0a0e16\],
+html.light .bg-\[\#0b0f19\],
+html.light .bg-\[\#0c0d12\],
+html.light .bg-\[\#0e1422\],
+html.light .bg-\[\#0e0720\],
+html.light .bg-surface,
+html.light .bg-background,
+html:not(.dark) .bg-\[\#07090e\],
+html:not(.dark) .bg-\[\#05070c\],
+html:not(.dark) .bg-\[\#060709\],
+html:not(.dark) .bg-\[\#06080e\],
+html:not(.dark) .bg-\[\#070a10\],
+html:not(.dark) .bg-\[\#070b12\],
+html:not(.dark) .bg-\[\#090d15\],
+html:not(.dark) .bg-\[\#0a0e16\],
+html:not(.dark) .bg-\[\#0b0f19\],
+html:not(.dark) .bg-\[\#0c0d12\],
+html:not(.dark) .bg-\[\#0e1422\],
+html:not(.dark) .bg-\[\#0e0720\],
+html:not(.dark) .bg-surface,
+html:not(.dark) .bg-background {
+  background-color: #f8fafc !important;
+}
+
+html.light [class*="bg-[#0a0e16]"],
+html.light [class*="bg-[#05070c]"],
+html.light [class*="bg-[#07090e]"],
+html.light [class*="bg-[#080c14]"],
+html.light [class*="bg-[#0d121c]"],
+html:not(.dark) [class*="bg-[#0a0e16]"],
+html:not(.dark) [class*="bg-[#05070c]"],
+html:not(.dark) [class*="bg-[#07090e]"],
+html:not(.dark) [class*="bg-[#080c14]"],
+html:not(.dark) [class*="bg-[#0d121c]"] {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light .screen-vignette,
+html:not(.dark) .screen-vignette {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+html.light .bg-\[\#141c2e\],
+html.light .bg-\[\#1c263c\],
+html.light .bg-\[\#24304c\],
+html:not(.dark) .bg-\[\#141c2e\],
+html:not(.dark) .bg-\[\#1c263c\],
+html:not(.dark) .bg-\[\#24304c\] {
+  background-color: #f1f5f9 !important;
+}
+
+html.light .bg-\[\#02040a\],
+html:not(.dark) .bg-\[\#02040a\] {
+  background-color: #ffffff !important;
+}
+
+/* --- Typography Overrides in Light Mode (Deep Obsidian & Slate) --- */
+html.light .text-white,
+html:not(.dark) .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-white\/90,
+html.light .text-white\/80,
+html.light .text-white\/75,
+html:not(.dark) .text-white\/90,
+html:not(.dark) .text-white\/80,
+html:not(.dark) .text-white\/75 {
+  color: #1e293b !important;
+}
+
+html.light .text-white\/70,
+html.light .text-white\/60,
+html.light .text-slate-300,
+html.light .text-slate-400,
+html.light .text-on-surface-variant,
+html:not(.dark) .text-white\/70,
+html:not(.dark) .text-white\/60,
+html:not(.dark) .text-slate-300,
+html:not(.dark) .text-slate-400,
+html:not(.dark) .text-on-surface-variant {
+  color: #475569 !important;
+}
+
+html.light .text-white\/50,
+html.light .text-white\/40,
+html.light .text-white\/30,
+html.light .text-slate-500,
+html:not(.dark) .text-white\/50,
+html:not(.dark) .text-white\/40,
+html:not(.dark) .text-white\/30,
+html:not(.dark) .text-slate-500 {
+  color: #64748b !important;
+}
+
+html.light .text-primary,
+html.light .text-on-surface,
+html:not(.dark) .text-primary,
+html:not(.dark) .text-on-surface {
+  color: #0f172a !important;
+}
+
+html.light .text-secondary,
+html:not(.dark) .text-secondary {
+  color: #475569 !important;
+}
+
+/* --- Borders in Light Mode --- */
+html.light .border-white\/10,
+html.light .border-white\/5,
+html.light .border-white\/15,
+html.light .border-white\/20,
+html.light .border-white\/25,
+html.light .border-white\/30,
+html.light .border-white\/40,
+html.light .border-slate-800,
+html.light .border-slate-700,
+html:not(.dark) .border-white\/10,
+html:not(.dark) .border-white\/5,
+html:not(.dark) .border-white\/15,
+html:not(.dark) .border-white\/20,
+html:not(.dark) .border-white\/25,
+html:not(.dark) .border-white\/30,
+html:not(.dark) .border-white\/40,
+html:not(.dark) .border-slate-800,
+html:not(.dark) .border-slate-700 {
+  border-color: rgba(15, 23, 42, 0.09) !important;
+}
+
+html.light .divide-white\/10 > :not([hidden]) ~ :not([hidden]),
+html.light .divide-white\/5 > :not([hidden]) ~ :not([hidden]),
+html:not(.dark) .divide-white\/10 > :not([hidden]) ~ :not([hidden]),
+html:not(.dark) .divide-white\/5 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* --- Background Pills, Badges & Micro-Surfaces --- */
+html.light .bg-white\/5,
+html.light .bg-white\/10,
+html.light .bg-white\/\[0\.03\],
+html.light .bg-white\/\[0\.04\],
+html.light .bg-white\/\[0\.05\],
+html:not(.dark) .bg-white\/5,
+html:not(.dark) .bg-white\/10,
+html:not(.dark) .bg-white\/\[0\.03\],
+html:not(.dark) .bg-white\/\[0\.04\],
+html:not(.dark) .bg-white\/\[0\.05\] {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light .hover\:bg-white\/10:hover,
+html.light .hover\:bg-white\/5:hover,
+html:not(.dark) .hover\:bg-white\/10:hover,
+html:not(.dark) .hover\:bg-white\/5:hover {
+  background-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light .glass-pill,
+html:not(.dark) .glass-pill {
+  background: rgba(15, 23, 42, 0.04) !important;
+  border-color: rgba(15, 23, 42, 0.09) !important;
+  color: #0f172a !important;
+}
+
+html.light .glass-pill:hover,
+html:not(.dark) .glass-pill:hover {
+  background: rgba(225, 29, 72, 0.08) !important;
+  border-color: rgba(225, 29, 72, 0.35) !important;
+  color: #e11d48 !important;
+}
+
+html.light .icon-box,
+html:not(.dark) .icon-box {
+  background: rgba(15, 23, 42, 0.04) !important;
+  border-color: rgba(15, 23, 42, 0.09) !important;
+  color: #0f172a !important;
+}
+
+html.light .icon-box:hover,
+html:not(.dark) .icon-box:hover {
+  background: rgba(225, 29, 72, 0.08) !important;
+  border-color: rgba(225, 29, 72, 0.35) !important;
+}
+
+/* --- Watermark Monolith 'A' & Scanlines --- */
+html.light .bg-letter-a,
+html:not(.dark) .bg-letter-a {
+  color: rgba(15, 23, 42, 0.02) !important;
+  text-shadow: none !important;
+}
+
+html.light .cinematic-scanlines,
+html:not(.dark) .cinematic-scanlines {
+  opacity: 0.02 !important;
+}
+
+/* --- Shimmer Chrome Text --- */
+html.light .shimmer-text,
+html:not(.dark) .shimmer-text {
+  background: linear-gradient(
+    115deg,
+    #0f172a 0%,
+    #334155 25%,
+    #e11d48 45%,
+    #0284c7 65%,
+    #0f172a 100%
+  ) !important;
+  background-size: 250% auto !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* --- Scroll Progress Bar --- */
+html.light #scroll-progress,
+html:not(.dark) #scroll-progress {
+  background: linear-gradient(90deg, #e11d48, #f43f5e, #6366f1, #0284c7) !important;
+  box-shadow: 0 0 10px rgba(225, 29, 72, 0.4), 0 0 18px rgba(2, 132, 199, 0.25) !important;
+}
+
+/* --- Form Inputs in Light Mode --- */
+html.light .input-glass,
+html:not(.dark) .input-glass {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.14) !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .input-glass::placeholder,
+html:not(.dark) .input-glass::placeholder {
+  color: #94a3b8 !important;
+}
+
+html.light .input-glass:focus,
+html:not(.dark) .input-glass:focus {
+  border-color: #e11d48 !important;
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.15) !important;
+  color: #0f172a !important;
+}
+
+/* --- Buttons in Light Mode --- */
+html.light .btn-red,
+html:not(.dark) .btn-red {
+  background-color: #e11d48 !important;
+  color: #ffffff !important;
+}
+
+html.light .btn-red:hover,
+html:not(.dark) .btn-red:hover {
+  background-color: transparent !important;
+  border: 1px solid #e11d48 !important;
+  color: #e11d48 !important;
+  box-shadow: 0 0 20px rgba(225, 29, 72, 0.2) !important;
+}
+
+/* --- Orbit Frame & Profile Photo in Light Mode --- */
+html.light .orbit-ring-1,
+html:not(.dark) .orbit-ring-1 {
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+}
+
+html.light .orbit-ring-2,
+html:not(.dark) .orbit-ring-2 {
+  border: 1px solid rgba(225, 29, 72, 0.4) !important;
+}
+
+html.light .profile-image-wrapper,
+html:not(.dark) .profile-image-wrapper {
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12) !important;
+  border: 2px solid rgba(255, 255, 255, 0.95) !important;
+}
+
+html.light .crosshair-right,
+html.light .crosshair-left,
+html:not(.dark) .crosshair-right,
+html:not(.dark) .crosshair-left {
+  color: rgba(15, 23, 42, 0.5) !important;
+}
+
+html.light .orbit-container svg text,
+html:not(.dark) .orbit-container svg text {
+  fill: #0f172a !important;
+}
+
+/* --- Background WebGL Shader in Light Mode --- */
+html.light #bg-shader-canvas,
+html.light #about-shader-canvas,
+html.light #achieve-shader-canvas,
+html.light #shader-canvas,
+html.light #astral-bg-canvas,
+html.light #intro-shader-canvas,
+html:not(.dark) #bg-shader-canvas,
+html:not(.dark) #about-shader-canvas,
+html:not(.dark) #achieve-shader-canvas,
+html:not(.dark) #shader-canvas,
+html:not(.dark) #astral-bg-canvas,
+html:not(.dark) #intro-shader-canvas {
+  opacity: 0.1 !important;
+  filter: invert(1) hue-rotate(180deg) brightness(1.2) !important;
+}
+
+/* --- Terminal & Code Blocks in Light Mode (Deep Obsidian macOS Terminal) --- */
+html.light .bg-black\/40,
+html.light .bg-black\/50,
+html.light .bg-black\/60,
+html.light .bg-black\/70,
+html.light .bg-black\/80,
+html:not(.dark) .bg-black\/40,
+html:not(.dark) .bg-black\/50,
+html:not(.dark) .bg-black\/60,
+html:not(.dark) .bg-black\/70,
+html:not(.dark) .bg-black\/80 {
+  background-color: #0b0f19 !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  color: #f1f5f9 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* --- Footer in Light Mode --- */
+html.light footer,
+html:not(.dark) footer {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+  color: #475569 !important;
+}
+html.light footer .text-white,
+html:not(.dark) footer .text-white {
+  color: #0f172a !important;
+}
+html.light footer .text-slate-400,
+html:not(.dark) footer .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* --- Signature Studio in Light Mode --- */
+html.light #user-signature-canvas,
+html:not(.dark) #user-signature-canvas {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+}
+
+html.light .sig-white,
+html:not(.dark) .sig-white {
+  stroke: #0f172a !important;
+}
+
+html.light .sig-glow-white,
+html:not(.dark) .sig-glow-white {
+  filter: drop-shadow(0 0 6px rgba(15, 23, 42, 0.25)) !important;
+}
+
+/* --- Custom Cursor in Light Mode --- */
+html.light #custom-cursor-dot,
+html:not(.dark) #custom-cursor-dot {
+  background-color: #e11d48 !important;
+  box-shadow: 0 0 10px rgba(225, 29, 72, 0.5) !important;
+}
+
+html.light #custom-cursor-ring,
+html:not(.dark) #custom-cursor-ring {
+  border-color: rgba(225, 29, 72, 0.4) !important;
+}
+
+/* --- Scrollbars in Light Mode --- */
+html.light ::-webkit-scrollbar-track,
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+}
+
+html.light ::-webkit-scrollbar-thumb,
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: rgba(225, 29, 72, 0.35) !important;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover,
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: rgba(225, 29, 72, 0.75) !important;
+}
+
+/* --- Global Command Palette & Modals in Light Mode --- */
+html.light [data-modal],
+html.light .modal-dialog,
+html.light .cmd-palette-box,
+html.light #cmd-palette-box,
+html:not(.dark) [data-modal],
+html:not(.dark) .modal-dialog,
+html:not(.dark) .cmd-palette-box,
+html:not(.dark) #cmd-palette-box {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.15) !important;
+  color: #0f172a !important;
+}
+
+html.light .cmd-input,
+html.light #cmd-input,
+html.light #cmd-palette-input,
+html:not(.dark) .cmd-input,
+html:not(.dark) #cmd-input,
+html:not(.dark) #cmd-palette-input {
+  background: #f8fafc !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  color: #0f172a !important;
+}
+
+html.light .cmd-input::placeholder,
+html.light #cmd-input::placeholder,
+html.light #cmd-palette-input::placeholder,
+html:not(.dark) .cmd-input::placeholder,
+html:not(.dark) #cmd-input::placeholder,
+html:not(.dark) #cmd-palette-input::placeholder {
+  color: #94a3b8 !important;
+}
+
+html.light .cmd-palette-box .border-b,
+html.light .cmd-palette-box .border-t,
+html:not(.dark) .cmd-palette-box .border-b,
+html:not(.dark) .cmd-palette-box .border-t {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light .cmd-item,
+html:not(.dark) .cmd-item {
+  color: #334155 !important;
+}
+
+html.light .cmd-item:hover,
+html.light .cmd-item.selected,
+html:not(.dark) .cmd-item:hover,
+html:not(.dark) .cmd-item.selected {
+  background: rgba(225, 29, 72, 0.08) !important;
+  color: #e11d48 !important;
+}
+
+/* --- Astra AI Chatbot in Light Mode --- */
+html.light #astra-chat-window,
+html:not(.dark) #astra-chat-window {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.18) !important;
+  color: #0f172a !important;
+}
+
+html.light #astra-chat-window .bg-black\/30,
+html.light #astra-chat-window .bg-black\/40,
+html.light #astra-chat-window .bg-surface-container,
+html:not(.dark) #astra-chat-window .bg-black\/30,
+html:not(.dark) #astra-chat-window .bg-black\/40,
+html:not(.dark) #astra-chat-window .bg-surface-container {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light #astra-chat-input,
+html:not(.dark) #astra-chat-input {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  color: #0f172a !important;
+}
+
+/* --- Contact Form Card in Light Mode --- */
+html.light #contact-form,
+html:not(.dark) #contact-form {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light #contact-form input,
+html.light #contact-form textarea,
+html:not(.dark) #contact-form input,
+html:not(.dark) #contact-form textarea {
+  background: #f8fafc !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  color: #0f172a !important;
+}
+
+html.light #contact-form input:focus,
+html.light #contact-form textarea:focus,
+html:not(.dark) #contact-form input:focus,
+html:not(.dark) #contact-form textarea:focus {
+  background: #ffffff !important;
+  border-color: #e11d48 !important;
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.12) !important;
+}
+
+/* --- High-Contrast Pill Badges in Light Mode --- */
+html.light .badge-subtle,
+html:not(.dark) .badge-subtle {
+  background: rgba(15, 23, 42, 0.04) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  color: #334155 !important;
+}
+
+/* --- High-Contrast Badges & Dark Overlays in Light Mode --- */
+html.light .portrait-card-badge,
+html:not(.dark) .portrait-card-badge,
+html.light [class*="bg-slate-900/85"],
+html.light [class*="bg-slate-950/80"] {
+  background: rgba(15, 23, 42, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+html.light .portrait-card-badge .font-display,
+html.light .portrait-card-badge .text-white,
+html.light [class*="bg-slate-900/85"] .font-display,
+html.light [class*="bg-slate-900/85"] .text-white,
+html:not(.dark) .portrait-card-badge .font-display,
+html:not(.dark) .portrait-card-badge .text-white {
+  color: #ffffff !important;
+}
+
+html.light .portrait-card-badge .text-slate-300,
+html.light [class*="bg-slate-900/85"] .text-slate-300,
+html:not(.dark) .portrait-card-badge .text-slate-300 {
+  color: #cbd5e1 !important;
+}
+
+html.light .portrait-card-badge .text-slate-400,
+html.light [class*="bg-slate-900/85"] .text-slate-400,
+html:not(.dark) .portrait-card-badge .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+/* Ensure red action buttons always have crisp white text */
+html.light .bg-accent-red,
+html.light .bg-accent-red *,
+html.light button.bg-accent-red,
+html.light a.bg-accent-red,
+html:not(.dark) .bg-accent-red,
+html:not(.dark) .bg-accent-red * {
+  color: #ffffff !important;
+}
+
+/* Intro stage preloader always stays dark with white text */
+html.light #intro-stage,
+html:not(.dark) #intro-stage {
+  background-color: #02040a !important;
+}
+html.light #intro-stage .text-white,
+html:not(.dark) #intro-stage .text-white {
+  color: #ffffff !important;
+}
+
+
+
 
 

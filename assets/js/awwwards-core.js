@@ -844,6 +844,13 @@
               </span>
               <span class="text-xs font-mono text-slate-500">Play ↵</span>
             </a>
+            <a href="widescreen.html" class="cmd-item">
+              <span class="flex items-center gap-3">
+                <span class="text-amber-400 font-mono text-xs">10</span>
+                <span>Framed in Widescreen — Cinema Essay (2026)</span>
+              </span>
+              <span class="text-xs font-mono text-amber-400">Watch ↵</span>
+            </a>
 
 
             <div class="cmd-item" id="cmd-toggle-audio">
@@ -974,7 +981,7 @@
       });
     }
 
-    document.querySelectorAll("[data-open-cmd]").forEach((el) => {
+    document.querySelectorAll("[data-open-cmd], [data-command-palette], .cmd-palette-trigger, #cmd-palette-trigger").forEach((el) => {
       el.addEventListener("click", (e) => {
         e.preventDefault();
         openPalette();
@@ -1021,9 +1028,65 @@
   }
 
   // ==========================================
+  // 11. Luxury Light/Dark Theme Switcher Engine
+  // ==========================================
+  function initThemeEngine() {
+    // Default to 'light' per user preference
+    const savedTheme = localStorage.getItem("portfolio_theme") || "light";
+    applyTheme(savedTheme);
+
+    const toggleButtons = document.querySelectorAll("#theme-toggle-btn, #theme-toggle-btn-mobile, .theme-toggle-btn");
+    toggleButtons.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const currentTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+        const nextTheme = currentTheme === "dark" ? "light" : "dark";
+        applyTheme(nextTheme);
+        localStorage.setItem("portfolio_theme", nextTheme);
+        playMicroHaptic(750, 0.08, "sine");
+        showToastNotification(`Theme switched to ${nextTheme.toUpperCase()} mode`, "palette");
+      });
+    });
+  }
+
+  function applyTheme(theme) {
+    if (theme === "dark") {
+      document.documentElement.classList.remove("light");
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
+    }
+    updateThemeIcons(theme);
+  }
+
+  function updateThemeIcons(theme) {
+    const icons = document.querySelectorAll("#theme-toggle-icon, #theme-toggle-icon-mobile, .theme-toggle-icon");
+    icons.forEach((icon) => {
+      if (theme === "dark") {
+        icon.textContent = "light_mode";
+        icon.parentElement?.setAttribute("title", "Switch to Light mode");
+        icon.parentElement?.setAttribute("aria-label", "Switch to Light mode");
+      } else {
+        icon.textContent = "dark_mode";
+        icon.parentElement?.setAttribute("title", "Switch to Dark mode");
+        icon.parentElement?.setAttribute("aria-label", "Switch to Dark mode");
+      }
+    });
+  }
+
+  function toggleTheme() {
+    const currentTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+    applyTheme(nextTheme);
+    localStorage.setItem("portfolio_theme", nextTheme);
+  }
+
+  // ==========================================
   // Master Initializer
   // ==========================================
   function initAwwwards() {
+    initThemeEngine();
     initAtmosphereEngine();
     initSmoothScroll();
     initUnifiedCursor();
@@ -1044,4 +1107,6 @@
   window.playMicroHaptic = playMicroHaptic;
   window.setAtmosphereMode = setAtmosphereMode;
   window.showToastNotification = showToastNotification;
+  window.toggleTheme = toggleTheme;
+  window.applyTheme = applyTheme;
 })();
