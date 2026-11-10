@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aditya Soni - Contact</title>
+  
+  <!-- Immediate Theme Initializer (Prevents FOUC) -->
+  <script>
+    (function() {
+      try {
+        const theme = localStorage.getItem('portfolio_theme') || 'light';
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.add('light');
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {
+        document.documentElement.classList.add('light');
+      }
+    })();
+  </script>
+
+  <!-- Google Fonts (Optimized for Instant Load: Syne, Plus Jakarta Sans, JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Awwwards-Tier Design System & Luxury Themes -->
+  <!-- Extrafazant-Tier Kinetic Editorial & Design System -->
+
+  <!-- Tailwind CSS Engine -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#07090e",
+            "background": "#07090e",
+            "primary": "#e2e8f0",
+            "secondary": "#94a3b8",
+            "on-surface": "#f8fafc",
+            "on-surface-variant": "#94a3b8",
+            "on-tertiary-container": "#f43f5e",
+            "outline": "#334155",
+            "outline-variant": "#1e293b",
+            "surface-container-low": "#0b0f19"
+          },
+          fontFamily: {
+            "display-xl": ["Syne", "sans-serif"],
+            "headline-lg": ["Syne", "sans-serif"],
+            "headline-lg-mobile": ["Syne", "sans-serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          spacing: {
+            "gutter": "24px",
+            "container-max": "1200px",
+            "section-gap": "120px"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Custom smooth dark crimson scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070d1a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(234, 42, 35, 0.4);
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(234, 42, 35, 0.85);
+    }
+
+    body {
+      background-color: #05070c;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+      color: #dae2fc;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .input-glass {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .input-glass:focus {
+      outline: none;
+      border-bottom-color: #ea2a23;
+      box-shadow: 0 1px 0 0 #ea2a23;
+    }
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ea2a23;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(234, 42, 35, 0.15);
+    }
+    .btn-red {
+      background-color: #ea2a23;
+      color: #ffffff;
+      border: 1px solid transparent;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-red:hover {
+      background-color: transparent;
+      border: 1px solid #ea2a23;
+      color: #ea2a23;
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(234, 42, 35, 0.35);
+    }
+    .ambient-glow {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(234, 42, 35, 0.06) 0%, rgba(11, 19, 37, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      top: -150px;
+      right: -150px;
+    }
+
+    /* Smooth Scroll Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      form, .btn-glass {
+        backdrop-filter: blur(4px) !important;
+        -webkit-backdrop-filter: blur(4px) !important;
+        background: rgba(15, 23, 42, 0.92) !important;
+      }
+      .reveal {
+        transition-duration: 0.3s !important;
+      }
+    }
+  </style>
+  <link rel="stylesheet" crossorigin href="./assets/main-8XMIjQYo.css">
+  <link rel="stylesheet" crossorigin href="./assets/extrafazant-theme-DI0ZOAcV.css">
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-on-tertiary-container selection:text-white relative">
+  <!-- Background Large Monolithic Watermark 'A' -->
+  <div class="bg-letter-a" aria-hidden="true">A</div>
+
+  <!-- Cinematic Scanlines & Film Texture Overlay -->
+  <div class="cinematic-scanlines" aria-hidden="true"></div>
+
+  <!-- TopNavBar -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/75 backdrop-blur-2xl border-b border-white/10">
+    <div class="max-w-container-max mx-auto px-gutter h-16 md:h-20 flex items-center justify-between gap-4">
+      <!-- Brand / Logo -->
+      <a href="index.html" class="flex items-center gap-2 group flex-shrink-0 mr-6 lg:mr-10">
+        <span class="serif-font text-xl md:text-2xl font-bold tracking-tight text-white group-hover:text-primary transition-colors">
+          ADITYA <span class="text-accent-red">SONI</span>
+        </span>
+      </a>
+      
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8 font-label-sm text-xs tracking-widest uppercase">
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors pb-1" href="index.html">Home</a>
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors pb-1" href="about.html">About</a>
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors pb-1" href="projects.html">Projects</a>
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors pb-1" href="skills.html">Skills</a>
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors pb-1" href="journey.html">Journey</a>
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors pb-1" href="achievements.html">Achievements</a>
+        <a class="text-on-surface-variant hover:text-accent-red transition-colors pb-1" href="signature.html">Signature</a>
+        <a class="text-white border-b-2 border-accent-red pb-1 font-semibold" href="contact.html">Contact</a>
+      </nav>
+      
+      <!-- Action Button -->
+      <div class="hidden md:flex items-center gap-3 flex-shrink-0">
+        <!-- Theme Switcher (Light / Dark) -->
+        <button id="theme-toggle-btn" class="p-2 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-white/80 hover:text-accent-red dark:hover:text-accent-red transition-all cursor-pointer flex items-center justify-center shadow-xs" aria-label="Toggle Theme" title="Switch Theme">
+          <span id="theme-toggle-icon" class="material-symbols-outlined text-[17px]">dark_mode</span>
+        </button>
+
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="glass-pill px-5 py-2 font-label-sm text-xs uppercase tracking-wider text-white hover:text-accent-red hover:border-accent-red/50 transition-all flex items-center gap-2 group shadow-sm">
+          <span>Resume</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-accent-red"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <div class="lg:hidden flex items-center gap-2">
+        <button id="theme-toggle-btn-mobile" class="p-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-white/80 hover:text-accent-red dark:hover:text-accent-red transition-all flex items-center justify-center cursor-pointer" aria-label="Toggle Theme" title="Switch Theme">
+          <span id="theme-toggle-icon-mobile" class="material-symbols-outlined text-[16px]">dark_mode</span>
+        </button>
+        <button id="mobile-menu-btn" class="p-2 text-white/80 hover:text-white" aria-label="Toggle Menu">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-surface/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 flex flex-col gap-3 font-label-sm text-sm">
+      <a href="index.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Home</a>
+      <a href="about.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">About</a>
+      <a href="projects.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Projects</a>
+      <a href="skills.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Skills</a>
+      <a href="journey.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Journey</a>
+      <a href="achievements.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Achievements</a>
+      <a href="signature.html" class="text-white/80 hover:text-accent-red py-2 border-b border-white/5">Signature</a>
+      <a href="contact.html" class="text-accent-red py-2 border-b border-white/5 font-semibold">Contact</a>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="mt-2 text-center py-2.5 bg-accent-red text-white rounded font-semibold uppercase tracking-wider text-xs flex items-center justify-center gap-1.5">
+        <span>View Resume</span>
+        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow pt-36 pb-24 px-6 md:px-gutter max-w-container-max mx-auto w-full relative z-10 flex flex-col justify-center">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mt-6">
+      
+      <!-- Left Column: Intro & Contact Details -->
+      <div class="md:col-span-6 flex flex-col gap-10 pr-0 md:pr-10">
+        <div>
+          <p class="font-label-sm text-xs text-on-tertiary-container uppercase tracking-[0.25em] mb-2">Get in Touch</p>
+          <h1 class="font-display-xl text-5xl md:text-6xl text-on-surface mb-6 font-bold leading-tight">
+            Let's build something <br class="hidden md:block"/><span class="text-on-tertiary-container italic font-light">exceptional.</span>
+          </h1>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-md text-base leading-relaxed">
+            Whether you have a complex system to architect or a vision to realize, I'm ready to engineer the solution. Let's discuss your next breakthrough.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-5 font-label-sm text-xs">
+          <a class="flex items-center gap-4 group cursor-pointer w-fit" href="https://mail.google.com/mail/?view=cm&fs=1&to=mradityasoni.cse@gmail.com" target="_blank" rel="noopener noreferrer">
+            <span class="material-symbols-outlined text-outline group-hover:text-on-tertiary-container transition-colors text-2xl">mail</span>
+            <span class="text-on-surface group-hover:text-on-tertiary-container transition-colors tracking-widest uppercase font-mono">mradityasoni.cse@gmail.com</span>
+          </a>
+          <div class="flex items-center gap-4 group">
+            <span class="material-symbols-outlined text-outline group-hover:text-on-tertiary-container transition-colors text-2xl">location_on</span>
+            <span class="text-on-surface tracking-widest uppercase font-mono">Bhilai / Raipur, Chhattisgarh, India // Available Globally</span>
+          </div>
+        </div>
+
+        <div class="flex gap-4 mt-2">
+          <a class="btn-glass p-3.5 rounded-full flex items-center justify-center text-outline hover:text-on-tertiary-container transition-all" href="https://github.com/mradityasonicse" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <span class="material-symbols-outlined text-xl">code</span>
+          </a>
+          <a class="btn-glass p-3.5 rounded-full flex items-center justify-center text-outline hover:text-on-tertiary-container transition-all" href="https://www.linkedin.com/in/aditya-soni-698114370" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <span class="material-symbols-outlined text-xl">work</span>
+          </a>
+          <a class="btn-glass p-3.5 rounded-full flex items-center justify-center text-outline hover:text-on-tertiary-container transition-all" href="https://mail.google.com/mail/?view=cm&fs=1&to=mradityasoni.cse@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email">
+            <span class="material-symbols-outlined text-xl">mail</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Contact Form -->
+      <div class="md:col-span-6">
+        <form id="contact-form" class="flex flex-col gap-8 bg-surface-container-low/40 backdrop-blur-xl p-8 sm:p-10 border border-white/10 rounded-2xl shadow-2xl relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+          
+          <div class="flex flex-col gap-2">
+            <label class="font-label-sm text-xs text-outline uppercase tracking-widest" for="name">Name</label>
+            <input class="input-glass font-body-md text-on-surface py-3 w-full bg-transparent placeholder:text-surface-variant focus:ring-0 text-sm" id="name" name="name" placeholder="John Doe" required="" type="text"/>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label class="font-label-sm text-xs text-outline uppercase tracking-widest" for="email">Email Address</label>
+            <input class="input-glass font-body-md text-on-surface py-3 w-full bg-transparent placeholder:text-surface-variant focus:ring-0 text-sm" id="email" name="email" placeholder="john@example.com" required="" type="email"/>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label class="font-label-sm text-xs text-outline uppercase tracking-widest" for="message">Message</label>
+            <textarea class="input-glass font-body-md text-on-surface py-3 w-full bg-transparent placeholder:text-surface-variant focus:ring-0 resize-none text-sm" id="message" name="message" placeholder="Tell me about your project or inquiry..." required="" rows="4"></textarea>
+          </div>
+
+          <button class="btn-red font-label-sm text-xs uppercase tracking-widest py-4 px-8 rounded mt-2 flex items-center justify-center gap-3 w-full md:w-auto self-start group" type="submit">
+            <span>Send Message</span>
+            <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </button>
+
+          <div id="form-feedback" class="hidden font-label-sm text-xs text-center text-green-400 py-2">
+            Thank you! Your message has been sent successfully.
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface w-full py-12 border-t border-white/10 mt-auto z-10 relative">
+    <div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+      <span class="font-headline-lg text-primary text-2xl font-bold leading-none">
+        ADITYA <span class="text-on-tertiary-container">SONI</span>
+      </span>
+      <div class="flex flex-wrap gap-6 justify-center font-label-sm text-xs text-outline">
+        <a class="hover:text-on-tertiary-container transition-colors" href="https://github.com/mradityasonicse" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="hover:text-on-tertiary-container transition-colors" href="https://www.linkedin.com/in/aditya-soni-698114370" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="hover:text-on-tertiary-container transition-colors" href="https://mail.google.com/mail/?view=cm&fs=1&to=mradityasoni.cse@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
+      </div>
+      <p class="font-label-sm text-xs text-secondary text-center md:text-right">© 2026 Aditya Soni. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const feedback = document.getElementById('form-feedback');
+    if (form && feedback) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Get form values
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !email || !message) return;
+
+        // Show feedback
+        feedback.innerHTML = `✓ Thank you! Your message has been sent successfully.`;
+        feedback.classList.remove('hidden');
+        form.reset();
+        setTimeout(() => feedback.classList.add('hidden'), 6000);
+
+        // Optional WhatsApp direct link fallback
+        const whatsappNumber = '919131631253';
+        const text = `*New Portfolio Message*\n\n*Name:* ${name}\n*Email:* ${email}\n\n*Message:*\n${message}`;
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+        setTimeout(() => window.open(whatsappUrl, '_blank'), 600);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const elements = document.querySelectorAll('form, h1, .btn-glass, main .grid > div');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      elements.forEach((el, index) => {
+        el.classList.add('reveal');
+        el.style.transitionDelay = `${(index % 3) * 120}ms`;
+        observer.observe(el);
+      });
+    });
+  </script>
+  <!-- Background Cosmic Fluid & Sacred Geometry Engine -->
+  
+  <!-- Awwwards-Tier Core Interactive Engine (Spotlight, 3D Tilt, Magnetic Cursor, Cmd+K) -->
+  <script src="assets/js/awwwards-core.js"></script>
+  <!-- Astra AI Assistant Neural Chatbot -->
+  <script src="assets/js/ai-chatbot.js"></script>
+
+  <!-- GSAP & Kinetic Motion Suite -->
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/SplitText.min.js"></script>
+  <script src="vendor/DrawSVGPlugin.min.js"></script>
+  <script src="vendor/CustomEase.min.js"></script>
+  <script src="vendor/InertiaPlugin.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+  <!-- Extrafazant Kinetic Creative Engine -->
+  <script src="assets/js/extrafazant-engine.js"></script>
+
+</body>
+</html>

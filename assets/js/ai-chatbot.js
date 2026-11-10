@@ -55,8 +55,12 @@
   };
 
   // Sound effect generator using WebAudio
+  let chatUserInteracted = false;
+  window.addEventListener("pointerdown", () => { chatUserInteracted = true; }, { once: true, passive: true });
+  window.addEventListener("keydown", () => { chatUserInteracted = true; }, { once: true, passive: true });
   let audioCtx = null;
   function playCyberBeep(frequency = 580, type = 'sine', duration = 0.04) {
+    if (!chatUserInteracted) return;
     try {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       if (audioCtx.state === 'suspended') audioCtx.resume();

@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Framed in Widescreen — A Portfolio Goes to the Movies | Aditya Soni</title>
+  <meta name="description" content="Personal essay and brand storytelling by Aditya Soni on the making of a professional, cinematic portfolio. Framed in 2.39:1 widescreen.">
+  <meta name="author" content="Aditya Soni">
+
+  <!-- Google Fonts: Cinzel (Cinematic Titles), Newsreader (Editorial Essay Serif), Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "cinema-black": "#060709",
+            "cinema-surface": "#0c0d12",
+            "cinema-card": "rgba(16, 18, 24, 0.75)",
+            "cinema-gold": "#d4af37",
+            "cinema-gold-light": "#f3e198",
+            "cinema-gold-muted": "rgba(212, 175, 55, 0.25)",
+            "cinema-parchment": "#ece8e1",
+            "cinema-muted": "#969288",
+            "cinema-border": "rgba(212, 175, 55, 0.15)",
+          },
+          fontFamily: {
+            "cinema-display": ["Cinzel", "serif"],
+            "cinema-serif": ["Newsreader", "serif"],
+            "cinema-sans": ["Plus Jakarta Sans", "sans-serif"],
+            "cinema-mono": ["JetBrains Mono", "monospace"],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       CINEMATIC DESIGN SYSTEM & WIDESCREEN STYLING
+       ========================================================================== */
+    :root {
+      --cinema-bg: #060709;
+      --cinema-gold: #d4af37;
+      --cinema-gold-glow: rgba(212, 175, 55, 0.35);
+      --matte-height: 5vh;
+      --theater-dim: 1;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cinema-bg);
+      color: #ece8e1;
+    }
+
+    body {
+      background-color: var(--cinema-bg);
+      overflow-x: hidden;
+      font-family: 'Newsreader', serif;
+      transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Selection colors */
+    ::selection {
+      background: rgba(212, 175, 55, 0.35);
+      color: #fff9e6;
+    }
+
+    /* Film Grain Canvas Overlay */
+    #grain-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9980;
+      opacity: 0.055;
+      mix-blend-mode: overlay;
+    }
+
+    /* Anamorphic Lens Flare Glow */
+    .anamorphic-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 140%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.1) 20%, rgba(212, 175, 55, 0.8) 50%, rgba(212, 175, 55, 0.1) 80%, transparent 100%);
+      filter: blur(1px);
+      pointer-events: none;
+    }
+
+    /* Dynamic Widescreen Aspect Ratio Letterbox Mattes */
+    .letterbox-matte-top,
+    .letterbox-matte-bottom {
+      position: fixed;
+      left: 0;
+      right: 0;
+      background-color: #000000;
+      z-index: 9970;
+      transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.95);
+      pointer-events: none;
+    }
+
+    .letterbox-matte-top {
+      top: 0;
+      height: var(--matte-height);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+    }
+
+    .letterbox-matte-bottom {
+      bottom: 0;
+      height: var(--matte-height);
+      border-top: 1px solid rgba(212, 175, 55, 0.08);
+    }
+
+    /* Subtitle lower third styling */
+    .cinema-subtitle {
+      background: rgba(4, 5, 8, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      color: #f7f4ed;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.08em;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Flashlight mouse follower (Hovering over a frame lit it gently) */
+    #cinema-flashlight {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 550px;
+      height: 550px;
+      margin-left: -275px;
+      margin-top: -275px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.07) 0%, rgba(212, 175, 55, 0.02) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 40;
+      transition: opacity 0.5s ease;
+      opacity: 0;
+      border-radius: 50%;
+    }
+
+    /* 35mm Sprocket Film Strip */
+    .sprocket-hole {
+      width: 10px;
+      height: 14px;
+      border-radius: 3px;
+      background: #000000;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      transition: all 0.3s ease;
+    }
+    .sprocket-active .sprocket-hole {
+      background: #d4af37;
+      box-shadow: 0 0 10px #d4af37;
+      border-color: #fff;
+    }
+
+    /* Dolly curtain reveal */
+    .dolly-frame {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .dolly-frame.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Dropcap */
+    .dropcap::first-letter {
+      float: left;
+      font-family: 'Cinzel', serif;
+      font-size: 4.8rem;
+      line-height: 0.85;
+      padding-top: 4px;
+      padding-right: 14px;
+      padding-bottom: 2px;
+      color: #d4af37;
+      text-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Golden quote glow */
+    .quote-glow {
+      border-left: 2px solid #d4af37;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+    }
+
+    /* Before-After Split Slider */
+    .comparison-container {
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+    .comparison-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 50%;
+      overflow: hidden;
+    }
+    .comparison-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      background: #d4af37;
+      cursor: ew-resize;
+      z-index: 30;
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.8);
+    }
+    .comparison-handle::after {
+      content: '⟨ ⟩';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 36px;
+      height: 36px;
+      background: #090a0e;
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    }
+
+    /* End Credits Crawl Container */
+    #credits-crawl {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #credits-crawl.active {
+      max-height: 2500px;
+    }
+
+    /* 3-Second Black Intro Screen */
+    #curtain-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: #000000;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.6s;
+    }
+    #curtain-overlay.lifted {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Subtle pulsing audio visualizer bars */
+    .sound-bar {
+      width: 2px;
+      background: #d4af37;
+      border-radius: 1px;
+      transition: height 0.15s ease;
+    }
+  </style>
+</head>
+<body class="selection:bg-cinema-gold/30 selection:text-cinema-gold-light antialiased relative">
+
+  <!-- ==========================================================================
+       ACT 0: THE 3-SECOND BLACK SCREEN EXPERIENCE
+       "The screen went black for three full seconds — and I walked into it."
+       ========================================================================== -->
+  <div id="curtain-overlay" aria-live="polite">
+    <div class="max-w-2xl px-6 text-center space-y-8 select-none">
+      
+      <!-- Stage 1 (0.0s - 1.2s): Pure Black with countdown hint -->
+      <div id="intro-step-1" class="transition-opacity duration-1000 opacity-0">
+        <p class="font-cinema-mono text-[11px] tracking-[0.4em] uppercase text-cinema-gold/80 mb-3">
+          [ ACT 00 // THE THREE SECONDS ]
+        </p>
+        <h2 class="font-cinema-display text-lg md:text-2xl font-light text-cinema-parchment tracking-[0.25em] uppercase">
+          "The screen went black for three full seconds —
+        </h2>
+      </div>
+
+      <!-- Stage 2 (1.2s - 2.4s): Second thought arrives -->
+      <div id="intro-step-2" class="transition-opacity duration-1000 opacity-0">
+        <h2 class="font-cinema-display text-lg md:text-2xl font-light text-cinema-gold tracking-[0.28em] uppercase drop-shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+          — and I walked into it."
+        </h2>
+      </div>
+
+      <!-- Stage 3 (2.4s - 3.2s): Main title card arrives one by one -->
+      <div id="intro-step-3" class="transition-opacity duration-1000 opacity-0 space-y-4 pt-4 border-t border-cinema-gold/20">
+        <p class="font-cinema-mono text-[10px] tracking-[0.5em] text-cinema-muted uppercase">
+          ADITYA SONI PRESENTS
+        </p>
+        <h1 class="font-cinema-display text-2xl md:text-4xl font-bold tracking-[0.35em] text-cinema-parchment uppercase">
+          FRAMED IN WIDESCREEN
+        </h1>
+        <p class="font-cinema-serif italic text-sm md:text-base text-cinema-gold/90 tracking-widest">
+          A Portfolio Goes to the Movies
+        </p>
+      </div>
+
+      <!-- Timer & Skip Trigger -->
+      <div class="pt-8 flex flex-col items-center gap-3">
+        <div class="flex items-center gap-2">
+          <div class="w-1.5 h-1.5 rounded-full bg-cinema-gold animate-ping"></div>
+          <span id="countdown-text" class="font-cinema-mono text-xs tracking-widest text-cinema-gold/70">
+            FADING IN IN 3.0s
+          </span>
+        </div>
+        
+        <button id="skip-intro-btn" class="font-cinema-mono text-[11px] tracking-[0.25em] text-cinema-muted hover:text-cinema-gold border border-white/10 hover:border-cinema-gold/40 px-4 py-1.5 rounded-full uppercase transition-all">
+          Skip To Feature [SPACE]
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Film Grain HTML5 Canvas Overlay -->
+  <canvas id="grain-canvas"></canvas>
+
+  <!-- Flashlight Mouse Follower (Simulates flashlight passing over gallery wall) -->
+  <div id="cinema-flashlight" aria-hidden="true"></div>
+
+  <!-- Dynamic Cinema Aspect Ratio Letterbox Mattes -->
+  <div class="letterbox-matte-top" id="matte-top" aria-hidden="true"></div>
+  <div class="letterbox-matte-bottom" id="matte-bottom" aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       CINEMA TELEMETRY HUD & NAVIGATION (THE PROJECTION BOOTH)
+       ========================================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-cinema-black/85 backdrop-blur-md border-b border-cinema-gold/15" id="cinema-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Left: Brand / Title -->
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-2.5 group" title="Return to Main Portfolio">
+          <div class="w-8 h-8 rounded-lg bg-cinema-surface border border-cinema-gold/40 flex items-center justify-center text-cinema-gold group-hover:bg-cinema-gold group-hover:text-cinema-black transition-all">
+            <i data-lucide="film" class="w-4 h-4"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-cinema-display text-xs md:text-sm tracking-[0.2em] font-bold text-cinema-parchment group-hover:text-cinema-gold transition-colors">
+              ADITYA SONI
+            </span>
+            <span class="font-cinema-mono text-[9px] tracking-[0.3em] text-cinema-gold/70 uppercase">
+              CINEMA ESSAY // 2026
+            </span>
+          </div>
+        </a>
+
+        <div class="hidden lg:flex items-center gap-2 pl-4 border-l border-white/10">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="font-cinema-mono text-[10px] tracking-widest text-cinema-muted uppercase">
+            REEL: 35MM CINEMASCOPE
+          </span>
+        </div>
+      </div>
+
+      <!-- Center: Timecode & Reel Telemetry (Desktop) -->
+      <div class="hidden md:flex items-center gap-6 font-cinema-mono text-xs">
+        <div class="flex items-center gap-2 px-3 py-1 rounded bg-cinema-surface/80 border border-cinema-gold/20">
+          <span class="text-cinema-gold/60 text-[10px]">TIMECODE:</span>
+          <span id="header-timecode" class="text-cinema-parchment tracking-widest font-semibold">00:00:00:00</span>
+        </div>
+        <div class="flex items-center gap-2 text-[11px] text-cinema-muted">
+          <span>FPS: 24.0</span>
+          <span>•</span>
+          <span id="active-scene-indicator" class="text-cinema-gold">PROLOGUE</span>
+        </div>
+      </div>
+
+      <!-- Right: Cinema Controls (Aspect Ratio, Dimmer, Soundscape, Navigation) -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        
+        <!-- Soundscape Synthesizer Toggle -->
+        <button id="toggle-audio-btn" class="flex items-center gap-2 px-3 py-1.5 rounded-md bg-cinema-surface border border-cinema-gold/25 hover:border-cinema-gold text-cinema-parchment hover:text-cinema-gold text-xs font-cinema-mono transition-all group" title="Toggle Cinema Sub-Bass & Projector Hum">
+          <div class="flex items-end gap-0.5 h-3" id="audio-bars">
+            <span class="sound-bar h-1"></span>
+            <span class="sound-bar h-2"></span>
+            <span class="sound-bar h-3"></span>
+            <span class="sound-bar h-1.5"></span>
+          </div>
+          <span class="hidden sm:inline text-[11px] tracking-wider" id="audio-btn-label">AUDIO: OFF</span>
+        </button>
+
+        <!-- Aspect Ratio Selector Dropdown / Cycle -->
+        <button id="cycle-aspect-btn" class="px-2.5 py-1.5 rounded-md bg-cinema-surface border border-cinema-gold/25 hover:border-cinema-gold text-cinema-parchment text-xs font-cinema-mono flex items-center gap-1.5 transition-all" title="Change Aspect Ratio (CinemaScope 2.39:1, 16:9, Flat 1.85:1, Fullscreen)">
+          <i data-lucide="ratio" class="w-3.5 h-3.5 text-cinema-gold"></i>
+          <span id="aspect-ratio-label" class="text-[11px] tracking-wider">2.39:1</span>
+        </button>
+
+        <!-- Theater Dimmer (House Lights / Premiere Blackout) -->
+        <button id="theater-dim-btn" class="px-2.5 py-1.5 rounded-md bg-cinema-surface border border-cinema-gold/25 hover:border-cinema-gold text-cinema-gold text-xs font-cinema-mono flex items-center gap-1.5 transition-all" title="Dim the Lights (House Lights / Cinema Mode)">
+          <i data-lucide="lamp-ceiling" class="w-3.5 h-3.5"></i>
+          <span class="hidden md:inline text-[11px] tracking-wider" id="dimmer-label">LIGHTS: ON</span>
+        </button>
+
+        <!-- Replay Intro Button -->
+        <button id="replay-intro-btn" class="p-1.5 rounded-md bg-cinema-surface border border-white/10 hover:border-cinema-gold/40 text-cinema-muted hover:text-cinema-gold transition-all" title="Replay 3-Second Black Intro">
+          <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+        </button>
+
+        <!-- Back to Portfolio -->
+        <a href="index.html" class="px-3 py-1.5 rounded-md bg-cinema-gold text-cinema-black font-cinema-sans font-semibold text-xs tracking-wider uppercase hover:bg-cinema-gold-light transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+          <span>Exit To Site</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       SIDEBAR: 35MM FILM REEL PROGRESS NAVIGATOR
+       ========================================================================== -->
+  <aside class="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-center gap-3 py-4 px-2 rounded-full bg-cinema-surface/70 backdrop-blur-md border border-cinema-gold/20" id="film-reel-nav">
+    <div class="font-cinema-mono text-[9px] tracking-widest text-cinema-gold/80 -rotate-90 py-2 uppercase">
+      REEL 35MM
+    </div>
+
+    <!-- Scene Marks -->
+    <a href="#prologue" class="sprocket-link group flex items-center gap-2" data-scene="prologue" title="Prologue: The Flea Market">
+      <div class="sprocket-hole group-hover:border-cinema-gold"></div>
+    </a>
+    <a href="#act-1" class="sprocket-link group flex items-center gap-2" data-scene="act-1" title="Act I: Dim the Lights">
+      <div class="sprocket-hole group-hover:border-cinema-gold"></div>
+    </a>
+    <a href="#act-2" class="sprocket-link group flex items-center gap-2" data-scene="act-2" title="Act II: Every Frame a Sentence">
+      <div class="sprocket-hole group-hover:border-cinema-gold"></div>
+    </a>
+    <a href="#act-3" class="sprocket-link group flex items-center gap-2" data-scene="act-3" title="Act III: The Camera Moves">
+      <div class="sprocket-hole group-hover:border-cinema-gold"></div>
+    </a>
+    <a href="#act-4" class="sprocket-link group flex items-center gap-2" data-scene="act-4" title="Act IV: The Premiere">
+      <div class="sprocket-hole group-hover:border-cinema-gold"></div>
+    </a>
+    <a href="#coda" class="sprocket-link group flex items-center gap-2" data-scene="coda" title="Coda: Roll Film">
+      <div class="sprocket-hole group-hover:border-cinema-gold"></div>
+    </a>
+
+    <div class="w-1.5 h-1.5 rounded-full bg-cinema-gold/40"></div>
+  </aside>
+
+  <!-- ==========================================================================
+       MAIN EDITORIAL CINEMATIC NARRATIVE
+       ========================================================================== -->
+  <main class="relative z-20 pt-28 pb-36 max-w-4xl mx-auto px-6 sm:px-10 lg:px-12 space-y-28 md:space-y-40">
+
+    <!-- ESSAY MASTHEAD / COVER CARD -->
+    <section id="prologue" class="dolly-frame space-y-10 pt-8 sm:pt-16 border-b border-cinema-gold/20 pb-20">
+      
+      <!-- Meta Telemetry Badge -->
+      <div class="flex flex-wrap items-center justify-between gap-4 font-cinema-mono text-xs text-cinema-muted border-b border-white/5 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-0.5 rounded bg-cinema-gold/10 border border-cinema-gold/30 text-cinema-gold text-[10px] tracking-[0.2em] uppercase font-bold">
+            CREATIVE WRITING
+          </span>
+          <span class="tracking-widest">GENRE: PERSONAL ESSAY // BRAND STORYTELLING</span>
+        </div>
+        <div class="flex items-center gap-2 text-cinema-gold/80">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+          <span>SEPTEMBER 30, 2026</span>
+        </div>
+      </div>
+
+      <!-- Primary Title -->
+      <div class="space-y-4">
+        <p class="font-cinema-mono text-xs sm:text-sm tracking-[0.45em] text-cinema-gold uppercase">
+          PORTFOLIO REIMAGINED — 2026
+        </p>
+        <h1 class="font-cinema-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-[0.06em] text-cinema-parchment leading-[1.08] uppercase">
+          Framed in <span class="text-cinema-gold italic font-normal">Widescreen</span>
+        </h1>
+        <p class="font-cinema-serif italic text-2xl sm:text-3xl text-cinema-parchment/80 font-light tracking-wide">
+          A Portfolio Goes to the Movies
+        </p>
+      </div>
+
+      <!-- Theme Tagline -->
+      <div class="quote-glow pl-6 py-4 space-y-1">
+        <p class="font-cinema-mono text-[10px] tracking-[0.3em] uppercase text-cinema-gold">
+          CENTRAL THESIS &amp; PHILOSOPHY
+        </p>
+        <p class="font-cinema-sans text-sm sm:text-base text-cinema-parchment/90 font-light">
+          The Making of a Professional, Cinematic Portfolio: from shouting flea market to an unhurried, letterspaced theater hall.
+        </p>
+      </div>
+
+      <!-- Opening Quotation Frame -->
+      <div class="relative p-8 sm:p-12 rounded-2xl bg-cinema-card border border-cinema-gold/30 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden group">
+        <div class="anamorphic-glow opacity-30 group-hover:opacity-75 transition-opacity duration-700"></div>
+        <div class="relative z-10 space-y-4 text-center">
+          <div class="font-cinema-mono text-[10px] tracking-[0.5em] text-cinema-gold uppercase">
+            // OPENING SCENE
+          </div>
+          <blockquote class="font-cinema-display text-2xl sm:text-3xl md:text-4xl text-cinema-parchment tracking-wide leading-relaxed">
+            "The screen went black for three full seconds — and I walked into it."
+          </blockquote>
+          <div class="pt-2 flex justify-center">
+            <div class="w-12 h-0.5 bg-cinema-gold"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prologue Narrative Body -->
+      <div class="space-y-6 text-lg sm:text-xl font-cinema-serif text-cinema-parchment/90 leading-[1.9] tracking-normal">
+        <p class="dropcap">
+          My portfolio used to be a flea market. Twelve projects shoulder to shoulder, thumbnails shouting over each other, a neon gradient banner promising <span class="font-sans font-bold text-rose-400">"CREATIVE PASSION"</span> in a font that belonged on a dentist's billboard. Everything was there, and therefore nothing was seen. Visitors scrolled like commuters: eyes forward, touch nothing, escape at the next click.
+        </p>
+        <p>
+          Then one night I watched a film I had seen a dozen times before, and I finally understood what it was doing to me. The screen went black for three full seconds before the first image appeared. The titles arrived one at a time, small and certain, letterspaced like footsteps in an empty hall. Nobody had shouted at me. Nobody had shown me everything at once. The film had simply made room, and I walked into it.
+        </p>
+        <p class="text-xl sm:text-2xl font-cinema-sans font-light text-cinema-gold tracking-wide pt-2">
+          I wanted my portfolio to do that. I wanted strangers to arrive as visitors and leave as an audience.
+        </p>
+      </div>
+
+      <!-- Interactive Split Demonstration: Flea Market vs. Widescreen Frame -->
+      <div class="space-y-3 pt-6">
+        <div class="flex items-center justify-between font-cinema-mono text-xs text-cinema-muted">
+          <span class="text-rose-400 uppercase tracking-wider">◄ THE FLEA MARKET (PAST)</span>
+          <span class="text-cinema-gold uppercase tracking-wider">THE WIDESCREEN FRAME (PRESENT) ►</span>
+        </div>
+
+        <div class="comparison-container rounded-xl border border-cinema-gold/30 shadow-2xl h-80 sm:h-96" id="split-slider-box">
+          <!-- Background: The New Widescreen Frame (Right/Bottom) -->
+          <div class="absolute inset-0 bg-cinema-black flex flex-col items-center justify-center p-6 text-center">
+            <img src="assets/cinema/cinema_theater_frame.jpg" alt="Cinematic Widescreen Portfolio Hall" class="absolute inset-0 w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-t from-cinema-black via-cinema-black/40 to-cinema-black"></div>
+            <div class="relative z-10 space-y-3 max-w-md">
+              <span class="px-3 py-1 rounded-full bg-cinema-gold/20 border border-cinema-gold/40 text-cinema-gold text-[10px] font-cinema-mono tracking-[0.25em] uppercase">
+                THE 2026 FRAME
+              </span>
+              <h3 class="font-cinema-display text-2xl text-cinema-parchment tracking-widest uppercase">
+                QUIET. SINGLE GOLD. PURPOSE.
+              </h3>
+              <p class="font-cinema-serif text-sm text-cinema-parchment/80 italic">
+                "Where there had been ten competing accents, now there was one, a single gold, used the way a film uses its score."
+              </p>
+            </div>
+          </div>
+
+          <!-- Foreground Overlay: The Old Flea Market (Left) -->
+          <div class="comparison-overlay" id="split-slider-overlay">
+            <div class="absolute inset-0 bg-[#0e0720] flex flex-col items-center justify-center p-6 text-center w-[600px] sm:w-[800px]">
+              <!-- Crowded fake cards -->
+              <div class="absolute inset-0 bg-[radial-gradient(#ec4899_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
+              <div class="relative z-10 space-y-3">
+                <span class="px-3 py-1 rounded bg-rose-500 text-white font-sans text-[11px] font-black uppercase tracking-widest animate-bounce">
+                  ⚡ CREATIVE PASSION ⚡
+                </span>
+                <h3 class="font-sans text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-pink-500 to-cyan-400">
+                  LOOK AT EVERYTHING ALL AT ONCE!
+                </h3>
+                <div class="grid grid-cols-3 gap-2 max-w-xs mx-auto pt-2">
+                  <div class="p-2 bg-gradient-to-br from-pink-600 to-purple-600 rounded text-[9px] font-mono text-white">PROJECT #1</div>
+                  <div class="p-2 bg-gradient-to-br from-cyan-600 to-blue-600 rounded text-[9px] font-mono text-white">PROJECT #2</div>
+                  <div class="p-2 bg-gradient-to-br from-emerald-600 to-teal-600 rounded text-[9px] font-mono text-white">PROJECT #3</div>
+                </div>
+                <p class="font-mono text-[10px] text-pink-300">
+                  [ 12 Thumbnails shouting shoulder to shoulder ]
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slider Divider Handle -->
+          <div class="comparison-handle" id="split-slider-handle"></div>
+        </div>
+        <p class="text-center font-cinema-mono text-[10px] text-cinema-muted tracking-widest">
+          DRAG SLIDER TO REVEAL THE TRANSFORMATION
+        </p>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         ACT I: DIM THE LIGHTS
+         ========================================================================== -->
+    <section id="act-1" class="dolly-frame space-y-10">
+      
+      <!-- Chapter Heading -->
+      <div class="space-y-3 border-l-2 border-cinema-gold pl-6">
+        <div class="flex items-center gap-3 font-cinema-mono text-xs text-cinema-gold tracking-[0.3em] uppercase">
+          <span>ACT I</span>
+          <span>//</span>
+          <span>REEL 01:24</span>
+        </div>
+        <h2 class="font-cinema-display text-3xl sm:text-5xl font-bold tracking-wide text-cinema-parchment uppercase">
+          Dim the Lights
+        </h2>
+      </div>
+
+      <!-- Essay Content -->
+      <div class="space-y-6 text-lg sm:text-xl font-cinema-serif text-cinema-parchment/90 leading-[1.9]">
+        <p class="text-xl sm:text-2xl font-cinema-sans font-normal text-cinema-parchment tracking-wide">
+          Cinema begins with darkness. So I killed the white.
+        </p>
+        <p>
+          The background of every page went to near-black, not the black of a void but the black of a theater before the trailer ends, the kind that feels warm because a thousand screens have made it familiar. My work, once marooned on white, now floated like illuminated cells, each image a lantern in a dark corridor. Colors deepened. Edges sharpened. A photograph I had considered ordinary for two years suddenly looked like a still from a film I wished I had made.
+        </p>
+      </div>
+
+      <!-- Cinematic Visual Still: Lantern in a Dark Corridor -->
+      <div class="relative rounded-2xl overflow-hidden border border-cinema-gold/30 shadow-[0_25px_60px_rgba(0,0,0,0.9)] group">
+        <img src="assets/cinema/cinema_frame_sentence.jpg" alt="Lantern in a dark corridor - Aditya Soni Portfolio Still" class="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-1000">
+        
+        <!-- Lower-third cinema subtitle bar -->
+        <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-8 right-4 sm:right-8 cinema-subtitle p-4 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-cinema-gold animate-ping"></span>
+            <span class="text-xs text-cinema-gold font-bold uppercase tracking-widest">
+              SCENE NOTE:
+            </span>
+            <span class="text-xs text-cinema-parchment font-light">
+              "Each image a lantern in a dark corridor. Colors deepened. Edges sharpened."
+            </span>
+          </div>
+          <span class="text-[10px] text-cinema-muted tracking-widest uppercase">
+            35MM // 2.39:1 SCOPE
+          </span>
+        </div>
+      </div>
+
+      <!-- Continued Narrative -->
+      <div class="space-y-6 text-lg sm:text-xl font-cinema-serif text-cinema-parchment/90 leading-[1.9]">
+        <div class="quote-glow pl-6 py-4 my-4">
+          <p class="font-cinema-display text-xl sm:text-2xl text-cinema-gold tracking-wide italic">
+            "Darkness is not a color; it is a courtesy. It tells the visitor: we turn the lights down for you, so the work can be the only thing that glows."
+          </p>
+        </div>
+        <p>
+          I stripped the gradients, muted the buttons, retired the rainbow. Where there had been ten competing accents, now there was one, a single gold, used the way a film uses its score: sparingly, and only where it matters.
+        </p>
+      </div>
+
+      <!-- Color Palette Demonstration -->
+      <div class="p-6 rounded-xl bg-cinema-card border border-cinema-gold/20 space-y-4">
+        <span class="font-cinema-mono text-[10px] tracking-[0.3em] uppercase text-cinema-gold">
+          THE PALETTE OF RESTRAINT // 1 PRIMARY GOLD SCORE
+        </span>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="p-3 rounded-lg bg-cinema-black border border-white/10 space-y-1">
+            <div class="w-full h-8 rounded bg-[#060709] border border-white/15"></div>
+            <div class="font-cinema-mono text-[10px] text-cinema-parchment">#060709</div>
+            <div class="font-cinema-sans text-[10px] text-cinema-muted">Theater Near-Black</div>
+          </div>
+          <div class="p-3 rounded-lg bg-cinema-black border border-white/10 space-y-1">
+            <div class="w-full h-8 rounded bg-[#0c0d12] border border-white/15"></div>
+            <div class="font-cinema-mono text-[10px] text-cinema-parchment">#0C0D12</div>
+            <div class="font-cinema-sans text-[10px] text-cinema-muted">Screen Canvas Matte</div>
+          </div>
+          <div class="p-3 rounded-lg bg-cinema-black border border-cinema-gold/40 space-y-1 shadow-[0_0_15px_rgba(212,175,55,0.15)]">
+            <div class="w-full h-8 rounded bg-[#d4af37] border border-cinema-gold-light"></div>
+            <div class="font-cinema-mono text-[10px] text-cinema-gold font-bold">#D4AF37</div>
+            <div class="font-cinema-sans text-[10px] text-cinema-gold">The Score: Single Gold</div>
+          </div>
+          <div class="p-3 rounded-lg bg-cinema-black border border-white/10 space-y-1">
+            <div class="w-full h-8 rounded bg-[#ece8e1] border border-white/15"></div>
+            <div class="font-cinema-mono text-[10px] text-cinema-parchment">#ECE8E1</div>
+            <div class="font-cinema-sans text-[10px] text-cinema-muted">Luminous Parchment</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         ACT II: EVERY FRAME A SENTENCE
+         ========================================================================== -->
+    <section id="act-2" class="dolly-frame space-y-10">
+      
+      <!-- Chapter Heading -->
+      <div class="space-y-3 border-l-2 border-cinema-gold pl-6">
+        <div class="flex items-center gap-3 font-cinema-mono text-xs text-cinema-gold tracking-[0.3em] uppercase">
+          <span>ACT II</span>
+          <span>//</span>
+          <span>REEL 02:45</span>
+        </div>
+        <h2 class="font-cinema-display text-3xl sm:text-5xl font-bold tracking-wide text-cinema-parchment uppercase">
+          Every Frame a Sentence
+        </h2>
+      </div>
+
+      <!-- Essay Content -->
+      <div class="space-y-6 text-lg sm:text-xl font-cinema-serif text-cinema-parchment/90 leading-[1.9]">
+        <p class="text-xl sm:text-2xl font-cinema-sans font-light text-cinema-parchment">
+          A film editor will tell you that cutting is the true authorship. I began to cut.
+        </p>
+        <p>
+          Twenty-two projects became nine. It felt like surgery; it read like mercy. Each project got its own full-width frame, its own entrance, its own breathing room, the way a director gives a scene space to land before the next one begins. I stopped asking how much I could show and started asking how long this shot should hold.
+        </p>
+      </div>
+
+      <!-- The Isolated Three Words Headline Card (Directly reflecting the essay!) -->
+      <div class="relative py-24 sm:py-32 px-6 rounded-2xl bg-black border border-cinema-gold/30 shadow-[0_0_60px_rgba(0,0,0,1)] text-center space-y-6 overflow-hidden">
+        <div class="font-cinema-mono text-[10px] tracking-[0.4em] text-cinema-gold/60 uppercase">
+          EXHIBIT A // THE CONFIDENCE OF DELETION
+        </div>
+        
+        <!-- The three words, surrounded by nothing -->
+        <h3 class="font-cinema-display text-3xl sm:text-5xl md:text-6xl font-light text-cinema-parchment tracking-[0.35em] uppercase drop-shadow-[0_0_25px_rgba(212,175,55,0.4)]">
+          FRAMED IN WIDESCREEN
+        </h3>
+
+        <div class="max-w-md mx-auto pt-4">
+          <p class="font-cinema-mono text-[11px] text-cinema-muted tracking-[0.2em] uppercase">
+            [ THREE WORDS. SURROUNDED BY NOTHING. ]
+          </p>
+        </div>
+      </div>
+
+      <!-- Essay Continued -->
+      <div class="space-y-6 text-lg sm:text-xl font-cinema-serif text-cinema-parchment/90 leading-[1.9]">
+        <p>
+          Type became my cinematography. Titles arrived in a quiet serif, tracked wide like the opening credits of an old epic. Body copy stepped aside, small and legible, a narrator who knows his place. Captions settled at the lower third of each image, the way subtitles do, present when needed and invisible when not. On the page about my brand film, the headline sat alone in the center of the black: three words, surrounded by nothing.
+        </p>
+        <div class="quote-glow pl-6 py-4 my-2">
+          <p class="font-cinema-serif italic text-xl sm:text-2xl text-cinema-gold">
+            "It took more confidence to delete than it had ever taken to add."
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         ACT III: THE CAMERA MOVES
+         ========================================================================== -->
+    <section id="act-3" class="dolly-frame space-y-10">
+      
+      <!-- Chapter Heading -->
+      <div class="space-y-3 border-l-2 border-cinema-gold pl-6">
+        <div class="flex items-center gap-3 font-cinema-mono text-xs text-cinema-gold tracking-[0.3em] uppercase">
+          <span>ACT III</span>
+          <span>//</span>
+          <span>REEL 04:10</span>
+        </div>
+        <h2 class="font-cinema-display text-3xl sm:text-5xl font-bold tracking-wide text-cinema-parchment uppercase">
+          The Camera Moves
+        </h2>
+      </div>
+
+      <!-- Essay Content -->
+      <div class="space-y-6 text-lg sm:text-xl font-cinema-serif text-cinema-parchment/90 leading-[1.9]">
+        <p class="text-xl sm:text-2xl font-cinema-sans font-light text-cinema-gold tracking-wide">
+          A static portfolio is a slideshow. A cinematic one is a camera.
+        </p>
+        <p>
+          I made the page move the way a good dolly does: slow, motivated, unhurried. Images dissolved in as you scrolled, each rising a few centimeters like a curtain, never bouncing, never begging. Hovering over a frame lit it gently, a flashlight passing over a gallery wall at midnight. Between sections I left stretches of pure black, long enough to feel like a breath between scenes.
+        </p>
+      </div>
+
+      <!-- Visual Still: 35mm Panavision Dolly Camera in the Shadows -->
+      <div class="relative rounded-2xl overflow-hidden border border-cinema-gold/30 shadow-[0_25px_60px_rgba(0,0,0,0.9)] group">
+        <img src="assets/cinema/cinema_premiere_roll.jpg" alt="35mm Cinema Dolly Camera Still - Aditya Soni" class="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-1000">
+        
+        <!-- Lower-third cinema subtitle -->
+        <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-8 right-4 sm:right-8 cinema-subtitle p-4 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-cinema-gold animate-pulse"></span>
+            <span class="text-xs text-cinema-gold font-bold uppercase tracking-widest">
+              DOLLY TELEMETRY:
+            </span>
+            <span class="text-xs text-cinema-parchment font-light">
+              "Slow, motivated, unhurried. Never bouncing, never begging."
+            </span>
+          </div>
+          <span class="text-[10px] text-cinema-muted tracking-widest uppercase">
+            PANAVISION 35MM // DOLLY TRACK
+          </span>
+        </div>
+      </div>
+
+      <!-- The Loading Screen Revelation -->
+      <div class="p-8 sm:p-10 rounded-2xl bg-cinema-card border border-cinema-gold/25 space-y-5">
+        <div class="flex items-center gap-2 text-cinema-gold font-cinema-mono text-xs tracking-widest uppercase">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>THE TWO SECONDS OF THEATER</span>
+        </div>
+        <p class="font-cinema-serif text-lg sm:text-xl text-cinema-parchment leading-relaxed">
+          Even the loading screen got a scene of its own. The name of my studio fades in from black like the first title card of the night, one line, nothing else. Two seconds of waiting became two seconds of theater. People stopped complaining about the wait, because they had stopped noticing it was one.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         ACT IV: THE PREMIERE
+         ========================================================================== -->
+    <section id="act-4" class="dolly-frame space-y-10">
+      
+      <!-- Chapter Heading -->
+      <div class="space-y-3 border-l-2 border-cinema-gold pl-6">
+        <div class="flex items-center gap-3 font-cinema-mono text-xs text-cinema-gold tracking-[0.3em] uppercase">
+          <span>ACT IV</span>
+          <span>//</span>
+          <span>REEL 05:40</span>
+        </div>
+        <h2 class="font-cinema-display text-3xl sm:text-5xl font-bold tracking-wide text-cinema-parchment uppercase">
+          The Premiere
+        </h2>
+      </div>
+
+      <!-- Essay Content -->
+      <div class="space-y-6 text-lg sm:text-xl font-cinema-serif text-cinema-parchment/90 leading-[1.9]">
+        <p>
+          The first stranger to see the new site was a creative director I had been chasing for months. She stayed nine minutes. She wrote to me the same afternoon, and the first line of her email was not about any single project. It said:
+        </p>
+        
+        <div class="p-8 sm:p-10 rounded-2xl bg-gradient-to-r from-cinema-gold/15 via-cinema-surface to-cinema-black border border-cinema-gold/40 shadow-xl space-y-2">
+          <p class="font-cinema-mono text-[11px] tracking-[0.3em] uppercase text-cinema-gold">
+            EXECUTIVE FEEDBACK // 14:32 HRS
+          </p>
+          <blockquote class="font-cinema-display text-2xl sm:text-3xl text-cinema-parchment tracking-wide font-normal">
+            "It feels like you already know who you are."
+          </blockquote>
+        </div>
+
+        <p class="pt-2">
+          That is what professionalism is, I think: not polish, not expensive fonts, but the quiet of someone who has stopped apologizing. The cinematic portfolio does not shout its skills; it screens them. It does not list what I can do; it runs the trailer and lets the audience decide to stay for the feature.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         CODA: ROLL FILM
+         ========================================================================== -->
+    <section id="coda" class="dolly-frame space-y-12 pt-12 border-t border-cinema-gold/25">
+      
+      <!-- Coda Header -->
+      <div class="text-center space-y-4">
+        <p class="font-cinema-mono text-xs tracking-[0.5em] text-cinema-gold uppercase">
+          // FINALE //
+        </p>
+        <h2 class="font-cinema-display text-4xl sm:text-6xl font-bold tracking-widest text-cinema-parchment uppercase">
+          Coda: Roll Film
+        </h2>
+      </div>
+
+      <!-- Essay Climax Narrative -->
+      <div class="space-y-6 text-lg sm:text-xl font-cinema-serif text-cinema-parchment/90 leading-[1.9] text-center max-w-2xl mx-auto">
+        <p>
+          The old portfolio was a room where I kept my things. The new one is a dark hall where my work premieres every night at eight. Same projects. Same designer. Different lighting.
+        </p>
+        <p class="font-cinema-sans font-light text-cinema-gold tracking-wide text-xl sm:text-2xl pt-2">
+          Framed in Widescreen.
+        </p>
+        <p>
+          Somewhere tonight a stranger will open it, and the screen will go black for three full seconds, and they will not click away. They will wait for the first frame, because everything they have already seen has told them the wait is worth it.
+        </p>
+      </div>
+
+      <!-- The Final Invocation -->
+      <div class="py-12 text-center space-y-8">
+        <div class="space-y-2">
+          <p class="font-cinema-display text-2xl sm:text-3xl text-cinema-parchment font-light tracking-[0.2em] uppercase">
+            I turn the lights down.
+          </p>
+          <p class="font-cinema-display text-2xl sm:text-3xl text-cinema-parchment font-light tracking-[0.2em] uppercase">
+            The room goes quiet.
+          </p>
+          <p class="font-cinema-display text-3xl sm:text-4xl text-cinema-gold font-bold tracking-[0.25em] uppercase drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]">
+            Roll film.
+          </p>
+        </div>
+
+        <!-- Interactive "Roll Film" Button (Reveals End Credits & Feature Screenings) -->
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button id="roll-film-trigger" class="px-8 py-4 rounded-xl bg-gradient-to-r from-cinema-gold via-cinema-gold-light to-cinema-gold text-cinema-black font-cinema-display font-bold text-sm tracking-[0.25em] uppercase hover:scale-105 transition-all shadow-[0_0_30px_rgba(212,175,55,0.4)] flex items-center gap-3">
+            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+            <span>Roll Credits &amp; Feature</span>
+          </button>
+          
+          <a href="projects.html" class="px-6 py-4 rounded-xl bg-cinema-surface border border-cinema-gold/40 text-cinema-parchment hover:text-cinema-gold hover:border-cinema-gold font-cinema-mono text-xs tracking-widest uppercase transition-all flex items-center gap-2">
+            <span>Explore 9 Projects</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- ======================================================================
+           CINEMA END CREDITS CRAWL (EXPANDABLE)
+           ====================================================================== -->
+      <div id="credits-crawl" class="border-t border-cinema-gold/20 pt-16">
+        <div class="max-w-xl mx-auto space-y-12 text-center select-none">
+          
+          <div class="space-y-2">
+            <p class="font-cinema-mono text-[10px] tracking-[0.4em] text-cinema-gold uppercase">
+              // PRODUCTION CREDITS //
+            </p>
+            <h3 class="font-cinema-display text-2xl text-cinema-parchment tracking-[0.2em] uppercase">
+              FRAMED IN WIDESCREEN
+            </h3>
+            <p class="font-cinema-mono text-xs text-cinema-muted">
+              RELEASED SEPTEMBER 30, 2026
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-8 text-left border-y border-white/10 py-8">
+            <div class="space-y-4">
+              <div>
+                <p class="font-cinema-mono text-[10px] text-cinema-gold uppercase tracking-widest">WRITTEN &amp; DIRECTED BY</p>
+                <p class="font-cinema-display text-base text-cinema-parchment">Aditya Soni</p>
+              </div>
+              <div>
+                <p class="font-cinema-mono text-[10px] text-cinema-gold uppercase tracking-widest">CINEMATOGRAPHY RATIO</p>
+                <p class="font-cinema-display text-base text-cinema-parchment">2.39:1 Anamorphic Scope</p>
+              </div>
+              <div>
+                <p class="font-cinema-mono text-[10px] text-cinema-gold uppercase tracking-widest">TYPOGRAPHY</p>
+                <p class="font-cinema-display text-base text-cinema-parchment">Cinzel &amp; Newsreader</p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <p class="font-cinema-mono text-[10px] text-cinema-gold uppercase tracking-widest">SYSTEM ARCHITECTURE</p>
+                <p class="font-cinema-display text-base text-cinema-parchment">Full-Stack &amp; WebGL 3D</p>
+              </div>
+              <div>
+                <p class="font-cinema-mono text-[10px] text-cinema-gold uppercase tracking-widest">SOUND DESIGN</p>
+                <p class="font-cinema-display text-base text-cinema-parchment">Web Audio Subwoofer Tone</p>
+              </div>
+              <div>
+                <p class="font-cinema-mono text-[10px] text-cinema-gold uppercase tracking-widest">FEATURE SELECTIONS</p>
+                <p class="font-cinema-display text-base text-cinema-parchment">9 Curated Case Studies</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature Screening Gateways -->
+          <div class="space-y-4 pt-4">
+            <p class="font-cinema-mono text-xs text-cinema-gold tracking-widest uppercase">
+              NOW SCREENING ACROSS THE ECOSYSTEM
+            </p>
+            <div class="flex flex-wrap justify-center gap-3">
+              <a href="index.html" class="px-4 py-2 rounded-lg bg-cinema-surface border border-cinema-gold/30 hover:border-cinema-gold text-xs font-cinema-mono text-cinema-parchment hover:text-cinema-gold transition-all">
+                01. Home Theatre
+              </a>
+              <a href="about.html" class="px-4 py-2 rounded-lg bg-cinema-surface border border-cinema-gold/30 hover:border-cinema-gold text-xs font-cinema-mono text-cinema-parchment hover:text-cinema-gold transition-all">
+                02. Engineering Lab
+              </a>
+              <a href="projects.html" class="px-4 py-2 rounded-lg bg-cinema-surface border border-cinema-gold/30 hover:border-cinema-gold text-xs font-cinema-mono text-cinema-parchment hover:text-cinema-gold transition-all">
+                03. Selected Frames (Projects)
+              </a>
+              <a href="signature.html" class="px-4 py-2 rounded-lg bg-cinema-surface border border-cinema-gold/30 hover:border-cinema-gold text-xs font-cinema-mono text-cinema-parchment hover:text-cinema-gold transition-all">
+                04. Digital Signature
+              </a>
+              <a href="contact.html" class="px-4 py-2 rounded-lg bg-cinema-surface border border-cinema-gold/30 hover:border-cinema-gold text-xs font-cinema-mono text-cinema-parchment hover:text-cinema-gold transition-all">
+                05. Terminal Connect
+              </a>
+            </div>
+          </div>
+
+          <div class="pt-6 font-cinema-mono text-[11px] text-cinema-muted">
+            © 2026 ADITYA SONI. ALL RIGHTS RESERVED. PRINTED ON 35MM NITRATE EMULSION.
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       PERSISTENT BOTTOM TELEMETRY BAR
+       ========================================================================== -->
+  <footer class="fixed bottom-0 left-0 right-0 z-40 bg-cinema-black/90 backdrop-blur-md border-t border-cinema-gold/15 py-2 px-4 transition-all duration-500" id="cinema-footer">
+    <div class="max-w-7xl mx-auto flex items-center justify-between text-[11px] font-cinema-mono text-cinema-muted">
+      <div class="flex items-center gap-3">
+        <span class="text-cinema-gold">FRAMED IN WIDESCREEN</span>
+        <span class="hidden sm:inline text-white/20">|</span>
+        <span class="hidden sm:inline">2.39:1 CINEMASCOPE</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span id="reading-progress-percent">0% SCROLLED</span>
+        <a href="#prologue" class="hover:text-cinema-gold transition-colors flex items-center gap-1">
+          <span>TOP</span>
+          <i data-lucide="chevron-up" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       CINEMA JAVASCRIPT LOGIC ENGINE
+       - 3-Second Black Curtain Sequencer
+       - Dynamic Letterbox Matte Controller
+       - 60fps Film Grain WebGL/Canvas Generator
+       - Flashlight Cursor Tracking
+       - Web Audio API Synthesized Cinema Sub-Bass & Projector Murmur
+       - Split Comparison Drag Interaction
+       - Timecode & Scroll Progress Tracker
+       ========================================================================== -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // -------------------------------------------------------------------------
+    // 1. ACT 0: THE THREE-SECOND BLACK SCREEN SEQUENCER
+    // -------------------------------------------------------------------------
+    const curtainOverlay = document.getElementById('curtain-overlay');
+    const step1 = document.getElementById('intro-step-1');
+    const step2 = document.getElementById('intro-step-2');
+    const step3 = document.getElementById('intro-step-3');
+    const countdownText = document.getElementById('countdown-text');
+    const skipBtn = document.getElementById('skip-intro-btn');
+    const replayBtn = document.getElementById('replay-intro-btn');
+
+    let introTimer = null;
+    let introInterval = null;
+    let introRunning = true;
+
+    function runThreeSecondIntro() {
+      introRunning = true;
+      curtainOverlay.classList.remove('lifted');
+      step1.classList.remove('opacity-100');
+      step1.classList.add('opacity-0');
+      step2.classList.remove('opacity-100');
+      step2.classList.add('opacity-0');
+      step3.classList.remove('opacity-100');
+      step3.classList.add('opacity-0');
+
+      let remaining = 3.0;
+      countdownText.textContent = `FADING IN IN ${remaining.toFixed(1)}s`;
+
+      if (introInterval) clearInterval(introInterval);
+      introInterval = setInterval(() => {
+        remaining -= 0.1;
+        if (remaining <= 0) {
+          countdownText.textContent = 'PREMIERE COMMENCING';
+          clearInterval(introInterval);
+        } else {
+          countdownText.textContent = `FADING IN IN ${remaining.toFixed(1)}s`;
+        }
+      }, 100);
+
+      // Sequence timeline
+      setTimeout(() => {
+        if (!introRunning) return;
+        step1.classList.remove('opacity-0');
+        step1.classList.add('opacity-100');
+      }, 400);
+
+      setTimeout(() => {
+        if (!introRunning) return;
+        step2.classList.remove('opacity-0');
+        step2.classList.add('opacity-100');
+      }, 1400);
+
+      setTimeout(() => {
+        if (!introRunning) return;
+        step3.classList.remove('opacity-0');
+        step3.classList.add('opacity-100');
+      }, 2400);
+
+      if (introTimer) clearTimeout(introTimer);
+      introTimer = setTimeout(() => {
+        liftCurtain();
+      }, 3400);
+    }
+
+    function liftCurtain() {
+      introRunning = false;
+      if (introInterval) clearInterval(introInterval);
+      if (introTimer) clearTimeout(introTimer);
+      curtainOverlay.classList.add('lifted');
+    }
+
+    skipBtn.addEventListener('click', liftCurtain);
+    replayBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      runThreeSecondIntro();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if ((e.code === 'Space' || e.code === 'Escape') && introRunning) {
+        e.preventDefault();
+        liftCurtain();
+      }
+    });
+
+    // Start intro on load
+    window.addEventListener('DOMContentLoaded', () => {
+      runThreeSecondIntro();
+    });
+
+    // -------------------------------------------------------------------------
+    // 2. DYNAMIC ASPECT RATIO LETTERBOX MATTES
+    // -------------------------------------------------------------------------
+    const cycleAspectBtn = document.getElementById('cycle-aspect-btn');
+    const aspectLabel = document.getElementById('aspect-ratio-label');
+    const rootEl = document.documentElement;
+
+    const aspectRatios = [
+      { name: '2.39:1', height: '6vh', label: '2.39:1 SCOPE' },
+      { name: '1.85:1', height: '3.5vh', label: '1.85:1 FLAT' },
+      { name: '16:9', height: '1.5vh', label: '16:9 HD' },
+      { name: 'FULL', height: '0vh', label: 'OPEN MATTE' }
+    ];
+    let currentAspectIndex = 0;
+
+    cycleAspectBtn.addEventListener('click', () => {
+      currentAspectIndex = (currentAspectIndex + 1) % aspectRatios.length;
+      const current = aspectRatios[currentAspectIndex];
+      rootEl.style.setProperty('--matte-height', current.height);
+      aspectLabel.textContent = current.name;
+      triggerChimeAudio();
+    });
+
+    // -------------------------------------------------------------------------
+    // 3. THEATER DIMMER (HOUSE LIGHTS vs. PREMIERE BLACKOUT)
+    // -------------------------------------------------------------------------
+    const theaterDimBtn = document.getElementById('theater-dim-btn');
+    const dimmerLabel = document.getElementById('dimmer-label');
+    const cinemaHeader = document.getElementById('cinema-header');
+    const cinemaFooter = document.getElementById('cinema-footer');
+    const filmReelNav = document.getElementById('film-reel-nav');
+
+    let isDimmed = false;
+
+    theaterDimBtn.addEventListener('click', () => {
+      isDimmed = !isDimmed;
+      if (isDimmed) {
+        cinemaHeader.style.opacity = '0.15';
+        cinemaFooter.style.opacity = '0.15';
+        filmReelNav.style.opacity = '0.15';
+        dimmerLabel.textContent = 'LIGHTS: DIM';
+      } else {
+        cinemaHeader.style.opacity = '1';
+        cinemaFooter.style.opacity = '1';
+        filmReelNav.style.opacity = '1';
+        dimmerLabel.textContent = 'LIGHTS: ON';
+      }
+      triggerChimeAudio();
+    });
+
+    // -------------------------------------------------------------------------
+    // 4. FILM GRAIN CANVAS GENERATOR
+    // -------------------------------------------------------------------------
+    const grainCanvas = document.getElementById('grain-canvas');
+    const grainCtx = grainCanvas.getContext('2d');
+
+    function resizeGrain() {
+      grainCanvas.width = window.innerWidth / 2;
+      grainCanvas.height = window.innerHeight / 2;
+    }
+    resizeGrain();
+    window.addEventListener('resize', resizeGrain);
+
+    function generateGrain() {
+      if (!grainCtx) return;
+      const w = grainCanvas.width;
+      const h = grainCanvas.height;
+      const imgData = grainCtx.createImageData(w, h);
+      const buffer = new Uint32Array(imgData.data.buffer);
+      const len = buffer.length;
+
+      for (let i = 0; i < len; i++) {
+        // Subtle analog noise
+        if (Math.random() < 0.12) {
+          const noise = (Math.random() * 255) | 0;
+          buffer[i] = (25 << 24) | (noise << 16) | (noise << 8) | noise;
+        }
+      }
+      grainCtx.putImageData(imgData, 0, 0);
+      requestAnimationFrame(generateGrain);
+    }
+    generateGrain();
+
+    // -------------------------------------------------------------------------
+    // 5. FLASHLIGHT CURSOR TRACKER ("Flashlight passing over gallery wall")
+    // -------------------------------------------------------------------------
+    const flashlight = document.getElementById('cinema-flashlight');
+    window.addEventListener('mousemove', (e) => {
+      flashlight.style.opacity = '1';
+      flashlight.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
+    window.addEventListener('mouseleave', () => {
+      flashlight.style.opacity = '0';
+    });
+
+    // -------------------------------------------------------------------------
+    // 6. SYNTHESIZED WEB AUDIO CINEMA ENGINE (NO EXTERNAL FILES REQUIRED)
+    // -------------------------------------------------------------------------
+    const toggleAudioBtn = document.getElementById('toggle-audio-btn');
+    const audioBtnLabel = document.getElementById('audio-btn-label');
+    const soundBars = document.querySelectorAll('.sound-bar');
+
+    let audioCtx = null;
+    let subOsc = null;
+    let noiseNode = null;
+    let masterGain = null;
+    let isAudioPlaying = false;
+    let visualizerInterval = null;
+
+    function initAudio() {
+      if (audioCtx) return;
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+
+      masterGain = audioCtx.createGain();
+      masterGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+      masterGain.connect(audioCtx.destination);
+
+      // 1. Warm 55Hz Cinema Sub-Bass Drone
+      subOsc = audioCtx.createOscillator();
+      subOsc.type = 'sine';
+      subOsc.frequency.setValueAtTime(55, audioCtx.currentTime); // Deep cinema hall resonance
+
+      const subGain = audioCtx.createGain();
+      subGain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+      subOsc.connect(subGain);
+      subGain.connect(masterGain);
+      subOsc.start();
+
+      // 2. Subtle 35mm Projector Mechanical Pink Noise
+      const bufferSize = audioCtx.sampleRate * 2;
+      const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+      for (let i = 0; i < bufferSize; i++) {
+        const white = Math.random() * 2 - 1;
+        b0 = 0.99886 * b0 + white * 0.0555179;
+        b1 = 0.99332 * b1 + white * 0.0750759;
+        b2 = 0.96900 * b2 + white * 0.1538520;
+        b3 = 0.86650 * b3 + white * 0.3104856;
+        b4 = 0.55000 * b4 + white * 0.5329522;
+        b5 = -0.7616 * b5 - white * 0.0168980;
+        output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+        output[i] *= 0.008; // Very soft murmur
+        b6 = white * 0.115926;
+      }
+
+      noiseNode = audioCtx.createBufferSource();
+      noiseNode.buffer = noiseBuffer;
+      noiseNode.loop = true;
+
+      // Bandpass filter for authentic mechanical hum
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.frequency.setValueAtTime(400, audioCtx.currentTime);
+      filter.Q.setValueAtTime(1.5, audioCtx.currentTime);
+
+      noiseNode.connect(filter);
+      filter.connect(masterGain);
+      noiseNode.start();
+    }
+
+    function toggleAudio() {
+      initAudio();
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      if (!isAudioPlaying) {
+        masterGain.gain.exponentialRampToValueAtTime(0.25, audioCtx.currentTime + 1.2);
+        isAudioPlaying = true;
+        audioBtnLabel.textContent = 'AUDIO: ON';
+        toggleAudioBtn.classList.add('border-cinema-gold', 'text-cinema-gold');
+
+        visualizerInterval = setInterval(() => {
+          soundBars.forEach((bar) => {
+            const h = Math.floor(Math.random() * 12) + 3;
+            bar.style.height = `${h}px`;
+          });
+        }, 120);
+      } else {
+        masterGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.6);
+        isAudioPlaying = false;
+        audioBtnLabel.textContent = 'AUDIO: OFF';
+        toggleAudioBtn.classList.remove('border-cinema-gold', 'text-cinema-gold');
+
+        if (visualizerInterval) clearInterval(visualizerInterval);
+        soundBars.forEach((bar) => bar.style.height = '4px');
+      }
+    }
+
+    toggleAudioBtn.addEventListener('click', toggleAudio);
+
+    function triggerChimeAudio() {
+      if (!isAudioPlaying || !audioCtx) return;
+      const chime = audioCtx.createOscillator();
+      const chimeGain = audioCtx.createGain();
+      chime.type = 'triangle';
+      chime.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5 warm harmonic
+      chimeGain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+      chimeGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.8);
+      chime.connect(chimeGain);
+      chimeGain.connect(audioCtx.destination);
+      chime.start();
+      chime.stop(audioCtx.currentTime + 0.8);
+    }
+
+    // -------------------------------------------------------------------------
+    // 7. INTERACTIVE SPLIT COMPARISON SLIDER
+    // -------------------------------------------------------------------------
+    const splitContainer = document.getElementById('split-slider-box');
+    const splitOverlay = document.getElementById('split-slider-overlay');
+    const splitHandle = document.getElementById('split-slider-handle');
+
+    let isSliding = false;
+
+    function updateSlider(x) {
+      const rect = splitContainer.getBoundingClientRect();
+      let pos = (x - rect.left) / rect.width;
+      if (pos < 0.05) pos = 0.05;
+      if (pos > 0.95) pos = 0.95;
+      const pct = pos * 100;
+      splitOverlay.style.width = `${pct}%`;
+      splitHandle.style.left = `${pct}%`;
+    }
+
+    splitContainer.addEventListener('mousedown', (e) => {
+      isSliding = true;
+      updateSlider(e.clientX);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isSliding) return;
+      updateSlider(e.clientX);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isSliding = false;
+    });
+
+    // Touch support for mobile
+    splitContainer.addEventListener('touchstart', (e) => {
+      isSliding = true;
+      updateSlider(e.touches[0].clientX);
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isSliding) return;
+      updateSlider(e.touches[0].clientX);
+    });
+
+    window.addEventListener('touchend', () => {
+      isSliding = false;
+    });
+
+    // -------------------------------------------------------------------------
+    // 8. DOLLY SCROLL OBSERVER & TIMECODE TRACKING
+    // -------------------------------------------------------------------------
+    const frames = document.querySelectorAll('.dolly-frame');
+    const headerTimecode = document.getElementById('header-timecode');
+    const sceneIndicator = document.getElementById('active-scene-indicator');
+    const progressPercent = document.getElementById('reading-progress-percent');
+    const sprocketLinks = document.querySelectorAll('.sprocket-link');
+
+    // Reveal frames on scroll
+    const frameObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          
+          // Update active sprocket in film reel
+          const id = entry.target.id;
+          sprocketLinks.forEach((link) => {
+            if (link.getAttribute('data-scene') === id) {
+              link.classList.add('sprocket-active');
+            } else {
+              link.classList.remove('sprocket-active');
+            }
+          });
+
+          // Update HUD active scene label
+          if (id === 'prologue') sceneIndicator.textContent = 'PROLOGUE';
+          if (id === 'act-1') sceneIndicator.textContent = 'ACT I: DIM LIGHTS';
+          if (id === 'act-2') sceneIndicator.textContent = 'ACT II: FRAMES';
+          if (id === 'act-3') sceneIndicator.textContent = 'ACT III: CAMERA';
+          if (id === 'act-4') sceneIndicator.textContent = 'ACT IV: PREMIERE';
+          if (id === 'coda') sceneIndicator.textContent = 'CODA: ROLL FILM';
+        }
+      });
+    }, { threshold: 0.18 });
+
+    frames.forEach((frame) => frameObserver.observe(frame));
+
+    // Timecode simulation based on scroll
+    window.addEventListener('scroll', () => {
+      const scrollMax = document.documentElement.scrollHeight - window.innerHeight;
+      const currentScroll = window.scrollY;
+      const scrollRatio = scrollMax > 0 ? currentScroll / scrollMax : 0;
+      
+      const pct = Math.round(scrollRatio * 100);
+      progressPercent.textContent = `${pct}% SCROLLED`;
+
+      // 00:MM:SS:FF simulation
+      const totalFrames = Math.floor(scrollRatio * 12000); // 12000 frames total reel
+      const fps = 24;
+      const ff = String(totalFrames % fps).padStart(2, '0');
+      const totalSeconds = Math.floor(totalFrames / fps);
+      const ss = String(totalSeconds % 60).padStart(2, '0');
+      const mm = String(Math.floor(totalSeconds / 60) % 60).padStart(2, '0');
+      const hh = '00';
+      headerTimecode.textContent = `${hh}:${mm}:${ss}:${ff}`;
+    });
+
+    // -------------------------------------------------------------------------
+    // 9. ROLL FILM TRIGGER & EXPAND CREDITS
+    // -------------------------------------------------------------------------
+    const rollFilmTrigger = document.getElementById('roll-film-trigger');
+    const creditsCrawl = document.getElementById('credits-crawl');
+
+    rollFilmTrigger.addEventListener('click', () => {
+      creditsCrawl.classList.toggle('active');
+      triggerChimeAudio();
+      setTimeout(() => {
+        creditsCrawl.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    });
+  </script>
+
+  <!-- GSAP & Kinetic Motion Suite -->
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/SplitText.min.js"></script>
+  <script src="vendor/DrawSVGPlugin.min.js"></script>
+  <script src="vendor/CustomEase.min.js"></script>
+  <script src="vendor/InertiaPlugin.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+  <!-- Extrafazant Kinetic Creative Engine -->
+  <script src="assets/js/extrafazant-engine.js"></script>
+
+</body>
+</html>

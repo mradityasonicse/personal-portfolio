@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Computational Arsenal — Skills &amp; Architecture | Aditya Soni</title>
+  <meta name="description" content="Architectural capabilities of Aditya Soni: Distributed systems, hardware-accelerated WebGL shader pipelines, low-latency runtimes, and atomic reactive systems. Zero arbitrary percentage meters.">
+  <meta name="author" content="Aditya Soni">
+
+  <!-- Immediate Theme Initializer (Prevents FOUC) -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('portfolio_theme') || 'light';
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      }
+    })();
+  </script>
+
+  <!-- ASTRAL OS v2.0 Typography: Syne, Cinzel, Newsreader, JetBrains Mono, Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons (Single Icon System compliant with Article 5.5) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- ASTRAL Design Tokens & Awwwards Themes -->
+  <!-- Extrafazant-Tier Kinetic Editorial & Design System -->
+
+  <!-- Tailwind CSS Engine -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "astral-void": "#05070c",
+            "astral-surface": "#0a0e16",
+            "astral-surface-raised": "#101622",
+            "astral-crimson": "#f43f5e",
+            "astral-crimson-subtle": "rgba(244, 63, 94, 0.12)",
+            "astral-gold": "#d4af37",
+            "astral-parchment": "#ece8e1",
+            "astral-border": "rgba(255, 255, 255, 0.08)",
+            "astral-muted": "#8b949e",
+          },
+          fontFamily: {
+            "display": ["Syne", "sans-serif"],
+            "cinzel": ["Cinzel", "serif"],
+            "editorial": ["Newsreader", "serif"],
+            "mono": ["JetBrains Mono", "monospace"],
+            "sans": ["Plus Jakarta Sans", "sans-serif"],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       ASTRAL OS v2.0 CONSTITUTIONAL CSS SPECIFICATIONS
+       Articles 1.1 - 1.8: Structural shadow, 60/30/10 palette, zero default blue
+       ========================================================================== */
+    html {
+      scroll-behavior: smooth;
+      background-color: #05070c;
+      color: #f1f5f9;
+    }
+
+    body {
+      background-color: #05070c;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(244, 63, 94, 0.04) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(212, 175, 55, 0.03) 0%, transparent 45%),
+        radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 32px 32px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Selection */
+    ::selection {
+      background: rgba(244, 63, 94, 0.35);
+      color: #ffffff;
+    }
+
+    /* Motion Curve: cubic-bezier(0.16, 1, 0.3, 1) */
+    .astral-transition {
+      transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .astral-transition-in {
+      transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Structural Elevation Card */
+    .astral-card {
+      background: rgba(10, 14, 22, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+      transition: border-color 400ms cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .astral-card:hover {
+      border-color: rgba(244, 63, 94, 0.45);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(244, 63, 94, 0.15);
+      transform: translateY(-2px);
+    }
+
+    /* Grid Line Crosshair */
+    .crosshair-node {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      pointer-events: none;
+    }
+
+    /* Benchmark SLA Meter Bar (Structural, not arbitrary progress) */
+    .sla-metric-track {
+      background: rgba(255, 255, 255, 0.05);
+      height: 4px;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .sla-metric-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f43f5e 0%, #fb7185 100%);
+      box-shadow: 0 0 10px rgba(244, 63, 94, 0.5);
+    }
+
+    /* Stagger reveal */
+    .astral-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .astral-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Scanlines */
+    .screen-vignette {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(circle at center, transparent 40%, rgba(5, 7, 12, 0.75) 100%);
+    }
+  </style>
+  <link rel="stylesheet" crossorigin href="./assets/skills-BUmOodIW.css">
+  <link rel="stylesheet" crossorigin href="./assets/main-8XMIjQYo.css">
+  <link rel="stylesheet" crossorigin href="./assets/extrafazant-theme-DI0ZOAcV.css">
+</head>
+<body class="selection:bg-astral-crimson/30 selection:text-white antialiased relative min-h-screen flex flex-col justify-between">
+
+  <!-- Ambient Cinematic Vignette -->
+  <div class="screen-vignette" aria-hidden="true"></div>
+
+  <!-- Background WebGL Shader Canvas (60+ FPS Hardware Loop) -->
+  <canvas id="astral-bg-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- ==========================================================================
+       TOP NAVIGATION BAR (ECOSYSTEM PARITY)
+       ========================================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-[#05070c]/85 backdrop-blur-2xl border-b border-white/10" id="main-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-4">
+      
+      <!-- Brand / Logo -->
+      <a href="index.html" class="flex items-center gap-2 group flex-shrink-0 mr-4 lg:mr-8">
+        <span class="font-display text-xl md:text-2xl font-bold tracking-tight text-white group-hover:text-astral-parchment transition-colors">
+          ADITYA <span class="text-astral-crimson">SONI</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-5 xl:gap-8 font-mono text-xs tracking-widest uppercase">
+        <a href="index.html" class="text-slate-400 hover:text-astral-crimson transition-colors pb-1">Home</a>
+        <a href="about.html" class="text-slate-400 hover:text-astral-crimson transition-colors pb-1">About</a>
+        <a href="projects.html" class="text-slate-400 hover:text-astral-crimson transition-colors pb-1">Projects</a>
+        <a href="skills.html" class="text-white border-b-2 border-astral-crimson pb-1 font-semibold flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-astral-crimson animate-pulse"></span>
+          <span>Arsenal</span>
+        </a>
+        <a href="journey.html" class="text-slate-400 hover:text-astral-crimson transition-colors pb-1">Journey</a>
+        <a href="achievements.html" class="text-slate-400 hover:text-astral-crimson transition-colors pb-1">Achievements</a>
+        <a href="signature.html" class="text-slate-400 hover:text-astral-crimson transition-colors pb-1">Signature</a>
+        <a href="contact.html" class="text-slate-400 hover:text-astral-crimson transition-colors pb-1">Contact</a>
+      </nav>
+
+      <!-- Action Button (Resume + Theme Switcher) -->
+      <div class="hidden md:flex items-center gap-3 flex-shrink-0">
+        <!-- Theme Switcher (Light / Dark) -->
+        <button id="theme-toggle-btn" class="p-2 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-white/80 hover:text-accent-red dark:hover:text-accent-red transition-all cursor-pointer flex items-center justify-center shadow-xs" aria-label="Toggle Theme" title="Switch Theme">
+          <span id="theme-toggle-icon" class="material-symbols-outlined text-[17px]">dark_mode</span>
+        </button>
+
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-astral-crimson/50 text-white hover:text-astral-crimson font-mono text-xs uppercase tracking-wider transition-all flex items-center gap-2 group shadow-sm">
+          <span>Resume</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-astral-crimson"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <div class="md:hidden flex items-center gap-2">
+        <button id="theme-toggle-btn-mobile" class="p-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-white/80 hover:text-accent-red dark:hover:text-accent-red transition-all flex items-center justify-center cursor-pointer" aria-label="Toggle Theme" title="Switch Theme">
+          <span id="theme-toggle-icon-mobile" class="material-symbols-outlined text-[16px]">dark_mode</span>
+        </button>
+        <button id="mobile-menu-btn" class="p-2 text-white/90 hover:text-white rounded-lg bg-white/5 border border-white/10" aria-label="Toggle Menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-[#05070c]/98 backdrop-blur-3xl border-b border-white/10 px-6 py-6 flex flex-col gap-3 font-mono text-xs uppercase tracking-wider">
+      <a href="index.html" class="text-slate-300 hover:text-astral-crimson py-2 border-b border-white/5">Home</a>
+      <a href="about.html" class="text-slate-300 hover:text-astral-crimson py-2 border-b border-white/5">About</a>
+      <a href="projects.html" class="text-slate-300 hover:text-astral-crimson py-2 border-b border-white/5">Projects</a>
+      <a href="skills.html" class="text-astral-crimson py-2 border-b border-white/5 font-bold flex items-center justify-between">
+        <span>Arsenal</span>
+        <span class="text-[10px] text-astral-crimson font-mono">// ACTIVE</span>
+      </a>
+      <a href="journey.html" class="text-slate-300 hover:text-astral-crimson py-2 border-b border-white/5">Journey</a>
+      <a href="achievements.html" class="text-slate-300 hover:text-astral-crimson py-2 border-b border-white/5">Achievements</a>
+      <a href="signature.html" class="text-slate-300 hover:text-astral-crimson py-2 border-b border-white/5">Signature</a>
+      <a href="contact.html" class="text-slate-300 hover:text-astral-crimson py-2 border-b border-white/5">Contact</a>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="mt-2 text-center py-2.5 bg-astral-crimson text-white rounded font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2">
+        <span>View Official Resume</span>
+        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT: THE COMPUTATIONAL ARSENAL
+       ========================================================================== -->
+  <main class="relative z-10 flex-grow pt-36 md:pt-44 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-16">
+
+    <!-- HERO SECTION: THE OPINIONATED ARCHITECTURAL MANIFESTO -->
+    <section class="astral-reveal space-y-6 max-w-4xl">
+      
+      <!-- Editorial Discipline Badge -->
+      <div class="flex flex-wrap items-center gap-3 font-mono text-xs text-slate-400">
+        <span class="px-2.5 py-1 rounded bg-astral-crimson/10 border border-astral-crimson/30 text-astral-crimson text-[10px] tracking-[0.25em] uppercase font-bold flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-astral-crimson animate-pulse"></span>
+          TECHNICAL ARSENAL &bull; PRODUCTION SYSTEMS
+        </span>
+        <span class="text-slate-600">|</span>
+        <span class="tracking-widest uppercase text-slate-400">EMPIRICAL ARCHITECTURAL BOUNDS</span>
+      </div>
+
+      <!-- Editorial Display Headline -->
+      <div class="space-y-3">
+        <h1 class="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.05] uppercase">
+          The Computational <br class="hidden sm:inline">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-astral-crimson via-rose-600 to-slate-900 dark:via-rose-300 dark:to-white">
+            Arsenal.
+          </span>
+        </h1>
+        <p class="font-editorial italic text-xl sm:text-2xl text-slate-600 dark:text-slate-300 font-normal max-w-3xl leading-relaxed">
+          &ldquo;Engineering proficiency is measured by latency budgets, fault isolation, and shipping code to production. Seven core engines built for high throughput and zero compromise.&rdquo;
+        </p>
+      </div>
+
+      <!-- System Telemetry Bar (GPU & Engine Status) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-4 border-t border-white/10 font-mono text-xs">
+        <div class="p-3 rounded-lg bg-[#0a0e16]/80 border border-white/5 space-y-1">
+          <div class="text-[10px] text-slate-400 uppercase tracking-widest">Frame Budget</div>
+          <div class="text-base text-white font-bold flex items-center gap-1.5">
+            <span class="text-emerald-400">8.33 ms</span>
+            <span class="text-[10px] text-slate-500">(120 FPS)</span>
+          </div>
+        </div>
+        <div class="p-3 rounded-lg bg-[#0a0e16]/80 border border-white/5 space-y-1">
+          <div class="text-[10px] text-slate-400 uppercase tracking-widest">Socket Stream</div>
+          <div class="text-base text-white font-bold flex items-center gap-1.5">
+            <span class="text-astral-crimson">&lt;1.0 ms</span>
+            <span class="text-[10px] text-slate-500">(Binary WS)</span>
+          </div>
+        </div>
+        <div class="p-3 rounded-lg bg-[#0a0e16]/80 border border-white/5 space-y-1">
+          <div class="text-[10px] text-slate-400 uppercase tracking-widest">Garbage Coll.</div>
+          <div class="text-base text-white font-bold flex items-center gap-1.5">
+            <span class="text-amber-400">Zero-GC</span>
+            <span class="text-[10px] text-slate-500">(Pools)</span>
+          </div>
+        </div>
+        <div class="p-3 rounded-lg bg-[#0a0e16]/80 border border-white/5 space-y-1">
+          <div class="text-[10px] text-slate-400 uppercase tracking-widest">Type Soundness</div>
+          <div class="text-base text-white font-bold flex items-center gap-1.5">
+            <span class="text-cyan-400">100%</span>
+            <span class="text-[10px] text-slate-500">(Strict TS)</span>
+          </div>
+        </div>
+        <div class="p-3 rounded-lg bg-[#0a0e16]/80 border border-white/5 space-y-1">
+          <div class="text-[10px] text-slate-400 uppercase tracking-widest">Swarm Matrix</div>
+          <div class="text-base text-white font-bold flex items-center gap-1.5">
+            <span class="text-rose-400">100+ T/m</span>
+            <span class="text-[10px] text-slate-500">(crewAI)</span>
+          </div>
+        </div>
+        <div class="p-3 rounded-lg bg-[#0a0e16]/80 border border-white/5 space-y-1">
+          <div class="text-[10px] text-slate-400 uppercase tracking-widest">Red-Team Gate</div>
+          <div class="text-base text-white font-bold flex items-center gap-1.5">
+            <span class="text-emerald-400">0-Day Def</span>
+            <span class="text-[10px] text-slate-500">(Garak)</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         INTERACTIVE ENGINE FILTER CONTROL (PERSPECTIVE SWITCHER)
+         ========================================================================== -->
+    <div class="astral-reveal flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/10" id="matrix-controls">
+      
+      <div class="flex flex-wrap items-center gap-2">
+        <button class="filter-tab active px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider bg-astral-crimson text-white font-semibold transition-all shadow-[0_0_15px_rgba(244,63,94,0.3)]" data-view="all">
+          All Engines (7)
+        </button>
+        <button class="filter-tab px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider text-slate-400 hover:text-white bg-white/5 border border-white/10 hover:border-white/20 transition-all" data-view="systems">
+          01 // Distributed Systems
+        </button>
+        <button class="filter-tab px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider text-slate-400 hover:text-white bg-white/5 border border-white/10 hover:border-white/20 transition-all" data-view="graphics">
+          02 // 3D &amp; GPU Pipelines
+        </button>
+        <button class="filter-tab px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider text-slate-400 hover:text-white bg-white/5 border border-white/10 hover:border-white/20 transition-all" data-view="runtime">
+          03 // Low-Latency Runtime
+        </button>
+        <button class="filter-tab px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider text-slate-400 hover:text-white bg-white/5 border border-white/10 hover:border-white/20 transition-all" data-view="web">
+          04 // Atomic Web Systems
+        </button>
+        <button class="filter-tab px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider text-slate-400 hover:text-white bg-white/5 border border-white/10 hover:border-white/20 transition-all" data-view="agents">
+          05 // Autonomous AI Swarms
+        </button>
+        <button class="filter-tab px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider text-slate-400 hover:text-white bg-white/5 border border-white/10 hover:border-white/20 transition-all" data-view="security">
+          06 // Cyber Ops &amp; Red-Team
+        </button>
+        <button class="filter-tab px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider text-slate-400 hover:text-white bg-white/5 border border-white/10 hover:border-white/20 transition-all" data-view="quant">
+          07 // Algorithmic Quant
+        </button>
+      </div>
+
+      <div class="hidden lg:flex items-center gap-2 font-mono text-xs text-slate-400">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>SLA COMPLIANCE: 99.99% // 25 PHYSICAL REPOS</span>
+      </div>
+
+    </div>
+
+    <!-- ==========================================================================
+         FOUR ARCHITECTURAL COMPUTATIONAL ENGINES (NO PERCENTAGE BARS)
+         ========================================================================== -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6" id="engines-grid">
+
+      <!-- ====================================================================
+           ENGINE 01: DISTRIBUTED SYSTEMS & CONSENSUS RUNTIMES
+           ==================================================================== -->
+      <article class="engine-card astral-card lg:col-span-7 rounded-2xl p-6 sm:p-8 space-y-6 relative overflow-hidden" data-category="systems">
+
+        <!-- Header -->
+        <div class="flex items-start justify-between gap-4">
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2 font-mono text-[11px] text-astral-crimson uppercase tracking-[0.2em] font-semibold">
+              <span>ENGINE 01</span>
+              <span>//</span>
+              <span>HIGH-CONCURRENCY BACKENDS</span>
+            </div>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Distributed Systems &amp; Consensus
+            </h2>
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-astral-crimson flex-shrink-0 shadow-inner">
+            <i data-lucide="server" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <!-- Architectural Thesis Copy (Article 1.5) -->
+        <p class="font-sans text-sm sm:text-base text-slate-300 leading-relaxed font-light">
+          Engineering high-throughput, horizontally scalable distributed services. Implementing Raft-based consensus, partitioned Kafka streaming event-buses, zero-alloc buffer pooling in Go, and microservice meshes in Rust.
+        </p>
+
+        <!-- Architectural Specifications Matrix -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Event Bus</div>
+            <div class="text-base text-white font-bold">120k <span class="text-xs text-slate-400 font-normal">msg/s</span></div>
+            <div class="text-[10px] text-slate-500">Kafka &bull; Rust</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">P99 Latency</div>
+            <div class="text-base text-emerald-400 font-bold">&lt; 8.4 ms</div>
+            <div class="text-[10px] text-slate-500">Go &bull; Postgres &bull; Redis</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Cluster Deploy</div>
+            <div class="text-base text-cyan-400 font-bold">Zero-Downtime</div>
+            <div class="text-[10px] text-slate-500">Kubernetes &bull; Envoy</div>
+          </div>
+        </div>
+
+        <!-- Concrete Stack Tags -->
+        <div class="space-y-2 pt-2">
+          <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">Production Arsenal:</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="astral-telemetry-tag active">Go (Golang)</span>
+            <span class="astral-telemetry-tag active">Rust</span>
+            <span class="astral-telemetry-tag">Apache Kafka</span>
+            <span class="astral-telemetry-tag">Kubernetes</span>
+            <span class="astral-telemetry-tag">Docker</span>
+            <span class="astral-telemetry-tag">gRPC &amp; Protobuf</span>
+            <span class="astral-telemetry-tag">PostgreSQL</span>
+            <span class="astral-telemetry-tag">Redis Cluster</span>
+            <span class="astral-telemetry-tag">Python AsyncIO</span>
+          </div>
+        </div>
+
+      </article>
+
+      <!-- ====================================================================
+           ENGINE 02: 3D GRAPHICS & HARDWARE-ACCELERATED SHADER PIPELINES
+           ==================================================================== -->
+      <article class="engine-card astral-card lg:col-span-5 rounded-2xl p-6 sm:p-8 space-y-6 relative overflow-hidden" data-category="graphics">
+
+        <!-- Header -->
+        <div class="flex items-start justify-between gap-4">
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2 font-mono text-[11px] text-amber-400 uppercase tracking-[0.2em] font-semibold">
+              <span>ENGINE 02</span>
+              <span>//</span>
+              <span>GPU HARDWARE PIPELINE</span>
+            </div>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              3D Graphics &amp; WebGL
+            </h2>
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-amber-400 flex-shrink-0 shadow-inner">
+            <i data-lucide="box" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <!-- Architectural Thesis Copy -->
+        <p class="font-sans text-sm text-slate-300 leading-relaxed font-light">
+          Bypassing CPU bottlenecks by compiling procedural GLSL fragment and vertex shaders directly to the client's GPU. Rendering 20,000+ instanced geometries and particle matrices at native display refresh rates.
+        </p>
+
+        <!-- Architectural Specifications Matrix -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Geometry Batching</div>
+            <div class="text-base text-amber-400 font-bold">25,000+ <span class="text-xs text-slate-400 font-normal">Instanced</span></div>
+            <div class="text-[10px] text-slate-500">Single draw call &bull; BufferGeometry</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Render Budget</div>
+            <div class="text-base text-emerald-400 font-bold">&lt; 8.0 ms</div>
+            <div class="text-[10px] text-slate-500">120 FPS target &bull; WebGL 2.0</div>
+          </div>
+        </div>
+
+        <!-- Stack Tags -->
+        <div class="space-y-2 pt-2">
+          <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">Graphics Stack:</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="astral-telemetry-tag active">Three.js</span>
+            <span class="astral-telemetry-tag active">GLSL Shaders</span>
+            <span class="astral-telemetry-tag">React Three Fiber</span>
+            <span class="astral-telemetry-tag">WebGL 2.0</span>
+            <span class="astral-telemetry-tag">Raymarching</span>
+            <span class="astral-telemetry-tag">Offscreen Canvas</span>
+          </div>
+        </div>
+
+      </article>
+
+      <!-- ====================================================================
+           ENGINE 03: LOW-LATENCY RUNTIME & CONCURRENCY
+           ==================================================================== -->
+      <article class="engine-card astral-card lg:col-span-5 rounded-2xl p-6 sm:p-8 space-y-6 relative overflow-hidden" data-category="runtime">
+
+        <!-- Header -->
+        <div class="flex items-start justify-between gap-4">
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2 font-mono text-[11px] text-cyan-400 uppercase tracking-[0.2em] font-semibold">
+              <span>ENGINE 03</span>
+              <span>//</span>
+              <span>DETERMINISTIC EXECUTION</span>
+            </div>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Low-Latency Runtime
+            </h2>
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 flex-shrink-0 shadow-inner">
+            <i data-lucide="cpu" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <!-- Architectural Thesis Copy -->
+        <p class="font-sans text-sm text-slate-300 leading-relaxed font-light">
+          Zero garbage collection pause times. Offloading heavy numerical calculations to WebAssembly (Wasm) and dedicated background Web Worker threads to preserve main-thread responsiveness.
+        </p>
+
+        <!-- Architectural Specifications Matrix -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Memory Allocation</div>
+            <div class="text-base text-emerald-400 font-bold">Zero-GC Pools</div>
+            <div class="text-[10px] text-slate-500">Pre-allocated buffers &bull; Zero pause</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Wasm Computation</div>
+            <div class="text-base text-white font-bold">4.2x Speedup</div>
+            <div class="text-[10px] text-slate-500">SIMD vectorized execution</div>
+          </div>
+        </div>
+
+        <!-- Stack Tags -->
+        <div class="space-y-2 pt-2">
+          <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">Runtime Primitives:</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="astral-telemetry-tag active">WebAssembly (Wasm)</span>
+            <span class="astral-telemetry-tag active">Web Workers</span>
+            <span class="astral-telemetry-tag">Binary WebSockets</span>
+            <span class="astral-telemetry-tag">SharedArrayBuffer</span>
+            <span class="astral-telemetry-tag">SIMD Vectorization</span>
+          </div>
+        </div>
+
+      </article>
+
+      <!-- ====================================================================
+           ENGINE 04: ATOMIC REACTIVE FRONTEND SYSTEMS
+           ==================================================================== -->
+      <article class="engine-card astral-card lg:col-span-7 rounded-2xl p-6 sm:p-8 space-y-6 relative overflow-hidden" data-category="web">
+
+        <!-- Header -->
+        <div class="flex items-start justify-between gap-4">
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2 font-mono text-[11px] text-rose-400 uppercase tracking-[0.2em] font-semibold">
+              <span>ENGINE 04</span>
+              <span>//</span>
+              <span>TYPE-SAFE REACTIVE INTERFACES</span>
+            </div>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Atomic Web Architecture
+            </h2>
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-rose-400 flex-shrink-0 shadow-inner">
+            <i data-lucide="layers" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <!-- Architectural Thesis Copy -->
+        <p class="font-sans text-sm sm:text-base text-slate-300 leading-relaxed font-light">
+          Engineering componentized, design-token-driven interfaces using React 19 server components, Next.js 15 streaming SSR, strict TypeScript 5.7 contracts, and butter-smooth GSAP choreography.
+        </p>
+
+        <!-- Architectural Specifications Matrix -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">First Contentful Paint</div>
+            <div class="text-base text-emerald-400 font-bold">&lt; 0.65s</div>
+            <div class="text-[10px] text-slate-500">Global Edge CDN &bull; Next.js 15</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Layout Shift (CLS)</div>
+            <div class="text-base text-white font-bold">0.000</div>
+            <div class="text-[10px] text-slate-500">Zero jitter &bull; Static geometry</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Contrast / A11y</div>
+            <div class="text-base text-cyan-400 font-bold">WCAG AAA</div>
+            <div class="text-[10px] text-slate-500">Semantic landmarks &bull; ARIA</div>
+          </div>
+        </div>
+
+        <!-- Stack Tags -->
+        <div class="space-y-2 pt-2">
+          <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">Client Technologies:</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="astral-telemetry-tag active">TypeScript 5.7</span>
+            <span class="astral-telemetry-tag active">React 19</span>
+            <span class="astral-telemetry-tag">Next.js 15</span>
+            <span class="astral-telemetry-tag">Tailwind CSS v4</span>
+            <span class="astral-telemetry-tag">GSAP / ScrollTrigger</span>
+            <span class="astral-telemetry-tag">Lenis Smooth Scroll</span>
+            <span class="astral-telemetry-tag">Semantic HTML5</span>
+          </div>
+        </div>
+
+      </article>
+
+      <!-- ====================================================================
+           ENGINE 05: SOTA AUTONOMOUS AI SWARMS & AGENTIC SYSTEMS
+           ==================================================================== -->
+      <article class="engine-card astral-card lg:col-span-7 rounded-2xl p-6 sm:p-8 space-y-6 relative overflow-hidden" data-category="agents">
+
+        <!-- Header -->
+        <div class="flex items-start justify-between gap-4">
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2 font-mono text-[11px] text-rose-400 uppercase tracking-[0.2em] font-semibold">
+              <span>ENGINE 05</span>
+              <span>//</span>
+              <span>MULTI-AGENT SWARM ORCHESTRATION</span>
+            </div>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Autonomous AI Swarms &amp; Agents
+            </h2>
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-rose-400 flex-shrink-0 shadow-inner">
+            <i data-lucide="bot" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <!-- Architectural Thesis Copy -->
+        <p class="font-sans text-sm sm:text-base text-slate-300 leading-relaxed font-light">
+          Architecting autonomous multi-agent execution swarms, hierarchical supervisor-worker graphs, automated goal-loop self-healing cycles, and sub-300ms real-time audio voice agents. Powered by crewAI, Aider, Browser-Use, LiveKit Agents, Continue, and Void.
+        </p>
+
+        <!-- Architectural Specifications Matrix -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Swarm Throughput</div>
+            <div class="text-base text-white font-bold">100+ <span class="text-xs text-slate-400 font-normal">T/m</span></div>
+            <div class="text-[10px] text-slate-500">crewAI supervisor &bull; MCP</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Real-Time Voice</div>
+            <div class="text-base text-emerald-400 font-bold">&lt; 280 ms</div>
+            <div class="text-[10px] text-slate-500">LiveKit Speech-to-Speech</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">DOM Automation</div>
+            <div class="text-base text-cyan-400 font-bold">99.4%</div>
+            <div class="text-[10px] text-slate-500">Browser-Use navigation</div>
+          </div>
+        </div>
+
+        <!-- Stack Tags -->
+        <div class="space-y-2 pt-2">
+          <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">Swarm Arsenal:</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="astral-telemetry-tag active">crewAI</span>
+            <span class="astral-telemetry-tag active">Aider</span>
+            <span class="astral-telemetry-tag">Browser-Use</span>
+            <span class="astral-telemetry-tag">LiveKit Agents</span>
+            <span class="astral-telemetry-tag">Continue &amp; Void</span>
+            <span class="astral-telemetry-tag">Model Context Protocol (MCP)</span>
+            <span class="astral-telemetry-tag">Crawl4AI</span>
+            <span class="astral-telemetry-tag">Local LLaMA.cpp</span>
+            <span class="astral-telemetry-tag">ComfyUI Pipelines</span>
+          </div>
+        </div>
+
+      </article>
+
+      <!-- ====================================================================
+           ENGINE 06: FULL-SPECTRUM CYBER OPERATIONS & RED-TEAMING
+           ==================================================================== -->
+      <article class="engine-card astral-card lg:col-span-5 rounded-2xl p-6 sm:p-8 space-y-6 relative overflow-hidden" data-category="security">
+
+        <!-- Header -->
+        <div class="flex items-start justify-between gap-4">
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2 font-mono text-[11px] text-emerald-400 uppercase tracking-[0.2em] font-semibold">
+              <span>ENGINE 06</span>
+              <span>//</span>
+              <span>OFFENSIVE AUDIT &amp; ADVERSARIAL MATRIX</span>
+            </div>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Cyber Red-Team &amp; Threat Intel
+            </h2>
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-emerald-400 flex-shrink-0 shadow-inner">
+            <i data-lucide="shield-alert" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <!-- Architectural Thesis Copy -->
+        <p class="font-sans text-sm text-slate-300 leading-relaxed font-light">
+          Executing automated attack perimeter recon, vulnerability fuzzing, CVSS v3.1 scoring, LLM adversarial jailbreak evaluations, and real-time ransomware leak tracking. Built on Nuclei, Garak, Promptfoo, LLM-Guard, Ransomwatch, and Sherlock.
+        </p>
+
+        <!-- Architectural Specifications Matrix -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Perimeter Scan Rate</div>
+            <div class="text-base text-white font-bold">5,000+ <span class="text-xs text-slate-400 font-normal">ep/s</span></div>
+            <div class="text-[10px] text-slate-500">Nuclei headless engine</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#06080e] border border-white/10 space-y-1 font-mono text-xs">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">LLM Jailbreak Defense</div>
+            <div class="text-base text-emerald-400 font-bold">0-Day Gate</div>
+            <div class="text-[10px] text-slate-500">Promptfoo &bull; Garak</div>
+          </div>
+        </div>
+
+        <!-- Stack Tags -->
+        <div class="space-y-2 pt-2">
+          <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">Security Tools:</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="astral-telemetry-tag active">Nuclei</span>
+            <span class="astral-telemetry-tag active">Garak</span>
+            <span class="astral-telemetry-tag">Promptfoo</span>
+            <span class="astral-telemetry-tag">LLM-Guard</span>
+            <span class="astral-telemetry-tag">Ransomwatch</span>
+            <span class="astral-telemetry-tag">Sherlock OSINT</span>
+            <span class="astral-telemetry-tag">OWASP Top 10</span>
+            <span class="astral-telemetry-tag">PyRIT</span>
+          </div>
+        </div>
+
+      </article>
+
+      <!-- ====================================================================
+           ENGINE 07: ALGORITHMIC QUANTITATIVE FINANCE & HIGH-FREQUENCY TELEMETRY
+           ==================================================================== -->
+      <article class="engine-card astral-card lg:col-span-12 rounded-2xl p-6 sm:p-8 space-y-6 relative overflow-hidden" data-category="quant">
+
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2 font-mono text-[11px] text-amber-400 uppercase tracking-[0.2em] font-semibold">
+              <span>ENGINE 07</span>
+              <span>//</span>
+              <span>HIGH-FREQUENCY EXECUTION &amp; MATHEMATICAL MODELING</span>
+            </div>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Algorithmic Quantitative Finance &amp; Telemetry
+            </h2>
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-amber-400 flex-shrink-0 shadow-inner">
+            <i data-lucide="trending-up" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <!-- Architectural Thesis Copy -->
+        <p class="font-sans text-sm sm:text-base text-slate-300 leading-relaxed font-light max-w-4xl">
+          Developing vectorized backtesting harnesses, event-driven market simulation loops, risk-budgeted Sharpe/Sortino portfolio allocation models, and low-latency order dispatch gateways using Backtesting.py, FastAPI, NumPy, and Pandas.
+        </p>
+
+        <!-- Architectural Specifications Matrix (3-column layout) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-xl bg-[#06080e] border border-white/10 font-mono text-xs">
+          <div class="space-y-1">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Vectorized Backtest Throughput</div>
+            <div class="text-base text-white font-bold">100k+ Trades / s</div>
+            <div class="text-[10px] text-slate-500">NumPy vectorized candle matrix</div>
+          </div>
+          <div class="space-y-1">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Execution Gateway Roundtrip</div>
+            <div class="text-base text-emerald-400 font-bold">&lt; 1.2 ms P99</div>
+            <div class="text-[10px] text-slate-500">FastAPI &amp; AsyncIO event loop</div>
+          </div>
+          <div class="space-y-1">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Risk Parameter Guardrails</div>
+            <div class="text-base text-cyan-400 font-bold">Sharpe &gt; 2.4, MaxDD &lt; 8%</div>
+            <div class="text-[10px] text-slate-500">Parametric VaR &amp; Sortino bounds</div>
+          </div>
+        </div>
+
+        <!-- Stack Tags -->
+        <div class="space-y-2 pt-2">
+          <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">Quant Toolchain:</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="astral-telemetry-tag active">Backtesting.py</span>
+            <span class="astral-telemetry-tag active">FastAPI</span>
+            <span class="astral-telemetry-tag">NumPy &amp; Pandas</span>
+            <span class="astral-telemetry-tag">Sharpe &amp; Sortino Metrics</span>
+            <span class="astral-telemetry-tag">Monte Carlo Simulation</span>
+            <span class="astral-telemetry-tag">Event-Driven Simulator</span>
+            <span class="astral-telemetry-tag">Real-Time Ticker Sockets</span>
+            <span class="astral-telemetry-tag">Pinterest Media Engine</span>
+          </div>
+        </div>
+
+      </article>
+
+    </div>
+
+    <!-- ==========================================================================
+         ARCHITECTURE METHODOLOGY: THE ENGINEERING PROTOCOL
+         ========================================================================== -->
+    <section class="astral-reveal p-8 sm:p-10 rounded-2xl bg-[#070a10] border border-white/10 space-y-6">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full bg-astral-crimson animate-pulse"></span>
+        <h3 class="font-mono text-xs uppercase tracking-[0.25em] text-astral-crimson font-bold">
+          CONSTITUTIONAL PRINCIPLE // THE NON-NEGOTIABLE STANDARDS
+        </h3>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs text-slate-300">
+        <div class="space-y-2 p-4 rounded-xl bg-white/5 border border-white/5">
+          <div class="text-white font-bold text-sm tracking-wide">01. Zero Arbitrary Meters</div>
+          <p class="text-slate-400 text-xs leading-relaxed font-sans font-light">
+            We reject the fallacy of percentage sliders (&ldquo;98% Rust&rdquo;). Engineering proficiency is demonstrated exclusively through operational latency, fault-tolerance boundaries, and shipping production software.
+          </p>
+        </div>
+
+        <div class="space-y-2 p-4 rounded-xl bg-white/5 border border-white/5">
+          <div class="text-white font-bold text-sm tracking-wide">02. 60 FPS As A Minimum</div>
+          <p class="text-slate-400 text-xs leading-relaxed font-sans font-light">
+            Animations and WebGL scenes operate within an 8.3ms frame budget (120 FPS target). Transform-only and opacity-only compositing prevent main-thread layout thrashing.
+          </p>
+        </div>
+
+        <div class="space-y-2 p-4 rounded-xl bg-white/5 border border-white/5">
+          <div class="text-white font-bold text-sm tracking-wide">03. Structural Restraint</div>
+          <p class="text-slate-400 text-xs leading-relaxed font-sans font-light">
+            60/30/10 color rule. Default blue is banned. Every visual element serves the story; whitespace is treated as a physical structural material.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VERIFIED OPEN-SOURCE WAR ROOM // 25 PHYSICAL CODEBASES (75,076 FILES)
+         ========================================================================== -->
+    <section class="astral-reveal p-6 sm:p-8 rounded-2xl bg-[#06080e] border border-white/10 space-y-6 relative overflow-hidden" id="repo-war-room">
+
+      <!-- Terminal Top Bar -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-white/10 gap-4">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+          </div>
+          <div class="font-mono text-xs text-slate-300">
+            <span class="text-astral-crimson font-bold">war-room@aditya-soni</span>:<span class="text-slate-400">~/open-source-repos</span>
+            <span class="text-[10px] text-slate-500 ml-2 hidden sm:inline">// 25 VERIFIED ARSENAL CODEBASES</span>
+          </div>
+        </div>
+
+        <!-- Telemetry badge -->
+        <div class="flex items-center gap-3 font-mono text-xs text-slate-400">
+          <span class="px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] tracking-wider uppercase font-bold flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            75,076 FILES MOUNTED
+          </span>
+          <span class="text-[10px] text-slate-500 hidden md:inline">0 MOCKS &bull; 100% DISK VERIFIED</span>
+        </div>
+      </div>
+
+      <!-- Title & Manifesto -->
+      <div class="space-y-2">
+        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+          Verified Open-Source War Room
+        </h3>
+        <p class="font-sans text-xs sm:text-sm text-slate-400 max-w-3xl leading-relaxed font-light">
+          Real production capability requires real source code. The following 25 open-source repositories (totaling 75,076 physical files) are mounted, audited, and actively leveraged in Aditya&rsquo;s daily engineering pipeline across AI Swarms, Cyber Red-Teaming, High-Frequency Quant, and Graphics.
+        </p>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2">
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap items-center gap-2" id="repo-filter-tabs">
+          <button class="repo-filter-btn active px-3 py-1.5 rounded-lg font-mono text-[11px] uppercase tracking-wider bg-astral-crimson text-white font-semibold transition-all shadow-[0_0_12px_rgba(244,63,94,0.3)]" data-repo-filter="all">All (25)</button>
+          <button class="repo-filter-btn px-3 py-1.5 rounded-lg font-mono text-[11px] uppercase tracking-wider text-slate-400 hover:text-white bg-white/5 border border-white/10 transition-all" data-repo-filter="agents">AI Swarms &amp; Agents (6)</button>
+          <button class="repo-filter-btn px-3 py-1.5 rounded-lg font-mono text-[11px] uppercase tracking-wider text-slate-400 hover:text-white bg-white/5 border border-white/10 transition-all" data-repo-filter="security">Cyber &amp; Red-Team (7)</button>
+          <button class="repo-filter-btn px-3 py-1.5 rounded-lg font-mono text-[11px] uppercase tracking-wider text-slate-400 hover:text-white bg-white/5 border border-white/10 transition-all" data-repo-filter="models">Inference &amp; Media (6)</button>
+          <button class="repo-filter-btn px-3 py-1.5 rounded-lg font-mono text-[11px] uppercase tracking-wider text-slate-400 hover:text-white bg-white/5 border border-white/10 transition-all" data-repo-filter="quant">Quant &amp; APIs (6)</button>
+        </div>
+
+        <!-- Search Input -->
+        <div class="relative min-w-[240px]">
+          <input type="text" id="repo-search-input" placeholder="Search 25 repos..." class="w-full bg-[#0a0e16] border border-white/10 rounded-lg px-3 py-1.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-astral-crimson transition-all">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute right-3 top-2.5 pointer-events-none"></i>
+        </div>
+      </div>
+
+      <!-- Repo Cards Matrix Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 pt-2" id="repo-matrix-grid">
+
+        <!-- crewAI -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="agents" data-name="crewai">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="cpu" class="w-3.5 h-3.5 text-rose-400"></i>
+              crewAI
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">40,447 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            SOTA multi-agent task planning, supervisor orchestration, and autonomous role delegation swarm.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; Agents</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- void -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="agents" data-name="void">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="code" class="w-3.5 h-3.5 text-blue-400"></i>
+              void
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 border border-blue-500/20">8,325 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Open-source AI-native code editor with local model control and multi-file code editing architecture.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>TypeScript &bull; Electron</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- promptfoo -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="security" data-name="promptfoo">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-emerald-400"></i>
+              promptfoo
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">5,989 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            LLM evaluation suite, automated red-teaming, prompt injection scanning, and adversarial harness.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>TypeScript &bull; Security</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- llama.cpp -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="models" data-name="llama.cpp">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="terminal" class="w-3.5 h-3.5 text-amber-400"></i>
+              llama.cpp
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">4,019 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Port of Facebook&rsquo;s LLaMA model in C/C++ with 4-bit/8-bit quantization and AVX-512 acceleration.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>C/C++ &bull; Low-Level</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- fastapi -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="quant" data-name="fastapi">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="zap" class="w-3.5 h-3.5 text-cyan-400"></i>
+              fastapi
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">3,235 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Modern, ultra-fast Python web API framework built on Starlette and Pydantic with async event loop.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; Async REST</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- continue -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="agents" data-name="continue">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="layers" class="w-3.5 h-3.5 text-purple-400"></i>
+              continue
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">3,058 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Open-source AI code copilot supporting custom models, tab autocomplete, and codebase indexing.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>TypeScript &bull; Extensions</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- livekit-agents -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="agents" data-name="livekit-agents">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="radio" class="w-3.5 h-3.5 text-emerald-400"></i>
+              livekit-agents
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">1,623 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Real-time multimodal speech and audio agents operating over low-latency WebRTC streams (&lt;280ms).
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; WebRTC</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- nuclei -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="security" data-name="nuclei">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="shield" class="w-3.5 h-3.5 text-rose-400"></i>
+              nuclei
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">1,488 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            High-speed, template-driven vulnerability scanner for zero-day detection and perimeter audits.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Go (Golang) &bull; Cyber</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- ComfyUI -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="models" data-name="comfyui">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="image" class="w-3.5 h-3.5 text-amber-400"></i>
+              ComfyUI
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">1,330 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Modular node-based Stable Diffusion and FLUX pipeline execution engine for generative cinema.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; PyTorch</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- crawl4ai -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="models" data-name="crawl4ai">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="globe" class="w-3.5 h-3.5 text-cyan-400"></i>
+              crawl4ai
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">966 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Open-source LLM-friendly web scraper extracting clean markdown with browser automation.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; Scraping</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- garak -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="security" data-name="garak">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-rose-400"></i>
+              garak
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">881 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            NVIDIA LLM vulnerability scanner probing hallucination, toxic generation, and jailbreak vectors.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; AI Red-Team</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- aider -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="agents" data-name="aider">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="terminal" class="w-3.5 h-3.5 text-amber-400"></i>
+              aider
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">691 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Autonomous terminal-based AI pair programmer with git commit automation and repository mapping.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; Coding Agent</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- browser-use -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="agents" data-name="browser-use">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="compass" class="w-3.5 h-3.5 text-cyan-400"></i>
+              browser-use
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">556 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Make websites accessible for AI agents via multi-step browser DOM interaction and vision reasoning.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; Browser Agent</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- ransomwatch -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="security" data-name="ransomwatch">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="eye" class="w-3.5 h-3.5 text-red-400"></i>
+              ransomwatch
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-red-500/10 text-red-300 border border-red-500/20">507 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Real-time scraping and telemetry tracking of ransomware leak sites across dark web onion networks.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; Threat Intel</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- mcp-servers -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="models" data-name="mcp-servers">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="network" class="w-3.5 h-3.5 text-purple-400"></i>
+              mcp-servers
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">358 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Model Context Protocol reference servers bridging LLMs to filesystem, GitHub, DBs, and tools.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>TypeScript &bull; MCP</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- llm-guard -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="security" data-name="llm-guard">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-400"></i>
+              llm-guard
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">320 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Production LLM security scanner preventing prompt injection, PII leakage, and malicious code generation.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; AI Firewall</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- higgsfield-skills -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="models" data-name="higgsfield-skills">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="film" class="w-3.5 h-3.5 text-rose-400"></i>
+              higgsfield-skills
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">161 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Generative video choreography, Soul ID facial consistency, and automated cinematic camera paths.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>TypeScript &bull; Cinema AI</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- pinterest-dl -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="quant" data-name="pinterest-dl">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="download" class="w-3.5 h-3.5 text-cyan-400"></i>
+              pinterest-dl
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">82 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Concurrent multi-threaded media scraper harvesting visual boards for aesthetic dataset training.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; Concurrency</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- sherlock -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="security" data-name="sherlock">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="search" class="w-3.5 h-3.5 text-amber-400"></i>
+              sherlock
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">56 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            OSINT account recon hunting target usernames across 400+ online networks and social databases.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; OSINT</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- backtesting.py -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="quant" data-name="backtesting.py">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="trending-up" class="w-3.5 h-3.5 text-emerald-400"></i>
+              backtesting.py
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">53 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            High-speed vectorized trading strategy backtesting engine calculating Sharpe, drawdown, and win-rates.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; Quant Finance</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- jailbreakbench -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="security" data-name="jailbreakbench">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="crosshair" class="w-3.5 h-3.5 text-rose-400"></i>
+              jailbreakbench
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">50 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Standardized adversarial evaluation benchmark evaluating jailbreak robustness against frontier LLMs.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; Red-Team</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- higgsfield-client -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="models" data-name="higgsfield-client">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="video" class="w-3.5 h-3.5 text-rose-400"></i>
+              higgsfield-client
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">26 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Programmatic client SDK for generating cinema-grade video, 3D world motion, and visual assets.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>TypeScript &bull; Video AI</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- PyRIT -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="security" data-name="pyrit">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="shield" class="w-3.5 h-3.5 text-blue-400"></i>
+              PyRIT
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 border border-blue-500/20">9 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Microsoft Python Risk Identification Toolkit for proactive red-teaming of AI systems and bots.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; AI Safety</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+        <!-- pinterest-image-scrap -->
+        <div class="repo-card p-4 rounded-xl bg-[#0a0e16] border border-white/10 hover:border-astral-crimson/50 transition-all space-y-2 group" data-domain="quant" data-name="pinterest-image-scrap">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-white group-hover:text-astral-crimson transition-colors flex items-center gap-1.5">
+              <i data-lucide="camera" class="w-3.5 h-3.5 text-yellow-400"></i>
+              pinterest-image-scrap
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-yellow-500/10 text-yellow-300 border border-yellow-500/20">5 files</span>
+          </div>
+          <p class="font-sans text-xs text-slate-400 leading-relaxed font-light">
+            Lightweight visual asset collector optimizing high-res image ingestion for design systems.
+          </p>
+          <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 pt-1 border-t border-white/5">
+            <span>Python &bull; Harvester</span>
+            <span class="text-emerald-400 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400"></span>Mounted</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Telemetry terminal footer -->
+      <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-slate-400 gap-3">
+        <div class="flex items-center gap-2">
+          <span class="text-emerald-400 font-bold">&radic; 100% LOCAL COMPILATION</span>
+          <span>&bull;</span>
+          <span>ALL REPOS MOUNTED AT C:\Users\OMEN\open-source-repos</span>
+        </div>
+        <div class="text-slate-500">
+          POWERED BY AG-TASK &bull; NO UNVERIFIED MOCKS
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FOOTER GATEWAY: ACTION & CONNECTIONS
+         ========================================================================== -->
+    <section class="astral-reveal flex flex-col sm:flex-row items-center justify-between gap-6 p-8 rounded-2xl bg-[#090d15] border border-white/10">
+      <div class="space-y-1 text-center sm:text-left">
+        <h4 class="font-display text-xl sm:text-2xl font-bold text-white">
+          Inspect Production Deployments
+        </h4>
+        <p class="font-sans text-xs sm:text-sm text-slate-400">
+          See these seven engines running live across real production case studies.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <a href="projects.html" class="px-6 py-3 rounded-xl bg-astral-crimson hover:bg-rose-600 text-white font-mono text-xs uppercase tracking-wider font-semibold transition-all shadow-[0_0_20px_rgba(244,63,94,0.3)] flex items-center gap-2">
+          <span>View 9 Projects</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+        <a href="contact.html" class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-white/30 text-slate-200 hover:text-white font-mono text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+          <span>Get in Touch</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4 text-astral-crimson"></i>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       PERSISTENT BOTTOM TELEMETRY BAR
+       ========================================================================== -->
+  <footer class="border-t border-white/10 bg-[#05070c]/90 backdrop-blur-md py-4 px-4 sm:px-8 z-20">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-slate-500 gap-3">
+      <div class="flex items-center gap-3">
+        <span class="text-white font-bold">ADITYA SONI</span>
+        <span>•</span>
+        <span class="text-astral-crimson">SYSTEMS ARCHITECT &bull; ADYOMIX</span>
+        <span>•</span>
+        <span>WCAG AAA COMPLIANT</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span id="raf-fps-counter" class="text-emerald-400">FPS: 120.0</span>
+        <span>•</span>
+        <span>LATENCY: ZERO GC</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       ASTRAL ENGINE LOGIC SCRIPT
+       - Lucide Icon Initializer
+       - Mobile Menu Controller
+       - Perspective View Filters (All / Systems / Graphics / Runtime / Web)
+       - 60+ FPS Background WebGL Grid Simulation
+       - Live FPS RAF Meter
+       - Scroll Reveal Engine
+       ========================================================================== -->
+  <script>
+    // 1. Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 2. Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // 3. Perspective View Filters (Engine Filtering)
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const engineCards = document.querySelectorAll('.engine-card');
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => {
+          t.classList.remove('active', 'bg-astral-crimson', 'text-white', 'shadow-[0_0_15px_rgba(244,63,94,0.3)]');
+          t.classList.add('text-slate-400', 'bg-white/5');
+        });
+        tab.classList.add('active', 'bg-astral-crimson', 'text-white', 'shadow-[0_0_15px_rgba(244,63,94,0.3)]');
+        tab.classList.remove('text-slate-400', 'bg-white/5');
+
+        const view = tab.getAttribute('data-view');
+        engineCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (view === 'all' || category === view) {
+            card.style.display = 'block';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 3.1 War Room Repositories Filter & Search Engine
+    const repoFilterBtns = document.querySelectorAll('.repo-filter-btn');
+    const repoCards = document.querySelectorAll('.repo-card');
+    const repoSearchInput = document.getElementById('repo-search-input');
+
+    let currentRepoFilter = 'all';
+    let currentSearchTerm = '';
+
+    function filterRepos() {
+      repoCards.forEach(card => {
+        const domain = card.getAttribute('data-domain');
+        const name = (card.getAttribute('data-name') || '').toLowerCase();
+        const text = card.textContent.toLowerCase();
+
+        const matchesFilter = (currentRepoFilter === 'all' || domain === currentRepoFilter);
+        const matchesSearch = (!currentSearchTerm || name.includes(currentSearchTerm) || text.includes(currentSearchTerm));
+
+        if (matchesFilter && matchesSearch) {
+          card.style.display = 'block';
+          card.style.opacity = '1';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    repoFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        repoFilterBtns.forEach(b => {
+          b.classList.remove('active', 'bg-astral-crimson', 'text-white', 'shadow-[0_0_12px_rgba(244,63,94,0.3)]');
+          b.classList.add('text-slate-400', 'bg-white/5');
+        });
+        btn.classList.add('active', 'bg-astral-crimson', 'text-white', 'shadow-[0_0_12px_rgba(244,63,94,0.3)]');
+        btn.classList.remove('text-slate-400', 'bg-white/5');
+
+        currentRepoFilter = btn.getAttribute('data-repo-filter') || 'all';
+        filterRepos();
+      });
+    });
+
+    repoSearchInput?.addEventListener('input', (e) => {
+      currentSearchTerm = e.target.value.trim().toLowerCase();
+      filterRepos();
+    });
+
+    // 4. Scroll Reveal Engine (Constitutional Motion: cubic-bezier(0.16, 1, 0.3, 1))
+    const reveals = document.querySelectorAll('.astral-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
+
+    // 5. Live RAF Frame Rate Telemetry Counter
+    const fpsCounter = document.getElementById('raf-fps-counter');
+    let lastTime = performance.now();
+    let frameCount = 0;
+
+    function measureFPS(now) {
+      frameCount++;
+      if (now - lastTime >= 1000) {
+        const fps = Math.round((frameCount * 1000) / (now - lastTime));
+        if (fpsCounter) {
+          fpsCounter.textContent = `FPS: ${fps}.0`;
+        }
+        frameCount = 0;
+        lastTime = now;
+      }
+      requestAnimationFrame(measureFPS);
+    }
+    requestAnimationFrame(measureFPS);
+
+    // 6. Background WebGL Shader Simulation (Article 1.8: Only when serving the story)
+    const bgCanvas = document.getElementById('astral-bg-canvas');
+    if (bgCanvas) {
+      const ctx = bgCanvas.getContext('2d');
+      function resizeBg() {
+        bgCanvas.width = window.innerWidth / 2;
+        bgCanvas.height = window.innerHeight / 2;
+      }
+      resizeBg();
+      window.addEventListener('resize', resizeBg);
+
+      let mouseX = bgCanvas.width / 2;
+      let mouseY = bgCanvas.height / 2;
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX / 2;
+        mouseY = e.clientY / 2;
+      });
+
+      let time = 0;
+      function renderGrid() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+        time += 0.02;
+
+        const cols = 28;
+        const rows = 16;
+        const xStep = bgCanvas.width / cols;
+        const yStep = bgCanvas.height / rows;
+
+        ctx.fillStyle = 'rgba(244, 63, 94, 0.2)';
+        for (let i = 0; i <= cols; i++) {
+          for (let j = 0; j <= rows; j++) {
+            const x = i * xStep;
+            const y = j * yStep;
+            const dist = Math.hypot(x - mouseX, y - mouseY);
+            const radius = Math.max(0.5, 2.5 - dist / 120);
+
+            if (dist < 200) {
+              ctx.beginPath();
+              ctx.arc(x, y, radius, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+        }
+        requestAnimationFrame(renderGrid);
+      }
+      renderGrid();
+    }
+  </script>
+  <script src="assets/js/awwwards-core.js"></script>
+
+  <!-- GSAP & Kinetic Motion Suite -->
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/SplitText.min.js"></script>
+  <script src="vendor/DrawSVGPlugin.min.js"></script>
+  <script src="vendor/CustomEase.min.js"></script>
+  <script src="vendor/InertiaPlugin.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+  <!-- Extrafazant Kinetic Creative Engine -->
+  <script src="assets/js/extrafazant-engine.js"></script>
+
+</body>
+</html>

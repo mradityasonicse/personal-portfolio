@@ -603,8 +603,12 @@
   // ==========================================
   // 6. Tactile Web Audio Micro-Haptics
   // ==========================================
+  let userInteracted = false;
+  window.addEventListener("pointerdown", () => { userInteracted = true; }, { once: true, passive: true });
+  window.addEventListener("keydown", () => { userInteracted = true; }, { once: true, passive: true });
   let hapticAudioCtx = null;
   function playMicroHaptic(type) {
+    if (!userInteracted) return;
     try {
       if (!hapticAudioCtx) {
         hapticAudioCtx = new (window.AudioContext || window.webkitAudioContext)();

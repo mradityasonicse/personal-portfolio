@@ -13,7 +13,8 @@ import {
   Copy, 
   ExternalLink,
   X,
-  Compass
+  Compass,
+  Film
 } from 'lucide-react';
 
 interface CommandPaletteProps {
@@ -151,6 +152,17 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
       description: 'linkedin.com/in/mradityasoni',
       icon: <ExternalLink className="w-4 h-4 text-slate-400" />,
       action: () => window.open('https://linkedin.com/in/mradityasoni', '_blank')
+    },
+    {
+      id: 'ext-widescreen',
+      category: 'EXTERNAL LINKS',
+      title: 'Framed in Widescreen — Cinema Essay',
+      description: 'A Portfolio Goes to the Movies: 2.39:1 Anamorphic Essay (2026)',
+      shortcut: 'M',
+      icon: <Film className="w-4 h-4 text-amber-400" />,
+      action: () => {
+        window.location.href = 'widescreen.html';
+      }
     }
   ];
 
